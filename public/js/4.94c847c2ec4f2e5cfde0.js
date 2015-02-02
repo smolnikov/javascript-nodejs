@@ -1,1 +1,0 @@
-webpackJsonp_name_([4],{20:function(e,t){"use strict";t.init=function(){}}});
