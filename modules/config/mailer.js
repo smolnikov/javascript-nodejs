@@ -3,8 +3,8 @@ var secret = require('./secret');
 module.exports = {
   senders: {
     default: {
-      email:     'JavaScript.ru <inform@javascript.ru>',
-      signature: "<p>Yours, robot</p>"
+      from:     'JavaScript.ru <inform@javascript.ru>',
+      signature: "<em>С уважением,<br>Илья Кантор</em>"
     }
   },
   ses:     {
