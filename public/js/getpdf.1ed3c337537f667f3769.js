@@ -6,7 +6,7 @@ webpackJsonp_name_([1],{
 
 	"use strict";
 
-	var OrderForm = __webpack_require__(40);
+	var OrderForm = __webpack_require__(38);
 
 	exports.init = function () {
 
@@ -198,7 +198,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 40:
+/***/ 38:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

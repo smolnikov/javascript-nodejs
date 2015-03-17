@@ -1,5 +1,5 @@
 var footer =
-webpackJsonp_name_([3],{
+webpackJsonp_name_([2],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -11,7 +11,7 @@ webpackJsonp_name_([3],{
 	var load2x = __webpack_require__(20);
 	var trackSticky = __webpack_require__(21);
 
-	__webpack_require__(38).init();
+	__webpack_require__(40).init();
 
 	exports.init = function () {
 	  showLinkType();
@@ -379,7 +379,7 @@ webpackJsonp_name_([3],{
 
 /***/ },
 
-/***/ 38:
+/***/ 40:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

@@ -76,7 +76,7 @@ var head =
 /******/ 			script.type = 'text/javascript';
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "e08fc4e767cfa1050fd4" + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "1ed3c337537f667f3769" + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -101,31 +101,35 @@ var head =
 	"use strict";
 
 	__webpack_require__(22);
-	__webpack_require__(2);
+	__webpack_require__(6);
 
 	//exports.init = require('./init');
-	exports.login = __webpack_require__(3);
+	exports.login = __webpack_require__(7);
 
-	__webpack_require__(4);
-	exports.Modal = __webpack_require__(5);
-	exports.fontTest = __webpack_require__(6);
-	exports.resizeOnload = __webpack_require__(14);
-	__webpack_require__(7);
 	__webpack_require__(8);
-	__webpack_require__(9);
-	__webpack_require__(10);
+	exports.Modal = __webpack_require__(9);
+	exports.fontTest = __webpack_require__(10);
+	exports.resizeOnload = __webpack_require__(18);
 	__webpack_require__(11);
 	__webpack_require__(12);
+	__webpack_require__(13);
+	__webpack_require__(14);
+	__webpack_require__(15);
+	__webpack_require__(16);
 
 	// must use CommonsChunkPlugin
 	// to ensure that other modules use exactly this (initialized) client/notify
 	__webpack_require__(23).init();
 
-	__webpack_require__(13);
+	__webpack_require__(17);
 
 /***/ },
 /* 1 */,
-/* 2 */
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -152,12 +156,12 @@ var head =
 	});
 
 /***/ },
-/* 3 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var Modal = __webpack_require__(5);
+	var Modal = __webpack_require__(9);
 	var Spinner = __webpack_require__(36);
 
 	document.addEventListener("click", function (event) {
@@ -185,7 +189,7 @@ var head =
 	module.exports = login;
 
 /***/ },
-/* 4 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -208,7 +212,7 @@ var head =
 	module.exports = logout;
 
 /***/ },
-/* 5 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -271,7 +275,7 @@ var head =
 	module.exports = Modal;
 
 /***/ },
-/* 6 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -310,7 +314,7 @@ var head =
 	};
 
 /***/ },
-/* 7 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -405,7 +409,7 @@ var head =
 	}
 
 /***/ },
-/* 8 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -441,7 +445,7 @@ var head =
 	}
 
 /***/ },
-/* 9 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -488,7 +492,7 @@ var head =
 	}
 
 /***/ },
-/* 10 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -556,7 +560,7 @@ var head =
 	document.addEventListener("DOMContentLoaded", showHotKeys);
 
 /***/ },
-/* 11 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -615,7 +619,7 @@ var head =
 	});
 
 /***/ },
-/* 12 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -640,7 +644,7 @@ var head =
 	};
 
 /***/ },
-/* 13 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1023,13 +1027,13 @@ var head =
 	})(window, document);
 
 /***/ },
-/* 14 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
 	var iframeResize = __webpack_require__(48);
-	var throttle = __webpack_require__(50);
+	var throttle = __webpack_require__(51);
 	// track resized iframes in window.onresize
 
 	var onResizeQueue = [];
@@ -1073,10 +1077,6 @@ var head =
 	}, 200));
 
 /***/ },
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
 /* 19 */,
 /* 20 */,
 /* 21 */,
@@ -1085,7 +1085,7 @@ var head =
 
 	"use strict";
 
-	__webpack_require__(51);
+	__webpack_require__(50);
 
 /***/ },
 /* 23 */
@@ -1680,44 +1680,6 @@ var head =
 
 	"use strict";
 
-	function throttle(func, ms) {
-
-	  var isThrottled = false,
-	      savedArgs,
-	      savedThis;
-
-	  function wrapper() {
-
-	    if (isThrottled) {
-	      savedArgs = arguments;
-	      savedThis = this;
-	      return;
-	    }
-
-	    func.apply(this, arguments);
-
-	    isThrottled = true;
-
-	    setTimeout(function () {
-	      isThrottled = false;
-	      if (savedArgs) {
-	        wrapper.apply(savedThis, savedArgs);
-	        savedArgs = savedThis = null;
-	      }
-	    }, ms);
-	  }
-
-	  return wrapper;
-	}
-
-	module.exports = throttle;
-
-/***/ },
-/* 51 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
 	//require('./casperjs');
 
 	// http://dom.spec.whatwg.org/#mutation-method-macro
@@ -1794,6 +1756,44 @@ var head =
 	__webpack_require__(72);
 	__webpack_require__(73);
 	__webpack_require__(74);
+
+/***/ },
+/* 51 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	function throttle(func, ms) {
+
+	  var isThrottled = false,
+	      savedArgs,
+	      savedThis;
+
+	  function wrapper() {
+
+	    if (isThrottled) {
+	      savedArgs = arguments;
+	      savedThis = this;
+	      return;
+	    }
+
+	    func.apply(this, arguments);
+
+	    isThrottled = true;
+
+	    setTimeout(function () {
+	      isThrottled = false;
+	      if (savedArgs) {
+	        wrapper.apply(savedThis, savedArgs);
+	        savedArgs = savedThis = null;
+	      }
+	    }, ms);
+	  }
+
+	  return wrapper;
+	}
+
+	module.exports = throttle;
 
 /***/ },
 /* 52 */,
