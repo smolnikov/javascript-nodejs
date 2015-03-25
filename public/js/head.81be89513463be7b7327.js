@@ -76,7 +76,7 @@ var head =
 /******/ 			script.type = 'text/javascript';
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "158cbb7ab52f94676387" + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "81be89513463be7b7327" + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -468,7 +468,7 @@ var head =
 	}
 	
 	function onClick(event) {
-	  if (event.target.dataset.sidebarToggle === undefined) {
+	  if (event.target.dataset && event.target.dataset.sidebarToggle === undefined) {
 	    return;
 	  }toggle();
 	}
@@ -1616,4 +1616,4 @@ var head =
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=head.158cbb7ab52f94676387.js.map
+//# sourceMappingURL=head.81be89513463be7b7327.js.map
