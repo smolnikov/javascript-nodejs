@@ -12,12 +12,12 @@ webpackJsonp_name_([4],{
 	
 	var profile = angular.module("profile", ["ui.router", "ngResource", "global403Interceptor", "ajoslin.promise-tracker", "progress", "focusOn", "ngMessages"]);
 	
+	__webpack_require__(23);
+	__webpack_require__(24);
+	__webpack_require__(25);
+	__webpack_require__(26);
+	__webpack_require__(27);
 	__webpack_require__(28);
-	__webpack_require__(29);
-	__webpack_require__(30);
-	__webpack_require__(31);
-	__webpack_require__(32);
-	__webpack_require__(33);
 	
 	profile.factory("Me", function ($resource) {
 	  return $resource("/users/me", {}, {
@@ -130,7 +130,7 @@ webpackJsonp_name_([4],{
 
 /***/ },
 
-/***/ 28:
+/***/ 23:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -194,7 +194,9 @@ webpackJsonp_name_([4],{
 	            new notification.Warning("Требуется подтвердить смену email, проверьте почту.", "slow");
 	          } else if (_this.name == "profileName") {
 	            new notification.Success("Ваш профиль доступен по новому адресу, страница будет перезагружена");
-	            window.location.href = "/profile/" + _this.editingValue + "/account";
+	            setTimeout(function () {
+	              window.location.href = "/profile/" + this.editingValue + "/account";
+	            }, 2000);
 	          } else {
 	            new notification.Success("Информация обновлена.");
 	          }
@@ -236,7 +238,7 @@ webpackJsonp_name_([4],{
 
 /***/ },
 
-/***/ 29:
+/***/ 24:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -314,7 +316,7 @@ webpackJsonp_name_([4],{
 
 /***/ },
 
-/***/ 30:
+/***/ 25:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -331,7 +333,8 @@ webpackJsonp_name_([4],{
 	    replace: true,
 	    link: function link(scope, element, attrs, noCtrl, transclude) {
 	
-	      scope.password = scope.passwordOld = "";
+	      scope.password = "";
+	      scope.passwordOld = "";
 	
 	      scope.loadingTracker = promiseTracker();
 	
@@ -346,9 +349,7 @@ webpackJsonp_name_([4],{
 	      };
 	
 	      scope.submit = function () {
-	        var _this = this;
-	
-	        if (this.form.$invalid) return;
+	        if (scope.form.$invalid) return;
 	
 	        var formData = new FormData();
 	        formData.append("password", this.password);
@@ -363,9 +364,14 @@ webpackJsonp_name_([4],{
 	          data: formData
 	        }).then(function (response) {
 	          new notification.Success("Пароль обновлён.");
-	          _this.editing = false;
+	          scope.editing = false;
 	          // now have password for sure
 	          scope.hasPassword = true;
+	
+	          // and clean password fields
+	          scope.password = "";
+	          scope.passwordOld = "";
+	          scope.form.$setPristine();
 	        }, function (response) {
 	          if (response.status == 400) {
 	            new notification.Error(response.data.message || response.data.errors.password);
@@ -391,7 +397,7 @@ webpackJsonp_name_([4],{
 
 /***/ },
 
-/***/ 31:
+/***/ 26:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -454,7 +460,7 @@ webpackJsonp_name_([4],{
 
 /***/ },
 
-/***/ 32:
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -483,7 +489,7 @@ webpackJsonp_name_([4],{
 
 /***/ },
 
-/***/ 33:
+/***/ 28:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -3592,4 +3598,4 @@ webpackJsonp_name_([4],{
 /***/ }
 
 });
-//# sourceMappingURL=profile.81be89513463be7b7327.js.map
+//# sourceMappingURL=profile.8a592c155dfb13862095.js.map

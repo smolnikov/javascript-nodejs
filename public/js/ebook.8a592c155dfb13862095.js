@@ -6,7 +6,7 @@ webpackJsonp_name_([2],{
 
 	"use strict";
 	
-	var OrderForm = __webpack_require__(37);
+	var OrderForm = __webpack_require__(39);
 	
 	exports.init = function () {
 	
@@ -20,7 +20,7 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 25:
+/***/ 31:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -71,7 +71,7 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 27:
+/***/ 33:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -255,7 +255,7 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 37:
+/***/ 39:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -264,9 +264,9 @@ webpackJsonp_name_([2],{
 	
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 	
-	var xhr = __webpack_require__(27);
+	var xhr = __webpack_require__(33);
 	var notification = __webpack_require__(22);
-	var delegate = __webpack_require__(26);
+	var delegate = __webpack_require__(32);
 	var Spinner = __webpack_require__(35);
 	
 	var OrderForm = (function () {
@@ -440,4 +440,4 @@ webpackJsonp_name_([2],{
 /***/ }
 
 });
-//# sourceMappingURL=ebook.81be89513463be7b7327.js.map
+//# sourceMappingURL=ebook.8a592c155dfb13862095.js.map

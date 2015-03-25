@@ -76,7 +76,7 @@ var head =
 /******/ 			script.type = 'text/javascript';
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "81be89513463be7b7327" + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "8a592c155dfb13862095" + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -101,21 +101,21 @@ var head =
 	"use strict";
 	
 	__webpack_require__(21);
-	__webpack_require__(6);
+	__webpack_require__(9);
 	
 	//exports.init = require('./init');
-	exports.login = __webpack_require__(7);
+	exports.login = __webpack_require__(10);
 	
-	__webpack_require__(8);
-	exports.Modal = __webpack_require__(9);
-	exports.fontTest = __webpack_require__(10);
-	exports.resizeOnload = __webpack_require__(17);
 	__webpack_require__(11);
-	__webpack_require__(12);
-	__webpack_require__(13);
+	exports.Modal = __webpack_require__(12);
+	exports.fontTest = __webpack_require__(13);
+	exports.resizeOnload = __webpack_require__(20);
 	__webpack_require__(14);
 	__webpack_require__(15);
 	__webpack_require__(16);
+	__webpack_require__(17);
+	__webpack_require__(18);
+	__webpack_require__(19);
 	
 	// must use CommonsChunkPlugin
 	// to ensure that other modules use exactly this (initialized) client/notify
@@ -127,7 +127,10 @@ var head =
 /* 3 */,
 /* 4 */,
 /* 5 */,
-/* 6 */
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// if class ends with _unready then we consider element unusable (yet)
@@ -158,12 +161,12 @@ var head =
 	});
 
 /***/ },
-/* 7 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var Modal = __webpack_require__(9);
+	var Modal = __webpack_require__(12);
 	var Spinner = __webpack_require__(35);
 	
 	document.addEventListener("click", function (event) {
@@ -191,7 +194,7 @@ var head =
 	module.exports = login;
 
 /***/ },
-/* 8 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -214,7 +217,7 @@ var head =
 	module.exports = logout;
 
 /***/ },
-/* 9 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -277,7 +280,7 @@ var head =
 	module.exports = Modal;
 
 /***/ },
-/* 10 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -316,7 +319,7 @@ var head =
 	};
 
 /***/ },
-/* 11 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -411,7 +414,7 @@ var head =
 	}
 
 /***/ },
-/* 12 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -447,7 +450,7 @@ var head =
 	}
 
 /***/ },
-/* 13 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -494,13 +497,13 @@ var head =
 	}
 
 /***/ },
-/* 14 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// navigation starts to work right now
 	"use strict";
 	
-	var onSwipe = __webpack_require__(46);
+	var onSwipe = __webpack_require__(47);
 	var ctrlOrAlt = ~navigator.userAgent.toLowerCase().indexOf("mac os x") ? "ctrl" : "alt";
 	
 	function onKeyDown(event) {
@@ -562,7 +565,7 @@ var head =
 	document.addEventListener("DOMContentLoaded", showHotKeys);
 
 /***/ },
-/* 15 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// add/remove .hover onmouseenter/leave
@@ -621,7 +624,7 @@ var head =
 	});
 
 /***/ },
-/* 16 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -646,13 +649,13 @@ var head =
 	};
 
 /***/ },
-/* 17 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var iframeResize = __webpack_require__(47);
-	var throttle = __webpack_require__(50);
+	var iframeResize = __webpack_require__(48);
+	var throttle = __webpack_require__(49);
 	// track resized iframes in window.onresize
 	
 	var onResizeQueue = [];
@@ -696,15 +699,12 @@ var head =
 	}, 200));
 
 /***/ },
-/* 18 */,
-/* 19 */,
-/* 20 */,
 /* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	__webpack_require__(49);
+	__webpack_require__(50);
 
 /***/ },
 /* 22 */
@@ -727,7 +727,7 @@ var head =
 	 * For new notification types extend Notification
 	 */
 	
-	var delegate = __webpack_require__(26);
+	var delegate = __webpack_require__(32);
 	
 	/**
 	 * Calculates translateY positions when notifications are added/removed
@@ -964,7 +964,13 @@ var head =
 /* 23 */,
 /* 24 */,
 /* 25 */,
-/* 26 */
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1018,12 +1024,6 @@ var head =
 	module.exports = delegate;
 
 /***/ },
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
 /* 33 */,
 /* 34 */,
 /* 35 */
@@ -1086,7 +1086,8 @@ var head =
 /* 43 */,
 /* 44 */,
 /* 45 */,
-/* 46 */
+/* 46 */,
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1150,7 +1151,7 @@ var head =
 	module.exports = onSwipe;
 
 /***/ },
-/* 47 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1293,8 +1294,45 @@ var head =
 	 */
 
 /***/ },
-/* 48 */,
 /* 49 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	function throttle(func, ms) {
+	
+	  var isThrottled = false,
+	      savedArgs,
+	      savedThis;
+	
+	  function wrapper() {
+	
+	    if (isThrottled) {
+	      savedArgs = arguments;
+	      savedThis = this;
+	      return;
+	    }
+	
+	    func.apply(this, arguments);
+	
+	    isThrottled = true;
+	
+	    setTimeout(function () {
+	      isThrottled = false;
+	      if (savedArgs) {
+	        wrapper.apply(savedThis, savedArgs);
+	        savedArgs = savedThis = null;
+	      }
+	    }, ms);
+	  }
+	
+	  return wrapper;
+	}
+	
+	module.exports = throttle;
+
+/***/ },
+/* 50 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//require('./casperjs');
@@ -1375,44 +1413,6 @@ var head =
 	__webpack_require__(71);
 	__webpack_require__(72);
 	__webpack_require__(73);
-
-/***/ },
-/* 50 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	function throttle(func, ms) {
-	
-	  var isThrottled = false,
-	      savedArgs,
-	      savedThis;
-	
-	  function wrapper() {
-	
-	    if (isThrottled) {
-	      savedArgs = arguments;
-	      savedThis = this;
-	      return;
-	    }
-	
-	    func.apply(this, arguments);
-	
-	    isThrottled = true;
-	
-	    setTimeout(function () {
-	      isThrottled = false;
-	      if (savedArgs) {
-	        wrapper.apply(savedThis, savedArgs);
-	        savedArgs = savedThis = null;
-	      }
-	    }, ms);
-	  }
-	
-	  return wrapper;
-	}
-	
-	module.exports = throttle;
 
 /***/ },
 /* 51 */,
@@ -1616,4 +1616,4 @@ var head =
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=head.81be89513463be7b7327.js.map
+//# sourceMappingURL=head.8a592c155dfb13862095.js.map
