@@ -76,7 +76,7 @@ var head =
 /******/ 			script.type = 'text/javascript';
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "83bd46bb9b55d3b709ab" + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "158cbb7ab52f94676387" + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -138,6 +138,8 @@ var head =
 	document.addEventListener("click", function (event) {
 	  var target = event.target;
 	  while (target) {
+	    if (!target.className.match) return; // click on SVG element in FF, className is an object
+	
 	    if (target.className.match(/_unready\b/)) {
 	      event.preventDefault();
 	      return;
@@ -148,6 +150,8 @@ var head =
 	
 	// cancel submits of <form class="unready">
 	document.addEventListener("submit", function (event) {
+	  if (!event.target.className.match) return;
+	
 	  if (event.target.className.match(/_unready\b/)) {
 	    event.preventDefault();
 	  }
@@ -1612,4 +1616,4 @@ var head =
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=head.83bd46bb9b55d3b709ab.js.map
+//# sourceMappingURL=head.158cbb7ab52f94676387.js.map
