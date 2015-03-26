@@ -77,10 +77,10 @@ webpackJsonp_name_([7],{
 	      templateUrl: "/profile/templates/partials/account",
 	      controller: "ProfileAccountCtrl"
 	    },
-	    "root.quizresults": {
-	      url: "/quizresults",
+	    "root.quiz": {
+	      url: "/quiz",
 	      title: "Тесты",
-	      templateUrl: "/profile/templates/partials/quizresults",
+	      templateUrl: "/profile/templates/partials/quiz",
 	      controller: "ProfileQuizResultsCtrl",
 	      resolve: {
 	        quizResults: function (QuizResults) {
@@ -3833,4 +3833,4 @@ webpackJsonp_name_([7],{
 /***/ }
 
 });
-//# sourceMappingURL=profile.46169cffcc15d81f23bb.js.map
+//# sourceMappingURL=profile.a4d8d77749bfe55eb878.js.map

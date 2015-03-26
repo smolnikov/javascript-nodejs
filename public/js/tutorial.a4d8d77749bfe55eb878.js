@@ -1,155 +1,98 @@
-var quiz =
-webpackJsonp_name_([8],[
+var tutorial =
+webpackJsonp_name_([4],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var Spinner = __webpack_require__(36);
-	var xhr = __webpack_require__(27);
-	var getCsrfCookie = __webpack_require__(37);
+	var delegate = __webpack_require__(26);
 	var prism = __webpack_require__(35);
+	var xhr = __webpack_require__(27);
+	var TutorialMapModal = __webpack_require__(23);
 	
-	function init() {
-	  var quizQuestionForm = document.querySelector("[data-quiz-question-form]");
+	exports.init = function () {
 	
-	  if (quizQuestionForm) {
-	    initQuizForm(quizQuestionForm);
-	  }
+	  initTaskButtons();
+	  initFolderList();
 	
-	  var quizResultSaveForm = document.querySelector("[data-quiz-result-save-form]");
+	  initSidebarHighlight();
 	
-	  if (quizResultSaveForm) {
-	    initQuizResultSaveForm(quizResultSaveForm);
-	  }
+	  delegate(document, "[data-action=\"tutorial-map\"]", "click", function (event) {
+	    new TutorialMapModal();
+	    event.preventDefault();
+	  });
 	
 	  prism.init();
-	}
 	
-	function initQuizResultSaveForm(form) {
-	  form.onsubmit = function (e) {
-	
-	    if (window.currentUser) {
-	      // normal submit => profile
-	      return;
-	    }
-	
-	    e.preventDefault();
-	
-	    authAndSubmit();
-	  };
-	
-	  function authAndSubmit() {
-	
-	    // let's authorize first
-	    var submitButton = form.querySelector("[type=\"submit\"]");
-	
-	    var spinner = new Spinner({
-	      elem: submitButton,
-	      size: "small",
-	      "class": "submit-button__spinner",
-	      elemClass: "submit-button_progress"
-	    });
-	    spinner.start();
-	
-	    __webpack_require__.e/* nsure */(6, function () {
-	      spinner.stop();
-	      var AuthModal = __webpack_require__(41).AuthModal;
-	      new AuthModal({
-	        callback: function callback() {
-	          var csrf = getCsrfCookie();
-	          form.elements._csrf.value = csrf;
-	          form.submit();
-	        }
-	      });
+	  if (window.isEbook) {
+	    __webpack_require__.e/* nsure */(1, function () {
+	      __webpack_require__(25).init();
 	    });
 	  }
-	}
+	};
 	
-	function initQuizForm(form) {
+	exports.TutorialMap = __webpack_require__(24);
 	
-	  function getValue() {
-	    var type = form.elements.type.value;
+	function initSidebarHighlight() {
 	
-	    var answerElems = form.elements.answer;
+	  function highlight() {
 	
-	    var value = [];
+	    var current = document.getElementsByClassName("sidebar__navigation-link_active");
+	    if (current[0]) current[0].classList.remove("sidebar__navigation-link_active");
 	
-	    for (var i = 0; i < answerElems.length; i++) {
-	      if (answerElems[i].checked) {
-	        value.push(+answerElems[i].value);
+	    var h2s = document.getElementsByTagName("h2");
+	    for (var i = 0; i < h2s.length; i++) {
+	      var h2 = h2s[i];
+	      // first in-page header
+	      if (h2.getBoundingClientRect().top > 0) break;
+	    }
+	    i--; // we need the one before it (currently reading)
+	
+	    if (i >= 0) {
+	      var href = h2s[i].firstElementChild && h2s[i].firstElementChild.getAttribute("href");
+	      var li = document.querySelector(".sidebar__navigation-link a[href=\"" + href + "\"]");
+	      if (href && li) {
+	        li.classList.add("sidebar__navigation-link_active");
 	      }
 	    }
-	
-	    if (type == "single") {
-	      value = value[0];
-	    }
-	
-	    return value;
 	  }
 	
-	  form.onchange = function () {
-	    var value = getValue();
+	  document.addEventListener("DOMContentLoaded", function () {
+	    highlight();
 	
-	    switch (form.elements.type.value) {
-	      case "single":
-	        form.querySelector("[type=\"submit\"]").disabled = value === undefined;
-	        break;
-	      case "multi":
-	        form.querySelector("[type=\"submit\"]").disabled = value.length ? false : true;
-	        break;
-	      default:
-	        throw new Error("unknown type");
+	    window.addEventListener("scroll", highlight);
+	  });
+	}
+	
+	function initTaskButtons() {
+	  // solution button
+	  delegate(document, ".task__solution", "click", function (event) {
+	    event.target.closest(".task").classList.toggle("task__answer_open");
+	  });
+	
+	  // close solution button
+	  delegate(document, ".task__answer-close", "click", function (event) {
+	    event.target.closest(".task").classList.toggle("task__answer_open");
+	  });
+	
+	  // every step button (if any steps)
+	  delegate(document, ".task__step-show", "click", function (event) {
+	    event.target.closest(".task__step").classList.toggle("task__step_open");
+	  });
+	}
+	
+	function initFolderList() {
+	  delegate(document, ".lessons-list__lesson_level_1 > .lessons-list__link", "click", function (event) {
+	    var link = event.delegateTarget;
+	    var openFolder = link.closest(".lessons-list").querySelector(".lessons-list__lesson_open");
+	    // close the previous open folder (thus making an accordion)
+	    if (openFolder && openFolder != link.parentNode) {
+	      openFolder.classList.remove("lessons-list__lesson_open");
 	    }
-	  };
-	
-	  form.onsubmit = function (event) {
+	    link.parentNode.classList.toggle("lessons-list__lesson_open");
 	    event.preventDefault();
-	    var value = getValue();
-	
-	    var request = xhr({
-	      method: "POST",
-	      url: form.action,
-	      body: {
-	        answer: value
-	      }
-	    });
-	
-	    var submitButton = form.querySelector("[type=\"submit\"]");
-	
-	    var spinner = new Spinner({
-	      elem: submitButton,
-	      size: "small",
-	      elemClass: "button_loading"
-	    });
-	    spinner.start();
-	    submitButton.disabled = true;
-	
-	    request.addEventListener("loadend", function () {
-	      spinner.stop();
-	    });
-	
-	    request.addEventListener("fail", function () {
-	      return submitButton.disabled = false;
-	    });
-	    request.addEventListener("success", function (event) {
-	      if (event.result.reload) {
-	        window.location.reload();
-	      } else if (event.result.html) {
-	        document.querySelector(".quiz-timeline .quiz-timeline__number_current").classList.remove("quiz-timeline__number_current");
-	
-	        document.querySelectorAll(".quiz-timeline span")[event.result.questionNumber].classList.add("quiz-timeline__number_current");
-	
-	        form.innerHTML = event.result.html;
-	        prism.highlight(form);
-	      } else {
-	        console.error("Bad response", event.result);
-	      }
-	    });
-	  };
+	  });
 	}
-	
-	exports.init = init;
 
 /***/ },
 /* 1 */,
@@ -171,11 +114,337 @@ webpackJsonp_name_([8],[
 /* 17 */,
 /* 18 */,
 /* 19 */,
-/* 20 */,
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	module.exports = trackSticky;
+	
+	function trackSticky() {
+	
+	  var stickyElems = document.querySelectorAll("[data-sticky]");
+	
+	  for (var i = 0; i < stickyElems.length; i++) {
+	    var stickyElem = stickyElems[i];
+	    var container = stickyElem.dataset.sticky ? document.querySelector(stickyElem.dataset.sticky) : document.body;
+	
+	    if (stickyElem.getBoundingClientRect().top < 0) {
+	      // become fixed
+	      if (stickyElem.style.cssText) {
+	        // already fixed
+	        // inertia: happens when scrolled fast too much to bottom
+	        // http://ilyakantor.ru/screen/2015-02-24_1555.swf
+	        return;
+	      }
+	
+	      var savedLeft = stickyElem.getBoundingClientRect().left;
+	      var placeholder = createPlaceholder(stickyElem);
+	
+	      stickyElem.parentNode.insertBefore(placeholder, stickyElem);
+	
+	      container.appendChild(stickyElem);
+	      stickyElem.classList.add("sticky");
+	      stickyElem.style.position = "fixed";
+	      stickyElem.style.top = 0;
+	      stickyElem.style.left = savedLeft + "px";
+	      // zIndex < 1000, because it must be under an overlay,
+	      // e.g. sitemap must show over the progress bar
+	      stickyElem.style.zIndex = 101;
+	      stickyElem.style.background = "white"; // non-transparent to cover the text
+	      stickyElem.style.margin = 0;
+	      stickyElem.style.width = placeholder.offsetWidth + "px"; // keep same width as before
+	      stickyElem.placeholder = placeholder;
+	    } else if (stickyElem.placeholder && stickyElem.placeholder.getBoundingClientRect().top > 0) {
+	      // become non-fixed
+	      stickyElem.style.cssText = "";
+	      stickyElem.classList.remove("sticky");
+	      stickyElem.placeholder.parentNode.insertBefore(stickyElem, stickyElem.placeholder);
+	      stickyElem.placeholder.remove();
+	
+	      stickyElem.placeholder = null;
+	    }
+	  }
+	}
+	
+	/**
+	 * Creates a placeholder w/ same size & margin
+	 * @param elem
+	 * @returns {*|!HTMLElement}
+	 */
+	function createPlaceholder(elem) {
+	  var placeholder = document.createElement("div");
+	  var style = getComputedStyle(elem);
+	  placeholder.style.width = elem.offsetWidth + "px";
+	  placeholder.style.marginLeft = style.marginLeft;
+	  placeholder.style.marginRight = style.marginRight;
+	  placeholder.style.height = elem.offsetHeight + "px";
+	  placeholder.style.marginBottom = style.marginBottom;
+	  placeholder.style.marginTop = style.marginTop;
+	  return placeholder;
+	}
+
+/***/ },
 /* 21 */,
 /* 22 */,
-/* 23 */,
-/* 24 */,
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var xhr = __webpack_require__(27);
+	
+	var delegate = __webpack_require__(26);
+	var Modal = __webpack_require__(9);
+	var Spinner = __webpack_require__(36);
+	var TutorialMap = __webpack_require__(24);
+	var trackSticky = __webpack_require__(20);
+	
+	/**
+	 * Options:
+	 *   - callback: function to be called after successful login (by default - go to successRedirect)
+	 *   - message: form message to be shown when the login form appears ("Log in to leave the comment")
+	 *   - successRedirect: the page to redirect (current page by default)
+	 *       - after immediate login
+	 *       - after registration for "confirm email" link
+	 */
+	function TutorialMapModal() {
+	  Modal.apply(this, arguments);
+	
+	  var spinner = new Spinner();
+	  this.setContent(spinner.elem);
+	  spinner.start();
+	
+	  var request = this.request({
+	    url: "/tutorial/map"
+	  });
+	
+	  var self = this;
+	
+	  request.addEventListener("success", function (event) {
+	    var wrapper = document.createElement("div");
+	    wrapper.className = "tutorial-map-overlay";
+	    wrapper.innerHTML = event.result + "<button class=\"close-button tutorial-map-overlay__close\"></button>";
+	    document.body.classList.add("tutorial-map_on");
+	    self.setContent(wrapper);
+	
+	    wrapper.addEventListener("scroll", trackSticky);
+	
+	    new TutorialMap(self.contentElem.firstElementChild);
+	  });
+	
+	  request.addEventListener("fail", function () {
+	    self.remove();
+	  });
+	}
+	
+	TutorialMapModal.prototype = Object.create(Modal.prototype);
+	
+	delegate.delegateMixin(TutorialMapModal.prototype);
+	
+	TutorialMapModal.prototype.remove = function () {
+	  Modal.prototype.remove.apply(this, arguments);
+	  document.body.classList.remove("tutorial-map_on");
+	};
+	
+	TutorialMapModal.prototype.request = function (options) {
+	  var request = xhr(options);
+	
+	  return request;
+	};
+	
+	module.exports = TutorialMapModal;
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var throttle = __webpack_require__(50);
+	var delegate = __webpack_require__(26);
+	
+	function TutorialMap(elem) {
+	  var _this = this;
+	
+	  this.elem = elem;
+	
+	  this.showTasksCheckbox = elem.querySelector("[data-tutorial-map-show-tasks]");
+	  this.showTasksCheckbox.checked = +localStorage.showTasksCheckbox;
+	
+	  this.updateShowTasks();
+	
+	  this.showTasksCheckbox.onchange = this.updateShowTasks.bind(this);
+	
+	  this.filterInput = this.elem.querySelector("[data-tutorial-map-filter]");
+	  this.textInputBlock = this.elem.querySelector(".tutorial-map__filter .text-input");
+	
+	  this.layoutSwitch = this.elem.querySelector("[data-tutorial-map-layout-switch]");
+	  var isMapSingleColumn = +localStorage.isMapSingleColumn;
+	  this.layoutSwitch.querySelector("[value=\"0\"]").checked = !isMapSingleColumn;
+	  this.layoutSwitch.querySelector("[value=\"1\"]").checked = isMapSingleColumn;
+	  this.updateLayout();
+	  this.layoutSwitch.onchange = this.onLayoutSwitchChange.bind(this);
+	
+	  this.filterInput.oninput = this.onFilterInput.bind(this);
+	  this.filterInput.onkeydown = this.onFilterKeydown.bind(this);
+	
+	  this.elem.querySelector(".close-button").onclick = function () {
+	    _this.filterInput.value = "";
+	    _this.showClearButton(false);
+	    _this.filter("");
+	  };
+	
+	  this.chaptersCollapsed = JSON.parse(localStorage.tutorialMapChapters || "{}");
+	  this.showChaptersCollapsed();
+	
+	  this.delegate(".tutorial-map__item > .tutorial-map__link", "click", function (event) {
+	    event.preventDefault();
+	    var href = event.delegateTarget.getAttribute("href");
+	    if (this.chaptersCollapsed[href]) {
+	      delete this.chaptersCollapsed[href];
+	    } else {
+	      this.chaptersCollapsed[href] = 1;
+	    }
+	    localStorage.tutorialMapChapters = JSON.stringify(this.chaptersCollapsed);
+	    this.showChaptersCollapsed();
+	  });
+	
+	  var activeLink = this.elem.querySelector("[href=\"" + location.pathname + "\"]");
+	  if (activeLink) {
+	    activeLink.classList.add("tutorial-map__link_active");
+	  }
+	
+	  this.focus();
+	}
+	
+	TutorialMap.prototype.showChaptersCollapsed = function () {
+	  var links = this.elem.querySelectorAll(".tutorial-map__item > .tutorial-map__link");
+	  for (var i = 0; i < links.length; i++) {
+	    var link = links[i];
+	
+	    if (this.chaptersCollapsed[link.getAttribute("href")]) {
+	      link.parentNode.classList.add("tutorial-map__item_collapsed");
+	    } else {
+	      link.parentNode.classList.remove("tutorial-map__item_collapsed");
+	    }
+	  }
+	};
+	
+	TutorialMap.prototype.onLayoutSwitchChange = function (event) {
+	  this.updateLayout();
+	};
+	
+	TutorialMap.prototype.updateLayout = function () {
+	  var isMapSingleColumn = +this.elem.querySelector("[name=\"map-layout\"]:checked").value;
+	  if (isMapSingleColumn) {
+	    this.elem.classList.add("tutorial-map_singlecol");
+	  } else {
+	    this.elem.classList.remove("tutorial-map_singlecol");
+	  }
+	
+	  localStorage.isMapSingleColumn = isMapSingleColumn ? "1" : "0";
+	};
+	
+	TutorialMap.prototype.updateShowTasks = function () {
+	  if (this.showTasksCheckbox.checked) {
+	    this.elem.classList.add("tutorial-map_show-tasks");
+	  } else {
+	    this.elem.classList.remove("tutorial-map_show-tasks");
+	  }
+	
+	  localStorage.showTasksCheckbox = this.showTasksCheckbox.checked ? "1" : "0";
+	};
+	
+	TutorialMap.prototype.onFilterInput = function (event) {
+	  this.showClearButton(event.target.value);
+	  this.throttleFilter(event.target.value);
+	};
+	
+	TutorialMap.prototype.onFilterKeydown = function (event) {
+	  if (event.keyCode == 27) {
+	    // escape
+	    this.filterInput.value = "";
+	    this.showClearButton(false);
+	    this.filter("");
+	  }
+	};
+	
+	TutorialMap.prototype.showClearButton = function (show) {
+	  if (show) {
+	    this.textInputBlock.classList.add("text-input_clear-button");
+	  } else {
+	    this.textInputBlock.classList.remove("text-input_clear-button");
+	  }
+	};
+	
+	// focus on the map itself, to allow immediate scrolling with arrow up/down keys
+	TutorialMap.prototype.focus = function () {
+	  this.elem.tabIndex = -1;
+	  this.elem.focus();
+	};
+	
+	TutorialMap.prototype.filter = function (value) {
+	  value = value.toLowerCase();
+	  var showingTasks = this.showTasksCheckbox.checked;
+	
+	  var links = this.elem.querySelectorAll(".tutorial-map-link");
+	
+	  var topItems = this.elem.querySelectorAll(".tutorial-map__item");
+	
+	  function checkLiMatch(li) {
+	    return isSubSequence(li.querySelector("a").innerHTML.toLowerCase(), value.replace(/\s/g, ""));
+	  }
+	
+	  // an item is shown if any of its children is shown OR it's link matches the filter
+	  for (var i = 0; i < topItems.length; i++) {
+	    var li = topItems[i];
+	    var subItems = li.querySelectorAll(".tutorial-map__sub-item");
+	
+	    var childMatch = Array.prototype.reduce.call(subItems, function (prevValue, subItem) {
+	
+	      var childMatch = false;
+	
+	      if (showingTasks) {
+	        var subItems = subItem.querySelectorAll(".tutorial-map__sub-sub-item");
+	        childMatch = Array.prototype.reduce.call(subItems, function (prevValue, subItem) {
+	          var match = checkLiMatch(subItem);
+	          subItem.hidden = !match;
+	          return prevValue || match;
+	        }, false);
+	      }
+	
+	      var match = childMatch || checkLiMatch(subItem);
+	      //console.log(subItem, match);
+	      subItem.hidden = !match;
+	
+	      return prevValue || match;
+	    }, false);
+	
+	    li.hidden = !(childMatch || checkLiMatch(li));
+	  }
+	};
+	
+	TutorialMap.prototype.throttleFilter = throttle(TutorialMap.prototype.filter, 200);
+	delegate.delegateMixin(TutorialMap.prototype);
+	
+	function isSubSequence(str1, str2) {
+	  var i = 0;
+	  var j = 0;
+	  while (i < str1.length && j < str2.length) {
+	    if (str1[i] == str2[j]) {
+	      i++;
+	      j++;
+	    } else {
+	      i++;
+	    }
+	  }
+	  return j == str2.length;
+	}
+	
+	module.exports = TutorialMap;
+
+/***/ },
 /* 25 */,
 /* 26 */,
 /* 27 */
@@ -1919,4 +2188,4 @@ webpackJsonp_name_([8],[
 
 /***/ }
 ]);
-//# sourceMappingURL=quiz.46169cffcc15d81f23bb.js.map
+//# sourceMappingURL=tutorial.a4d8d77749bfe55eb878.js.map
