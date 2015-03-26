@@ -1,12 +1,12 @@
 webpackJsonp_name_([7],{
 
-/***/ 6:
+/***/ 24:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(17);
-	var getCsrfCookie = __webpack_require__(16);
+	var notification = __webpack_require__(19);
+	var getCsrfCookie = __webpack_require__(34);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -54,26 +54,28 @@ webpackJsonp_name_([7],{
 	    body = JSON.stringify(body);
 	  }
 	
-	  if (!options.noGlobalEvents) {
-	    request.addEventListener("loadstart", function (event) {
-	      var e = wrapEvent("xhrstart", event);
-	      document.dispatchEvent(e);
-	    });
-	    request.addEventListener("loadend", function (event) {
-	      var e = wrapEvent("xhrend", event);
-	      document.dispatchEvent(e);
-	    });
-	    request.addEventListener("success", function (event) {
-	      var e = wrapEvent("xhrsuccess", event);
-	      e.result = event.result;
-	      document.dispatchEvent(e);
-	    });
-	    request.addEventListener("fail", function (event) {
-	      var e = wrapEvent("xhrfail", event);
-	      e.reason = event.reason;
-	      document.dispatchEvent(e);
-	    });
-	  }
+	  request.addEventListener("loadstart", function (event) {
+	    sendStat(event.type);
+	    var e = wrapEvent("xhrstart", event);
+	    document.dispatchEvent(e);
+	  });
+	  request.addEventListener("loadend", function (event) {
+	    sendStat(event.type);
+	    var e = wrapEvent("xhrend", event);
+	    document.dispatchEvent(e);
+	  });
+	  request.addEventListener("success", function (event) {
+	    sendStat(event.type);
+	    var e = wrapEvent("xhrsuccess", event);
+	    e.result = event.result;
+	    document.dispatchEvent(e);
+	  });
+	  request.addEventListener("fail", function (event) {
+	    sendStat(event.type);
+	    var e = wrapEvent("xhrfail", event);
+	    e.reason = event.reason;
+	    document.dispatchEvent(e);
+	  });
 	
 	  if (!options.raw) {
 	    // means we want json
@@ -83,6 +85,15 @@ webpackJsonp_name_([7],{
 	  request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	
 	  var normalStatuses = options.normalStatuses || [200];
+	
+	  function sendStat(name) {
+	    window.metrika.reachGoal("XHR-" + name.toUpperCase(), {
+	      time: Date.now() - request.timeStart,
+	      method: request.method,
+	      url: request.url,
+	      status: request.status
+	    });
+	  }
 	
 	  function wrapEvent(name, e) {
 	    var event = new CustomEvent(name);
@@ -143,13 +154,9 @@ webpackJsonp_name_([7],{
 	
 	  // defer to let other handlers be assigned
 	  setTimeout(function () {
-	    var timeStart = Date.now();
+	    request.timeStart = Date.now();
 	
 	    request.send(body);
-	
-	    request.addEventListener("loadend", function () {
-	      window.ga("send", "timing", "xhr", method + " " + url, Date.now() - timeStart);
-	    });
 	  }, 0);
 	
 	  return request;
@@ -172,7 +179,7 @@ webpackJsonp_name_([7],{
 
 /***/ },
 
-/***/ 16:
+/***/ 34:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -184,16 +191,16 @@ webpackJsonp_name_([7],{
 
 /***/ },
 
-/***/ 39:
+/***/ 41:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	exports.AuthModal = __webpack_require__(56);
+	exports.AuthModal = __webpack_require__(55);
 
 /***/ },
 
-/***/ 47:
+/***/ 52:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -215,20 +222,20 @@ webpackJsonp_name_([7],{
 
 /***/ },
 
-/***/ 56:
+/***/ 55:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var xhr = __webpack_require__(6);
+	var xhr = __webpack_require__(24);
 	
-	var delegate = __webpack_require__(5);
-	var Modal = __webpack_require__(29);
-	var Spinner = __webpack_require__(15);
+	var delegate = __webpack_require__(23);
+	var Modal = __webpack_require__(5);
+	var Spinner = __webpack_require__(33);
 	
-	var loginForm = __webpack_require__(82);
-	var registerForm = __webpack_require__(83);
-	var forgotForm = __webpack_require__(84);
+	var loginForm = __webpack_require__(84);
+	var registerForm = __webpack_require__(85);
+	var forgotForm = __webpack_require__(86);
 	
 	var clientRender = __webpack_require__(81);
 	
@@ -578,7 +585,7 @@ webpackJsonp_name_([7],{
 	"use strict";
 	
 	var bem = __webpack_require__(87)();
-	var thumb = __webpack_require__(47).thumb;
+	var thumb = __webpack_require__(52).thumb;
 	
 	module.exports = function (template, locals) {
 	  locals = locals ? Object.create(locals) : {};
@@ -595,7 +602,7 @@ webpackJsonp_name_([7],{
 
 /***/ },
 
-/***/ 82:
+/***/ 84:
 /***/ function(module, exports, __webpack_require__) {
 
 	var jade = __webpack_require__(89);
@@ -778,7 +785,7 @@ webpackJsonp_name_([7],{
 
 /***/ },
 
-/***/ 83:
+/***/ 85:
 /***/ function(module, exports, __webpack_require__) {
 
 	var jade = __webpack_require__(89);
@@ -974,7 +981,7 @@ webpackJsonp_name_([7],{
 
 /***/ },
 
-/***/ 84:
+/***/ 86:
 /***/ function(module, exports, __webpack_require__) {
 
 	var jade = __webpack_require__(89);
@@ -1531,7 +1538,7 @@ webpackJsonp_name_([7],{
 	    throw err;
 	  }
 	  try {
-	    str = str || __webpack_require__(91).readFileSync(filename, "utf8");
+	    str = str || __webpack_require__(90).readFileSync(filename, "utf8");
 	  } catch (ex) {
 	    rethrow(err, null, lineno);
 	  }
@@ -1554,7 +1561,7 @@ webpackJsonp_name_([7],{
 
 /***/ },
 
-/***/ 91:
+/***/ 90:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* (ignored) */
@@ -1562,4 +1569,4 @@ webpackJsonp_name_([7],{
 /***/ }
 
 });
-//# sourceMappingURL=7.20e708d118f7094385a7.js.map
+//# sourceMappingURL=7.9d7b7e36dfcd731c1de1.js.map

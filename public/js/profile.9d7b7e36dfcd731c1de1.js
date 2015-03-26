@@ -7,17 +7,17 @@ webpackJsonp_name_([5],{
 	"use strict";
 	
 	var angular = __webpack_require__(1);
-	var notification = __webpack_require__(17);
-	var moment = __webpack_require__(13);
+	var notification = __webpack_require__(19);
+	var moment = __webpack_require__(31);
 	
 	var profile = angular.module("profile", ["ui.router", "ngResource", "global403Interceptor", "ajoslin.promise-tracker", "progress", "focusOn", "ngMessages"]);
 	
-	__webpack_require__(7);
-	__webpack_require__(8);
-	__webpack_require__(9);
-	__webpack_require__(10);
-	__webpack_require__(11);
-	__webpack_require__(12);
+	__webpack_require__(25);
+	__webpack_require__(26);
+	__webpack_require__(27);
+	__webpack_require__(28);
+	__webpack_require__(29);
+	__webpack_require__(30);
 	
 	profile.factory("Me", function ($resource) {
 	  return $resource("/users/me", {}, {
@@ -182,12 +182,12 @@ webpackJsonp_name_([5],{
 
 /***/ },
 
-/***/ 7:
+/***/ 25:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(17);
+	var notification = __webpack_require__(19);
 	var angular = __webpack_require__(1);
 	
 	angular.module("profile").directive("profileField", function (promiseTracker, $http, $timeout) {
@@ -290,14 +290,14 @@ webpackJsonp_name_([5],{
 
 /***/ },
 
-/***/ 8:
+/***/ 26:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(17);
+	var notification = __webpack_require__(19);
 	var angular = __webpack_require__(1);
-	var thumb = __webpack_require__(47).thumb;
+	var thumb = __webpack_require__(52).thumb;
 	
 	angular.module("profile").directive("profilePhoto", function (promiseTracker, $http, $timeout) {
 	  return {
@@ -368,12 +368,12 @@ webpackJsonp_name_([5],{
 
 /***/ },
 
-/***/ 9:
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(17);
+	var notification = __webpack_require__(19);
 	var angular = __webpack_require__(1);
 	
 	angular.module("profile").directive("profilePassword", function (promiseTracker, $http, $timeout) {
@@ -449,12 +449,12 @@ webpackJsonp_name_([5],{
 
 /***/ },
 
-/***/ 10:
+/***/ 28:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(17);
+	var notification = __webpack_require__(19);
 	var angular = __webpack_require__(1);
 	
 	angular.module("profile").directive("profileAuthProviders", function (promiseTracker, $http, authPopup, Me) {
@@ -512,7 +512,7 @@ webpackJsonp_name_([5],{
 
 /***/ },
 
-/***/ 11:
+/***/ 29:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -541,14 +541,14 @@ webpackJsonp_name_([5],{
 
 /***/ },
 
-/***/ 12:
+/***/ 30:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(17);
+	var notification = __webpack_require__(19);
 	var angular = __webpack_require__(1);
-	var moment = __webpack_require__(13);
+	var moment = __webpack_require__(31);
 	
 	angular.module("profile").directive("dateRangeValidator", function () {
 	  return {
@@ -577,18 +577,18 @@ webpackJsonp_name_([5],{
 
 /***/ },
 
-/***/ 13:
+/***/ 31:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	__webpack_require__(57);
+	__webpack_require__(56);
 	
-	module.exports = __webpack_require__(58);
+	module.exports = __webpack_require__(73);
 
 /***/ },
 
-/***/ 47:
+/***/ 52:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -610,7 +610,7 @@ webpackJsonp_name_([5],{
 
 /***/ },
 
-/***/ 57:
+/***/ 56:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// moment.js locale configuration
@@ -622,7 +622,7 @@ webpackJsonp_name_([5],{
 	
 	(function (factory) {
 	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(58)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)); // AMD
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(73)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)); // AMD
 	    } else if (typeof exports === "object") {
 	        module.exports = factory(require("../moment")); // Node
 	    } else {
@@ -784,7 +784,7 @@ webpackJsonp_name_([5],{
 
 /***/ },
 
-/***/ 58:
+/***/ 73:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(global, module) {//! moment.js
@@ -3810,11 +3810,11 @@ webpackJsonp_name_([5],{
 	        makeGlobal();
 	    }
 	}).call(undefined);
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(85)(module)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(83)(module)))
 
 /***/ },
 
-/***/ 85:
+/***/ 83:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -3833,4 +3833,4 @@ webpackJsonp_name_([5],{
 /***/ }
 
 });
-//# sourceMappingURL=profile.20e708d118f7094385a7.js.map
+//# sourceMappingURL=profile.9d7b7e36dfcd731c1de1.js.map

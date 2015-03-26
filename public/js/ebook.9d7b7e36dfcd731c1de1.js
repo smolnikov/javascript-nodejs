@@ -6,7 +6,7 @@ webpackJsonp_name_([1],{
 
 	"use strict";
 	
-	var OrderForm = __webpack_require__(18);
+	var OrderForm = __webpack_require__(40);
 	
 	exports.init = function () {
 	
@@ -20,7 +20,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 4:
+/***/ 22:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -71,13 +71,13 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 6:
+/***/ 24:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(17);
-	var getCsrfCookie = __webpack_require__(16);
+	var notification = __webpack_require__(19);
+	var getCsrfCookie = __webpack_require__(34);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -125,26 +125,28 @@ webpackJsonp_name_([1],{
 	    body = JSON.stringify(body);
 	  }
 	
-	  if (!options.noGlobalEvents) {
-	    request.addEventListener("loadstart", function (event) {
-	      var e = wrapEvent("xhrstart", event);
-	      document.dispatchEvent(e);
-	    });
-	    request.addEventListener("loadend", function (event) {
-	      var e = wrapEvent("xhrend", event);
-	      document.dispatchEvent(e);
-	    });
-	    request.addEventListener("success", function (event) {
-	      var e = wrapEvent("xhrsuccess", event);
-	      e.result = event.result;
-	      document.dispatchEvent(e);
-	    });
-	    request.addEventListener("fail", function (event) {
-	      var e = wrapEvent("xhrfail", event);
-	      e.reason = event.reason;
-	      document.dispatchEvent(e);
-	    });
-	  }
+	  request.addEventListener("loadstart", function (event) {
+	    sendStat(event.type);
+	    var e = wrapEvent("xhrstart", event);
+	    document.dispatchEvent(e);
+	  });
+	  request.addEventListener("loadend", function (event) {
+	    sendStat(event.type);
+	    var e = wrapEvent("xhrend", event);
+	    document.dispatchEvent(e);
+	  });
+	  request.addEventListener("success", function (event) {
+	    sendStat(event.type);
+	    var e = wrapEvent("xhrsuccess", event);
+	    e.result = event.result;
+	    document.dispatchEvent(e);
+	  });
+	  request.addEventListener("fail", function (event) {
+	    sendStat(event.type);
+	    var e = wrapEvent("xhrfail", event);
+	    e.reason = event.reason;
+	    document.dispatchEvent(e);
+	  });
 	
 	  if (!options.raw) {
 	    // means we want json
@@ -154,6 +156,15 @@ webpackJsonp_name_([1],{
 	  request.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 	
 	  var normalStatuses = options.normalStatuses || [200];
+	
+	  function sendStat(name) {
+	    window.metrika.reachGoal("XHR-" + name.toUpperCase(), {
+	      time: Date.now() - request.timeStart,
+	      method: request.method,
+	      url: request.url,
+	      status: request.status
+	    });
+	  }
 	
 	  function wrapEvent(name, e) {
 	    var event = new CustomEvent(name);
@@ -214,13 +225,9 @@ webpackJsonp_name_([1],{
 	
 	  // defer to let other handlers be assigned
 	  setTimeout(function () {
-	    var timeStart = Date.now();
+	    request.timeStart = Date.now();
 	
 	    request.send(body);
-	
-	    request.addEventListener("loadend", function () {
-	      window.ga("send", "timing", "xhr", method + " " + url, Date.now() - timeStart);
-	    });
 	  }, 0);
 	
 	  return request;
@@ -243,7 +250,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 16:
+/***/ 34:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -255,7 +262,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 18:
+/***/ 40:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -264,10 +271,10 @@ webpackJsonp_name_([1],{
 	
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 	
-	var xhr = __webpack_require__(6);
-	var notification = __webpack_require__(17);
-	var delegate = __webpack_require__(5);
-	var Spinner = __webpack_require__(15);
+	var xhr = __webpack_require__(24);
+	var notification = __webpack_require__(19);
+	var delegate = __webpack_require__(23);
+	var Spinner = __webpack_require__(33);
 	
 	var OrderForm = (function () {
 	  function OrderForm(options) {
@@ -440,4 +447,4 @@ webpackJsonp_name_([1],{
 /***/ }
 
 });
-//# sourceMappingURL=ebook.20e708d118f7094385a7.js.map
+//# sourceMappingURL=ebook.9d7b7e36dfcd731c1de1.js.map
