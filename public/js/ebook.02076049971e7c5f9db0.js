@@ -1,12 +1,12 @@
 var ebook =
-webpackJsonp_name_([2],{
+webpackJsonp_name_([1],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var OrderForm = __webpack_require__(39);
+	var OrderForm = __webpack_require__(36);
 	
 	exports.init = function () {
 	
@@ -20,7 +20,7 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 31:
+/***/ 32:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -76,8 +76,8 @@ webpackJsonp_name_([2],{
 
 	"use strict";
 	
-	var notification = __webpack_require__(22);
-	var getCsrfCookie = __webpack_require__(36);
+	var notification = __webpack_require__(28);
+	var getCsrfCookie = __webpack_require__(38);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -248,26 +248,14 @@ webpackJsonp_name_([2],{
 
 	"use strict";
 	
-	module.exports = function () {
-	  var csrfCookie = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
-	  return csrfCookie ? csrfCookie[1] : null;
-	};
-
-/***/ },
-
-/***/ 39:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
 	var _createClass = (function () { function defineProperties(target, props) { for (var key in props) { var prop = props[key]; prop.configurable = true; if (prop.value) prop.writable = true; } Object.defineProperties(target, props); } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 	
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 	
 	var xhr = __webpack_require__(33);
-	var notification = __webpack_require__(22);
-	var delegate = __webpack_require__(32);
-	var Spinner = __webpack_require__(35);
+	var notification = __webpack_require__(28);
+	var delegate = __webpack_require__(34);
+	var Spinner = __webpack_require__(37);
 	
 	var OrderForm = (function () {
 	  function OrderForm(options) {
@@ -437,7 +425,19 @@ webpackJsonp_name_([2],{
 	
 	module.exports = OrderForm;
 
+/***/ },
+
+/***/ 38:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	module.exports = function () {
+	  var csrfCookie = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
+	  return csrfCookie ? csrfCookie[1] : null;
+	};
+
 /***/ }
 
 });
-//# sourceMappingURL=ebook.8a592c155dfb13862095.js.map
+//# sourceMappingURL=ebook.02076049971e7c5f9db0.js.map

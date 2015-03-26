@@ -7,11 +7,11 @@ webpackJsonp_name_([3],{
 	//require('./preventDocumentScroll');
 	"use strict";
 	
-	var showLinkType = __webpack_require__(2);
-	var load2x = __webpack_require__(3);
-	var trackSticky = __webpack_require__(4);
+	var showLinkType = __webpack_require__(18);
+	var load2x = __webpack_require__(19);
+	var trackSticky = __webpack_require__(20);
 	
-	__webpack_require__(37).init();
+	__webpack_require__(35).init();
 	
 	exports.init = function () {
 	  showLinkType();
@@ -28,12 +28,12 @@ webpackJsonp_name_([3],{
 
 /***/ },
 
-/***/ 2:
+/***/ 18:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var hoverIntent = __webpack_require__(46);
+	var hoverIntent = __webpack_require__(50);
 	
 	module.exports = function () {
 	
@@ -95,7 +95,7 @@ webpackJsonp_name_([3],{
 
 /***/ },
 
-/***/ 3:
+/***/ 19:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -129,7 +129,7 @@ webpackJsonp_name_([3],{
 
 /***/ },
 
-/***/ 4:
+/***/ 20:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -206,8 +206,8 @@ webpackJsonp_name_([3],{
 
 	"use strict";
 	
-	var notification = __webpack_require__(22);
-	var getCsrfCookie = __webpack_require__(36);
+	var notification = __webpack_require__(28);
+	var getCsrfCookie = __webpack_require__(38);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -373,26 +373,14 @@ webpackJsonp_name_([3],{
 
 /***/ },
 
-/***/ 36:
+/***/ 35:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	module.exports = function () {
-	  var csrfCookie = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
-	  return csrfCookie ? csrfCookie[1] : null;
-	};
-
-/***/ },
-
-/***/ 37:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var Spinner = __webpack_require__(35);
+	var Spinner = __webpack_require__(37);
 	var xhr = __webpack_require__(33);
-	var notification = __webpack_require__(22);
+	var notification = __webpack_require__(28);
 	
 	function init() {
 	  document.onsubmit = function (e) {
@@ -446,7 +434,19 @@ webpackJsonp_name_([3],{
 
 /***/ },
 
-/***/ 46:
+/***/ 38:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	module.exports = function () {
+	  var csrfCookie = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
+	  return csrfCookie ? csrfCookie[1] : null;
+	};
+
+/***/ },
+
+/***/ 50:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -525,4 +525,4 @@ webpackJsonp_name_([3],{
 /***/ }
 
 });
-//# sourceMappingURL=footer.8a592c155dfb13862095.js.map
+//# sourceMappingURL=footer.02076049971e7c5f9db0.js.map

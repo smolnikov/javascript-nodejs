@@ -31,7 +31,7 @@ var head =
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		7:0
+/******/ 		5:0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -76,7 +76,7 @@ var head =
 /******/ 			script.type = 'text/javascript';
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "8a592c155dfb13862095" + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "02076049971e7c5f9db0" + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -100,26 +100,26 @@ var head =
 
 	"use strict";
 	
-	__webpack_require__(21);
-	__webpack_require__(9);
+	__webpack_require__(29);
+	__webpack_require__(6);
 	
 	//exports.init = require('./init');
-	exports.login = __webpack_require__(10);
+	exports.login = __webpack_require__(7);
 	
+	__webpack_require__(8);
+	exports.Modal = __webpack_require__(9);
+	exports.fontTest = __webpack_require__(10);
+	exports.resizeOnload = __webpack_require__(17);
 	__webpack_require__(11);
-	exports.Modal = __webpack_require__(12);
-	exports.fontTest = __webpack_require__(13);
-	exports.resizeOnload = __webpack_require__(20);
+	__webpack_require__(12);
+	__webpack_require__(13);
 	__webpack_require__(14);
 	__webpack_require__(15);
 	__webpack_require__(16);
-	__webpack_require__(17);
-	__webpack_require__(18);
-	__webpack_require__(19);
 	
 	// must use CommonsChunkPlugin
 	// to ensure that other modules use exactly this (initialized) client/notify
-	__webpack_require__(22).init();
+	__webpack_require__(28).init();
 
 /***/ },
 /* 1 */,
@@ -127,10 +127,7 @@ var head =
 /* 3 */,
 /* 4 */,
 /* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// if class ends with _unready then we consider element unusable (yet)
@@ -161,13 +158,13 @@ var head =
 	});
 
 /***/ },
-/* 10 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var Modal = __webpack_require__(12);
-	var Spinner = __webpack_require__(35);
+	var Modal = __webpack_require__(9);
+	var Spinner = __webpack_require__(37);
 	
 	document.addEventListener("click", function (event) {
 	  if (!event.target.hasAttribute("data-action-login")) {
@@ -184,9 +181,9 @@ var head =
 	  modal.setContent(spinner.elem);
 	  spinner.start();
 	
-	  __webpack_require__.e/* nsure */(8, function () {
+	  __webpack_require__.e/* nsure */(6, function () {
 	    modal.remove();
-	    var AuthModal = __webpack_require__(40).AuthModal;
+	    var AuthModal = __webpack_require__(41).AuthModal;
 	    new AuthModal();
 	  });
 	}
@@ -194,7 +191,7 @@ var head =
 	module.exports = login;
 
 /***/ },
-/* 11 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -217,7 +214,7 @@ var head =
 	module.exports = logout;
 
 /***/ },
-/* 12 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -280,7 +277,7 @@ var head =
 	module.exports = Modal;
 
 /***/ },
-/* 13 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -319,7 +316,7 @@ var head =
 	};
 
 /***/ },
-/* 14 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -414,43 +411,74 @@ var head =
 	}
 
 /***/ },
-/* 15 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	document.addEventListener("click", onSearchClick);
 	
+	var initialized = false;
+	
 	// toggle search on/off, autofocus on input when "on"
 	function onSearchClick(event) {
+	  if (!event.target.closest) {
+	    return;
+	  } // svg
+	
 	  var searchToggle = event.target.closest(".sitetoolbar__search-toggle");
 	
 	  if (searchToggle) {
+	    if (!initialized) initialize();
 	    toggle();
 	  }
 	}
 	
-	function toggle() {
+	function initialize() {
 	  var sitetoolbar = document.querySelector(".sitetoolbar");
+	
+	  var input = sitetoolbar.querySelector(".sitetoolbar__search-input input");
+	
+	  input.onkeydown = function (e) {
+	    if (e.keyCode == 27) {
+	      this.value = "";
+	      toggle();
+	    }
+	  };
+	
+	  input.onblur = function (e) {
+	    toggle();
+	  };
+	
+	  initialized = true;
+	}
+	
+	function toggle() {
+	  var paranja,
+	      sitetoolbar = document.querySelector(".sitetoolbar");
+	
 	  sitetoolbar.classList.toggle("sitetoolbar_search_open");
 	
-	  var input = sitetoolbar.querySelector(".sitetoolbar__search-query input");
+	  var input = sitetoolbar.querySelector(".sitetoolbar__search-input input");
+	
 	  if (sitetoolbar.classList.contains("sitetoolbar_search_open")) {
+	
 	    input.focus();
 	
-	    if (!input.onkeydown) {
-	      input.onkeydown = function (e) {
-	        if (e.keyCode == 27) {
-	          this.value = "";
-	          toggle();
-	        }
-	      };
-	    }
+	    paranja = document.createElement("div");
+	    paranja.className = "sitetoolbar sitetoolbar__search-paranja";
+	    paranja.style.top = sitetoolbar.offsetHeight + "px";
+	
+	    document.body.appendChild(paranja);
+	  } else {
+	
+	    paranja = document.querySelector(".sitetoolbar__search-paranja");
+	    paranja.parentNode.removeChild(paranja);
 	  }
 	}
 
 /***/ },
-/* 16 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -497,13 +525,13 @@ var head =
 	}
 
 /***/ },
-/* 17 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// navigation starts to work right now
 	"use strict";
 	
-	var onSwipe = __webpack_require__(47);
+	var onSwipe = __webpack_require__(46);
 	var ctrlOrAlt = ~navigator.userAgent.toLowerCase().indexOf("mac os x") ? "ctrl" : "alt";
 	
 	function onKeyDown(event) {
@@ -565,7 +593,7 @@ var head =
 	document.addEventListener("DOMContentLoaded", showHotKeys);
 
 /***/ },
-/* 18 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// add/remove .hover onmouseenter/leave
@@ -624,7 +652,7 @@ var head =
 	});
 
 /***/ },
-/* 19 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -649,12 +677,12 @@ var head =
 	};
 
 /***/ },
-/* 20 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var iframeResize = __webpack_require__(48);
+	var iframeResize = __webpack_require__(47);
 	var throttle = __webpack_require__(49);
 	// track resized iframes in window.onresize
 	
@@ -699,15 +727,17 @@ var head =
 	}, 200));
 
 /***/ },
-/* 21 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	__webpack_require__(50);
-
-/***/ },
-/* 22 */
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -727,7 +757,7 @@ var head =
 	 * For new notification types extend Notification
 	 */
 	
-	var delegate = __webpack_require__(32);
+	var delegate = __webpack_require__(34);
 	
 	/**
 	 * Calculates translateY positions when notifications are added/removed
@@ -961,16 +991,19 @@ var head =
 	exports.Test = Test;
 
 /***/ },
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
+/* 29 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	__webpack_require__(51);
+
+/***/ },
 /* 30 */,
 /* 31 */,
-/* 32 */
+/* 32 */,
+/* 33 */,
+/* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1024,9 +1057,9 @@ var head =
 	module.exports = delegate;
 
 /***/ },
-/* 33 */,
-/* 34 */,
-/* 35 */
+/* 35 */,
+/* 36 */,
+/* 37 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Usage:
@@ -1076,8 +1109,6 @@ var head =
 	module.exports = Spinner;
 
 /***/ },
-/* 36 */,
-/* 37 */,
 /* 38 */,
 /* 39 */,
 /* 40 */,
@@ -1086,8 +1117,7 @@ var head =
 /* 43 */,
 /* 44 */,
 /* 45 */,
-/* 46 */,
-/* 47 */
+/* 46 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1151,12 +1181,12 @@ var head =
 	module.exports = onSwipe;
 
 /***/ },
-/* 48 */
+/* 47 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var getDocumentHeight = __webpack_require__(74);
+	var getDocumentHeight = __webpack_require__(73);
 	
 	function iframeResize(ifrElem, callback) {
 	
@@ -1294,6 +1324,7 @@ var head =
 	 */
 
 /***/ },
+/* 48 */,
 /* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -1332,7 +1363,8 @@ var head =
 	module.exports = throttle;
 
 /***/ },
-/* 50 */
+/* 50 */,
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//require('./casperjs');
@@ -1410,12 +1442,12 @@ var head =
 	  }
 	}
 	
-	__webpack_require__(71);
-	__webpack_require__(72);
-	__webpack_require__(73);
+	__webpack_require__(74);
+	__webpack_require__(75);
+	__webpack_require__(76);
+	__webpack_require__(77);
 
 /***/ },
-/* 51 */,
 /* 52 */,
 /* 53 */,
 /* 54 */,
@@ -1435,7 +1467,34 @@ var head =
 /* 68 */,
 /* 69 */,
 /* 70 */,
-/* 71 */
+/* 71 */,
+/* 72 */,
+/* 73 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var getScrollbarHeight = __webpack_require__(81);
+	var scrollbarHeight;
+	
+	function getDocumentHeight(doc) {
+	  doc = doc || document;
+	
+	  var height = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight, doc.body.offsetHeight, doc.documentElement.offsetHeight, doc.body.clientHeight, doc.documentElement.clientHeight);
+	
+	  if (doc.documentElement.scrollWidth > doc.documentElement.clientWidth) {
+	    // got a horiz scroll, let's add it
+	    if (!scrollbarHeight) scrollbarHeight = getScrollbarHeight();
+	    height += scrollbarHeight;
+	  }
+	
+	  return height;
+	}
+	
+	module.exports = getDocumentHeight;
+
+/***/ },
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1460,7 +1519,7 @@ var head =
 	}
 
 /***/ },
-/* 72 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// dataset for IE10
@@ -1536,7 +1595,7 @@ var head =
 	// FF is empty while IE gives empty object
 
 /***/ },
-/* 73 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1554,35 +1613,35 @@ var head =
 	}
 
 /***/ },
-/* 74 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// polyfill for old Android
 	"use strict";
 	
-	var getScrollbarHeight = __webpack_require__(78);
-	var scrollbarHeight;
+	(function () {
+	  var lastTime = 0;
 	
-	function getDocumentHeight(doc) {
-	  doc = doc || document;
+	  if (!window.requestAnimationFrame) window.requestAnimationFrame = function (callback, element) {
+	    var currTime = new Date().getTime();
+	    var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+	    var id = window.setTimeout(function () {
+	      callback(currTime + timeToCall);
+	    }, timeToCall);
+	    lastTime = currTime + timeToCall;
+	    return id;
+	  };
 	
-	  var height = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight, doc.body.offsetHeight, doc.documentElement.offsetHeight, doc.body.clientHeight, doc.documentElement.clientHeight);
-	
-	  if (doc.documentElement.scrollWidth > doc.documentElement.clientWidth) {
-	    // got a horiz scroll, let's add it
-	    if (!scrollbarHeight) scrollbarHeight = getScrollbarHeight();
-	    height += scrollbarHeight;
-	  }
-	
-	  return height;
-	}
-	
-	module.exports = getDocumentHeight;
+	  if (!window.cancelAnimationFrame) window.cancelAnimationFrame = function (id) {
+	    clearTimeout(id);
+	  };
+	})();
 
 /***/ },
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1616,4 +1675,4 @@ var head =
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=head.8a592c155dfb13862095.js.map
+//# sourceMappingURL=head.02076049971e7c5f9db0.js.map

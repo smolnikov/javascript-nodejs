@@ -1,14 +1,14 @@
 var quiz =
-webpackJsonp_name_([9],[
+webpackJsonp_name_([8],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var Spinner = __webpack_require__(35);
+	var Spinner = __webpack_require__(37);
 	var xhr = __webpack_require__(33);
-	var getCsrfCookie = __webpack_require__(36);
-	var prism = __webpack_require__(34);
+	var getCsrfCookie = __webpack_require__(38);
+	var prism = __webpack_require__(39);
 	
 	function init() {
 	  var quizQuestionForm = document.querySelector("[data-quiz-question-form]");
@@ -52,9 +52,9 @@ webpackJsonp_name_([9],[
 	    });
 	    spinner.start();
 	
-	    __webpack_require__.e/* nsure */(8, function () {
+	    __webpack_require__.e/* nsure */(6, function () {
 	      spinner.stop();
-	      var AuthModal = __webpack_require__(40).AuthModal;
+	      var AuthModal = __webpack_require__(41).AuthModal;
 	      new AuthModal({
 	        callback: function callback() {
 	          var csrf = getCsrfCookie();
@@ -189,8 +189,8 @@ webpackJsonp_name_([9],[
 
 	"use strict";
 	
-	var notification = __webpack_require__(22);
-	var getCsrfCookie = __webpack_require__(36);
+	var notification = __webpack_require__(28);
+	var getCsrfCookie = __webpack_require__(38);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -355,13 +355,26 @@ webpackJsonp_name_([9],[
 	module.exports = xhr;
 
 /***/ },
-/* 34 */
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	__webpack_require__(56);
-	__webpack_require__(57);
+	module.exports = function () {
+	  var csrfCookie = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
+	  return csrfCookie ? csrfCookie[1] : null;
+	};
+
+/***/ },
+/* 39 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
 	__webpack_require__(58);
 	__webpack_require__(59);
 	__webpack_require__(60);
@@ -375,11 +388,13 @@ webpackJsonp_name_([9],[
 	__webpack_require__(68);
 	__webpack_require__(69);
 	__webpack_require__(70);
+	__webpack_require__(71);
+	__webpack_require__(72);
 	
 	Prism.tokenTag = "code"; // for iBooks to use monospace font
 	
-	var CodeBox = __webpack_require__(52);
-	var CodeTabsBox = __webpack_require__(53);
+	var CodeBox = __webpack_require__(53);
+	var CodeTabsBox = __webpack_require__(54);
 	
 	function initCodeBoxes(container) {
 	
@@ -420,21 +435,6 @@ webpackJsonp_name_([9],[
 	exports.highlight = highlight;
 
 /***/ },
-/* 35 */,
-/* 36 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	module.exports = function () {
-	  var csrfCookie = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
-	  return csrfCookie ? csrfCookie[1] : null;
-	};
-
-/***/ },
-/* 37 */,
-/* 38 */,
-/* 39 */,
 /* 40 */,
 /* 41 */,
 /* 42 */,
@@ -447,14 +447,15 @@ webpackJsonp_name_([9],[
 /* 49 */,
 /* 50 */,
 /* 51 */,
-/* 52 */
+/* 52 */,
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var resizeOnload = __webpack_require__(20);
-	var isScrolledIntoView = __webpack_require__(76);
-	var addLineNumbers = __webpack_require__(75);
+	var resizeOnload = __webpack_require__(17);
+	var isScrolledIntoView = __webpack_require__(79);
+	var addLineNumbers = __webpack_require__(78);
 	
 	function CodeBox(elem) {
 	
@@ -755,13 +756,13 @@ webpackJsonp_name_([9],[
 	module.exports = CodeBox;
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var delegate = __webpack_require__(32);
-	var addLineNumbers = __webpack_require__(75);
+	var delegate = __webpack_require__(34);
+	var addLineNumbers = __webpack_require__(78);
 	
 	function CodeTabsBox(elem) {
 	  if (window.isEbook) {
@@ -851,9 +852,10 @@ webpackJsonp_name_([9],[
 	module.exports = CodeTabsBox;
 
 /***/ },
-/* 54 */,
 /* 55 */,
-/* 56 */
+/* 56 */,
+/* 57 */,
+/* 58 */
 /***/ function(module, exports, __webpack_require__) {
 
 	self = (typeof window !== 'undefined')
@@ -1283,7 +1285,7 @@ webpackJsonp_name_([9],[
 
 
 /***/ },
-/* 57 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.markup = {
@@ -1330,7 +1332,7 @@ webpackJsonp_name_([9],[
 
 
 /***/ },
-/* 58 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.css = {
@@ -1385,7 +1387,7 @@ webpackJsonp_name_([9],[
 	}
 
 /***/ },
-/* 59 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.css.selector = {
@@ -1405,7 +1407,7 @@ webpackJsonp_name_([9],[
 	});
 
 /***/ },
-/* 60 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.clike = {
@@ -1443,7 +1445,7 @@ webpackJsonp_name_([9],[
 
 
 /***/ },
-/* 61 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.javascript = Prism.languages.extend('clike', {
@@ -1477,7 +1479,7 @@ webpackJsonp_name_([9],[
 
 
 /***/ },
-/* 62 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function(Prism) {
@@ -1565,7 +1567,7 @@ webpackJsonp_name_([9],[
 	}(Prism));
 
 /***/ },
-/* 63 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.http = {
@@ -1615,7 +1617,7 @@ webpackJsonp_name_([9],[
 
 
 /***/ },
-/* 64 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.scss = Prism.languages.extend('css', {
@@ -1657,7 +1659,7 @@ webpackJsonp_name_([9],[
 
 
 /***/ },
-/* 65 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.sql= { 
@@ -1679,7 +1681,7 @@ webpackJsonp_name_([9],[
 	};
 
 /***/ },
-/* 66 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1784,7 +1786,7 @@ webpackJsonp_name_([9],[
 
 
 /***/ },
-/* 67 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.insertBefore('php', 'variable', {
@@ -1800,7 +1802,7 @@ webpackJsonp_name_([9],[
 	});
 
 /***/ },
-/* 68 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.python= { 
@@ -1820,7 +1822,7 @@ webpackJsonp_name_([9],[
 
 
 /***/ },
-/* 69 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1847,7 +1849,7 @@ webpackJsonp_name_([9],[
 
 
 /***/ },
-/* 70 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.java = Prism.languages.extend('clike', {
@@ -1860,11 +1862,12 @@ webpackJsonp_name_([9],[
 	});
 
 /***/ },
-/* 71 */,
-/* 72 */,
 /* 73 */,
 /* 74 */,
-/* 75 */
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1891,7 +1894,7 @@ webpackJsonp_name_([9],[
 	module.exports = addLineNumbers;
 
 /***/ },
-/* 76 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1916,4 +1919,4 @@ webpackJsonp_name_([9],[
 
 /***/ }
 ]);
-//# sourceMappingURL=quiz.8a592c155dfb13862095.js.map
+//# sourceMappingURL=quiz.02076049971e7c5f9db0.js.map
