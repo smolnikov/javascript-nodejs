@@ -7,11 +7,11 @@ webpackJsonp_name_([2],{
 	//require('./preventDocumentScroll');
 	"use strict";
 	
-	var showLinkType = __webpack_require__(2);
-	var load2x = __webpack_require__(3);
-	var trackSticky = __webpack_require__(4);
+	var showLinkType = __webpack_require__(15);
+	var load2x = __webpack_require__(16);
+	var trackSticky = __webpack_require__(17);
 	
-	__webpack_require__(38).init();
+	__webpack_require__(39).init();
 	
 	exports.init = function () {
 	  showLinkType();
@@ -28,12 +28,12 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 2:
+/***/ 15:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var hoverIntent = __webpack_require__(46);
+	var hoverIntent = __webpack_require__(49);
 	
 	module.exports = function () {
 	
@@ -95,7 +95,7 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 3:
+/***/ 16:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -129,7 +129,7 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 4:
+/***/ 17:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -201,13 +201,13 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 28:
+/***/ 31:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(29);
-	var getCsrfCookie = __webpack_require__(32);
+	var notification = __webpack_require__(19);
+	var getCsrfCookie = __webpack_require__(34);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -373,7 +373,7 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 32:
+/***/ 34:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -385,14 +385,14 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 38:
+/***/ 39:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var Spinner = __webpack_require__(31);
-	var xhr = __webpack_require__(28);
-	var notification = __webpack_require__(29);
+	var Spinner = __webpack_require__(33);
+	var xhr = __webpack_require__(31);
+	var notification = __webpack_require__(19);
 	
 	function init() {
 	  document.onsubmit = function (e) {
@@ -446,7 +446,7 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 46:
+/***/ 49:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -525,4 +525,4 @@ webpackJsonp_name_([2],{
 /***/ }
 
 });
-//# sourceMappingURL=footer.5c4886a698fcd0892657.js.map
+//# sourceMappingURL=footer.2ab3be46075633f0e955.js.map

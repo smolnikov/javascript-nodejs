@@ -20,7 +20,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 26:
+/***/ 29:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -71,13 +71,13 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 28:
+/***/ 31:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(29);
-	var getCsrfCookie = __webpack_require__(32);
+	var notification = __webpack_require__(19);
+	var getCsrfCookie = __webpack_require__(34);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -243,7 +243,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 32:
+/***/ 34:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -264,10 +264,10 @@ webpackJsonp_name_([1],{
 	
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 	
-	var xhr = __webpack_require__(28);
-	var notification = __webpack_require__(29);
-	var delegate = __webpack_require__(27);
-	var Spinner = __webpack_require__(31);
+	var xhr = __webpack_require__(31);
+	var notification = __webpack_require__(19);
+	var delegate = __webpack_require__(30);
+	var Spinner = __webpack_require__(33);
 	
 	var OrderForm = (function () {
 	  function OrderForm(options) {
@@ -440,4 +440,4 @@ webpackJsonp_name_([1],{
 /***/ }
 
 });
-//# sourceMappingURL=ebook.5c4886a698fcd0892657.js.map
+//# sourceMappingURL=ebook.2ab3be46075633f0e955.js.map

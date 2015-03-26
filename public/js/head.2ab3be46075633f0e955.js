@@ -31,7 +31,7 @@ var head =
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		6:0
+/******/ 		5:0
 /******/ 	};
 /******/
 /******/ 	// The require function
@@ -76,7 +76,7 @@ var head =
 /******/ 			script.type = 'text/javascript';
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "5c4886a698fcd0892657" + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "2ab3be46075633f0e955" + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -100,33 +100,31 @@ var head =
 
 	"use strict";
 	
-	__webpack_require__(33);
-	__webpack_require__(5);
+	__webpack_require__(18);
+	__webpack_require__(2);
 	
 	//exports.init = require('./init');
-	exports.login = __webpack_require__(6);
+	exports.login = __webpack_require__(3);
 	
+	__webpack_require__(4);
+	exports.Modal = __webpack_require__(5);
+	exports.fontTest = __webpack_require__(6);
+	exports.resizeOnload = __webpack_require__(14);
 	__webpack_require__(7);
-	exports.Modal = __webpack_require__(8);
-	exports.fontTest = __webpack_require__(9);
-	exports.resizeOnload = __webpack_require__(16);
+	__webpack_require__(8);
+	__webpack_require__(9);
 	__webpack_require__(10);
 	__webpack_require__(11);
 	__webpack_require__(12);
 	__webpack_require__(13);
-	__webpack_require__(14);
-	__webpack_require__(15);
 	
 	// must use CommonsChunkPlugin
 	// to ensure that other modules use exactly this (initialized) client/notify
-	__webpack_require__(29).init();
+	__webpack_require__(19).init();
 
 /***/ },
 /* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */
+/* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// if class ends with _unready then we consider element unusable (yet)
@@ -157,13 +155,13 @@ var head =
 	});
 
 /***/ },
-/* 6 */
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var Modal = __webpack_require__(8);
-	var Spinner = __webpack_require__(31);
+	var Modal = __webpack_require__(5);
+	var Spinner = __webpack_require__(33);
 	
 	document.addEventListener("click", function (event) {
 	  if (!event.target.hasAttribute("data-action-login")) {
@@ -180,9 +178,9 @@ var head =
 	  modal.setContent(spinner.elem);
 	  spinner.start();
 	
-	  __webpack_require__.e/* nsure */(7, function () {
+	  __webpack_require__.e/* nsure */(6, function () {
 	    modal.remove();
-	    var AuthModal = __webpack_require__(39).AuthModal;
+	    var AuthModal = __webpack_require__(41).AuthModal;
 	    new AuthModal();
 	  });
 	}
@@ -190,7 +188,7 @@ var head =
 	module.exports = login;
 
 /***/ },
-/* 7 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -213,7 +211,7 @@ var head =
 	module.exports = logout;
 
 /***/ },
-/* 8 */
+/* 5 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -276,7 +274,7 @@ var head =
 	module.exports = Modal;
 
 /***/ },
-/* 9 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -315,7 +313,7 @@ var head =
 	};
 
 /***/ },
-/* 10 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -410,7 +408,7 @@ var head =
 	}
 
 /***/ },
-/* 11 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -477,7 +475,7 @@ var head =
 	}
 
 /***/ },
-/* 12 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -524,7 +522,7 @@ var head =
 	}
 
 /***/ },
-/* 13 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// navigation starts to work right now
@@ -592,7 +590,7 @@ var head =
 	document.addEventListener("DOMContentLoaded", showHotKeys);
 
 /***/ },
-/* 14 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// add/remove .hover onmouseenter/leave
@@ -651,7 +649,7 @@ var head =
 	});
 
 /***/ },
-/* 15 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -676,13 +674,50 @@ var head =
 	};
 
 /***/ },
-/* 16 */
+/* 13 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// current page host
+	"use strict";
+	
+	var baseURI = window.location.host;
+	
+	document.addEventListener("click", function (e) {
+	
+	  if (e.isDefaultPrevented()) return;
+	
+	  // abandon if no active link or link within domain
+	  var link = e.target.closest("a");
+	  if (!link || baseURI == link.host) return;
+	
+	  // cancel event and record outbound link
+	  e.preventDefault();
+	  var href = link.href;
+	  window.ga("send", {
+	    hitType: "event",
+	    eventCategory: "outbound",
+	    eventAction: "link",
+	    eventLabel: href,
+	    hitCallback: loadPage
+	  });
+	
+	  // redirect after one second if recording takes too long
+	  setTimeout(loadPage, 1000);
+	
+	  // redirect to outbound page
+	  function loadPage() {
+	    document.location = href;
+	  }
+	});
+
+/***/ },
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
 	var iframeResize = __webpack_require__(48);
-	var throttle = __webpack_require__(53);
+	var throttle = __webpack_require__(50);
 	// track resized iframes in window.onresize
 	
 	var onResizeQueue = [];
@@ -726,72 +761,18 @@ var head =
 	}, 200));
 
 /***/ },
+/* 15 */,
+/* 16 */,
 /* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	function findDelegateTarget(event, selector) {
-	  var currentNode = event.target;
-	  while (currentNode) {
-	    if (currentNode.matches(selector)) {
-	      return currentNode;
-	    }
-	
-	    if (currentNode == event.currentTarget) {
-	      break;
-	    }
-	    currentNode = currentNode.parentElement;
-	  }
-	  return null;
-	}
-	
-	// delegate(table, 'th', click, handler)
-	// table
-	//   thead
-	//     th         ^*
-	//       code  <--
-	function delegate(topElement, selector, eventName, handler, context) {
-	  /* jshint -W040 */
-	  topElement.addEventListener(eventName, function (event) {
-	    var found = findDelegateTarget(event, selector);
-	
-	    // .currentTarget is read only, I can not overwrite it to the "found" element
-	    // Object.create wrapper would break event.preventDefault()
-	    // so, keep in mind:
-	    // --> event.currentTarget is always the top-level (delegating) element!
-	    // use "this" to get the found target
-	
-	    event.delegateTarget = found; // use instead of "this" in object methods
-	
-	    if (found) {
-	      // if in context of object, use object as this,
-	      handler.call(context || this, event);
-	    }
-	  });
-	}
-	
-	delegate.delegateMixin = function (obj) {
-	  obj.delegate = function (selector, eventName, handler) {
-	    delegate(this.elem, selector, eventName, handler, this);
-	  };
-	};
-	
-	module.exports = delegate;
+	__webpack_require__(51);
 
 /***/ },
-/* 28 */,
-/* 29 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -811,7 +792,7 @@ var head =
 	 * For new notification types extend Notification
 	 */
 	
-	var delegate = __webpack_require__(27);
+	var delegate = __webpack_require__(30);
 	
 	/**
 	 * Calculates translateY positions when notifications are added/removed
@@ -1041,8 +1022,73 @@ var head =
 	*/
 
 /***/ },
-/* 30 */,
-/* 31 */
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	function findDelegateTarget(event, selector) {
+	  var currentNode = event.target;
+	  while (currentNode) {
+	    if (currentNode.matches(selector)) {
+	      return currentNode;
+	    }
+	
+	    if (currentNode == event.currentTarget) {
+	      break;
+	    }
+	    currentNode = currentNode.parentElement;
+	  }
+	  return null;
+	}
+	
+	// delegate(table, 'th', click, handler)
+	// table
+	//   thead
+	//     th         ^*
+	//       code  <--
+	function delegate(topElement, selector, eventName, handler, context) {
+	  /* jshint -W040 */
+	  topElement.addEventListener(eventName, function (event) {
+	    var found = findDelegateTarget(event, selector);
+	
+	    // .currentTarget is read only, I can not overwrite it to the "found" element
+	    // Object.create wrapper would break event.preventDefault()
+	    // so, keep in mind:
+	    // --> event.currentTarget is always the top-level (delegating) element!
+	    // use "this" to get the found target
+	
+	    event.delegateTarget = found; // use instead of "this" in object methods
+	
+	    if (found) {
+	      // if in context of object, use object as this,
+	      handler.call(context || this, event);
+	    }
+	  });
+	}
+	
+	delegate.delegateMixin = function (obj) {
+	  obj.delegate = function (selector, eventName, handler) {
+	    delegate(this.elem, selector, eventName, handler, this);
+	  };
+	};
+	
+	module.exports = delegate;
+
+/***/ },
+/* 31 */,
+/* 32 */,
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Usage:
@@ -1090,15 +1136,6 @@ var head =
 	};
 	
 	module.exports = Spinner;
-
-/***/ },
-/* 32 */,
-/* 33 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	__webpack_require__(52);
 
 /***/ },
 /* 34 */,
@@ -1322,9 +1359,45 @@ var head =
 
 /***/ },
 /* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	function throttle(func, ms) {
+	
+	  var isThrottled = false,
+	      savedArgs,
+	      savedThis;
+	
+	  function wrapper() {
+	
+	    if (isThrottled) {
+	      savedArgs = arguments;
+	      savedThis = this;
+	      return;
+	    }
+	
+	    func.apply(this, arguments);
+	
+	    isThrottled = true;
+	
+	    setTimeout(function () {
+	      isThrottled = false;
+	      if (savedArgs) {
+	        wrapper.apply(savedThis, savedArgs);
+	        savedArgs = savedThis = null;
+	      }
+	    }, ms);
+	  }
+	
+	  return wrapper;
+	}
+	
+	module.exports = throttle;
+
+/***/ },
+/* 51 */
 /***/ function(module, exports, __webpack_require__) {
 
 	//require('./casperjs');
@@ -1408,44 +1481,8 @@ var head =
 	__webpack_require__(77);
 
 /***/ },
-/* 53 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	function throttle(func, ms) {
-	
-	  var isThrottled = false,
-	      savedArgs,
-	      savedThis;
-	
-	  function wrapper() {
-	
-	    if (isThrottled) {
-	      savedArgs = arguments;
-	      savedThis = this;
-	      return;
-	    }
-	
-	    func.apply(this, arguments);
-	
-	    isThrottled = true;
-	
-	    setTimeout(function () {
-	      isThrottled = false;
-	      if (savedArgs) {
-	        wrapper.apply(savedThis, savedArgs);
-	        savedArgs = savedThis = null;
-	      }
-	    }, ms);
-	  }
-	
-	  return wrapper;
-	}
-	
-	module.exports = throttle;
-
-/***/ },
+/* 52 */,
+/* 53 */,
 /* 54 */,
 /* 55 */,
 /* 56 */,
@@ -1672,4 +1709,4 @@ var head =
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=head.5c4886a698fcd0892657.js.map
+//# sourceMappingURL=head.2ab3be46075633f0e955.js.map
