@@ -6,7 +6,7 @@ webpackJsonp_name_([1],{
 
 	"use strict";
 	
-	var OrderForm = __webpack_require__(39);
+	var OrderForm = __webpack_require__(18);
 	
 	exports.init = function () {
 	
@@ -20,7 +20,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 26:
+/***/ 4:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -71,13 +71,13 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 28:
+/***/ 6:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(23);
-	var getCsrfCookie = __webpack_require__(38);
+	var notification = __webpack_require__(17);
+	var getCsrfCookie = __webpack_require__(16);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -243,7 +243,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 38:
+/***/ 16:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -255,7 +255,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 39:
+/***/ 18:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -264,10 +264,10 @@ webpackJsonp_name_([1],{
 	
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 	
-	var xhr = __webpack_require__(28);
-	var notification = __webpack_require__(23);
-	var delegate = __webpack_require__(27);
-	var Spinner = __webpack_require__(37);
+	var xhr = __webpack_require__(6);
+	var notification = __webpack_require__(17);
+	var delegate = __webpack_require__(5);
+	var Spinner = __webpack_require__(15);
 	
 	var OrderForm = (function () {
 	  function OrderForm(options) {
@@ -440,4 +440,4 @@ webpackJsonp_name_([1],{
 /***/ }
 
 });
-//# sourceMappingURL=ebook.7df9e72be2ed3874d51d.js.map
+//# sourceMappingURL=ebook.20e708d118f7094385a7.js.map

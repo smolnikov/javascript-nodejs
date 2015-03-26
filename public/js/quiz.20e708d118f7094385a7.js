@@ -5,11 +5,11 @@ webpackJsonp_name_([8],[
 
 	"use strict";
 	
-	var Spinner = __webpack_require__(37);
-	var xhr = __webpack_require__(28);
-	var getCsrfCookie = __webpack_require__(38);
-	var prism = __webpack_require__(36);
-	var notification = __webpack_require__(23);
+	var Spinner = __webpack_require__(15);
+	var xhr = __webpack_require__(6);
+	var getCsrfCookie = __webpack_require__(16);
+	var prism = __webpack_require__(14);
+	var notification = __webpack_require__(17);
 	
 	function init() {
 	  var quizQuestionForm = document.querySelector("[data-quiz-question-form]");
@@ -52,9 +52,9 @@ webpackJsonp_name_([8],[
 	    });
 	    spinner.start();
 	
-	    __webpack_require__.e/* nsure */(6, function () {
+	    __webpack_require__.e/* nsure */(7, function () {
 	      spinner.stop();
-	      var AuthModal = __webpack_require__(42).AuthModal;
+	      var AuthModal = __webpack_require__(39).AuthModal;
 	      new AuthModal({
 	        callback: saveResult
 	      });
@@ -184,35 +184,13 @@ webpackJsonp_name_([8],[
 /* 3 */,
 /* 4 */,
 /* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(23);
-	var getCsrfCookie = __webpack_require__(38);
+	var notification = __webpack_require__(17);
+	var getCsrfCookie = __webpack_require__(16);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -377,14 +355,14 @@ webpackJsonp_name_([8],[
 	module.exports = xhr;
 
 /***/ },
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -407,8 +385,8 @@ webpackJsonp_name_([8],[
 	
 	Prism.tokenTag = "code"; // for iBooks to use monospace font
 	
-	var CodeBox = __webpack_require__(53);
-	var CodeTabsBox = __webpack_require__(54);
+	var CodeBox = __webpack_require__(48);
+	var CodeTabsBox = __webpack_require__(49);
 	
 	function initCodeBoxes(container) {
 	
@@ -449,8 +427,8 @@ webpackJsonp_name_([8],[
 	exports.highlight = highlight;
 
 /***/ },
-/* 37 */,
-/* 38 */
+/* 15 */,
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -461,6 +439,28 @@ webpackJsonp_name_([8],[
 	};
 
 /***/ },
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
 /* 39 */,
 /* 40 */,
 /* 41 */,
@@ -470,19 +470,14 @@ webpackJsonp_name_([8],[
 /* 45 */,
 /* 46 */,
 /* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var resizeOnload = __webpack_require__(18);
-	var isScrolledIntoView = __webpack_require__(80);
-	var addLineNumbers = __webpack_require__(79);
+	var resizeOnload = __webpack_require__(38);
+	var isScrolledIntoView = __webpack_require__(79);
+	var addLineNumbers = __webpack_require__(74);
 	
 	function CodeBox(elem) {
 	
@@ -783,13 +778,13 @@ webpackJsonp_name_([8],[
 	module.exports = CodeBox;
 
 /***/ },
-/* 54 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var delegate = __webpack_require__(27);
-	var addLineNumbers = __webpack_require__(79);
+	var delegate = __webpack_require__(5);
+	var addLineNumbers = __webpack_require__(74);
 	
 	function CodeTabsBox(elem) {
 	  if (window.isEbook) {
@@ -879,6 +874,11 @@ webpackJsonp_name_([8],[
 	module.exports = CodeTabsBox;
 
 /***/ },
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
 /* 55 */,
 /* 56 */,
 /* 57 */,
@@ -1890,12 +1890,7 @@ webpackJsonp_name_([8],[
 	});
 
 /***/ },
-/* 74 */,
-/* 75 */,
-/* 76 */,
-/* 77 */,
-/* 78 */,
-/* 79 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1922,7 +1917,11 @@ webpackJsonp_name_([8],[
 	module.exports = addLineNumbers;
 
 /***/ },
-/* 80 */
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1947,4 +1946,4 @@ webpackJsonp_name_([8],[
 
 /***/ }
 ]);
-//# sourceMappingURL=quiz.7df9e72be2ed3874d51d.js.map
+//# sourceMappingURL=quiz.20e708d118f7094385a7.js.map
