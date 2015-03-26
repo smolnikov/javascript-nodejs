@@ -76,7 +76,7 @@ var head =
 /******/ 			script.type = 'text/javascript';
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "02076049971e7c5f9db0" + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + "46169cffcc15d81f23bb" + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -100,7 +100,7 @@ var head =
 
 	"use strict";
 	
-	__webpack_require__(29);
+	__webpack_require__(21);
 	__webpack_require__(6);
 	
 	//exports.init = require('./init');
@@ -119,7 +119,7 @@ var head =
 	
 	// must use CommonsChunkPlugin
 	// to ensure that other modules use exactly this (initialized) client/notify
-	__webpack_require__(28).init();
+	__webpack_require__(22).init();
 
 /***/ },
 /* 1 */,
@@ -164,7 +164,7 @@ var head =
 	"use strict";
 	
 	var Modal = __webpack_require__(9);
-	var Spinner = __webpack_require__(37);
+	var Spinner = __webpack_require__(36);
 	
 	document.addEventListener("click", function (event) {
 	  if (!event.target.hasAttribute("data-action-login")) {
@@ -683,7 +683,7 @@ var head =
 	"use strict";
 	
 	var iframeResize = __webpack_require__(47);
-	var throttle = __webpack_require__(49);
+	var throttle = __webpack_require__(50);
 	// track resized iframes in window.onresize
 	
 	var onResizeQueue = [];
@@ -730,14 +730,15 @@ var head =
 /* 18 */,
 /* 19 */,
 /* 20 */,
-/* 21 */,
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	__webpack_require__(49);
+
+/***/ },
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -757,7 +758,7 @@ var head =
 	 * For new notification types extend Notification
 	 */
 	
-	var delegate = __webpack_require__(34);
+	var delegate = __webpack_require__(26);
 	
 	/**
 	 * Calculates translateY positions when notifications are added/removed
@@ -991,19 +992,10 @@ var head =
 	exports.Test = Test;
 
 /***/ },
-/* 29 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	__webpack_require__(51);
-
-/***/ },
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1057,9 +1049,16 @@ var head =
 	module.exports = delegate;
 
 /***/ },
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
 /* 35 */,
-/* 36 */,
-/* 37 */
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// Usage:
@@ -1109,6 +1108,7 @@ var head =
 	module.exports = Spinner;
 
 /***/ },
+/* 37 */,
 /* 38 */,
 /* 39 */,
 /* 40 */,
@@ -1186,7 +1186,7 @@ var head =
 
 	"use strict";
 	
-	var getDocumentHeight = __webpack_require__(73);
+	var getDocumentHeight = __webpack_require__(77);
 	
 	function iframeResize(ifrElem, callback) {
 	
@@ -1328,45 +1328,6 @@ var head =
 /* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
-	
-	function throttle(func, ms) {
-	
-	  var isThrottled = false,
-	      savedArgs,
-	      savedThis;
-	
-	  function wrapper() {
-	
-	    if (isThrottled) {
-	      savedArgs = arguments;
-	      savedThis = this;
-	      return;
-	    }
-	
-	    func.apply(this, arguments);
-	
-	    isThrottled = true;
-	
-	    setTimeout(function () {
-	      isThrottled = false;
-	      if (savedArgs) {
-	        wrapper.apply(savedThis, savedArgs);
-	        savedArgs = savedThis = null;
-	      }
-	    }, ms);
-	  }
-	
-	  return wrapper;
-	}
-	
-	module.exports = throttle;
-
-/***/ },
-/* 50 */,
-/* 51 */
-/***/ function(module, exports, __webpack_require__) {
-
 	//require('./casperjs');
 	
 	// http://dom.spec.whatwg.org/#mutation-method-macro
@@ -1442,12 +1403,51 @@ var head =
 	  }
 	}
 	
+	__webpack_require__(73);
 	__webpack_require__(74);
 	__webpack_require__(75);
 	__webpack_require__(76);
-	__webpack_require__(77);
 
 /***/ },
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	function throttle(func, ms) {
+	
+	  var isThrottled = false,
+	      savedArgs,
+	      savedThis;
+	
+	  function wrapper() {
+	
+	    if (isThrottled) {
+	      savedArgs = arguments;
+	      savedThis = this;
+	      return;
+	    }
+	
+	    func.apply(this, arguments);
+	
+	    isThrottled = true;
+	
+	    setTimeout(function () {
+	      isThrottled = false;
+	      if (savedArgs) {
+	        wrapper.apply(savedThis, savedArgs);
+	        savedArgs = savedThis = null;
+	      }
+	    }, ms);
+	  }
+	
+	  return wrapper;
+	}
+	
+	module.exports = throttle;
+
+/***/ },
+/* 51 */,
 /* 52 */,
 /* 53 */,
 /* 54 */,
@@ -1474,31 +1474,6 @@ var head =
 
 	"use strict";
 	
-	var getScrollbarHeight = __webpack_require__(81);
-	var scrollbarHeight;
-	
-	function getDocumentHeight(doc) {
-	  doc = doc || document;
-	
-	  var height = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight, doc.body.offsetHeight, doc.documentElement.offsetHeight, doc.body.clientHeight, doc.documentElement.clientHeight);
-	
-	  if (doc.documentElement.scrollWidth > doc.documentElement.clientWidth) {
-	    // got a horiz scroll, let's add it
-	    if (!scrollbarHeight) scrollbarHeight = getScrollbarHeight();
-	    height += scrollbarHeight;
-	  }
-	
-	  return height;
-	}
-	
-	module.exports = getDocumentHeight;
-
-/***/ },
-/* 74 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
 	try {
 	  new CustomEvent("IE has CustomEvent, but doesn't support constructor");
 	} catch (e) {
@@ -1519,7 +1494,7 @@ var head =
 	}
 
 /***/ },
-/* 75 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// dataset for IE10
@@ -1595,7 +1570,7 @@ var head =
 	// FF is empty while IE gives empty object
 
 /***/ },
-/* 76 */
+/* 75 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1613,7 +1588,7 @@ var head =
 	}
 
 /***/ },
-/* 77 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// polyfill for old Android
@@ -1636,6 +1611,31 @@ var head =
 	    clearTimeout(id);
 	  };
 	})();
+
+/***/ },
+/* 77 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var getScrollbarHeight = __webpack_require__(81);
+	var scrollbarHeight;
+	
+	function getDocumentHeight(doc) {
+	  doc = doc || document;
+	
+	  var height = Math.max(doc.body.scrollHeight, doc.documentElement.scrollHeight, doc.body.offsetHeight, doc.documentElement.offsetHeight, doc.body.clientHeight, doc.documentElement.clientHeight);
+	
+	  if (doc.documentElement.scrollWidth > doc.documentElement.clientWidth) {
+	    // got a horiz scroll, let's add it
+	    if (!scrollbarHeight) scrollbarHeight = getScrollbarHeight();
+	    height += scrollbarHeight;
+	  }
+	
+	  return height;
+	}
+	
+	module.exports = getDocumentHeight;
 
 /***/ },
 /* 78 */,
@@ -1675,4 +1675,4 @@ var head =
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=head.02076049971e7c5f9db0.js.map
+//# sourceMappingURL=head.46169cffcc15d81f23bb.js.map

@@ -1,14 +1,14 @@
 var tutorial =
-webpackJsonp_name_([2],[
+webpackJsonp_name_([4],[
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var delegate = __webpack_require__(34);
-	var prism = __webpack_require__(39);
-	var xhr = __webpack_require__(33);
-	var TutorialMapModal = __webpack_require__(30);
+	var delegate = __webpack_require__(26);
+	var prism = __webpack_require__(35);
+	var xhr = __webpack_require__(27);
+	var TutorialMapModal = __webpack_require__(23);
 	
 	exports.init = function () {
 	
@@ -26,12 +26,12 @@ webpackJsonp_name_([2],[
 	
 	  if (window.isEbook) {
 	    __webpack_require__.e/* nsure */(1, function () {
-	      __webpack_require__(32).init();
+	      __webpack_require__(25).init();
 	    });
 	  }
 	};
 	
-	exports.TutorialMap = __webpack_require__(31);
+	exports.TutorialMap = __webpack_require__(24);
 	
 	function initSidebarHighlight() {
 	
@@ -187,24 +187,17 @@ webpackJsonp_name_([2],[
 /***/ },
 /* 21 */,
 /* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var xhr = __webpack_require__(33);
+	var xhr = __webpack_require__(27);
 	
-	var delegate = __webpack_require__(34);
+	var delegate = __webpack_require__(26);
 	var Modal = __webpack_require__(9);
-	var Spinner = __webpack_require__(37);
-	var TutorialMap = __webpack_require__(31);
+	var Spinner = __webpack_require__(36);
+	var TutorialMap = __webpack_require__(24);
 	var trackSticky = __webpack_require__(20);
 	
 	/**
@@ -263,13 +256,13 @@ webpackJsonp_name_([2],[
 	module.exports = TutorialMapModal;
 
 /***/ },
-/* 31 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var throttle = __webpack_require__(49);
-	var delegate = __webpack_require__(34);
+	var throttle = __webpack_require__(50);
+	var delegate = __webpack_require__(26);
 	
 	function TutorialMap(elem) {
 	  var _this = this;
@@ -452,14 +445,15 @@ webpackJsonp_name_([2],[
 	module.exports = TutorialMap;
 
 /***/ },
-/* 32 */,
-/* 33 */
+/* 25 */,
+/* 26 */,
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(28);
-	var getCsrfCookie = __webpack_require__(38);
+	var notification = __webpack_require__(22);
+	var getCsrfCookie = __webpack_require__(37);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -624,22 +618,14 @@ webpackJsonp_name_([2],[
 	module.exports = xhr;
 
 /***/ },
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
 /* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	module.exports = function () {
-	  var csrfCookie = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
-	  return csrfCookie ? csrfCookie[1] : null;
-	};
-
-/***/ },
-/* 39 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -662,8 +648,8 @@ webpackJsonp_name_([2],[
 	
 	Prism.tokenTag = "code"; // for iBooks to use monospace font
 	
-	var CodeBox = __webpack_require__(53);
-	var CodeTabsBox = __webpack_require__(54);
+	var CodeBox = __webpack_require__(52);
+	var CodeTabsBox = __webpack_require__(53);
 	
 	function initCodeBoxes(container) {
 	
@@ -704,6 +690,20 @@ webpackJsonp_name_([2],[
 	exports.highlight = highlight;
 
 /***/ },
+/* 36 */,
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	module.exports = function () {
+	  var csrfCookie = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
+	  return csrfCookie ? csrfCookie[1] : null;
+	};
+
+/***/ },
+/* 38 */,
+/* 39 */,
 /* 40 */,
 /* 41 */,
 /* 42 */,
@@ -716,8 +716,7 @@ webpackJsonp_name_([2],[
 /* 49 */,
 /* 50 */,
 /* 51 */,
-/* 52 */,
-/* 53 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1025,12 +1024,12 @@ webpackJsonp_name_([2],[
 	module.exports = CodeBox;
 
 /***/ },
-/* 54 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var delegate = __webpack_require__(34);
+	var delegate = __webpack_require__(26);
 	var addLineNumbers = __webpack_require__(78);
 	
 	function CodeTabsBox(elem) {
@@ -1121,6 +1120,7 @@ webpackJsonp_name_([2],[
 	module.exports = CodeTabsBox;
 
 /***/ },
+/* 54 */,
 /* 55 */,
 /* 56 */,
 /* 57 */,
@@ -2188,4 +2188,4 @@ webpackJsonp_name_([2],[
 
 /***/ }
 ]);
-//# sourceMappingURL=tutorial.02076049971e7c5f9db0.js.map
+//# sourceMappingURL=tutorial.46169cffcc15d81f23bb.js.map

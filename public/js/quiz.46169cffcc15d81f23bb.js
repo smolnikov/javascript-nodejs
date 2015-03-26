@@ -5,10 +5,10 @@ webpackJsonp_name_([8],[
 
 	"use strict";
 	
-	var Spinner = __webpack_require__(37);
-	var xhr = __webpack_require__(33);
-	var getCsrfCookie = __webpack_require__(38);
-	var prism = __webpack_require__(39);
+	var Spinner = __webpack_require__(36);
+	var xhr = __webpack_require__(27);
+	var getCsrfCookie = __webpack_require__(37);
+	var prism = __webpack_require__(35);
 	
 	function init() {
 	  var quizQuestionForm = document.querySelector("[data-quiz-question-form]");
@@ -178,19 +178,13 @@ webpackJsonp_name_([8],[
 /* 24 */,
 /* 25 */,
 /* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(28);
-	var getCsrfCookie = __webpack_require__(38);
+	var notification = __webpack_require__(22);
+	var getCsrfCookie = __webpack_require__(37);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -355,22 +349,14 @@ webpackJsonp_name_([8],[
 	module.exports = xhr;
 
 /***/ },
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
 /* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	module.exports = function () {
-	  var csrfCookie = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
-	  return csrfCookie ? csrfCookie[1] : null;
-	};
-
-/***/ },
-/* 39 */
+/* 35 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -393,8 +379,8 @@ webpackJsonp_name_([8],[
 	
 	Prism.tokenTag = "code"; // for iBooks to use monospace font
 	
-	var CodeBox = __webpack_require__(53);
-	var CodeTabsBox = __webpack_require__(54);
+	var CodeBox = __webpack_require__(52);
+	var CodeTabsBox = __webpack_require__(53);
 	
 	function initCodeBoxes(container) {
 	
@@ -435,6 +421,20 @@ webpackJsonp_name_([8],[
 	exports.highlight = highlight;
 
 /***/ },
+/* 36 */,
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	module.exports = function () {
+	  var csrfCookie = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
+	  return csrfCookie ? csrfCookie[1] : null;
+	};
+
+/***/ },
+/* 38 */,
+/* 39 */,
 /* 40 */,
 /* 41 */,
 /* 42 */,
@@ -447,8 +447,7 @@ webpackJsonp_name_([8],[
 /* 49 */,
 /* 50 */,
 /* 51 */,
-/* 52 */,
-/* 53 */
+/* 52 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -756,12 +755,12 @@ webpackJsonp_name_([8],[
 	module.exports = CodeBox;
 
 /***/ },
-/* 54 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var delegate = __webpack_require__(34);
+	var delegate = __webpack_require__(26);
 	var addLineNumbers = __webpack_require__(78);
 	
 	function CodeTabsBox(elem) {
@@ -852,6 +851,7 @@ webpackJsonp_name_([8],[
 	module.exports = CodeTabsBox;
 
 /***/ },
+/* 54 */,
 /* 55 */,
 /* 56 */,
 /* 57 */,
@@ -1919,4 +1919,4 @@ webpackJsonp_name_([8],[
 
 /***/ }
 ]);
-//# sourceMappingURL=quiz.02076049971e7c5f9db0.js.map
+//# sourceMappingURL=quiz.46169cffcc15d81f23bb.js.map

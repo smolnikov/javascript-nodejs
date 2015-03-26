@@ -1,5 +1,5 @@
 var footer =
-webpackJsonp_name_([3],{
+webpackJsonp_name_([2],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -11,7 +11,7 @@ webpackJsonp_name_([3],{
 	var load2x = __webpack_require__(19);
 	var trackSticky = __webpack_require__(20);
 	
-	__webpack_require__(35).init();
+	__webpack_require__(40).init();
 	
 	exports.init = function () {
 	  showLinkType();
@@ -33,7 +33,7 @@ webpackJsonp_name_([3],{
 
 	"use strict";
 	
-	var hoverIntent = __webpack_require__(50);
+	var hoverIntent = __webpack_require__(48);
 	
 	module.exports = function () {
 	
@@ -201,13 +201,13 @@ webpackJsonp_name_([3],{
 
 /***/ },
 
-/***/ 33:
+/***/ 27:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(28);
-	var getCsrfCookie = __webpack_require__(38);
+	var notification = __webpack_require__(22);
+	var getCsrfCookie = __webpack_require__(37);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -373,14 +373,26 @@ webpackJsonp_name_([3],{
 
 /***/ },
 
-/***/ 35:
+/***/ 37:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var Spinner = __webpack_require__(37);
-	var xhr = __webpack_require__(33);
-	var notification = __webpack_require__(28);
+	module.exports = function () {
+	  var csrfCookie = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
+	  return csrfCookie ? csrfCookie[1] : null;
+	};
+
+/***/ },
+
+/***/ 40:
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var Spinner = __webpack_require__(36);
+	var xhr = __webpack_require__(27);
+	var notification = __webpack_require__(22);
 	
 	function init() {
 	  document.onsubmit = function (e) {
@@ -434,19 +446,7 @@ webpackJsonp_name_([3],{
 
 /***/ },
 
-/***/ 38:
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	module.exports = function () {
-	  var csrfCookie = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
-	  return csrfCookie ? csrfCookie[1] : null;
-	};
-
-/***/ },
-
-/***/ 50:
+/***/ 48:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -525,4 +525,4 @@ webpackJsonp_name_([3],{
 /***/ }
 
 });
-//# sourceMappingURL=footer.02076049971e7c5f9db0.js.map
+//# sourceMappingURL=footer.46169cffcc15d81f23bb.js.map
