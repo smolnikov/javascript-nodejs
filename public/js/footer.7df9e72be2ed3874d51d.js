@@ -7,11 +7,11 @@ webpackJsonp_name_([2],{
 	//require('./preventDocumentScroll');
 	"use strict";
 	
-	var showLinkType = __webpack_require__(15);
-	var load2x = __webpack_require__(16);
-	var trackSticky = __webpack_require__(17);
+	var showLinkType = __webpack_require__(19);
+	var load2x = __webpack_require__(20);
+	var trackSticky = __webpack_require__(21);
 	
-	__webpack_require__(39).init();
+	__webpack_require__(41).init();
 	
 	exports.init = function () {
 	  showLinkType();
@@ -28,7 +28,7 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 15:
+/***/ 19:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -95,7 +95,7 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 16:
+/***/ 20:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -129,7 +129,7 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 17:
+/***/ 21:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -201,13 +201,13 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 31:
+/***/ 28:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(19);
-	var getCsrfCookie = __webpack_require__(34);
+	var notification = __webpack_require__(23);
+	var getCsrfCookie = __webpack_require__(38);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -373,7 +373,7 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 34:
+/***/ 38:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -385,14 +385,14 @@ webpackJsonp_name_([2],{
 
 /***/ },
 
-/***/ 39:
+/***/ 41:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var Spinner = __webpack_require__(33);
-	var xhr = __webpack_require__(31);
-	var notification = __webpack_require__(19);
+	var Spinner = __webpack_require__(37);
+	var xhr = __webpack_require__(28);
+	var notification = __webpack_require__(23);
 	
 	function init() {
 	  document.onsubmit = function (e) {
@@ -525,4 +525,4 @@ webpackJsonp_name_([2],{
 /***/ }
 
 });
-//# sourceMappingURL=footer.2ab3be46075633f0e955.js.map
+//# sourceMappingURL=footer.7df9e72be2ed3874d51d.js.map
