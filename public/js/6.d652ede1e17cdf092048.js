@@ -1,12 +1,12 @@
-webpackJsonp_name_([7],{
+webpackJsonp_name_([6],{
 
-/***/ 24:
+/***/ 17:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(19);
-	var getCsrfCookie = __webpack_require__(34);
+	var notification = __webpack_require__(18);
+	var getCsrfCookie = __webpack_require__(21);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -55,6 +55,7 @@ webpackJsonp_name_([7],{
 	  }
 	
 	  request.addEventListener("loadstart", function (event) {
+	    request.timeStart = Date.now();
 	    sendStat(event.type);
 	    var e = wrapEvent("xhrstart", event);
 	    document.dispatchEvent(e);
@@ -154,8 +155,6 @@ webpackJsonp_name_([7],{
 	
 	  // defer to let other handlers be assigned
 	  setTimeout(function () {
-	    request.timeStart = Date.now();
-	
 	    request.send(body);
 	  }, 0);
 	
@@ -179,7 +178,7 @@ webpackJsonp_name_([7],{
 
 /***/ },
 
-/***/ 34:
+/***/ 21:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -191,16 +190,16 @@ webpackJsonp_name_([7],{
 
 /***/ },
 
-/***/ 41:
+/***/ 39:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	exports.AuthModal = __webpack_require__(55);
+	exports.AuthModal = __webpack_require__(56);
 
 /***/ },
 
-/***/ 52:
+/***/ 47:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -222,16 +221,16 @@ webpackJsonp_name_([7],{
 
 /***/ },
 
-/***/ 55:
+/***/ 56:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var xhr = __webpack_require__(24);
+	var xhr = __webpack_require__(17);
 	
-	var delegate = __webpack_require__(23);
-	var Modal = __webpack_require__(5);
-	var Spinner = __webpack_require__(33);
+	var delegate = __webpack_require__(16);
+	var Modal = __webpack_require__(25);
+	var Spinner = __webpack_require__(20);
 	
 	var loginForm = __webpack_require__(84);
 	var registerForm = __webpack_require__(85);
@@ -585,7 +584,7 @@ webpackJsonp_name_([7],{
 	"use strict";
 	
 	var bem = __webpack_require__(87)();
-	var thumb = __webpack_require__(52).thumb;
+	var thumb = __webpack_require__(47).thumb;
 	
 	module.exports = function (template, locals) {
 	  locals = locals ? Object.create(locals) : {};
@@ -1538,7 +1537,7 @@ webpackJsonp_name_([7],{
 	    throw err;
 	  }
 	  try {
-	    str = str || __webpack_require__(90).readFileSync(filename, "utf8");
+	    str = str || __webpack_require__(91).readFileSync(filename, "utf8");
 	  } catch (ex) {
 	    rethrow(err, null, lineno);
 	  }
@@ -1561,7 +1560,7 @@ webpackJsonp_name_([7],{
 
 /***/ },
 
-/***/ 90:
+/***/ 91:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* (ignored) */
@@ -1569,4 +1568,4 @@ webpackJsonp_name_([7],{
 /***/ }
 
 });
-//# sourceMappingURL=7.9d7b7e36dfcd731c1de1.js.map
+//# sourceMappingURL=6.d652ede1e17cdf092048.js.map

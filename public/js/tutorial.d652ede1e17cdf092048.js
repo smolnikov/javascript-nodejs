@@ -5,10 +5,10 @@ webpackJsonp_name_([4],[
 
 	"use strict";
 	
-	var delegate = __webpack_require__(23);
-	var prism = __webpack_require__(32);
-	var xhr = __webpack_require__(24);
-	var TutorialMapModal = __webpack_require__(20);
+	var delegate = __webpack_require__(16);
+	var prism = __webpack_require__(19);
+	var xhr = __webpack_require__(17);
+	var TutorialMapModal = __webpack_require__(13);
 	
 	exports.init = function () {
 	
@@ -26,12 +26,12 @@ webpackJsonp_name_([4],[
 	
 	  if (window.isEbook) {
 	    __webpack_require__.e/* nsure */(1, function () {
-	      __webpack_require__(22).init();
+	      __webpack_require__(15).init();
 	    });
 	  }
 	};
 	
-	exports.TutorialMap = __webpack_require__(21);
+	exports.TutorialMap = __webpack_require__(14);
 	
 	function initSidebarHighlight() {
 	
@@ -107,95 +107,18 @@ webpackJsonp_name_([4],[
 /* 10 */,
 /* 11 */,
 /* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	module.exports = trackSticky;
+	var xhr = __webpack_require__(17);
 	
-	function trackSticky() {
-	
-	  var stickyElems = document.querySelectorAll("[data-sticky]");
-	
-	  for (var i = 0; i < stickyElems.length; i++) {
-	    var stickyElem = stickyElems[i];
-	    var container = stickyElem.dataset.sticky ? document.querySelector(stickyElem.dataset.sticky) : document.body;
-	
-	    if (stickyElem.getBoundingClientRect().top < 0) {
-	      // become fixed
-	      if (stickyElem.style.cssText) {
-	        // already fixed
-	        // inertia: happens when scrolled fast too much to bottom
-	        // http://ilyakantor.ru/screen/2015-02-24_1555.swf
-	        return;
-	      }
-	
-	      var savedLeft = stickyElem.getBoundingClientRect().left;
-	      var placeholder = createPlaceholder(stickyElem);
-	
-	      stickyElem.parentNode.insertBefore(placeholder, stickyElem);
-	
-	      container.appendChild(stickyElem);
-	      stickyElem.classList.add("sticky");
-	      stickyElem.style.position = "fixed";
-	      stickyElem.style.top = 0;
-	      stickyElem.style.left = savedLeft + "px";
-	      // zIndex < 1000, because it must be under an overlay,
-	      // e.g. sitemap must show over the progress bar
-	      stickyElem.style.zIndex = 101;
-	      stickyElem.style.background = "white"; // non-transparent to cover the text
-	      stickyElem.style.margin = 0;
-	      stickyElem.style.width = placeholder.offsetWidth + "px"; // keep same width as before
-	      stickyElem.placeholder = placeholder;
-	    } else if (stickyElem.placeholder && stickyElem.placeholder.getBoundingClientRect().top > 0) {
-	      // become non-fixed
-	      stickyElem.style.cssText = "";
-	      stickyElem.classList.remove("sticky");
-	      stickyElem.placeholder.parentNode.insertBefore(stickyElem, stickyElem.placeholder);
-	      stickyElem.placeholder.remove();
-	
-	      stickyElem.placeholder = null;
-	    }
-	  }
-	}
-	
-	/**
-	 * Creates a placeholder w/ same size & margin
-	 * @param elem
-	 * @returns {*|!HTMLElement}
-	 */
-	function createPlaceholder(elem) {
-	  var placeholder = document.createElement("div");
-	  var style = getComputedStyle(elem);
-	  placeholder.style.width = elem.offsetWidth + "px";
-	  placeholder.style.marginLeft = style.marginLeft;
-	  placeholder.style.marginRight = style.marginRight;
-	  placeholder.style.height = elem.offsetHeight + "px";
-	  placeholder.style.marginBottom = style.marginBottom;
-	  placeholder.style.marginTop = style.marginTop;
-	  return placeholder;
-	}
-
-/***/ },
-/* 18 */,
-/* 19 */,
-/* 20 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	var xhr = __webpack_require__(24);
-	
-	var delegate = __webpack_require__(23);
-	var Modal = __webpack_require__(5);
-	var Spinner = __webpack_require__(33);
-	var TutorialMap = __webpack_require__(21);
-	var trackSticky = __webpack_require__(17);
+	var delegate = __webpack_require__(16);
+	var Modal = __webpack_require__(25);
+	var Spinner = __webpack_require__(20);
+	var TutorialMap = __webpack_require__(14);
+	var trackSticky = __webpack_require__(37);
 	
 	/**
 	 * Options:
@@ -253,13 +176,13 @@ webpackJsonp_name_([4],[
 	module.exports = TutorialMapModal;
 
 /***/ },
-/* 21 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var throttle = __webpack_require__(51);
-	var delegate = __webpack_require__(23);
+	var throttle = __webpack_require__(53);
+	var delegate = __webpack_require__(16);
 	
 	function TutorialMap(elem) {
 	  var _this = this;
@@ -442,15 +365,15 @@ webpackJsonp_name_([4],[
 	module.exports = TutorialMap;
 
 /***/ },
-/* 22 */,
-/* 23 */,
-/* 24 */
+/* 15 */,
+/* 16 */,
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(19);
-	var getCsrfCookie = __webpack_require__(34);
+	var notification = __webpack_require__(18);
+	var getCsrfCookie = __webpack_require__(21);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -499,6 +422,7 @@ webpackJsonp_name_([4],[
 	  }
 	
 	  request.addEventListener("loadstart", function (event) {
+	    request.timeStart = Date.now();
 	    sendStat(event.type);
 	    var e = wrapEvent("xhrstart", event);
 	    document.dispatchEvent(e);
@@ -598,8 +522,6 @@ webpackJsonp_name_([4],[
 	
 	  // defer to let other handlers be assigned
 	  setTimeout(function () {
-	    request.timeStart = Date.now();
-	
 	    request.send(body);
 	  }, 0);
 	
@@ -622,19 +544,12 @@ webpackJsonp_name_([4],[
 	module.exports = xhr;
 
 /***/ },
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */
+/* 18 */,
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	__webpack_require__(58);
 	__webpack_require__(59);
 	__webpack_require__(60);
 	__webpack_require__(61);
@@ -649,11 +564,12 @@ webpackJsonp_name_([4],[
 	__webpack_require__(70);
 	__webpack_require__(71);
 	__webpack_require__(72);
+	__webpack_require__(73);
 	
 	Prism.tokenTag = "code"; // for iBooks to use monospace font
 	
-	var CodeBox = __webpack_require__(53);
-	var CodeTabsBox = __webpack_require__(54);
+	var CodeBox = __webpack_require__(48);
+	var CodeTabsBox = __webpack_require__(49);
 	
 	function initCodeBoxes(container) {
 	
@@ -694,8 +610,8 @@ webpackJsonp_name_([4],[
 	exports.highlight = highlight;
 
 /***/ },
-/* 33 */,
-/* 34 */
+/* 20 */,
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -706,9 +622,92 @@ webpackJsonp_name_([4],[
 	};
 
 /***/ },
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
 /* 35 */,
 /* 36 */,
-/* 37 */,
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	module.exports = trackSticky;
+	
+	function trackSticky() {
+	
+	  var stickyElems = document.querySelectorAll("[data-sticky]");
+	
+	  for (var i = 0; i < stickyElems.length; i++) {
+	    var stickyElem = stickyElems[i];
+	    var container = stickyElem.dataset.sticky ? document.querySelector(stickyElem.dataset.sticky) : document.body;
+	
+	    if (stickyElem.getBoundingClientRect().top < 0) {
+	      // become fixed
+	      if (stickyElem.style.cssText) {
+	        // already fixed
+	        // inertia: happens when scrolled fast too much to bottom
+	        // http://ilyakantor.ru/screen/2015-02-24_1555.swf
+	        return;
+	      }
+	
+	      var savedLeft = stickyElem.getBoundingClientRect().left;
+	      var placeholder = createPlaceholder(stickyElem);
+	
+	      stickyElem.parentNode.insertBefore(placeholder, stickyElem);
+	
+	      container.appendChild(stickyElem);
+	      stickyElem.classList.add("sticky");
+	      stickyElem.style.position = "fixed";
+	      stickyElem.style.top = 0;
+	      stickyElem.style.left = savedLeft + "px";
+	      // zIndex < 1000, because it must be under an overlay,
+	      // e.g. sitemap must show over the progress bar
+	      stickyElem.style.zIndex = 101;
+	      stickyElem.style.background = "white"; // non-transparent to cover the text
+	      stickyElem.style.margin = 0;
+	      stickyElem.style.width = placeholder.offsetWidth + "px"; // keep same width as before
+	      stickyElem.placeholder = placeholder;
+	    } else if (stickyElem.placeholder && stickyElem.placeholder.getBoundingClientRect().top > 0) {
+	      // become non-fixed
+	      stickyElem.style.cssText = "";
+	      stickyElem.classList.remove("sticky");
+	      stickyElem.placeholder.parentNode.insertBefore(stickyElem, stickyElem.placeholder);
+	      stickyElem.placeholder.remove();
+	
+	      stickyElem.placeholder = null;
+	    }
+	  }
+	}
+	
+	/**
+	 * Creates a placeholder w/ same size & margin
+	 * @param elem
+	 * @returns {*|!HTMLElement}
+	 */
+	function createPlaceholder(elem) {
+	  var placeholder = document.createElement("div");
+	  var style = getComputedStyle(elem);
+	  placeholder.style.width = elem.offsetWidth + "px";
+	  placeholder.style.marginLeft = style.marginLeft;
+	  placeholder.style.marginRight = style.marginRight;
+	  placeholder.style.height = elem.offsetHeight + "px";
+	  placeholder.style.marginBottom = style.marginBottom;
+	  placeholder.style.marginTop = style.marginTop;
+	  return placeholder;
+	}
+
+/***/ },
 /* 38 */,
 /* 39 */,
 /* 40 */,
@@ -719,19 +718,14 @@ webpackJsonp_name_([4],[
 /* 45 */,
 /* 46 */,
 /* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */
+/* 48 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var resizeOnload = __webpack_require__(14);
+	var resizeOnload = __webpack_require__(34);
 	var isScrolledIntoView = __webpack_require__(80);
-	var addLineNumbers = __webpack_require__(78);
+	var addLineNumbers = __webpack_require__(79);
 	
 	function CodeBox(elem) {
 	
@@ -1032,13 +1026,13 @@ webpackJsonp_name_([4],[
 	module.exports = CodeBox;
 
 /***/ },
-/* 54 */
+/* 49 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var delegate = __webpack_require__(23);
-	var addLineNumbers = __webpack_require__(78);
+	var delegate = __webpack_require__(16);
+	var addLineNumbers = __webpack_require__(79);
 	
 	function CodeTabsBox(elem) {
 	  if (window.isEbook) {
@@ -1128,10 +1122,16 @@ webpackJsonp_name_([4],[
 	module.exports = CodeTabsBox;
 
 /***/ },
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
 /* 55 */,
 /* 56 */,
 /* 57 */,
-/* 58 */
+/* 58 */,
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 	self = (typeof window !== 'undefined')
@@ -1561,7 +1561,7 @@ webpackJsonp_name_([4],[
 
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.markup = {
@@ -1608,7 +1608,7 @@ webpackJsonp_name_([4],[
 
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.css = {
@@ -1663,7 +1663,7 @@ webpackJsonp_name_([4],[
 	}
 
 /***/ },
-/* 61 */
+/* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.css.selector = {
@@ -1683,7 +1683,7 @@ webpackJsonp_name_([4],[
 	});
 
 /***/ },
-/* 62 */
+/* 63 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.clike = {
@@ -1721,7 +1721,7 @@ webpackJsonp_name_([4],[
 
 
 /***/ },
-/* 63 */
+/* 64 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.javascript = Prism.languages.extend('clike', {
@@ -1755,7 +1755,7 @@ webpackJsonp_name_([4],[
 
 
 /***/ },
-/* 64 */
+/* 65 */
 /***/ function(module, exports, __webpack_require__) {
 
 	(function(Prism) {
@@ -1843,7 +1843,7 @@ webpackJsonp_name_([4],[
 	}(Prism));
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.http = {
@@ -1893,7 +1893,7 @@ webpackJsonp_name_([4],[
 
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.scss = Prism.languages.extend('css', {
@@ -1935,7 +1935,7 @@ webpackJsonp_name_([4],[
 
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.sql= { 
@@ -1957,7 +1957,7 @@ webpackJsonp_name_([4],[
 	};
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -2062,7 +2062,7 @@ webpackJsonp_name_([4],[
 
 
 /***/ },
-/* 69 */
+/* 70 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.insertBefore('php', 'variable', {
@@ -2078,7 +2078,7 @@ webpackJsonp_name_([4],[
 	});
 
 /***/ },
-/* 70 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.python= { 
@@ -2098,7 +2098,7 @@ webpackJsonp_name_([4],[
 
 
 /***/ },
-/* 71 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -2125,7 +2125,7 @@ webpackJsonp_name_([4],[
 
 
 /***/ },
-/* 72 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 	Prism.languages.java = Prism.languages.extend('clike', {
@@ -2138,12 +2138,12 @@ webpackJsonp_name_([4],[
 	});
 
 /***/ },
-/* 73 */,
 /* 74 */,
 /* 75 */,
 /* 76 */,
 /* 77 */,
-/* 78 */
+/* 78 */,
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -2170,7 +2170,6 @@ webpackJsonp_name_([4],[
 	module.exports = addLineNumbers;
 
 /***/ },
-/* 79 */,
 /* 80 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2196,4 +2195,4 @@ webpackJsonp_name_([4],[
 
 /***/ }
 ]);
-//# sourceMappingURL=tutorial.9d7b7e36dfcd731c1de1.js.map
+//# sourceMappingURL=tutorial.d652ede1e17cdf092048.js.map

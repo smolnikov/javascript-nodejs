@@ -6,7 +6,7 @@ webpackJsonp_name_([1],{
 
 	"use strict";
 	
-	var OrderForm = __webpack_require__(40);
+	var OrderForm = __webpack_require__(41);
 	
 	exports.init = function () {
 	
@@ -20,7 +20,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 22:
+/***/ 15:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -71,13 +71,13 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 24:
+/***/ 17:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(19);
-	var getCsrfCookie = __webpack_require__(34);
+	var notification = __webpack_require__(18);
+	var getCsrfCookie = __webpack_require__(21);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -126,6 +126,7 @@ webpackJsonp_name_([1],{
 	  }
 	
 	  request.addEventListener("loadstart", function (event) {
+	    request.timeStart = Date.now();
 	    sendStat(event.type);
 	    var e = wrapEvent("xhrstart", event);
 	    document.dispatchEvent(e);
@@ -225,8 +226,6 @@ webpackJsonp_name_([1],{
 	
 	  // defer to let other handlers be assigned
 	  setTimeout(function () {
-	    request.timeStart = Date.now();
-	
 	    request.send(body);
 	  }, 0);
 	
@@ -250,7 +249,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 34:
+/***/ 21:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -262,7 +261,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 40:
+/***/ 41:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -271,10 +270,10 @@ webpackJsonp_name_([1],{
 	
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 	
-	var xhr = __webpack_require__(24);
-	var notification = __webpack_require__(19);
-	var delegate = __webpack_require__(23);
-	var Spinner = __webpack_require__(33);
+	var xhr = __webpack_require__(17);
+	var notification = __webpack_require__(18);
+	var delegate = __webpack_require__(16);
+	var Spinner = __webpack_require__(20);
 	
 	var OrderForm = (function () {
 	  function OrderForm(options) {
@@ -447,4 +446,4 @@ webpackJsonp_name_([1],{
 /***/ }
 
 });
-//# sourceMappingURL=ebook.9d7b7e36dfcd731c1de1.js.map
+//# sourceMappingURL=ebook.d652ede1e17cdf092048.js.map
