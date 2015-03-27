@@ -6,7 +6,7 @@ webpackJsonp_name_([1],{
 
 	"use strict";
 	
-	var OrderForm = __webpack_require__(41);
+	var OrderForm = __webpack_require__(39);
 	
 	exports.init = function () {
 	
@@ -20,7 +20,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 15:
+/***/ 26:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -71,13 +71,13 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 17:
+/***/ 28:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(18);
-	var getCsrfCookie = __webpack_require__(21);
+	var notification = __webpack_require__(23);
+	var getCsrfCookie = __webpack_require__(38);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -163,7 +163,7 @@ webpackJsonp_name_([1],{
 	      time: Date.now() - request.timeStart,
 	      method: request.method,
 	      url: request.url,
-	      status: request.status
+	      status: String(request.status)
 	    });
 	  }
 	
@@ -249,7 +249,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 21:
+/***/ 38:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -261,7 +261,7 @@ webpackJsonp_name_([1],{
 
 /***/ },
 
-/***/ 41:
+/***/ 39:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -270,10 +270,10 @@ webpackJsonp_name_([1],{
 	
 	var _classCallCheck = function (instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } };
 	
-	var xhr = __webpack_require__(17);
-	var notification = __webpack_require__(18);
-	var delegate = __webpack_require__(16);
-	var Spinner = __webpack_require__(20);
+	var xhr = __webpack_require__(28);
+	var notification = __webpack_require__(23);
+	var delegate = __webpack_require__(27);
+	var Spinner = __webpack_require__(37);
 	
 	var OrderForm = (function () {
 	  function OrderForm(options) {
@@ -320,6 +320,7 @@ webpackJsonp_name_([1],{
 	        if (this.elem.elements.email) {
 	          if (!this.elem.elements.email.value) {
 	            window.ga("send", "event", "payment", "checkout-no-email", "ebook");
+	            window.metrika.reachGoal("CHECKOUT-NO-EMAIL", { product: "ebook" });
 	            new notification.Error("Введите email.");
 	            this.elem.elements.email.focus();
 	            return;
@@ -348,6 +349,12 @@ webpackJsonp_name_([1],{
 	        window.ga("ec:setAction", "checkout", {
 	          step: 1,
 	          option: data.paymentMethod
+	        });
+	
+	        window.metrika.reachGoal("CHECKOUT", {
+	          product: "ebook",
+	          method: data.paymentMethod,
+	          price: data.amount
 	        });
 	
 	        window.ga("send", "event", "payment", "checkout", "ebook");
@@ -382,6 +389,13 @@ webpackJsonp_name_([1],{
 	              hitCallback: function hitCallback() {
 	                container.firstChild.submit();
 	              }
+	            });
+	
+	            window.metrika.reachGoal("PURCHASE", {
+	              product: "ebook",
+	              method: data.paymentMethod,
+	              price: data.amount,
+	              number: result.orderNumber
 	            });
 	          } else {
 	            console.error(result);
@@ -446,4 +460,4 @@ webpackJsonp_name_([1],{
 /***/ }
 
 });
-//# sourceMappingURL=ebook.d652ede1e17cdf092048.js.map
+//# sourceMappingURL=ebook.a38813a29049b6c96e24.js.map

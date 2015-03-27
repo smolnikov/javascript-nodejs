@@ -5,10 +5,10 @@ webpackJsonp_name_([4],[
 
 	"use strict";
 	
-	var delegate = __webpack_require__(16);
-	var prism = __webpack_require__(19);
-	var xhr = __webpack_require__(17);
-	var TutorialMapModal = __webpack_require__(13);
+	var delegate = __webpack_require__(27);
+	var prism = __webpack_require__(36);
+	var xhr = __webpack_require__(28);
+	var TutorialMapModal = __webpack_require__(24);
 	
 	exports.init = function () {
 	
@@ -26,12 +26,12 @@ webpackJsonp_name_([4],[
 	
 	  if (window.isEbook) {
 	    __webpack_require__.e/* nsure */(1, function () {
-	      __webpack_require__(15).init();
+	      __webpack_require__(26).init();
 	    });
 	  }
 	};
 	
-	exports.TutorialMap = __webpack_require__(14);
+	exports.TutorialMap = __webpack_require__(25);
 	
 	function initSidebarHighlight() {
 	
@@ -107,18 +107,99 @@ webpackJsonp_name_([4],[
 /* 10 */,
 /* 11 */,
 /* 12 */,
-/* 13 */
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var xhr = __webpack_require__(17);
+	module.exports = trackSticky;
 	
-	var delegate = __webpack_require__(16);
-	var Modal = __webpack_require__(25);
-	var Spinner = __webpack_require__(20);
-	var TutorialMap = __webpack_require__(14);
-	var trackSticky = __webpack_require__(37);
+	function trackSticky() {
+	
+	  var stickyElems = document.querySelectorAll("[data-sticky]");
+	
+	  for (var i = 0; i < stickyElems.length; i++) {
+	    var stickyElem = stickyElems[i];
+	    var container = stickyElem.dataset.sticky ? document.querySelector(stickyElem.dataset.sticky) : document.body;
+	
+	    if (stickyElem.getBoundingClientRect().top < 0) {
+	      // become fixed
+	      if (stickyElem.style.cssText) {
+	        // already fixed
+	        // inertia: happens when scrolled fast too much to bottom
+	        // http://ilyakantor.ru/screen/2015-02-24_1555.swf
+	        return;
+	      }
+	
+	      var savedLeft = stickyElem.getBoundingClientRect().left;
+	      var placeholder = createPlaceholder(stickyElem);
+	
+	      stickyElem.parentNode.insertBefore(placeholder, stickyElem);
+	
+	      container.appendChild(stickyElem);
+	      stickyElem.classList.add("sticky");
+	      stickyElem.style.position = "fixed";
+	      stickyElem.style.top = 0;
+	      stickyElem.style.left = savedLeft + "px";
+	      // zIndex < 1000, because it must be under an overlay,
+	      // e.g. sitemap must show over the progress bar
+	      stickyElem.style.zIndex = 101;
+	      stickyElem.style.background = "white"; // non-transparent to cover the text
+	      stickyElem.style.margin = 0;
+	      stickyElem.style.width = placeholder.offsetWidth + "px"; // keep same width as before
+	      stickyElem.placeholder = placeholder;
+	    } else if (stickyElem.placeholder && stickyElem.placeholder.getBoundingClientRect().top > 0) {
+	      // become non-fixed
+	      stickyElem.style.cssText = "";
+	      stickyElem.classList.remove("sticky");
+	      stickyElem.placeholder.parentNode.insertBefore(stickyElem, stickyElem.placeholder);
+	      stickyElem.placeholder.remove();
+	
+	      stickyElem.placeholder = null;
+	    }
+	  }
+	}
+	
+	/**
+	 * Creates a placeholder w/ same size & margin
+	 * @param elem
+	 * @returns {*|!HTMLElement}
+	 */
+	function createPlaceholder(elem) {
+	  var placeholder = document.createElement("div");
+	  var style = getComputedStyle(elem);
+	  placeholder.style.width = elem.offsetWidth + "px";
+	  placeholder.style.marginLeft = style.marginLeft;
+	  placeholder.style.marginRight = style.marginRight;
+	  placeholder.style.height = elem.offsetHeight + "px";
+	  placeholder.style.marginBottom = style.marginBottom;
+	  placeholder.style.marginTop = style.marginTop;
+	  return placeholder;
+	}
+
+/***/ },
+/* 22 */,
+/* 23 */,
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	var xhr = __webpack_require__(28);
+	
+	var delegate = __webpack_require__(27);
+	var Modal = __webpack_require__(9);
+	var Spinner = __webpack_require__(37);
+	var TutorialMap = __webpack_require__(25);
+	var trackSticky = __webpack_require__(21);
 	
 	/**
 	 * Options:
@@ -176,13 +257,13 @@ webpackJsonp_name_([4],[
 	module.exports = TutorialMapModal;
 
 /***/ },
-/* 14 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var throttle = __webpack_require__(53);
-	var delegate = __webpack_require__(16);
+	var throttle = __webpack_require__(51);
+	var delegate = __webpack_require__(27);
 	
 	function TutorialMap(elem) {
 	  var _this = this;
@@ -365,15 +446,15 @@ webpackJsonp_name_([4],[
 	module.exports = TutorialMap;
 
 /***/ },
-/* 15 */,
-/* 16 */,
-/* 17 */
+/* 26 */,
+/* 27 */,
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(18);
-	var getCsrfCookie = __webpack_require__(21);
+	var notification = __webpack_require__(23);
+	var getCsrfCookie = __webpack_require__(38);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -459,7 +540,7 @@ webpackJsonp_name_([4],[
 	      time: Date.now() - request.timeStart,
 	      method: request.method,
 	      url: request.url,
-	      status: request.status
+	      status: String(request.status)
 	    });
 	  }
 	
@@ -544,8 +625,14 @@ webpackJsonp_name_([4],[
 	module.exports = xhr;
 
 /***/ },
-/* 18 */,
-/* 19 */
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -568,8 +655,8 @@ webpackJsonp_name_([4],[
 	
 	Prism.tokenTag = "code"; // for iBooks to use monospace font
 	
-	var CodeBox = __webpack_require__(48);
-	var CodeTabsBox = __webpack_require__(49);
+	var CodeBox = __webpack_require__(53);
+	var CodeTabsBox = __webpack_require__(54);
 	
 	function initCodeBoxes(container) {
 	
@@ -610,8 +697,8 @@ webpackJsonp_name_([4],[
 	exports.highlight = highlight;
 
 /***/ },
-/* 20 */,
-/* 21 */
+/* 37 */,
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -622,93 +709,6 @@ webpackJsonp_name_([4],[
 	};
 
 /***/ },
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	module.exports = trackSticky;
-	
-	function trackSticky() {
-	
-	  var stickyElems = document.querySelectorAll("[data-sticky]");
-	
-	  for (var i = 0; i < stickyElems.length; i++) {
-	    var stickyElem = stickyElems[i];
-	    var container = stickyElem.dataset.sticky ? document.querySelector(stickyElem.dataset.sticky) : document.body;
-	
-	    if (stickyElem.getBoundingClientRect().top < 0) {
-	      // become fixed
-	      if (stickyElem.style.cssText) {
-	        // already fixed
-	        // inertia: happens when scrolled fast too much to bottom
-	        // http://ilyakantor.ru/screen/2015-02-24_1555.swf
-	        return;
-	      }
-	
-	      var savedLeft = stickyElem.getBoundingClientRect().left;
-	      var placeholder = createPlaceholder(stickyElem);
-	
-	      stickyElem.parentNode.insertBefore(placeholder, stickyElem);
-	
-	      container.appendChild(stickyElem);
-	      stickyElem.classList.add("sticky");
-	      stickyElem.style.position = "fixed";
-	      stickyElem.style.top = 0;
-	      stickyElem.style.left = savedLeft + "px";
-	      // zIndex < 1000, because it must be under an overlay,
-	      // e.g. sitemap must show over the progress bar
-	      stickyElem.style.zIndex = 101;
-	      stickyElem.style.background = "white"; // non-transparent to cover the text
-	      stickyElem.style.margin = 0;
-	      stickyElem.style.width = placeholder.offsetWidth + "px"; // keep same width as before
-	      stickyElem.placeholder = placeholder;
-	    } else if (stickyElem.placeholder && stickyElem.placeholder.getBoundingClientRect().top > 0) {
-	      // become non-fixed
-	      stickyElem.style.cssText = "";
-	      stickyElem.classList.remove("sticky");
-	      stickyElem.placeholder.parentNode.insertBefore(stickyElem, stickyElem.placeholder);
-	      stickyElem.placeholder.remove();
-	
-	      stickyElem.placeholder = null;
-	    }
-	  }
-	}
-	
-	/**
-	 * Creates a placeholder w/ same size & margin
-	 * @param elem
-	 * @returns {*|!HTMLElement}
-	 */
-	function createPlaceholder(elem) {
-	  var placeholder = document.createElement("div");
-	  var style = getComputedStyle(elem);
-	  placeholder.style.width = elem.offsetWidth + "px";
-	  placeholder.style.marginLeft = style.marginLeft;
-	  placeholder.style.marginRight = style.marginRight;
-	  placeholder.style.height = elem.offsetHeight + "px";
-	  placeholder.style.marginBottom = style.marginBottom;
-	  placeholder.style.marginTop = style.marginTop;
-	  return placeholder;
-	}
-
-/***/ },
-/* 38 */,
 /* 39 */,
 /* 40 */,
 /* 41 */,
@@ -718,12 +718,17 @@ webpackJsonp_name_([4],[
 /* 45 */,
 /* 46 */,
 /* 47 */,
-/* 48 */
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var resizeOnload = __webpack_require__(34);
+	var resizeOnload = __webpack_require__(18);
 	var isScrolledIntoView = __webpack_require__(80);
 	var addLineNumbers = __webpack_require__(79);
 	
@@ -1026,12 +1031,12 @@ webpackJsonp_name_([4],[
 	module.exports = CodeBox;
 
 /***/ },
-/* 49 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var delegate = __webpack_require__(16);
+	var delegate = __webpack_require__(27);
 	var addLineNumbers = __webpack_require__(79);
 	
 	function CodeTabsBox(elem) {
@@ -1122,11 +1127,6 @@ webpackJsonp_name_([4],[
 	module.exports = CodeTabsBox;
 
 /***/ },
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
 /* 55 */,
 /* 56 */,
 /* 57 */,
@@ -2195,4 +2195,4 @@ webpackJsonp_name_([4],[
 
 /***/ }
 ]);
-//# sourceMappingURL=tutorial.d652ede1e17cdf092048.js.map
+//# sourceMappingURL=tutorial.a38813a29049b6c96e24.js.map

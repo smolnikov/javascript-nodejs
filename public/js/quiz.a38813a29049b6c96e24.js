@@ -5,11 +5,11 @@ webpackJsonp_name_([8],[
 
 	"use strict";
 	
-	var Spinner = __webpack_require__(20);
-	var xhr = __webpack_require__(17);
-	var getCsrfCookie = __webpack_require__(21);
-	var prism = __webpack_require__(19);
-	var notification = __webpack_require__(18);
+	var Spinner = __webpack_require__(37);
+	var xhr = __webpack_require__(28);
+	var getCsrfCookie = __webpack_require__(38);
+	var prism = __webpack_require__(36);
+	var notification = __webpack_require__(23);
 	
 	function init() {
 	  var quizQuestionForm = document.querySelector("[data-quiz-question-form]");
@@ -54,7 +54,7 @@ webpackJsonp_name_([8],[
 	
 	    __webpack_require__.e/* nsure */(6, function () {
 	      spinner.stop();
-	      var AuthModal = __webpack_require__(39).AuthModal;
+	      var AuthModal = __webpack_require__(42).AuthModal;
 	      new AuthModal({
 	        callback: saveResult
 	      });
@@ -195,13 +195,24 @@ webpackJsonp_name_([8],[
 /* 14 */,
 /* 15 */,
 /* 16 */,
-/* 17 */
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(18);
-	var getCsrfCookie = __webpack_require__(21);
+	var notification = __webpack_require__(23);
+	var getCsrfCookie = __webpack_require__(38);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -287,7 +298,7 @@ webpackJsonp_name_([8],[
 	      time: Date.now() - request.timeStart,
 	      method: request.method,
 	      url: request.url,
-	      status: request.status
+	      status: String(request.status)
 	    });
 	  }
 	
@@ -372,8 +383,14 @@ webpackJsonp_name_([8],[
 	module.exports = xhr;
 
 /***/ },
-/* 18 */,
-/* 19 */
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -396,8 +413,8 @@ webpackJsonp_name_([8],[
 	
 	Prism.tokenTag = "code"; // for iBooks to use monospace font
 	
-	var CodeBox = __webpack_require__(48);
-	var CodeTabsBox = __webpack_require__(49);
+	var CodeBox = __webpack_require__(53);
+	var CodeTabsBox = __webpack_require__(54);
 	
 	function initCodeBoxes(container) {
 	
@@ -438,8 +455,8 @@ webpackJsonp_name_([8],[
 	exports.highlight = highlight;
 
 /***/ },
-/* 20 */,
-/* 21 */
+/* 37 */,
+/* 38 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -450,23 +467,6 @@ webpackJsonp_name_([8],[
 	};
 
 /***/ },
-/* 22 */,
-/* 23 */,
-/* 24 */,
-/* 25 */,
-/* 26 */,
-/* 27 */,
-/* 28 */,
-/* 29 */,
-/* 30 */,
-/* 31 */,
-/* 32 */,
-/* 33 */,
-/* 34 */,
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
 /* 39 */,
 /* 40 */,
 /* 41 */,
@@ -476,12 +476,17 @@ webpackJsonp_name_([8],[
 /* 45 */,
 /* 46 */,
 /* 47 */,
-/* 48 */
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var resizeOnload = __webpack_require__(34);
+	var resizeOnload = __webpack_require__(18);
 	var isScrolledIntoView = __webpack_require__(80);
 	var addLineNumbers = __webpack_require__(79);
 	
@@ -784,12 +789,12 @@ webpackJsonp_name_([8],[
 	module.exports = CodeBox;
 
 /***/ },
-/* 49 */
+/* 54 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var delegate = __webpack_require__(16);
+	var delegate = __webpack_require__(27);
 	var addLineNumbers = __webpack_require__(79);
 	
 	function CodeTabsBox(elem) {
@@ -880,11 +885,6 @@ webpackJsonp_name_([8],[
 	module.exports = CodeTabsBox;
 
 /***/ },
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
 /* 55 */,
 /* 56 */,
 /* 57 */,
@@ -1953,4 +1953,4 @@ webpackJsonp_name_([8],[
 
 /***/ }
 ]);
-//# sourceMappingURL=quiz.d652ede1e17cdf092048.js.map
+//# sourceMappingURL=quiz.a38813a29049b6c96e24.js.map

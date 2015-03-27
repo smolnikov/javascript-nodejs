@@ -1,12 +1,12 @@
 webpackJsonp_name_([6],{
 
-/***/ 17:
+/***/ 28:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	
-	var notification = __webpack_require__(18);
-	var getCsrfCookie = __webpack_require__(21);
+	var notification = __webpack_require__(23);
+	var getCsrfCookie = __webpack_require__(38);
 	// Wrapper about XHR
 	// # Global Events
 	// triggers document.loadstart/loadend on communication start/end
@@ -92,7 +92,7 @@ webpackJsonp_name_([6],{
 	      time: Date.now() - request.timeStart,
 	      method: request.method,
 	      url: request.url,
-	      status: request.status
+	      status: String(request.status)
 	    });
 	  }
 	
@@ -178,7 +178,7 @@ webpackJsonp_name_([6],{
 
 /***/ },
 
-/***/ 21:
+/***/ 38:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -190,7 +190,7 @@ webpackJsonp_name_([6],{
 
 /***/ },
 
-/***/ 39:
+/***/ 42:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -199,7 +199,7 @@ webpackJsonp_name_([6],{
 
 /***/ },
 
-/***/ 47:
+/***/ 52:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -226,15 +226,15 @@ webpackJsonp_name_([6],{
 
 	"use strict";
 	
-	var xhr = __webpack_require__(17);
+	var xhr = __webpack_require__(28);
 	
-	var delegate = __webpack_require__(16);
-	var Modal = __webpack_require__(25);
-	var Spinner = __webpack_require__(20);
+	var delegate = __webpack_require__(27);
+	var Modal = __webpack_require__(9);
+	var Spinner = __webpack_require__(37);
 	
-	var loginForm = __webpack_require__(84);
-	var registerForm = __webpack_require__(85);
-	var forgotForm = __webpack_require__(86);
+	var loginForm = __webpack_require__(83);
+	var registerForm = __webpack_require__(84);
+	var forgotForm = __webpack_require__(85);
 	
 	var clientRender = __webpack_require__(81);
 	
@@ -584,7 +584,7 @@ webpackJsonp_name_([6],{
 	"use strict";
 	
 	var bem = __webpack_require__(87)();
-	var thumb = __webpack_require__(47).thumb;
+	var thumb = __webpack_require__(52).thumb;
 	
 	module.exports = function (template, locals) {
 	  locals = locals ? Object.create(locals) : {};
@@ -601,7 +601,7 @@ webpackJsonp_name_([6],{
 
 /***/ },
 
-/***/ 84:
+/***/ 83:
 /***/ function(module, exports, __webpack_require__) {
 
 	var jade = __webpack_require__(89);
@@ -784,7 +784,7 @@ webpackJsonp_name_([6],{
 
 /***/ },
 
-/***/ 85:
+/***/ 84:
 /***/ function(module, exports, __webpack_require__) {
 
 	var jade = __webpack_require__(89);
@@ -980,7 +980,7 @@ webpackJsonp_name_([6],{
 
 /***/ },
 
-/***/ 86:
+/***/ 85:
 /***/ function(module, exports, __webpack_require__) {
 
 	var jade = __webpack_require__(89);
@@ -1568,4 +1568,4 @@ webpackJsonp_name_([6],{
 /***/ }
 
 });
-//# sourceMappingURL=6.d652ede1e17cdf092048.js.map
+//# sourceMappingURL=6.a38813a29049b6c96e24.js.map
