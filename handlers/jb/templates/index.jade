@@ -5,6 +5,10 @@ block append variables
   - var sitetoolbar = true
   - var title = "Jetbrains для участников курса"
   - var layout_main_class = "main_width-limit"
+  - var layout_header_class = "main__header_center"
+
+  - var content_class = '_center'
+
 
 block content
 
@@ -14,36 +18,35 @@ block content
       +e('button').close(title="Закрыть")
 
 
-  p Выберите редактор и введите данные, чтобы получить скидку 30% на персональную лицензию.
+  p Участники курсов имеют 30% скидку на персональную лицензию Jetbrains.
 
-  form(method="POST" action="/jb" name="jb")
-    table
-      tr
-        td Редактор:
-        td
-          +b('select').input-select(name="product")
-            each title, value in products
-              +e('option')(value=value selected=(form && form.product == value))= title
+  +b("form").jetbrains-form(method="POST" action="/jb" name="jb")
+    input(type="hidden", name="_csrf", value=csrf())
 
-      tr
-        td Email:
-        td
-          +b(class=['text-input', errors && errors.email && '_invalid'])
-            +e('input').control(type="email" name="email" required placeholder="email@gmail.com" value=form && form.email)
-            if errors && errors.email
-              +e.err= errors.email
+    p.note
+      | Если вам нужен только JavaScript/HTML/CSS &ndash; выбирайте WebStorm.
+      br
+      | Другие редакторы кроме них поддерживают дополнительные языки, указанные в списке.
+    +e.form
+      +e.line
+        +e("label").label(for="name") Имя и фамилия (англ.):
+        +b("span")(class=['text-input', errors && errors.name && '_invalid'])
+          +e("input").control(type="text" pattern="^\\s*[a-zA-Z ]+\\s+[a-zA-Z ]+\\s*$" required name="name" id="name" value=form && form.name)
 
-      tr
-        td Имя Фамилия (на английском)
-        td
-          +b(class=['text-input', errors && errors.name && '_invalid'])
-            +e('input').control(type="text" pattern="^\\s*[a-zA-Z ]+\\s+[a-zA-Z ]+\\s*$" required name="name" placeholder="Ilya Kantor" value=form && form.name)
-            if errors && errors.name
-              +e.err= errors.name
+      +e.line
+        +e("label").label(for="email") Email:
+        +b("span")(class=['text-input', errors && errors.email && '_invalid'])
+          +e("input").control(type="email" name="email" id="email" required value=form && form.email)
 
+      +e.line
+        +e("label").label(for="product") Редактор:
+        +b('select').input-select(name="product" id="product")
+          each title, value in products
+            +e('option')(value=value selected=(form && form.product == value))= title
 
-    +b('button').submit-button._small.__item-save(type="submit") Запросить
-
+      +e.line
+        +b("button").button._action(type="submit")
+          +e("span").text Отправить
 
   script.
     document.forms.jb.onsubmit = function() {

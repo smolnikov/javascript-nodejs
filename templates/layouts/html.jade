@@ -11,7 +11,12 @@ block html
   body.no-icons
     script head.fontTest();
 
+  if footer || (footer === undefined)
+    .page-wrapper
+      block body
+    include ../blocks/page-footer
+  else
     block body
 
-    script(src=script("footer"))
-    script footer.init();
+  script(src=pack("footer"))
+  script footer.init();

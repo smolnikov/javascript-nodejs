@@ -1,6 +1,4 @@
 
-Всем привет!
-
 Вашему вниманию предлагается скринкаст по Node.JS на русском языке.
 
 Его целью не является разбор всех-всех возможностей и модулей Node.JS, ведь многие из них используются очень редко.
@@ -13,17 +11,13 @@
 Конечно, даже на английском много всего устаревшего, приходится порыться, но на русском -- всё гораздо хуже.
 Многого просто нет. Хотелось бы поменять эту ситуацию, хотя бы в плане Node.JS.
 
-[smart]
-Если вы где-то выкладываете этот скринкаст (торрент и т.п.), то обязательно давайте ссылку на эту страницу, так как все обновления и важные изменения я публикую здесь.
-[/smart]
-
 ## Часть 1: Изучаем Node.JS
 
 Выпуски были записаны для Node 0.10.
 
 Каждую запись можно просмотреть или скачать в низком и хорошем качестве.
 
-<div class="lessons-list">
+<div class="lessons-list lessons-list_screencast">
 <ol class="lessons-list__lessons">
 <li class="lessons-list__lesson" mnemo="intro-1-about">[Введение в Node.JS, об этом скринкасте](http://www.youtube.com/watch?v=ILpS4Fq3lmw)</li>
 <li class="lessons-list__lesson" mnemo="intro-2-whatisnode">[Что такое Node.JS? Почему Node.JS?](http://www.youtube.com/watch?v=N-4p2_NEr9w)</li>
@@ -83,7 +77,7 @@
 [/smart]
 
 <no-typography>
-<div class="lessons-list">
+<div class="lessons-list lessons-list_screencast">
 <ol class="lessons-list__lessons">
 <li class="lessons-list__lesson" mnemo="chat-1">[Создаём костяк сайта / Express: основы и Middleware](http://youtu.be/2Xp9yj3UIAg)</li>
 <li class="lessons-list__lesson" mnemo="chat-2">[Улучшаем костяк сайта / Логгер, конфигурация, шаблонка для HTML](http://youtu.be/FKBkVr7FtbA)</li>
@@ -102,31 +96,15 @@
 </div>
 
 Дополнительно:
-<ul style="margin-top:0">
-<li mnemo="mongo-install">[Установка MongoDB для Windows, пример работы](http://youtu.be/fugXo7A5sNE)</li>
-</ul>
+
+<no-typography>
+<div class="lessons-list lessons-list_screencast">
+<ol class="lessons-list__lessons">
+<li class="lessons-list__lesson" mnemo="mongo-install">[Установка MongoDB для Windows, пример работы](http://youtu.be/fugXo7A5sNE)</li>
+</ol>
+</div>
 </no-typography>
 
-## Скачать
-
-Видео-файл с интересующим вас выпуском вы сможете скачать, 
-нажав на иконку справа от имени: <img src="/clipart/download_lq.png"> -- низкое качество, <img src="/clipart/download.png"> -- высокое .
-Вы также можете скачать архив со всеми выпусками в низком качестве: <a href="/nodejs-screencast/nodejs-mp4-low.zip">nodejs-mp4-low.zip (228MB)</a> 
-или в высоком качестве <a href="/nodejs-screencast/nodejs-mp4.zip">nodejs-mp4.zip (4Gb)</a>.
-
 ## Код
+
 Код к большинству выпусков находится в здесь: [](https://github.com/iliakan/nodejs-screencast), его также можно скачать и в виде [zip-файла](https://github.com/iliakan/nodejs-screencast/archive/master.zip).
-
-Ответы на частые вопросы:
-<dl>
-<dt>У меня Windows, пытаюсь запустить скрипт в `cmd`, набираю `node server.js` -- выдаёт ошибку, что делать?</dt>
-<dd>Перейдите в нужную директорию командой `CD <директория, в которой у вас находится server.js>`. Например: `CD C:\node`. Оттуда и запускайте.</dd>
-<dt>Пробую запускать в FAR, но не вижу вывода скрипта.</dt>
-<dd>Нажмите `Ctrl + O`, это отключит панели FAR и вы сможете всё видеть. Нажмите ещё раз -- и панели снова появятся. </dd>
-</dl>
-
-## Курс по Node.JS
-
-Если получится, будет курс в режиме вебинара по Node.JS, с решением задач, обратной связью, ответами на вопросы и прочим необходимым для полноценного обучения.
-Напишу уведомление, когда будет открыта запись.
-

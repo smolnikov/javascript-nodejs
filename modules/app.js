@@ -91,7 +91,7 @@ app.requireHandler('paymentsMethods');
 // right before endpoints
 // so that the error won't fall through the handlers above
 // all above ^^^ handlers can finish processing the usual way
-app.requireHandler('throwFinish');
+//app.requireHandler('throwFinish');
 
 // ======== Endpoint services that actually generate something ==========
 
@@ -102,7 +102,7 @@ if (process.env.NODE_ENV == 'development') {
 }
 
 endpoints.push(
-  'users', 'auth', 'ebook', 'cache', 'search', 'profile', 'jb', 'play',
+  'users', 'auth', 'ebook', 'cache', 'search', 'profile', 'jb', 'play', 'nodejsScreencast',
   'profileGuest', 'quiz', 'currencyRate', 'payments', 'download', 'staticPage', 'newsletter', 'mailer'
 );
 
