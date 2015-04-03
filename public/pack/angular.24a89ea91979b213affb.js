@@ -13,11 +13,11 @@ var r = n(23), i = n(5);
 i.module("global403Interceptor", []).factory("http403Interceptor", [ "$q", "$log", function(e, t) {
 return {
 response: function(e) {
-var t = function() {
+function t() {
 return e.apply(this, arguments);
-};
+}
 return t.toString = function() {
-return "" + e;
+return "" + t;
 }, t;
 }(function(t) {
 return t || e.when(t);
@@ -7260,4 +7260,4 @@ J(t, Q);
 e.exports = angular;
 }
 });
-//# sourceMappingURL=angular.4d9343421de912652a1c.js.map
+//# sourceMappingURL=angular.24a89ea91979b213affb.js.map

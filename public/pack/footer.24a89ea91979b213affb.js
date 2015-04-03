@@ -34,17 +34,17 @@ i("a,[data-tooltip]", t, o);
 3: function(e) {
 "use strict";
 e.exports = function() {
-for (var e = document.querySelectorAll('figure img[src$=".png"]'), t = 0; t < e.length; t++) !function() {
-var o = e[t];
-o.onload = function() {
+for (var e = document.querySelectorAll('figure img[src$=".png"]'), t = function() {
+var t = e[o];
+t.onload = function() {
 if (delete this.onload, !this.src.match(/@2x.png$/)) {
 var e = new Image();
 e.onload = function() {
-this.width && this.height && (o.src = this.src);
+this.width && this.height && (t.src = this.src);
 }, e.src = this.src.replace(".png", "@2x.png");
 }
-}, o.complete && o.onload();
-}();
+}, t.complete && t.onload();
+}, o = 0; o < e.length; o++) t();
 };
 },
 4: function(e) {
@@ -114,4 +114,4 @@ document.addEventListener("mousemove", o), document.addEventListener("mouseout",
 e.exports = t;
 }
 });
-//# sourceMappingURL=footer.4d9343421de912652a1c.js.map
+//# sourceMappingURL=footer.24a89ea91979b213affb.js.map

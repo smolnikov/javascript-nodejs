@@ -11,23 +11,23 @@ elem: e
 },
 32: function(e, t, o) {
 "use strict";
-var i = function() {
+var i = function(e, t) {
+if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+}, n = function() {
 function e(e, t) {
-for (var o in t) {
+for (var o = 0; o < t.length; o++) {
 var i = t[o];
-i.configurable = !0, i.value && (i.writable = !0);
+i.enumerable = i.enumerable || !1, i.configurable = !0, i.value && (i.writable = !0), 
+Object.defineProperty(e, i.key, i);
 }
-Object.defineProperties(e, t);
 }
 return function(t, o, i) {
 return o && e(t.prototype, o), i && e(t, i), t;
 };
-}(), n = function(e, t) {
-if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
-}, r = o(34), a = o(23), l = o(40), s = o(33), p = function() {
+}(), r = o(34), a = o(23), l = o(40), s = o(33), p = function() {
 function e(t) {
 var o = this;
-n(this, e), this.elem = t.elem, this.elem.addEventListener("submit", function(e) {
+i(this, e), this.elem = t.elem, this.elem.addEventListener("submit", function(e) {
 return e.preventDefault();
 }), this.delegate('[name="paymentMethod"]', "click", function(e) {
 return o.onPaymentMethodClick(e);
@@ -37,8 +37,8 @@ this.elem.querySelector("[data-order-form-step-confirm]").style.display = "none"
 this.elem.querySelector("[data-order-form-step-receipt]").style.display = "none";
 });
 }
-return i(e, {
-onPaymentMethodClick: {
+return n(e, [ {
+key: "onPaymentMethodClick",
 value: function(e) {
 var t = {
 paymentMethod: e.delegateTarget.value
@@ -83,11 +83,20 @@ window.ga("ec:setAction", "purchase", {
 id: o.orderNumber
 });
 var i = document.createElement("div");
-i.hidden = !0, i.innerHTML = o.form, document.body.appendChild(i), window.ga("send", "event", "payment", "purchase", "ebook", {
-hitCallback: function() {
-i.firstChild.submit();
+i.hidden = !0, i.innerHTML = o.form, document.body.appendChild(i);
+var r = function(e) {
+function t() {
+return e.apply(this, arguments);
 }
-}), window.metrika.reachGoal("PURCHASE", {
+return t.toString = function() {
+return "" + t;
+}, t;
+}(function() {
+r.called || (r.called = !0, i.firstChild.submit());
+});
+window.ga("send", "event", "payment", "purchase", "ebook", {
+hitCallback: r
+}), setTimeout(r, 500), window.metrika.reachGoal("PURCHASE", {
 product: "ebook",
 method: t.paymentMethod,
 price: t.amount,
@@ -96,14 +105,14 @@ number: o.orderNumber
 } else n(), new a.Error("Ошибка на сервере, свяжитесь со <a href='mailto:orders@javascript.ru'>службой поддержки</a>.");
 }), i.addEventListener("fail", n);
 }
-},
-request: {
+}, {
+key: "request",
 value: function(e) {
-var t = function() {
+function t() {
 return e.apply(this, arguments);
-};
+}
 return t.toString = function() {
-return "" + e;
+return "" + t;
 }, t;
 }(function(e) {
 var t = r(e);
@@ -112,8 +121,8 @@ var e = this.startRequestIndication();
 t.addEventListener("loadend", e);
 }.bind(this)), t;
 })
-},
-startRequestIndication: {
+}, {
+key: "startRequestIndication",
 value: function() {
 var e = this.elem.querySelector(".pay-method");
 e.classList.add("modal-overlay_light");
@@ -126,8 +135,7 @@ return t.start(), function() {
 e.classList.remove("modal-overlay_light"), t && t.stop();
 };
 }
-}
-}), e;
+} ]), e;
 }();
 l.delegateMixin(p.prototype), e.exports = p;
 },
@@ -220,4 +228,4 @@ o(), i();
 };
 }
 });
-//# sourceMappingURL=ebook.4d9343421de912652a1c.js.map
+//# sourceMappingURL=ebook.24a89ea91979b213affb.js.map

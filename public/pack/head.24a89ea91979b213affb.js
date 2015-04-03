@@ -35,7 +35,7 @@ o.type = "text/javascript", o.charset = "utf-8", o.async = !0, o.src = t.p + "" 
 "8": "profile",
 "9": "styles",
 "10": "quiz"
-}[e] || e) + "-" + e + ".4d9343421de912652a1c.js", r.appendChild(o);
+}[e] || e) + "-" + e + ".24a89ea91979b213affb.js", r.appendChild(o);
 }
 }, t.m = e, t.c = r, t.p = "/pack/", t(0);
 }([ function(e, t, n) {
@@ -268,7 +268,7 @@ t.preventDefault();
 var i = r.href;
 window.ga("send", "event", "outbound", "click", i, {
 hitCallback: n
-}), setTimeout(n, 1e3);
+}), setTimeout(n, 500);
 }
 }
 });
@@ -304,7 +304,7 @@ if (void 0 === r) {
 var i = Object.getPrototypeOf(e);
 return null === i ? void 0 : m(i, t, n);
 }
-if ("value" in r && r.writable) return r.value;
+if ("value" in r) return r.value;
 var o = r.get;
 return void 0 === o ? void 0 : o.call(n);
 }, i = function(e, t) {
@@ -317,59 +317,58 @@ writable: !0,
 configurable: !0
 }
 }), t && (e.__proto__ = t);
-}, o = function() {
+}, o = function(e, t) {
+if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
+}, a = function() {
 function e(e, t) {
-for (var n in t) {
+for (var n = 0; n < t.length; n++) {
 var r = t[n];
-r.configurable = !0, r.value && (r.writable = !0);
+r.enumerable = r.enumerable || !1, r.configurable = !0, r.value && (r.writable = !0), 
+Object.defineProperty(e, r.key, r);
 }
-Object.defineProperties(e, t);
 }
 return function(t, n, r) {
 return n && e(t.prototype, n), r && e(t, r), t;
 };
-}(), a = function(e, t) {
-if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
-};
+}();
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
 var s, l = n(40), c = function() {
 function e() {
 var t = void 0 === arguments[0] ? {} : arguments[0];
-a(this, e), this.notifications = [], this.verticalSpace = t.verticalSpace || 8;
+o(this, e), this.notifications = [], this.verticalSpace = t.verticalSpace || 8;
 }
-return o(e, {
-register: {
+return a(e, [ {
+key: "register",
 value: function(e) {
 var t = this;
 this.notifications.unshift(e), setTimeout(function() {
 return t.recalculate();
 }, 20);
 }
-},
-unregister: {
+}, {
+key: "unregister",
 value: function(e) {
 var t = this.notifications.indexOf(e);
 this.notifications.splice(t, 1), this.recalculate();
 }
-},
-recalculate: {
+}, {
+key: "recalculate",
 value: function() {
 var e = this, t = this.verticalSpace;
 this.notifications.forEach(function(n) {
 n.top = t, t += n.height + e.verticalSpace;
 });
 }
-}
-}), e;
+} ]), e;
 }();
 t.init = function(e) {
 s = new c(e);
 };
 var u = function() {
 function e(t, n, r) {
-a(this, e);
+o(this, e);
 var i = '<div class="notification notification_popup notification_' + n + '">\n    <div class="notification__content">' + t + '</div>\n    <button title="Закрыть" class="notification__close"></button></div>';
 switch (document.body.insertAdjacentHTML("beforeEnd", i), this.elem = document.body.lastElementChild, 
 r) {
@@ -390,90 +389,88 @@ this.timeout = r;
 }
 s.register(this), this.setupCloseHandler(), this.setupCloseTimeout();
 }
-return o(e, {
-TIMEOUT_DEFAULT: {
+return a(e, [ {
+key: "TIMEOUT_DEFAULT",
 get: function() {
 return 2500;
 }
-},
-TIMEOUT_SLOW: {
+}, {
+key: "TIMEOUT_SLOW",
 get: function() {
 return 5e3;
 }
-},
-TIMEOUT_FAST: {
+}, {
+key: "TIMEOUT_FAST",
 get: function() {
 return 1500;
 }
-},
-close: {
+}, {
+key: "close",
 value: function() {
 this.elem.parentNode && (this.elem.remove(), s.unregister(this));
 }
-},
-setupCloseHandler: {
+}, {
+key: "setupCloseHandler",
 value: function() {
 var e = this;
 this.delegate(".notification__close", "click", function() {
 return e.close();
 });
 }
-},
-setupCloseTimeout: {
+}, {
+key: "setupCloseTimeout",
 value: function() {
 var e = this;
 this.timeout && setTimeout(function() {
 return e.close();
 }, this.timeout);
 }
-},
-height: {
+}, {
+key: "height",
 get: function() {
 return this.elem.offsetHeight;
 }
-},
-top: {
+}, {
+key: "top",
 set: function(e) {
 this.elem.style.transform = "translateY(" + e + "px)";
 }
-}
-}), e;
+} ]), e;
 }();
 l.delegateMixin(u.prototype);
 var p = function(e) {
 function t(e, n) {
-a(this, t), r(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "info", n);
+o(this, t), r(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "info", n);
 }
 return i(t, e), t;
 }(u);
 t.Info = p;
 var d = function(e) {
 function t(e, n) {
-a(this, t), r(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "warning", n);
+o(this, t), r(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "warning", n);
 }
 return i(t, e), t;
 }(u);
 t.Warning = d;
 var f = function(e) {
 function t(e, n) {
-a(this, t), r(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "success", n);
+o(this, t), r(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "success", n);
 }
 return i(t, e), t;
 }(u);
 t.Success = f;
-var h = t.Error = function(e) {
+var h = function(e) {
 function t(e, n) {
-a(this, t), r(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "error", n);
+o(this, t), r(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "error", n);
 }
-return i(t, e), o(t, {
-TIMEOUT_DEFAULT: {
+return i(t, e), a(t, [ {
+key: "TIMEOUT_DEFAULT",
 get: function() {
 return 5e3;
 }
-}
-}), t;
+} ]), t;
 }(u);
-t.Error = h;
+t.Error = h, t.Error = h;
 }, , , , , , , , , , function(e) {
 "use strict";
 function t(e) {
@@ -716,4 +713,4 @@ return e.parentNode.removeChild(e), t - r;
 }
 e.exports = t;
 } ]);
-//# sourceMappingURL=head.4d9343421de912652a1c.js.map
+//# sourceMappingURL=head.24a89ea91979b213affb.js.map

@@ -1509,11 +1509,11 @@ var e = this;
 return [ e.year(), e.month(), e.date(), e.hours(), e.minutes(), e.seconds(), e.milliseconds() ];
 },
 isValid: function(e) {
-var t = function() {
+function t() {
 return e.apply(this, arguments);
-};
+}
 return t.toString = function() {
-return "" + e;
+return "" + t;
 }, t;
 }(function() {
 return R(this);
@@ -1540,19 +1540,12 @@ return this.localeData().postformat(t);
 },
 add: E(1, "add"),
 subtract: E(-1, "subtract"),
-diff: function(e) {
-var t = function() {
-return e.apply(this, arguments);
-};
-return t.toString = function() {
-return "" + e;
-}, t;
-}(function(e, t, n) {
-var i, r, o = F(e, this), a = 6e4 * (o.utcOffset() - this.utcOffset());
-return t = A(t), "year" === t || "month" === t || "quarter" === t ? (r = h(this, o), 
-"quarter" === t ? r /= 3 : "year" === t && (r /= 12)) : (i = this - o, r = "second" === t ? i / 1e3 : "minute" === t ? i / 6e4 : "hour" === t ? i / 36e5 : "day" === t ? (i - a) / 864e5 : "week" === t ? (i - a) / 6048e5 : i), 
-n ? r : y(r);
-}),
+diff: function St(e, t, n) {
+var St, i, r = F(e, this), o = 6e4 * (r.utcOffset() - this.utcOffset());
+return t = A(t), "year" === t || "month" === t || "quarter" === t ? (i = h(this, r), 
+"quarter" === t ? i /= 3 : "year" === t && (i /= 12)) : (St = this - r, i = "second" === t ? St / 1e3 : "minute" === t ? St / 6e4 : "hour" === t ? St / 36e5 : "day" === t ? (St - o) / 864e5 : "week" === t ? (St - o) / 6048e5 : St), 
+n ? i : y(i);
+},
 from: function(e, t) {
 return Se.duration({
 to: this,
@@ -1567,11 +1560,11 @@ var t = e || Se(), n = F(t, this).startOf("day"), i = this.diff(n, "days", !0), 
 return this.format(this.localeData().calendar(r, this, Se(t)));
 },
 isLeapYear: function(e) {
-var t = function() {
+function t() {
 return e.apply(this, arguments);
-};
+}
 return t.toString = function() {
-return "" + e;
+return "" + t;
 }, t;
 }(function() {
 return I(this.year());
@@ -1579,17 +1572,10 @@ return I(this.year());
 isDST: function() {
 return this.utcOffset() > this.clone().month(0).utcOffset() || this.utcOffset() > this.clone().month(5).utcOffset();
 },
-day: function(e) {
-var t = function() {
-return e.apply(this, arguments);
-};
-return t.toString = function() {
-return "" + e;
-}, t;
-}(function(e) {
-var t = this._isUTC ? this._d.getUTCDay() : this._d.getDay();
-return null != e ? (e = pe(e, this.localeData()), this.add(e - t, "d")) : t;
-}),
+day: function Tt(e) {
+var Tt = this._isUTC ? this._d.getUTCDay() : this._d.getDay();
+return null != e ? (e = pe(e, this.localeData()), this.add(e - Tt, "d")) : Tt;
+},
 month: ye("Month", !0),
 startOf: function(e) {
 switch (e = A(e)) {
@@ -1677,26 +1663,19 @@ hasAlignedHourOffset: function(e) {
 return e = e ? Se(e).utcOffset() : 0, (this.utcOffset() - e) % 60 === 0;
 },
 daysInMonth: function(e) {
-var t = function() {
+function t() {
 return e.apply(this, arguments);
-};
+}
 return t.toString = function() {
-return "" + e;
+return "" + t;
 }, t;
 }(function() {
 return z(this.year(), this.month());
 }),
-dayOfYear: function(e) {
-var t = function() {
-return e.apply(this, arguments);
-};
-return t.toString = function() {
-return "" + e;
-}, t;
-}(function(e) {
-var t = Oe((Se(this).startOf("day") - Se(this).startOf("year")) / 864e5) + 1;
-return null == e ? t : this.add(e - t, "d");
-}),
+dayOfYear: function Ct(e) {
+var Ct = Oe((Se(this).startOf("day") - Se(this).startOf("year")) / 864e5) + 1;
+return null == e ? Ct : this.add(e - Ct, "d");
+},
 quarter: function(e) {
 return null == e ? Math.ceil((this.month() + 1) / 3) : this.month(3 * (e - 1) + this.month() % 3);
 },
@@ -1708,32 +1687,18 @@ isoWeekYear: function(e) {
 var t = he(this, 1, 4).year;
 return null == e ? t : this.add(e - t, "y");
 },
-week: function(e) {
-var t = function() {
-return e.apply(this, arguments);
-};
-return t.toString = function() {
-return "" + e;
-}, t;
-}(function(e) {
-var t = this.localeData().week(this);
-return null == e ? t : this.add(7 * (e - t), "d");
-}),
+week: function Mt(e) {
+var Mt = this.localeData().week(this);
+return null == e ? Mt : this.add(7 * (e - Mt), "d");
+},
 isoWeek: function(e) {
 var t = he(this, 1, 4).week;
 return null == e ? t : this.add(7 * (e - t), "d");
 },
-weekday: function(e) {
-var t = function() {
-return e.apply(this, arguments);
-};
-return t.toString = function() {
-return "" + e;
-}, t;
-}(function(e) {
-var t = (this.day() + 7 - this.localeData()._week.dow) % 7;
-return null == e ? t : this.add(e - t, "d");
-}),
+weekday: function At(e) {
+var At = (this.day() + 7 - this.localeData()._week.dow) % 7;
+return null == e ? At : this.add(e - At, "d");
+},
 isoWeekday: function(e) {
 return null == e ? this.day() || 7 : this.day(this.day() % 7 ? e : e - 7);
 },
@@ -1741,11 +1706,11 @@ isoWeeksInYear: function() {
 return N(this.year(), 1, 4);
 },
 weeksInYear: function(e) {
-var t = function() {
+function t() {
 return e.apply(this, arguments);
-};
+}
 return t.toString = function() {
-return "" + e;
+return "" + t;
 }, t;
 }(function() {
 var e = this.localeData()._week;
@@ -1899,4 +1864,4 @@ e.webpackPolyfill = 1), e;
 };
 }
 });
-//# sourceMappingURL=profile.4d9343421de912652a1c.js.map
+//# sourceMappingURL=profile.24a89ea91979b213affb.js.map
