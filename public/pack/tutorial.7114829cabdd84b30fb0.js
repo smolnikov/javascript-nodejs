@@ -154,27 +154,27 @@ a(document);
 }, function(e, t, o) {
 "use strict";
 function i() {
-r.apply(this, arguments);
-var e = new s();
-this.setContent(e.elem), e.start();
-var t = this.request({
+var e = this, t = new r({
+hasClose: !1
+}), o = new s();
+t.setContent(o.elem), o.start();
+var i = n({
 url: "/tutorial/map"
-}), o = this;
-t.addEventListener("success", function(e) {
-var t = document.createElement("div");
-t.className = "tutorial-map-overlay", t.innerHTML = e.result + '<button class="close-button tutorial-map-overlay__close"></button>', 
-document.body.classList.add("tutorial-map_on"), o.setContent(t), t.addEventListener("scroll", p), 
-new l(o.contentElem.firstElementChild);
-}), t.addEventListener("fail", function() {
-o.remove();
+});
+i.addEventListener("success", function(o) {
+t.remove(), document.body.insertAdjacentHTML("beforeEnd", '<div class="tutorial-map-overlay"></div>'), 
+e.elem = document.body.lastChild, e.elem.innerHTML = o.result + '<button class="close-button tutorial-map-overlay__close"></button>', 
+e.elem.addEventListener("click", function(t) {
+t.target.classList.contains("tutorial-map-overlay__close") && e.remove();
+}), document.body.classList.add("tutorial-map_on"), e.elem.addEventListener("scroll", p), 
+new l(e.elem.firstElementChild);
+}), i.addEventListener("fail", function() {
+return t.remove();
 });
 }
 var n = o(34), a = o(40), r = o(12), s = o(33), l = o(38), p = o(4);
-i.prototype = Object.create(r.prototype), a.delegateMixin(i.prototype), i.prototype.remove = function() {
-r.prototype.remove.apply(this, arguments), document.body.classList.remove("tutorial-map_on");
-}, i.prototype.request = function(e) {
-var t = n(e);
-return t;
+a.delegateMixin(i.prototype), i.prototype.remove = function() {
+this.elem.remove(), document.body.classList.remove("tutorial-map_on");
 }, e.exports = i;
 }, function(e, t, o) {
 "use strict";
@@ -936,4 +936,4 @@ return o > 10;
 }
 e.exports = t;
 } ]);
-//# sourceMappingURL=tutorial.24a89ea91979b213affb.js.map
+//# sourceMappingURL=tutorial.7114829cabdd84b30fb0.js.map
