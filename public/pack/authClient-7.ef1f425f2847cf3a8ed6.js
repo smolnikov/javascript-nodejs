@@ -676,6 +676,13 @@ attributes: {
 }
 }), n.e.call({
 block: function() {
+t.push('Регистрируясь, вы принимаете <a href="/agreement">пользовательское соглашение</a>.');
+},
+attributes: {
+"class": "line __agreement"
+}
+}), n.e.call({
+block: function() {
 n.e.call({
 block: function() {
 t.push("Вход через социальные сети");
@@ -1000,4 +1007,4 @@ e;
 },
 91: function() {}
 });
-//# sourceMappingURL=authClient-7.0f648bb4b881999b5047.js.map
+//# sourceMappingURL=authClient-7.ef1f425f2847cf3a8ed6.js.map
