@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var hash = require('../lib/hash');
 var troop = require('mongoose-troop');
 var _ = require('lodash');
+var co = require('co');
 
 var ProviderSchema = new mongoose.Schema({
   name:    String,
@@ -77,8 +78,15 @@ var UserSchema = new mongoose.Schema({
   },
   profileName:               {
     type:     String,
-    required: true,
     validate: [
+      {
+        validator: function(value) {
+          // also checks required
+          if (this.deleted) return true;
+          return value && value.length >= 2;
+        },
+        msg:       "Минимальная длина имени профиля: 2 символа."
+      },
       {
         validator: function(value) {
           return this.deleted || /^[a-z0-9-]*$/.test(value);
@@ -87,15 +95,10 @@ var UserSchema = new mongoose.Schema({
       },
       {
         validator: function(value) {
-          return this.deleted || value.length <= 64;
+          // if no value, this validator passes (another one triggers the error)
+          return this.deleted || !value || value.length <= 64;
         },
         msg:       "Максимальная длина имени профиля: 64 символа."
-      },
-      {
-        validator: function(value) {
-          return this.deleted || value.length >= 2;
-        },
-        msg:       "Минимальная длина имени профиля: 2 символа."
       }
     ],
 
@@ -151,7 +154,8 @@ var UserSchema = new mongoose.Schema({
     default: false
   },
   readOnly:                  Boolean,  // data is not deleted, just flagged as banned
-  isAdmin:                   Boolean
+  isAdmin:                   Boolean,
+  lastActivity:              Date
   /* created, modified from plugin */
 });
 
@@ -202,7 +206,9 @@ UserSchema.statics.getInfoFields = function(user) {
     photo:         user.photo && user.photo.link,
     deleted:       user.deleted,
     readOnly:      user.readOnly,
-    isAdmin:       user.isAdmin
+    isAdmin:       user.isAdmin,
+    created:       user.created,
+    lastActivity:  user.lastActivity
   };
 };
 
@@ -229,13 +235,15 @@ UserSchema.methods.softDelete = function(callback) {
   this.profileName = undefined;
   this.verifyEmailToken = undefined;
   this.verifyEmailRedirect = undefined;
+  this.created = undefined;
+  this.lastActivity = undefined;
   this.passwordResetToken = undefined;
   this.passwordResetTokenExpires = undefined;
   this.passwordResetRedirect = undefined;
   this.providers = [];
   this.password = undefined;
 
-  this.photo = undefined; // TODO: deleted photo
+  this.photo = undefined;
   // keep verifiedEmail status as it was, maybe for some displays?
   //  user.verifiedEmail = false;
 
@@ -287,6 +295,13 @@ UserSchema.methods.generateProfileName = function*() {
   this.profileName = profileName;
 };
 
+UserSchema.pre('save', function (next) {
+  if (this.deleted || this.profileName) return next();
+
+  co(function*() {
+    yield* this.generateProfileName();
+  }.bind(this)).then(next, next);
+});
 
 
 UserSchema.plugin(troop.timestamp, {useVirtual: false});

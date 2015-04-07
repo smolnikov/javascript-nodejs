@@ -1,58 +1,66 @@
 block append variables
-  - var siteToolbarSections = [ { slug: 'tutorial', title: 'Учебник' }, { url: 'http://javascript.ru/forum', title: 'Форум' }, { url: 'http://es5.javascript.ru', title: 'ES5' }, { url: 'http://javascript.ru/courses', title: 'Курсы' }, { url: 'http://javascript.ru/manual', title: 'Справочник' },  { slug: 'nodejs-screencast', title: 'Node.JS' }, { slug: 'quiz', title: 'Тесты знаний' } ];
+  - var siteToolbarSections = [ { slug: 'tutorial', title: 'Учебник' }, { url: 'http://javascript.ru/forum', title: 'Форум' }, { url: 'http://es5.javascript.ru', title: 'ES5' }, { url: 'http://javascript.ru/courses', title: 'Курсы' }, { url: 'http://javascript.ru/manual', title: 'Справочник' },  { slug: 'nodejs-screencast', title: 'Node.JS' } ];
+  - if (env.NODE_ENV == 'development') siteToolbarSections.push({ slug: 'quiz', title: 'Тесты знаний' })
 
-+b(class = 'sitetoolbar ' + (bookChildNumber ? '_tutorial' : ''))
++b(class = 'sitetoolbar' + (bookChildNumber ? '_tutorial' : ''))
   +e.content
     +e.logo-wrap
       +e('a').link._logo(href="/")
 
-        +e('img').logo(src="/img/sitetoolbar__logo2.svg")
+        +e('img').logo._normal(src="/img/sitetoolbar__logo.svg")
+        +e('img').logo._small(src="/img/sitetoolbar__logo_small.svg")
         script
           :uglify
             (function() {
+
               /* chrome renders embed.svg with a delay,
                this loads embed later to prevent flickering */
-              var logo = document.querySelector('img.sitetoolbar__logo')
-              var embed = document.createElement('object');
-              embed.type='image/svg+xml';
+              Array.prototype.forEach
+                .call(
+                  document.querySelectorAll('img.sitetoolbar__logo'),
+                  function(logo) {
+                    var embed = document.createElement('object');
+                    embed.type='image/svg+xml';
 
-              embed.className = logo.className;
-              embed.style.cssText = 'left:0;top:0;position:absolute';
+                    embed.className = logo.className;
+                    embed.style.cssText = 'left:0;top:0;position:absolute';
 
-              embed.onload = function() {
-                embed.onload = null;
-                logo.style.visibility = 'hidden';
-              };
-              embed.data = logo.src;
-              logo.parentNode.insertBefore(embed, logo);
+                    embed.onload = function() {
+                      embed.onload = null;
+                      logo.style.visibility = 'hidden';
+                    };
+                    embed.data = logo.src;
+                    logo.parentNode.insertBefore(embed, logo);
+                  });
             })();
     +e.nav-toggle-wrap
-      //- todo: implement me
-      //- эта кнопка видна только на узком экране
-      //- при начале скролла тут же исчезает, для этого body += .sitetoolbar_hidden
       +e('button').nav-toggle(onclick="document.querySelector('.sitetoolbar').classList.toggle('sitetoolbar_menu_open')" type="button")
     +e('nav').sections
       +e('ul').sections-list
          each section in siteToolbarSections
           +e('li')(class=["section", session.slug && siteToolbarCurrentSection == section.slug && ' _current'])
             +e('a').link(href=section.slug ? ('/' + section.slug) : section.url)= section.title
-    if user
-      include ./user
-    else
-      include ./guest
+
+    if env.NODE_ENV == 'development'
+      include ./buy-book
+
+      if user
+        include ./user
+      else
+        include ./guest
 
     include ./search
 
   +e.tablet-menu
     +e.tablet-menu-line
       +e.tablet-menu-content
-        //- TODO: use bemto syntax when https://github.com/kizu/bemto/issues/35 is fixed
-        +e('select').tablet-menu-nav.input-select
-          +e('option') Учебник
-          +e('option') --- в работе ---
-          //-+e('option') Курсы
-          //-+e('option') Стандарт ES5
-          //-+e('option') Тестирование
+        +e('select')(onchange="window.location=href=this.value").tablet-menu-nav.input-select
+          each section in siteToolbarSections
+            +e('option')(
+              value=(section.slug ? ('/' + section.slug) : section.url)
+              selected = (session.slug && siteToolbarCurrentSection == section.slug)
+            )= section.title
+
     +e.tablet-menu-line
       +e.tablet-menu-content
         include /blocks/map-with-title
