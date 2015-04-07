@@ -201,7 +201,7 @@ attributes: {
 block: function() {
 n.e.call({
 block: function() {
-t.push("Уведомить о курсах");
+t.push("Уведомите меня");
 },
 attributes: {
 "class": "text"
@@ -358,4 +358,4 @@ e;
 },
 91: function() {}
 });
-//# sourceMappingURL=nodejsScreencast.e60c6f1d8eef675f4b63.js.map
+//# sourceMappingURL=nodejsScreencast.5c6de3af84aba8a8b214.js.map

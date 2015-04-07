@@ -858,4 +858,4 @@ return n > 10;
 }
 e.exports = t;
 } ]);
-//# sourceMappingURL=quiz.e60c6f1d8eef675f4b63.js.map
+//# sourceMappingURL=quiz.5c6de3af84aba8a8b214.js.map
