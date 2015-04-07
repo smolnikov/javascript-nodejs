@@ -275,14 +275,14 @@ m.appendChild(t), e.appendChild(m);
 if (x) {
 var i = t.contentDocument || t.contentWindow.document;
 i.open(), i.write(d(b)), i.close(), void 0 === e.dataset.demoHeight && r.iframe(t), 
-k && void 0 !== e.dataset.autorun || s(m) || m.scrollIntoView(!1);
+w && void 0 !== e.dataset.autorun || s(m) || m.scrollIntoView(!1);
 } else {
 var n = document.createElement("form");
 n.style.display = "none", n.method = "POST", n.enctype = "multipart/form-data", 
 n.action = "https://ru.lookatcode.com/showhtml", n.target = t.name;
 var a = document.createElement("textarea");
 a.name = "code", a.value = d(b), n.appendChild(a), t.parentNode.insertBefore(n, t.nextSibling), 
-n.submit(), n.remove(), k && void 0 !== e.dataset.autorun || (t.onload = function() {
+n.submit(), n.remove(), w && void 0 !== e.dataset.autorun || (t.onload = function() {
 void 0 === e.dataset.demoHeight && r.iframe(t), s(m) || m.scrollIntoView(!1);
 });
 }
@@ -321,14 +321,14 @@ return i || (r = "<html>\n" + r), n || (r += "\n</html>"), t || (r = r.replace("
 o || (r = r.replace("</html>", "\n</body>\n</html>")), r = "<!DOCTYPE HTML>\n" + r;
 }
 function c() {
-g ? i() : o(), k = !1;
+g ? i() : o(), w = !1;
 }
 var _ = e.querySelector("pre"), u = _.querySelector("code"), b = u.textContent;
 Prism.highlightElement(u), l(_), n(_, e.dataset.highlightBlock), a(_, e.dataset.highlightInline);
-var f, m, g = _.classList.contains("language-javascript"), h = _.classList.contains("language-markup"), x = e.dataset.trusted, k = !0;
+var f, m, g = _.classList.contains("language-javascript"), h = _.classList.contains("language-markup"), x = e.dataset.trusted, w = !0;
 if (g || h) {
-var w = e.querySelector('[data-action="run"]');
-w && (w.onclick = function() {
+var k = e.querySelector('[data-action="run"]');
+k && (k.onclick = function() {
 return this.blur(), c(), !1;
 });
 var y = e.querySelector('[data-action="edit"]');
@@ -493,10 +493,10 @@ p.lastIndex = 0;
 var m = p.exec(f);
 if (m) {
 c && (_ = m[1].length);
-var g = m.index - 1 + _, m = m[0].slice(_), h = m.length, x = g + h, k = f.slice(0, g + 1), w = f.slice(x + 1), y = [ b, 1 ];
-k && y.push(k);
+var g = m.index - 1 + _, m = m[0].slice(_), h = m.length, x = g + h, w = f.slice(0, g + 1), k = f.slice(x + 1), y = [ b, 1 ];
+w && y.push(w);
 var v = new i(r, d ? o.tokenize(m, d) : m, u);
-y.push(v), w && y.push(w), Array.prototype.splice.apply(n, y);
+y.push(v), k && y.push(k), Array.prototype.splice.apply(n, y);
 }
 }
 }
@@ -938,4 +938,4 @@ return o > 10;
 }
 e.exports = t;
 } ]);
-//# sourceMappingURL=tutorial.cfec028d10328a2faf95.js.map
+//# sourceMappingURL=tutorial.2a31864a725a49e1ba9f.js.map

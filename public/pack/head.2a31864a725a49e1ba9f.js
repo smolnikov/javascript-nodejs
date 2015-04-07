@@ -35,7 +35,7 @@ o.type = "text/javascript", o.charset = "utf-8", o.async = !0, o.src = t.p + "" 
 "8": "profile",
 "9": "styles",
 "10": "quiz"
-}[e] || e) + "-" + e + ".cfec028d10328a2faf95.js", r.appendChild(o);
+}[e] || e) + "-" + e + ".2a31864a725a49e1ba9f.js", r.appendChild(o);
 }
 }, t.m = e, t.c = r, t.p = "/pack/", t(0);
 }([ function(e, t, n) {
@@ -186,7 +186,9 @@ var r = !1;
 }, function() {
 "use strict";
 function e() {
-document.querySelector(".page").classList.toggle("page_sidebar_on"), document.querySelector(".page").classList.contains("page_sidebar_on") ? delete localStorage.noSidebar : localStorage.noSidebar = 1;
+var e = document.querySelector(".page-wrapper");
+document.querySelector(".page").classList.toggle("page_sidebar_on"), e && e.classList.toggle("page-wrapper_sidebar_on"), 
+document.querySelector(".page").classList.contains("page_sidebar_on") ? delete localStorage.noSidebar : localStorage.noSidebar = 1;
 }
 function t(t) {
 t.target.dataset && void 0 === t.target.dataset.sidebarToggle || e();
@@ -718,4 +720,4 @@ return e.parentNode.removeChild(e), t - r;
 }
 e.exports = t;
 } ]);
-//# sourceMappingURL=head.cfec028d10328a2faf95.js.map
+//# sourceMappingURL=head.2a31864a725a49e1ba9f.js.map
