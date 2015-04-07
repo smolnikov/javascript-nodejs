@@ -159,7 +159,7 @@ attributes: r.merge([ i ])
 block: function() {
 n.e.call({
 block: function() {
-t.push("Курс по Node.JS");
+t.push("Курс и новые выпуски скринкаста по Node.JS");
 },
 attributes: {
 "class": "title"
@@ -173,11 +173,11 @@ attributes: {
 }
 }, "p"), n.e.call({
 block: function() {
-t.push("Курс &mdash; это конкретная практика, задачи, обучение в контакте с опытным разработчиком. И, конечно, самые последние и грамотные технологии.");
+t.push("Курс &mdash; это практика разработки, реальные и подробные рецепты по решению разных задач, возможность повысить свой уровень, обсудив ваши решения с опытным разработчиком. И, конечно, самые последние и грамотные технологии.");
 }
 }, "p"), n.e.call({
 block: function() {
-t.push("Пришлю уведомление, когда будет открыта запись.");
+t.push("Пришлю уведомление, когда будет открыта запись. Также уведомление будет при новых выпусках скринкаста.");
 }
 }, "p"), n.e.call({
 block: function() {
@@ -358,4 +358,4 @@ e;
 },
 91: function() {}
 });
-//# sourceMappingURL=nodejsScreencast.9f3b5cb1efda445a2cae.js.map
+//# sourceMappingURL=nodejsScreencast.1dafbfe7c246cb25f13f.js.map
