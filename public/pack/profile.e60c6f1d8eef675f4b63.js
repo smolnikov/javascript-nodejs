@@ -342,7 +342,7 @@ return 4 != i[2].length ? !1 : r >= a && s >= r;
 },
 30: function(e, t, n) {
 "use strict";
-n(60), e.exports = n(61);
+n(96), e.exports = n(97);
 },
 54: function(e, t) {
 "use strict";
@@ -354,15 +354,22 @@ var r = 160 >= t && 160 >= n ? "t" : 320 >= t && 320 >= n ? "m" : 640 >= t && 64
 return e.slice(0, e.lastIndexOf(".")) + r + e.slice(e.lastIndexOf("."));
 };
 },
-60: function(e, t, n) {
+95: function(e) {
+"use strict";
+e.exports = function(e) {
+return e.webpackPolyfill || (e.deprecate = function() {}, e.paths = [], e.children = [], 
+e.webpackPolyfill = 1), e;
+};
+},
+96: function(e, t, n) {
 //! moment.js locale configuration
 //! locale : russian (ru)
 //! author : Viktorminator : https://github.com/Viktorminator
 //! Author : Menelion Elensúle : https://github.com/Oire
-"use strict";
 !function(e, t) {
-t(n(61));
-}(void 0, function(e) {
+t(n(97));
+}(this, function(e) {
+"use strict";
 function t(e, t) {
 var n = e.split("_");
 return t % 10 === 1 && t % 100 !== 11 ? n[0] : t % 10 >= 2 && 4 >= t % 10 && (10 > t % 100 || t % 100 >= 20) ? n[1] : n[2];
@@ -488,12 +495,17 @@ doy: 7
 return a;
 });
 },
-61: function(e, t, n) {
+97: function(e, t, n) {
 (function(e) {
-"use strict";
+//! moment.js
+//! version : 2.10.0
+//! authors : Tim Wood, Iskren Chernev, Moment.js contributors
+//! license : MIT
+//! momentjs.com
 !function(t, n) {
 e.exports = n();
-}(void 0, function() {
+}(this, function() {
+"use strict";
 function t() {
 return Cn.apply(null, arguments);
 }
@@ -1605,13 +1617,6 @@ var lr = t;
 return lr;
 });
 }).call(t, n(95)(e));
-},
-95: function(e) {
-"use strict";
-e.exports = function(e) {
-return e.webpackPolyfill || (e.deprecate = function() {}, e.paths = [], e.children = [], 
-e.webpackPolyfill = 1), e;
-};
 }
 });
-//# sourceMappingURL=profile.1dafbfe7c246cb25f13f.js.map
+//# sourceMappingURL=profile.e60c6f1d8eef675f4b63.js.map
