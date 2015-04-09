@@ -62,7 +62,9 @@ if (this.elem.elements.email) {
 if (!this.elem.elements.email.value) return window.ga("send", "event", "payment", "checkout-no-email", "ebook"), 
 window.metrika.reachGoal("CHECKOUT-NO-EMAIL", {
 product: "ebook"
-}), new a.Error("Введите email."), void this.elem.elements.email.focus();
+}), new a.Error("Введите email."), this.elem.elements.email.scrollIntoView(), setTimeout(function() {
+window.scrollBy(0, -200);
+}, 0), void this.elem.elements.email.focus();
 e.email = this.elem.elements.email.value;
 }
 return e;
@@ -449,4 +451,4 @@ style: "width:400px;height:400px;background:white",
 };
 }
 });
-//# sourceMappingURL=ebook.c649b84a54c7bb93ae75.js.map
+//# sourceMappingURL=ebook.50558b159a37fb3015e5.js.map
