@@ -35,7 +35,7 @@ o.type = "text/javascript", o.charset = "utf-8", o.async = !0, o.src = t.p + "" 
 "8": "profile",
 "9": "styles",
 "10": "quiz"
-}[e] || e) + "-" + e + ".5c6de3af84aba8a8b214.js", r.appendChild(o);
+}[e] || e) + "-" + e + ".5ac7b2450e39e83c1c92.js", r.appendChild(o);
 }
 }, t.m = e, t.c = r, t.p = "/pack/", t(0);
 }([ function(e, t, n) {
@@ -191,7 +191,7 @@ document.querySelector(".page").classList.toggle("page_sidebar_on"), e && e.clas
 document.querySelector(".page").classList.contains("page_sidebar_on") ? delete localStorage.noSidebar : localStorage.noSidebar = 1;
 }
 function t(t) {
-t.target.dataset && void 0 === t.target.dataset.sidebarToggle || e();
+t.target.getAttribute("data-sidebar-toggle") && e();
 }
 function n(t) {
 if (!~[ "INPUT", "TEXTAREA", "SELECT" ].indexOf(document.activeElement.tagName) && t.keyCode == "S".charCodeAt(0)) {
@@ -720,4 +720,4 @@ return e.parentNode.removeChild(e), t - r;
 }
 e.exports = t;
 } ]);
-//# sourceMappingURL=head.5c6de3af84aba8a8b214.js.map
+//# sourceMappingURL=head.5ac7b2450e39e83c1c92.js.map

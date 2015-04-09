@@ -97,7 +97,7 @@ o.result = e.result, document.dispatchEvent(o);
 var o = t("xhrfail", e);
 o.reason = e.reason, document.dispatchEvent(o);
 }), e.raw || n.setRequestHeader("Accept", "application/json"), n.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-var d = e.normalStatuses || [ 200 ];
+var c = e.normalStatuses || [ 200 ];
 return n.addEventListener("error", function(e) {
 o("Ошибка связи с сервером.", e);
 }), n.addEventListener("timeout", function(e) {
@@ -106,7 +106,7 @@ o("Превышено максимально допустимое время о�
 o("Запрос был прерван.", e);
 }), n.addEventListener("load", function(t) {
 if (!n.status) return void o("Не получен ответ от сервера.", t);
-if (-1 == d.indexOf(n.status)) return void o("Ошибка на стороне сервера (код " + n.status + "), попытайтесь позднее", t);
+if (-1 == c.indexOf(n.status)) return void o("Ошибка на стороне сервера (код " + n.status + "), попытайтесь позднее", t);
 var a = n.responseText, r = n.getResponseHeader("Content-Type");
 if (r.match(/^application\/json/) || e.json) try {
 a = JSON.parse(a);
@@ -257,8 +257,8 @@ e.exports = i;
 "use strict";
 function i(e) {
 function t() {
-var e = f.contentWindow;
-return "function" != typeof e.postMessage ? void alert("Извините, запуск кода требует более современный браузер") : void e.postMessage(b, "https://ru.lookatcode.com/showjs");
+var e = b.contentWindow;
+return "function" != typeof e.postMessage ? void alert("Извините, запуск кода требует более современный браузер") : void e.postMessage(f, "https://ru.lookatcode.com/showjs");
 }
 function o() {
 var t;
@@ -274,14 +274,14 @@ m.appendChild(t), e.appendChild(m);
 }
 if (x) {
 var i = t.contentDocument || t.contentWindow.document;
-i.open(), i.write(d(b)), i.close(), void 0 === e.dataset.demoHeight && r.iframe(t), 
+i.open(), i.write(c(f)), i.close(), void 0 === e.dataset.demoHeight && r.iframe(t), 
 k && void 0 !== e.dataset.autorun || s(m) || m.scrollIntoView(!1);
 } else {
 var n = document.createElement("form");
 n.style.display = "none", n.method = "POST", n.enctype = "multipart/form-data", 
 n.action = "https://ru.lookatcode.com/showhtml", n.target = t.name;
 var a = document.createElement("textarea");
-a.name = "code", a.value = d(b), n.appendChild(a), t.parentNode.insertBefore(n, t.nextSibling), 
+a.name = "code", a.value = c(f), n.appendChild(a), t.parentNode.insertBefore(n, t.nextSibling), 
 n.submit(), n.remove(), k && void 0 !== e.dataset.autorun || (t.onload = function() {
 void 0 === e.dataset.demoHeight && r.iframe(t), s(m) || m.scrollIntoView(!1);
 });
@@ -289,19 +289,19 @@ void 0 === e.dataset.demoHeight && r.iframe(t), s(m) || m.scrollIntoView(!1);
 }
 function i() {
 if (x) try {
-window.eval.call(window, b);
+window.eval.call(window, f);
 } catch (o) {
 alert("Ошибка: " + o.message);
-} else e.dataset.refresh && f && (f.remove(), f = null), f ? t() : (f = document.createElement("iframe"), 
-f.className = "js-frame", f.src = "https://ru.lookatcode.com/showjs", f.style.width = 0, 
-f.style.height = 0, f.style.border = "none", f.onload = function() {
+} else e.dataset.refresh && b && (b.remove(), b = null), b ? t() : (b = document.createElement("iframe"), 
+b.className = "js-frame", b.src = "https://ru.lookatcode.com/showjs", b.style.width = 0, 
+b.style.height = 0, b.style.border = "none", b.onload = function() {
 t();
-}, document.body.appendChild(f));
+}, document.body.appendChild(b));
 }
 function p() {
 var e;
-if (h) e = d(b); else {
-var t = b.replace(/^/gim, "    ");
+if (h) e = c(f); else {
+var t = f.replace(/^/gim, "    ");
 e = "<!DOCTYPE html>\n<html>\n\n<body>\n  <script>\n" + t + "\n  </script>\n</body>\n\n</html>";
 }
 var o = document.createElement("form");
@@ -313,28 +313,28 @@ var n = document.createElement("input");
 n.name = "description", n.value = "Fork from " + window.location, o.appendChild(n), 
 o.submit(), o.remove();
 }
-function d() {
-var e = b.toLowerCase(), t = e.match("<body>"), o = e.match("</body>"), i = e.match("<html>"), n = e.match("</html>"), a = e.match(/^\s*<!doctype/);
-if (a) return b;
-var r = b;
+function c() {
+var e = f.toLowerCase(), t = e.match("<body>"), o = e.match("</body>"), i = e.match("<html>"), n = e.match("</html>"), a = e.match(/^\s*<!doctype/);
+if (a) return f;
+var r = f;
 return i || (r = "<html>\n" + r), n || (r += "\n</html>"), t || (r = r.replace("<html>", '<html>\n<head>\n  <meta charset="utf-8">\n</head><body>\n')), 
 o || (r = r.replace("</html>", "\n</body>\n</html>")), r = "<!DOCTYPE HTML>\n" + r;
 }
-function c() {
+function d() {
 g ? i() : o(), k = !1;
 }
-var _ = e.querySelector("pre"), u = _.querySelector("code"), b = u.textContent;
+var _ = e.querySelector("pre"), u = _.querySelector("code"), f = u.textContent;
 Prism.highlightElement(u), l(_), n(_, e.dataset.highlightBlock), a(_, e.dataset.highlightInline);
-var f, m, g = _.classList.contains("language-javascript"), h = _.classList.contains("language-markup"), x = e.dataset.trusted, k = !0;
+var b, m, g = _.classList.contains("language-javascript"), h = _.classList.contains("language-markup"), x = e.dataset.trusted, k = !0;
 if (g || h) {
 var w = e.querySelector('[data-action="run"]');
 w && (w.onclick = function() {
-return this.blur(), c(), !1;
+return this.blur(), d(), !1;
 });
 var y = e.querySelector('[data-action="edit"]');
 y && (y.onclick = function() {
 return this.blur(), p(), !1;
-}), void 0 !== e.dataset.autorun && ("epub" == window.ebookFormat && "no-epub" == e.dataset.autorun ? e.querySelector("iframe").remove() : setTimeout(c, 1e3));
+}), void 0 !== e.dataset.autorun && ("epub" == window.ebookFormat && "no-epub" == e.dataset.autorun ? e.querySelector("iframe").remove() : setTimeout(d, 1e3));
 }
 }
 function n(e, t) {
@@ -449,23 +449,23 @@ t.className = t.className.replace(e, "").replace(/\s+/g, " ") + " language-" + r
 l = t.parentNode, /pre/i.test(l.nodeName) && (l.className = l.className.replace(e, "").replace(/\s+/g, " ") + " language-" + r);
 var p = t.textContent;
 if (p) {
-var d = {
+var c = {
 element: t,
 language: r,
 grammar: s,
 code: p
 };
-if (o.hooks.run("before-highlight", d), n && self.Worker) {
-var c = new Worker(o.filename);
-c.onmessage = function(e) {
-d.highlightedCode = i.stringify(JSON.parse(e.data), r), o.hooks.run("before-insert", d), 
-d.element.innerHTML = d.highlightedCode, a && a.call(d.element), o.hooks.run("after-highlight", d);
-}, c.postMessage(JSON.stringify({
-language: d.language,
-code: d.code
+if (o.hooks.run("before-highlight", c), n && self.Worker) {
+var d = new Worker(o.filename);
+d.onmessage = function(e) {
+c.highlightedCode = i.stringify(JSON.parse(e.data), r), o.hooks.run("before-insert", c), 
+c.element.innerHTML = c.highlightedCode, a && a.call(c.element), o.hooks.run("after-highlight", c);
+}, d.postMessage(JSON.stringify({
+language: c.language,
+code: c.code
 }));
-} else d.highlightedCode = o.highlight(d.code, d.grammar, d.language), o.hooks.run("before-insert", d), 
-d.element.innerHTML = d.highlightedCode, a && a.call(t), o.hooks.run("after-highlight", d);
+} else c.highlightedCode = o.highlight(c.code, c.grammar, c.language), o.hooks.run("before-insert", c), 
+c.element.innerHTML = c.highlightedCode, a && a.call(t), o.hooks.run("after-highlight", c);
 }
 }
 },
@@ -483,19 +483,19 @@ e: for (var r in t) if (t.hasOwnProperty(r) && t[r]) {
 var s = t[r];
 s = "Array" === o.util.type(s) ? s : [ s ];
 for (var l = 0; l < s.length; ++l) {
-var p = s[l], d = p.inside, c = !!p.lookbehind, _ = 0, u = p.alias;
+var p = s[l], c = p.inside, d = !!p.lookbehind, _ = 0, u = p.alias;
 p = p.pattern || p;
-for (var b = 0; b < n.length; b++) {
-var f = n[b];
+for (var f = 0; f < n.length; f++) {
+var b = n[f];
 if (n.length > e.length) break e;
-if (!(f instanceof i)) {
+if (!(b instanceof i)) {
 p.lastIndex = 0;
-var m = p.exec(f);
+var m = p.exec(b);
 if (m) {
-c && (_ = m[1].length);
-var g = m.index - 1 + _, m = m[0].slice(_), h = m.length, x = g + h, k = f.slice(0, g + 1), w = f.slice(x + 1), y = [ b, 1 ];
+d && (_ = m[1].length);
+var g = m.index - 1 + _, m = m[0].slice(_), h = m.length, x = g + h, k = b.slice(0, g + 1), w = b.slice(x + 1), y = [ f, 1 ];
 k && y.push(k);
-var v = new i(r, d ? o.tokenize(m, d) : m, u);
+var v = new i(r, c ? o.tokenize(m, c) : m, u);
 y.push(v), w && y.push(w), Array.prototype.splice.apply(n, y);
 }
 }
@@ -938,4 +938,4 @@ return o > 10;
 }
 e.exports = t;
 } ]);
-//# sourceMappingURL=tutorial.5c6de3af84aba8a8b214.js.map
+//# sourceMappingURL=tutorial.5ac7b2450e39e83c1c92.js.map

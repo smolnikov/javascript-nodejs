@@ -76,7 +76,7 @@ e.exports = t;
 49: function(e) {
 "use strict";
 function t(e, t, o) {
-d[e] = {
+c[e] = {
 over: t,
 out: o
 };
@@ -88,12 +88,12 @@ if (p > o) {
 var i = document.elementFromPoint(e.clientX, e.clientY);
 if (!i) return;
 if (i != n) {
-for (var c in d) {
-var _ = i.closest(c);
+for (var d in c) {
+var _ = i.closest(d);
 _ && (a = {
 elem: _,
-out: d[c].out
-}, d[c].over(e));
+out: c[d].out
+}, c[d].over(e));
 }
 n = i;
 }
@@ -111,9 +111,9 @@ var o = a.out;
 a = null, o(e);
 }
 }
-var n, a, r = 1 / 0, s = 1 / 0, l = Date.now(), p = .2, d = {};
+var n, a, r = 1 / 0, s = 1 / 0, l = Date.now(), p = .2, c = {};
 document.addEventListener("mousemove", o), document.addEventListener("mouseout", i), 
 e.exports = t;
 }
 });
-//# sourceMappingURL=footer.5c6de3af84aba8a8b214.js.map
+//# sourceMappingURL=footer.5ac7b2450e39e83c1c92.js.map
