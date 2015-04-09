@@ -39,7 +39,7 @@ e.exports = function() {
 for (var e = document.querySelectorAll('figure img[src$=".png"]'), t = function() {
 var t = e[o];
 t.onload = function() {
-if (delete this.onload, !this.src.match(/@2x.png$/)) {
+if (this.onload = null, !this.src.match(/@2x.png$/)) {
 var e = new Image();
 e.onload = function() {
 this.width && this.height && (t.src = this.src);
@@ -116,4 +116,4 @@ document.addEventListener("mousemove", o), document.addEventListener("mouseout",
 e.exports = t;
 }
 });
-//# sourceMappingURL=footer.5ac7b2450e39e83c1c92.js.map
+//# sourceMappingURL=footer.c649b84a54c7bb93ae75.js.map
