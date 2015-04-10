@@ -35,7 +35,7 @@ o.type = "text/javascript", o.charset = "utf-8", o.async = !0, o.src = t.p + "" 
 "8": "profile",
 "9": "styles",
 "10": "quiz"
-}[e] || e) + "-" + e + ".fe4a9cf4f7271d9b99ef.js", r.appendChild(o);
+}[e] || e) + "-" + e + ".1948f5abe800fdbe5643.js", r.appendChild(o);
 }
 }, t.m = e, t.c = r, t.p = "/pack/", t(0);
 }([ function(e, t, n) {
@@ -269,7 +269,7 @@ document.addEventListener("click", function(t) {
 function n() {
 document.location = i;
 }
-if (!t.defaultPrevented) {
+if (1 == t.which && !t.defaultPrevented) {
 var r = t.target.closest && t.target.closest("a");
 if (r && e != r.host) {
 t.preventDefault();
@@ -721,4 +721,4 @@ return e.parentNode.removeChild(e), t - r;
 }
 e.exports = t;
 } ]);
-//# sourceMappingURL=head.fe4a9cf4f7271d9b99ef.js.map
+//# sourceMappingURL=head.1948f5abe800fdbe5643.js.map
