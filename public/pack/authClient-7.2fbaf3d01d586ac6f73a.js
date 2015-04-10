@@ -343,6 +343,20 @@ attributes: {
 "class": "line __header"
 }
 }), n.e.call({
+block: function() {
+n.e.call({
+block: function() {
+t.push('Авторизация работает в тестовом режиме. О любых проблемах и странностях сообщайте, пожалуйста, на <a href="https://github.com/iliakan/javascript-nodejs/issues/new">github</a>.');
+},
+attributes: {
+"class": "info"
+}
+});
+},
+attributes: {
+"class": "line __notification"
+}
+}), n.e.call({
 attributes: {
 "data-notification": !0,
 "class": "line __notification"
@@ -565,6 +579,20 @@ attributes: {
 },
 attributes: {
 "class": "line __header"
+}
+}), n.e.call({
+block: function() {
+n.e.call({
+block: function() {
+t.push('Регистрация работает в тестовом режиме. О любых проблемах и странностях сообщайте, пожалуйста, на <a href="https://github.com/iliakan/javascript-nodejs/issues/new">github</a>.');
+},
+attributes: {
+"class": "info"
+}
+});
+},
+attributes: {
+"class": "line __notification"
 }
 }), n.e.call({
 attributes: {
@@ -1030,4 +1058,4 @@ e;
 },
 91: function() {}
 });
-//# sourceMappingURL=authClient-7.477da0b7ba83f02dcab7.js.map
+//# sourceMappingURL=authClient-7.2fbaf3d01d586ac6f73a.js.map
