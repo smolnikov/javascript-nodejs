@@ -451,4 +451,4 @@ style: "width:400px;height:400px;background:white",
 };
 }
 });
-//# sourceMappingURL=ebook.2fbaf3d01d586ac6f73a.js.map
+//# sourceMappingURL=ebook.6b817e15cae50f1a1c7b.js.map
