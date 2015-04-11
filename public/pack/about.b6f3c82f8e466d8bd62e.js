@@ -102,18 +102,18 @@ var e = this._map.getSize();
 this._container.style.height = e.y + "px", google.maps.event.trigger(this._google, "resize"));
 },
 onReposition: function() {}
-});
-var r = new L.Map("map", {
+}), t.init = function() {
+var e = new L.Map("map", {
 center: new L.LatLng(54.231473, 37.734144),
 zoom: 5,
 attributionControl: !1,
 scrollWheelZoom: !1,
 markerZoomAnimation: !1
-}), o = new L.Google("TERRAIN");
-r.addLayer(o);
-for (var a in i) (function(e) {
-var t = L.circleMarker([ i[e].location.lat - .01, i[e].location.lng ], {
-radius: i[e].radius / 3e3,
+}), t = new L.Google("TERRAIN");
+e.addLayer(t);
+for (var n in i) (function(t) {
+var n = L.circleMarker([ i[t].location.lat - .01, i[t].location.lng ], {
+radius: i[t].radius / 3e3,
 stroke: !1,
 opacity: 1,
 fill: !0,
@@ -121,8 +121,9 @@ clickable: !1,
 fillColor: "#C13335",
 fillOpacity: 1
 });
-r.addLayer(t);
-})(a);
+e.addLayer(n);
+})(n);
+};
 },
 102: function(e) {
 "use strict";
@@ -271,4 +272,4 @@ radius: 2e4
 },
 104: function() {}
 });
-//# sourceMappingURL=about.1663d0cdae3a5bf7ae32.js.map
+//# sourceMappingURL=about.b6f3c82f8e466d8bd62e.js.map
