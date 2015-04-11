@@ -56,7 +56,7 @@ var i = new XMLHttpRequest(), a = e.method || "GET", s = e.body, l = e.url;
 i.open(a, l, e.sync ? !1 : !0), i.method = a;
 var c = o();
 c && !e.skipCsrf && i.setRequestHeader("X-XSRF-TOKEN", c), "[object Object]" == {}.toString.call(s) && (i.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
-s = JSON.stringify(s)), i.addEventListener("loadstart", function(e) {
+s = JSON.stringify(s)), e.noDocumentEvents || (i.addEventListener("loadstart", function(e) {
 i.timeStart = Date.now();
 var n = t("xhrstart", e);
 document.dispatchEvent(n);
@@ -69,7 +69,7 @@ n.result = e.result, document.dispatchEvent(n);
 }), i.addEventListener("fail", function(e) {
 var n = t("xhrfail", e);
 n.reason = e.reason, document.dispatchEvent(n);
-}), e.raw || i.setRequestHeader("Accept", "application/json"), i.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+})), e.raw || i.setRequestHeader("Accept", "application/json"), i.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 var u = e.normalStatuses || [ 200 ];
 return i.addEventListener("error", function(e) {
 n("Ошибка связи с сервером.", e);
@@ -358,4 +358,4 @@ e;
 },
 91: function() {}
 });
-//# sourceMappingURL=nodejsScreencast.6b817e15cae50f1a1c7b.js.map
+//# sourceMappingURL=nodejsScreencast.658a7daeb4f8b5736ba9.js.map

@@ -154,11 +154,14 @@ headers: {
 transformRequest: r.identity,
 data: n
 }).then(function() {
-"displayName" == e.name ? new i.Success("Изменение имени везде произойдёт после перезагрузки страницы.", "slow") : "email" == e.name ? new i.Warning("Требуется подтвердить смену email, проверьте почту.", "slow") : "profileName" == e.name ? (new i.Success("Ваш профиль доступен по новому адресу, страница будет перезагружена"), 
+if ("displayName" == e.name) new i.Success("Изменение имени везде произойдёт после перезагрузки страницы.", "slow"); else if ("email" == e.name) new i.Warning("Требуется подтвердить смену email, проверьте почту.", "slow"); else if ("profileName" == e.name) {
+new i.Success("Ваш профиль доступен по новому адресу, страница будет перезагружена");
+var t = e.editingValue;
 setTimeout(function() {
-window.location.href = "/profile/" + this.editingValue + "/account";
-}, 2e3)) : new i.Success("Информация обновлена."), e.editing = !1, e.value = e.editingValue, 
-e.editingValue = "";
+window.location.href = "/profile/" + t + "/account";
+}, 2e3);
+} else new i.Success("Информация обновлена.");
+e.editing = !1, e.value = e.editingValue, e.editingValue = "";
 }, function(e) {
 new i.Error(400 == e.status ? e.data.message : 409 == e.status ? e.data.message : "Ошибка загрузки, статус " + e.status);
 });
@@ -1619,4 +1622,4 @@ return lr;
 }).call(t, n(95)(e));
 }
 });
-//# sourceMappingURL=profile.6b817e15cae50f1a1c7b.js.map
+//# sourceMappingURL=profile.658a7daeb4f8b5736ba9.js.map

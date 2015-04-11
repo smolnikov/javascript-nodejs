@@ -527,7 +527,7 @@ function o(t, n, r, i) {
 if (g.push(t), h[t]) return h[t];
 if (!/^\w+(-+\w+)*(?:\[\])?$/.test(t)) throw Error("Invalid parameter name '" + t + "' in pattern '" + e + "'");
 if (m[t]) throw Error("Duplicate parameter name '" + t + "' in pattern '" + e + "'");
-return m[t] = new D.Param(t, n, r, i), m[t];
+return m[t] = new j.Param(t, n, r, i), m[t];
 }
 function a(e, t, n) {
 var r = [ "", "" ], i = e.replace(/[\\\[\]\^$*+?.()|{}]/g, "\\$&");
@@ -549,7 +549,7 @@ return i + r[0] + t + r[1];
 function s(n, i) {
 var o, a, s, l, c;
 return o = n[2] || n[3], c = t.params[o], s = e.substring(d, n.index), a = i ? n[4] : n[4] || ("*" == n[1] ? ".*" : null), 
-l = D.type(a || "string") || r(D.type("string"), {
+l = j.type(a || "string") || r(j.type("string"), {
 pattern: RegExp(a)
 }), {
 id: o,
@@ -562,7 +562,7 @@ cfg: c
 t = P({
 params: {}
 }, L(t) ? t : {});
-var l, c = /([:*])([\w\[\]]+)|\{([\w\[\]]+)(?:\:((?:[^{}\\]+|\\.|\{(?:[^{}\\]+|\\.)*\})+))?\}/g, u = /([:]?)([\w\[\]-]+)|\{([\w\[\]-]+)(?:\:((?:[^{}\\]+|\\.|\{(?:[^{}\\]+|\\.)*\})+))?\}/g, p = "^", d = 0, f = this.segments = [], h = i ? i.params : {}, m = this.params = i ? i.params.$$new() : new D.ParamSet(), g = [];
+var l, c = /([:*])([\w\[\]]+)|\{([\w\[\]]+)(?:\:((?:[^{}\\]+|\\.|\{(?:[^{}\\]+|\\.)*\})+))?\}/g, u = /([:]?)([\w\[\]-]+)|\{([\w\[\]-]+)(?:\:((?:[^{}\\]+|\\.|\{(?:[^{}\\]+|\\.)*\})+))?\}/g, p = "^", d = 0, f = this.segments = [], h = i ? i.params : {}, m = this.params = i ? i.params.$$new() : new j.ParamSet(), g = [];
 this.source = e;
 for (var _, b, x; (l = c.exec(e)) && (_ = s(l, !1), !(_.segment.indexOf("?") >= 0)); ) b = o(_.id, _.type, _.cfg, "path"), 
 p += a(_.segment, b.type.pattern.source, b.squash), f.push(_.segment), d = c.lastIndex;
@@ -608,7 +608,7 @@ t.extend($[e.name], h.invoke(e.def));
 function p(e) {
 P(this, e || {});
 }
-D = this;
+j = this;
 var h, m = !1, x = !0, v = !1, $ = {}, y = !0, w = [], k = {
 string: {
 encode: e,
@@ -1103,7 +1103,7 @@ for (r = f.length - 1; r >= T; r--) a = f[r], a.self.onExit && s.invoke(a.self.o
 a.locals = null;
 for (r = T; r < A.length; r++) i = A[r], i.locals = N[r], i.self.onEnter && s.invoke(i.self.onEnter, i.self, i.locals.globals);
 return w.transition !== I ? v : (w.$current = t, w.current = t.self, w.params = n, 
-j(w.params, h), w.transition = null, o.location && t.navigable && m.push(t.navigable.url, t.navigable.locals.globals.$stateParams, {
+D(w.params, h), w.transition = null, o.location && t.navigable && m.push(t.navigable.url, t.navigable.locals.globals.$stateParams, {
 $$avoidResync: !0,
 replace: "replace" === o.location
 }), o.notify && e.$broadcast("$stateChangeSuccess", t.self, n, c.self, d), m.update(!0), 
@@ -1175,13 +1175,13 @@ navigable: function(e) {
 return e.url ? e : e.parent ? e.parent.navigable : null;
 },
 ownParams: function(e) {
-var t = e.url && e.url.params || new D.ParamSet();
+var t = e.url && e.url.params || new j.ParamSet();
 return R(e.params || {}, function(e, n) {
-t[n] || (t[n] = new D.Param(n, null, e, "config"));
+t[n] || (t[n] = new j.Param(n, null, e, "config"));
 }), t;
 },
 params: function(e) {
-return e.parent && e.parent.params ? P(e.parent.params.$$new(), e.ownParams) : new D.ParamSet();
+return e.parent && e.parent.params ? P(e.parent.params.$$new(), e.ownParams) : new j.ParamSet();
 },
 views: function(e) {
 var t = {};
@@ -1431,18 +1431,18 @@ return e.includes(t);
 };
 return t.$stateful = !0, t;
 }
-var M = t.isDefined, N = t.isFunction, q = t.isString, L = t.isObject, I = t.isArray, R = t.forEach, P = t.extend, j = t.copy;
+var M = t.isDefined, N = t.isFunction, q = t.isString, L = t.isObject, I = t.isArray, R = t.forEach, P = t.extend, D = t.copy;
 t.module("ui.router.util", [ "ng" ]), t.module("ui.router.router", [ "ui.router.util" ]), 
 t.module("ui.router.state", [ "ui.router.router", "ui.router.util" ]), t.module("ui.router", [ "ui.router.state" ]), 
 t.module("ui.router.compat", [ "ui.router" ]), h.$inject = [ "$q", "$injector" ], 
 t.module("ui.router.util").service("$resolve", h), m.$inject = [ "$http", "$templateCache", "$injector" ], 
 t.module("ui.router.util").service("$templateFactory", m);
-var D;
+var j;
 g.prototype.concat = function(e, t) {
 var n = {
-caseInsensitive: D.caseInsensitive(),
-strict: D.strictMode(),
-squash: D.defaultSquashPolicy()
+caseInsensitive: j.caseInsensitive(),
+strict: j.strictMode(),
+squash: j.defaultSquashPolicy()
 };
 return new g(this.sourcePath + e + this.sourceSearch, P(n, t), this);
 }, g.prototype.toString = function() {
@@ -1820,16 +1820,16 @@ return !0;
 }
 return !1;
 }
-function j(e, t, n) {
+function D(e, t, n) {
 return e.concat(ir.call(t, n));
 }
-function D(e, t) {
+function j(e, t) {
 return ir.call(e, t || 0);
 }
 function U(e, t) {
-var n = arguments.length > 2 ? D(arguments, 2) : [];
+var n = arguments.length > 2 ? j(arguments, 2) : [];
 return !w(t) || t instanceof RegExp ? t : n.length ? function() {
-return arguments.length ? t.apply(e, j(n, arguments, 0)) : t.apply(e, n);
+return arguments.length ? t.apply(e, D(n, arguments, 0)) : t.apply(e, n);
 } : function() {
 return arguments.length ? t.apply(e, arguments) : t.call(e);
 };
@@ -2092,7 +2092,7 @@ input: Wi,
 textarea: Wi,
 form: Li,
 script: Ro,
-select: Do,
+select: jo,
 style: Ho,
 option: Uo,
 ngBind: Zi,
@@ -2116,7 +2116,7 @@ ngStyle: Mo,
 ngSwitch: No,
 ngSwitchWhen: qo,
 ngSwitchDefault: Lo,
-ngOptions: jo,
+ngOptions: Do,
 ngTransclude: Io,
 ngModel: yo,
 ngList: po,
@@ -2162,7 +2162,7 @@ $timeout: nn,
 $window: an,
 $$rAF: Gt,
 $$asyncCallback: Ge,
-$$jqLite: je
+$$jqLite: De
 });
 } ]);
 }
@@ -2187,7 +2187,7 @@ if (ge(e)) l.push(t.createTextNode(e)); else {
 for (n = n || s.appendChild(t.createElement("div")), r = (Lr.exec(e) || [ "", "" ])[1].toLowerCase(), 
 i = Rr[r] || Rr._default, n.innerHTML = i[1] + e.replace(Ir, "<$1></$2>") + i[2], 
 a = i[0]; a--; ) n = n.lastChild;
-l = j(l, n.childNodes), n = s.firstChild, n.textContent = "";
+l = D(l, n.childNodes), n = s.firstChild, n.textContent = "";
 }
 return s.textContent = "", s.innerHTML = "", o(l, function(e) {
 s.appendChild(e);
@@ -2296,8 +2296,8 @@ function Le(t, n) {
 n = n || e, "complete" === n.document.readyState ? n.setTimeout(t) : tr(n).on("load", t);
 }
 function Ie(e, t) {
-var n = jr[t.toLowerCase()];
-return n && Dr[q(e)] && n;
+var n = Dr[t.toLowerCase()];
+return n && jr[q(e)] && n;
 }
 function Re(e, t) {
 var n = e.nodeName;
@@ -2324,7 +2324,7 @@ for (var s = 0; o > s; s++) n.isImmediatePropagationStopped() || i[s].call(e, n)
 };
 return n.elem = e, n;
 }
-function je() {
+function De() {
 this.$get = function() {
 return p(ve, {
 hasClass: function(e, t) {
@@ -2339,7 +2339,7 @@ return e.attr && (e = e[0]), Ce(e, t);
 });
 };
 }
-function De(e, t) {
+function je(e, t) {
 var n = e && e.$$hashKey;
 if (n) return "function" == typeof n && (n = e.$$hashKey()), n;
 var r = typeof e;
@@ -2551,7 +2551,7 @@ return t(e, 0, !1);
 function We(e, t, r, i) {
 function a(e) {
 try {
-e.apply(null, D(arguments, 1));
+e.apply(null, j(arguments, 1));
 } finally {
 if (k--, 0 === k) for (;E.length; ) try {
 E.pop()();
@@ -2630,7 +2630,7 @@ N.push(t), t;
 var e = z.attr("href");
 return e ? e.replace(/^(https?\:)?\/\/[^\/]*/, "") : "";
 };
-var I = {}, R = "", j = m.baseHref();
+var I = {}, R = "", D = m.baseHref();
 m.cookies = function(e, t) {
 var i, o, a, s, l;
 if (!e) {
@@ -2638,7 +2638,7 @@ if (g.cookie !== R) for (R = g.cookie, o = R.split("; "), I = {}, s = 0; s < o.l
 l = a.indexOf("="), l > 0 && (e = f(a.substring(0, l)), I[e] === n && (I[e] = f(a.substring(l + 1))));
 return I;
 }
-t === n ? g.cookie = encodeURIComponent(e) + "=;path=" + j + ";expires=Thu, 01 Jan 1970 00:00:00 GMT" : v(t) && (i = (g.cookie = encodeURIComponent(e) + "=" + encodeURIComponent(t) + ";path=" + j).length + 1, 
+t === n ? g.cookie = encodeURIComponent(e) + "=;path=" + D + ";expires=Thu, 01 Jan 1970 00:00:00 GMT" : v(t) && (i = (g.cookie = encodeURIComponent(e) + "=" + encodeURIComponent(t) + ";path=" + D).length + 1, 
 i > 4096 && r.warn("Cookie '" + e + "' possibly not set or overflowed because it was too large (" + i + " > 4096 bytes)!"));
 }, m.defer = function(e, t) {
 var n;
@@ -2847,7 +2847,7 @@ o = c.exec(e.nodeValue), o && (f = Je(o[1]), F(t, f, "M", r, i) && (n[f] = fr(o[
 }
 return t.sort(X), t;
 }
-function j(e, t, n) {
+function D(e, t, n) {
 var r = [], i = 0;
 if (t && e.hasAttribute && e.hasAttribute(t)) {
 do {
@@ -2860,7 +2860,7 @@ return tr(r);
 }
 function U(e, t, n) {
 return function(r, i, o, a, s) {
-return i = j(i[0], t, n), e(r, i, o, a, s);
+return i = D(i[0], t, n), e(r, i, o, a, s);
 };
 }
 function H(e, a, s, l, c, u, p, d, f) {
@@ -2948,13 +2948,13 @@ f = f || {};
 for (var y, k, E, A, C, T, O, M = -Number.MAX_VALUE, N = f.controllerDirectives, q = f.newIsolateScopeDirective, L = f.templateDirective, I = f.nonTlbTranscludeDirective, H = !1, F = !1, G = f.hasElementTranscludeDirective, X = s.$$element = tr(a), K = u, Q = l, ee = 0, ne = e.length; ne > ee; ee++) {
 E = e[ee];
 var ie = E.$$start, se = E.$$end;
-if (ie && (X = j(a, ie, se)), C = n, M > E.priority) break;
+if (ie && (X = D(a, ie, se)), C = n, M > E.priority) break;
 if ((O = E.scope) && (E.templateUrl || (x(O) ? (Z("new/isolated scope", q || y, E, X), 
 q = E) : Z("new/isolated scope", q, E, X)), y = y || E), A = E.name, !E.templateUrl && E.controller && (O = E.controller, 
 N = N || {}, Z("'" + A + "' controller", N[A], E, X), N[A] = E), (O = E.transclude) && (H = !0, 
 E.$$tlb || (Z("transclusion", I, E, X), I = E), "element" == O ? (G = !0, M = E.priority, 
 C = X, X = s.$$element = tr(t.createComment(" " + A + ": " + s[A] + " ")), a = X[0], 
-te(c, D(C), a), Q = z(C, l, M, K && K.name, {
+te(c, j(C), a), Q = z(C, l, M, K && K.name, {
 nonTlbTranscludeDirective: I
 })) : (C = tr($e(a)).contents(), X.empty(), Q = z(C, l))), E.template) if (F = !0, 
 Z("template", L, E, X), L = E, O = w(E.template) ? E.template(X, s) : E.template, 
@@ -3895,12 +3895,12 @@ return null == l ? l : (l = c(l[e]), t ? null == l ? n : (l = u(l[t]), r ? null 
 i ? null == l ? n : (l = d(l[i]), o ? null == l ? n : l = f(l[o]) : l) : l) : l) : l);
 };
 }
-function jt(e, t) {
+function Dt(e, t) {
 return function(n, r) {
 return e(n, r, Nt, t);
 };
 }
-function Dt(e, t, r) {
+function jt(e, t, r) {
 var i = t.expensiveChecks, a = i ? bi : _i, s = a[e];
 if (s) return s;
 var l = e.split("."), c = l.length;
@@ -3918,7 +3918,7 @@ var n = (t ? "s" : '((l&&l.hasOwnProperty("' + e + '"))?l:s)') + "." + e;
 (i || Rt(e)) && (n = "eso(" + n + ", fe)", p = !0), u += "if(s == null) return undefined;\ns=" + n + ";\n";
 }), u += "return s;";
 var d = Function("s", "l", "eso", "fe", u);
-d.toString = g(u), p && (d = jt(d, r)), s = d;
+d.toString = g(u), p && (d = Dt(d, r)), s = d;
 }
 return s.sharedGetter = !0, s.assign = function(t, n, r) {
 return It(t, r, e, n, e);
@@ -4447,7 +4447,7 @@ preventDefault: function() {
 s.defaultPrevented = !0;
 },
 defaultPrevented: !1
-}, c = j([ s ], arguments, 1);
+}, c = D([ s ], arguments, 1);
 do {
 for (t = o.$$listeners[e] || i, s.currentScope = o, n = 0, r = t.length; r > n; n++) if (t[n]) try {
 t[n].apply(null, c);
@@ -4469,7 +4469,7 @@ i.defaultPrevented = !0;
 defaultPrevented: !1
 };
 if (!t.$$listenerCount[e]) return i;
-for (var o, a, s, c = j([ i ], arguments, 1); n = r; ) {
+for (var o, a, s, c = D([ i ], arguments, 1); n = r; ) {
 for (i.currentScope = n, o = n.$$listeners[e] || [], a = 0, s = o.length; s > a; a++) if (o[a]) try {
 o[a].apply(null, c);
 } catch (u) {
@@ -4915,7 +4915,7 @@ return function(n, r, i) {
 var a, s, l = "", c = [];
 if (r = r || "mediumDate", r = e.DATETIME_FORMATS[r] || r, v(n) && (n = Ai.test(n) ? d(n) : t(n)), 
 $(n) && (n = new Date(n)), !y(n)) return n;
-for (;r; ) s = Si.exec(r), s ? (c = j(c, s, 1), r = c.pop()) : (c.push(r), r = null);
+for (;r; ) s = Si.exec(r), s ? (c = D(c, s, 1), r = c.pop()) : (c.push(r), r = null);
 return i && "UTC" === i && (n = new Date(n.getTime()), n.setMinutes(n.getMinutes() + n.getTimezoneOffset())), 
 o(c, function(t) {
 a = Ei[t], l += a ? a(n, e.DATETIME_FORMATS) : t.replace(/(^'|'$)/g, "").replace(/''/g, "'");
@@ -5185,7 +5185,7 @@ return r.badInput && !r.typeMismatch ? n : e;
 }
 function Pn(e, t, r, i, o, a) {
 if (Rn(e, t, r, i), Nn(e, t, r, i, o, a), i.$$parserName = "number", i.$parsers.push(function(e) {
-return i.$isEmpty(e) ? null : Di.test(e) ? parseFloat(e) : n;
+return i.$isEmpty(e) ? null : ji.test(e) ? parseFloat(e) : n;
 }), i.$formatters.push(function(e) {
 if (!i.$isEmpty(e)) {
 if (!$(e)) throw vo("numfmt", "Expected `{0}` to be a number", e);
@@ -5209,16 +5209,16 @@ b(e) && !$(e) && (e = parseFloat(e, 10)), l = $(e) && !isNaN(e) ? e : n, i.$vali
 });
 }
 }
-function jn(e, t, n, r, i, o) {
+function Dn(e, t, n, r, i, o) {
 Nn(e, t, n, r, i, o), zn(r), r.$$parserName = "url", r.$validators.url = function(e, t) {
 var n = e || t;
 return r.$isEmpty(n) || Pi.test(n);
 };
 }
-function Dn(e, t, n, r, i, o) {
+function jn(e, t, n, r, i, o) {
 Nn(e, t, n, r, i, o), zn(r), r.$$parserName = "email", r.$validators.email = function(e, t) {
 var n = e || t;
-return r.$isEmpty(n) || ji.test(n);
+return r.$isEmpty(n) || Di.test(n);
 };
 }
 function Un(e, t, n, r) {
@@ -5430,13 +5430,13 @@ length: 0,
 push: ar,
 sort: [].sort,
 splice: [].splice
-}, jr = {};
+}, Dr = {};
 o("multiple,selected,checked,disabled,readOnly,required,open".split(","), function(e) {
-jr[Xn(e)] = e;
+Dr[Xn(e)] = e;
 });
-var Dr = {};
+var jr = {};
 o("input,select,option,textarea,button,form,details".split(","), function(e) {
-Dr[e] = !0;
+jr[e] = !0;
 });
 var Ur = {
 ngMinlength: "minlength",
@@ -5472,7 +5472,7 @@ return t = me(t), b(r) ? (e.style[t] = r, n) : e.style[t];
 },
 attr: function(e, t, r) {
 var i = Xn(t);
-if (jr[i]) {
+if (Dr[i]) {
 if (!b(r)) return e[t] || (e.attributes.getNamedItem(t) || h).specified ? i : n;
 r ? (e[t] = !0, e.setAttribute(t, i)) : (e[t] = !1, e.removeAttribute(i));
 } else if (b(r)) e.setAttribute(t, r); else if (e.getAttribute) {
@@ -5648,13 +5648,13 @@ return b(i) ? i : this;
 }, ve.prototype.bind = ve.prototype.on, ve.prototype.unbind = ve.prototype.off;
 }), Ue.prototype = {
 put: function(e, t) {
-this[De(e, this.nextUid)] = t;
+this[je(e, this.nextUid)] = t;
 },
 get: function(e) {
-return this[De(e, this.nextUid)];
+return this[je(e, this.nextUid)];
 },
 remove: function(e) {
-var t = this[e = De(e, this.nextUid)];
+var t = this[e = je(e, this.nextUid)];
 return delete this[e], t;
 }
 };
@@ -6081,7 +6081,7 @@ inputs: !r && [ e, n ]
 },
 identifier: function() {
 for (var e = this.consume().text; this.peek(".") && this.peekAhead(1).identifier && !this.peekAhead(2, "("); ) e += this.consume().text + this.consume().text;
-return Dt(e, this.options, this.text);
+return jt(e, this.options, this.text);
 },
 constant: function() {
 var e = this.consume().value;
@@ -6296,7 +6296,7 @@ t.attr(n) || e.preventDefault();
 };
 }
 }), zi = {};
-o(jr, function(e, t) {
+o(Dr, function(e, t) {
 if ("multiple" != e) {
 var n = Je("ng-" + t);
 zi[n] = function() {
@@ -6387,7 +6387,7 @@ l.$removeControl(a), o && It(e, null, i[o], n, a.$name), p(a, Mi);
 };
 return r;
 } ];
-}, Li = qi(), Ii = qi(!0), Ri = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/, Pi = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/, ji = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i, Di = /^\s*(\-|\+)?(\d+|(\d*(\.\d*)))\s*$/, Ui = /^(\d{4})-(\d{2})-(\d{2})$/, Hi = /^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d)(?::(\d\d)(\.\d{1,3})?)?$/, Vi = /^(\d{4})-W(\d\d)$/, Fi = /^(\d{4})-(\d\d)$/, Bi = /^(\d\d):(\d\d)(?::(\d\d)(\.\d{1,3})?)?$/, Gi = {
+}, Li = qi(), Ii = qi(!0), Ri = /\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/, Pi = /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?$/, Di = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i, ji = /^\s*(\-|\+)?(\d+|(\d*(\.\d*)))\s*$/, Ui = /^(\d{4})-(\d{2})-(\d{2})$/, Hi = /^(\d{4})-(\d\d)-(\d\d)T(\d\d):(\d\d)(?::(\d\d)(\.\d{1,3})?)?$/, Vi = /^(\d{4})-W(\d\d)$/, Fi = /^(\d{4})-(\d\d)$/, Bi = /^(\d\d):(\d\d)(?::(\d\d)(\.\d{1,3})?)?$/, Gi = {
 text: Mn,
 date: In("date", Ui, Ln(Ui, [ "yyyy", "MM", "dd" ]), "yyyy-MM-dd"),
 "datetime-local": In("datetimelocal", Hi, Ln(Hi, [ "yyyy", "MM", "dd", "HH", "mm", "ss", "sss" ]), "yyyy-MM-ddTHH:mm:ss.sss"),
@@ -6395,8 +6395,8 @@ time: In("time", Bi, Ln(Bi, [ "HH", "mm", "ss", "sss" ]), "HH:mm:ss.sss"),
 week: In("week", Vi, qn, "yyyy-Www"),
 month: In("month", Fi, Ln(Fi, [ "yyyy", "MM" ]), "yyyy-MM"),
 number: Pn,
-url: jn,
-email: Dn,
+url: Dn,
+email: jn,
 radio: Un,
 checkbox: Vn,
 hidden: h,
@@ -6836,10 +6836,10 @@ if (m = g.match(/^(?:(\s*[\$\w]+)|\(\s*([\$\w]+)\s*,\s*([\$\w]+)\s*\))$/), !m) t
 var v = m[3] || m[1], $ = m[2];
 if (b && (!/^[$a-zA-Z_][$a-zA-Z0-9_]*$/.test(b) || /^(null|undefined|this|\$index|\$first|\$middle|\$last|\$even|\$odd|\$parent|\$root|\$id)$/.test(b))) throw l("badident", "alias '{0}' is invalid --- must be a valid JS identifier which is not a reserved name.", b);
 var y, w, k, E, S = {
-$id: De
+$id: je
 };
 return x ? y = e(x) : (k = function(e, t) {
-return De(t);
+return je(t);
 }, E = function(e) {
 return e;
 }), function(e, t, r, d, m) {
@@ -6990,10 +6990,10 @@ e.put(r, i);
 }
 }
 };
-} ], Po = r("ngOptions"), jo = g({
+} ], Po = r("ngOptions"), Do = g({
 restrict: "A",
 terminal: !0
-}), Do = [ "$compile", "$parse", function(e, r) {
+}), jo = [ "$compile", "$parse", function(e, r) {
 var i = /^\s*([\s\S]+?)(?:\s+as\s+([\s\S]+?))?(?:\s+group\s+by\s+([\s\S]+?))?\s+for\s+(?:([\$\w][\$\w]*)|(?:\(\s*([\$\w][\$\w]*)\s*,\s*([\$\w][\$\w]*)\s*\)))\s+in\s+([\s\S]+?)(?:\s+track\s+by\s+([\s\S]+?))?$/, s = {
 $setViewValue: h
 };
@@ -7010,7 +7010,7 @@ n && n[0].hasAttribute("selected") && (n[0].selected = !0);
 }, o.removeOption = function(e) {
 this.hasOption(e) && (delete a[e], l.$viewValue === e && this.renderUnknownOption(e));
 }, o.renderUnknownOption = function(t) {
-var n = "? " + De(t) + " ?";
+var n = "? " + je(t) + " ?";
 i.val(n), e.prepend(i), e.val(n), i.prop("selected", !0);
 }, o.hasOption = function(e) {
 return a.hasOwnProperty(e);
@@ -7101,27 +7101,27 @@ e[t] = e[t] || 0, e[t] += n ? 1 : -1;
 }
 function _() {
 y = !1;
-var e, n, r, i, u, p, d, h, _, v, E, A, C, T, M, q, j, D = {
+var e, n, r, i, u, p, d, h, _, v, E, A, C, T, M, q, D, j = {
 "": []
 }, U = [ "" ], H = l.$viewValue, V = N(t) || [], F = O ? a(V) : V, B = {}, G = f(H), W = !1;
 for (I = {}, A = 0; v = F.length, v > A; A++) d = A, O && (d = F[A], "$" === d.charAt(0)) || (h = V[d], 
-e = c(z, d, h) || "", (n = D[e]) || (n = D[e] = [], U.push(e)), C = G(d, h), W = W || C, 
-q = c(S, d, h), q = b(q) ? q : "", j = L ? L(t, P) : O ? F[A] : A, L && (I[j] = d), 
+e = c(z, d, h) || "", (n = j[e]) || (n = j[e] = [], U.push(e)), C = G(d, h), W = W || C, 
+q = c(S, d, h), q = b(q) ? q : "", D = L ? L(t, P) : O ? F[A] : A, L && (I[D] = d), 
 n.push({
-id: j,
+id: D,
 label: q,
 selected: C
 }));
-for (x || ($ || null === H ? D[""].unshift({
+for (x || ($ || null === H ? j[""].unshift({
 id: "",
 label: "",
 selected: !W
-}) : W || D[""].unshift({
+}) : W || j[""].unshift({
 id: "?",
 label: "",
 selected: !0
 })), E = 0, _ = U.length; _ > E; E++) {
-for (e = U[E], n = D[e], R.length <= E ? (i = {
+for (e = U[E], n = j[e], R.length <= E ? (i = {
 element: k.clone().attr("label", e),
 label: n.label
 }, u = [ i ], R.push(u), s.append(i.element)) : (u = R[E], i = u[0], i.label != e && i.element.attr("label", i.label = e)), 
@@ -7260,4 +7260,4 @@ J(t, Q);
 e.exports = angular;
 }
 });
-//# sourceMappingURL=angular.6b817e15cae50f1a1c7b.js.map
+//# sourceMappingURL=angular.658a7daeb4f8b5736ba9.js.map

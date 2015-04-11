@@ -128,7 +128,7 @@ var n = new XMLHttpRequest(), a = e.method || "GET", l = e.body, s = e.url;
 n.open(a, s, e.sync ? !1 : !0), n.method = a;
 var p = r();
 p && !e.skipCsrf && n.setRequestHeader("X-XSRF-TOKEN", p), "[object Object]" == {}.toString.call(l) && (n.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
-l = JSON.stringify(l)), n.addEventListener("loadstart", function(e) {
+l = JSON.stringify(l)), e.noDocumentEvents || (n.addEventListener("loadstart", function(e) {
 n.timeStart = Date.now();
 var o = t("xhrstart", e);
 document.dispatchEvent(o);
@@ -141,7 +141,7 @@ o.result = e.result, document.dispatchEvent(o);
 }), n.addEventListener("fail", function(e) {
 var o = t("xhrfail", e);
 o.reason = e.reason, document.dispatchEvent(o);
-}), e.raw || n.setRequestHeader("Accept", "application/json"), n.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+})), e.raw || n.setRequestHeader("Accept", "application/json"), n.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 var _ = e.normalStatuses || [ 200 ];
 return n.addEventListener("error", function(e) {
 o("Ошибка связи с сервером.", e);
@@ -451,4 +451,4 @@ style: "width:400px;height:400px;background:white",
 };
 }
 });
-//# sourceMappingURL=ebook.6b817e15cae50f1a1c7b.js.map
+//# sourceMappingURL=ebook.658a7daeb4f8b5736ba9.js.map

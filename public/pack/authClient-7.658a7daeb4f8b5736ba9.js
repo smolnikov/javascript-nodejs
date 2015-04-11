@@ -28,7 +28,7 @@ var r = new XMLHttpRequest(), a = e.method || "GET", s = e.body, l = e.url;
 r.open(a, l, e.sync ? !1 : !0), r.method = a;
 var c = o();
 c && !e.skipCsrf && r.setRequestHeader("X-XSRF-TOKEN", c), "[object Object]" == {}.toString.call(s) && (r.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
-s = JSON.stringify(s)), r.addEventListener("loadstart", function(e) {
+s = JSON.stringify(s)), e.noDocumentEvents || (r.addEventListener("loadstart", function(e) {
 r.timeStart = Date.now();
 var n = t("xhrstart", e);
 document.dispatchEvent(n);
@@ -41,7 +41,7 @@ n.result = e.result, document.dispatchEvent(n);
 }), r.addEventListener("fail", function(e) {
 var n = t("xhrfail", e);
 n.reason = e.reason, document.dispatchEvent(n);
-}), e.raw || r.setRequestHeader("Accept", "application/json"), r.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+})), e.raw || r.setRequestHeader("Accept", "application/json"), r.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 var u = e.normalStatuses || [ 200 ];
 return r.addEventListener("error", function(e) {
 n("Ошибка связи с сервером.", e);
@@ -148,10 +148,7 @@ t(n, s, l, i, r, o), a || i.pop(), r.pop();
 "use strict";
 function i(e) {
 a.apply(this, arguments), e = e || {}, e.successRedirect || (e.successRedirect = window.location.href);
-var t = this;
-e.callback || (e.callback = function() {
-t.successRedirect();
-}), this.options = e, this.setContent(p(l)), e.message && this.showFormMessage(e.message, "info"), 
+this.options = e, this.setContent(p(l)), e.message && this.showFormMessage(e.message, "info"), 
 this.initEventHandlers();
 }
 var r = n(34), o = n(40), a = n(12), s = n(33), l = n(85), c = n(86), u = n(87), p = n(31);
@@ -265,19 +262,24 @@ var n = document.createElement("div");
 n.className = "login-form__" + t, n.innerHTML = e, this.elem.querySelector("[data-notification]").innerHTML = "", 
 this.elem.querySelector("[data-notification]").appendChild(n);
 }, i.prototype.submitLoginForm = function(e) {
+var t = this;
 this.clearFormMessages();
-var t = !1;
-if (e.elements.email.value || (t = !0, this.showInputError(e.elements.email, "Введите, пожалуста, email.")), 
-e.elements.password.value || (t = !0, this.showInputError(e.elements.password, "Введите, пожалуста, пароль.")), 
-!t) {
-var n = this.request({
+var n = !1;
+if (e.elements.email.value || (n = !0, this.showInputError(e.elements.email, "Введите, пожалуста, email.")), 
+e.elements.password.value || (n = !0, this.showInputError(e.elements.password, "Введите, пожалуста, пароль.")), 
+!n) {
+var i = r({
 method: "POST",
 url: "/auth/login/local",
+noDocumentEvents: !0,
 normalStatuses: [ 200, 401 ],
 body: new FormData(e)
-}), i = this;
-n.addEventListener("success", function(e) {
-return 200 != this.status ? void i.onAuthFailure(e.result.message) : void i.onAuthSuccess(e.result.user);
+}), o = this.startRequestIndication();
+i.addEventListener("success", function(e) {
+return 401 == i.status ? (o(), void t.onAuthFailure(e.result.message)) : void (t.options.callback ? (o(), 
+t.onAuthSuccess(e.result.user)) : t.onAuthSuccess(e.result.user));
+}), i.addEventListener("fail", function(e) {
+o(), t.onAuthFailure(e.reason);
 });
 }
 }, i.prototype.openAuthPopup = function(e) {
@@ -285,7 +287,7 @@ this.authPopup && !this.authPopup.closed && this.authPopup.close();
 var t = 800, n = 600, i = (window.outerHeight - n) / 2, r = (window.outerWidth - t) / 2;
 window.authModal = this, this.authPopup = window.open(e, "authModal", "width=" + t + ",height=" + n + ",scrollbars=0,top=" + i + ",left=" + r);
 }, i.prototype.onAuthSuccess = function(e) {
-window.currentUser = e, this.options.callback();
+window.currentUser = e, this.options.callback ? this.options.callback() : this.successRedirect();
 }, i.prototype.onAuthFailure = function(e) {
 this.showFormMessage(e || "Отказ в авторизации.", "error");
 }, e.exports = i;
@@ -1058,4 +1060,4 @@ e;
 },
 91: function() {}
 });
-//# sourceMappingURL=authClient-7.6b817e15cae50f1a1c7b.js.map
+//# sourceMappingURL=authClient-7.658a7daeb4f8b5736ba9.js.map
