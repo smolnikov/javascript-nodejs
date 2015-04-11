@@ -421,34 +421,133 @@ number: a.orderNumber
 e.exports = _;
 },
 100: function(e, t, o) {
-o(88);
+var i = o(88);
 e.exports = function(e) {
-var t = [], o = {}, i = e || {};
+var t, o = [], n = {}, r = e || {};
 return function(e) {
-t.push("");
-var i = [], n = [ "block" ];
-o.b = function(o, r, a) {
+o.push("");
+var r = [], a = [ "block" ];
+n.b = function(t, i, n) {
 this && this.block, this && this.attributes || {};
-e.call(this, t, i, n, o, r, a);
-}, o.b.call({
+e.call(this, o, r, a, t, i, n);
+}, n.e = function(e) {
+var t = this && this.block, o = this && this.attributes || {};
+n.b.call({
 block: function() {
-t.push('<form name="paypal-currency-form"><select name="currency"><option value="RUB">RUB</option><option value="USD">USD</option><option value="EUR">EUR</option></select>'), 
-o.b.call({
+t && t();
+},
+attributes: i.merge([ o ])
+}, e, !0);
+}, n.b.call({
 block: function() {
-t.push("Submit");
+n.e.call({
+block: function() {
+o.push("Выберите валюту");
 },
 attributes: {
-type: "submit"
+"class": "title"
 }
-}, "button"), t.push("</form>");
+}, "h2"), n.e.call({
+block: function() {
+n.e.call({
+block: function() {
+n.b.call({
+block: function() {
+(function() {
+var e = [ "RUB", "USD", "EUR" ];
+if ("number" == typeof e.length) for (var r = 0, a = e.length; a > r; r++) {
+var l = e[r];
+n.e.call({
+block: function() {
+o.push(i.escape(null == (t = l) ? "" : t));
 },
 attributes: {
-style: "width:400px;height:400px;background:white",
+value: i.escape(l)
+}
+}, "option");
+} else {
+var a = 0;
+for (var r in e) {
+a++;
+var l = e[r];
+n.e.call({
+block: function() {
+o.push(i.escape(null == (t = l) ? "" : t));
+},
+attributes: {
+value: i.escape(l)
+}
+}, "option");
+}
+}
+}).call(this);
+},
+attributes: {
+name: "currency",
+"class": "input-select"
+}
+}, "select");
+},
+attributes: {
+"class": "line"
+}
+}), n.e.call({
+block: function() {
+n.e.call({
+block: function() {
+o.push("Если у вас Paypal аккаунт в рублях, вы не сможете оплатить в другой валюте");
+},
+attributes: {
+"class": "note"
+}
+}, "p");
+},
+attributes: {
+"class": "line"
+}
+}), n.e.call({
+block: function() {
+n.b.call({
+block: function() {
+n.e.call({
+block: function() {
+o.push("Оплатить на PayPal");
+},
+attributes: {
+"class": "text"
+}
+}, "span");
+},
+attributes: {
+type: "submit",
+"class": "button _action"
+}
+}, "button"), n.e.call({
+block: function() {
+o.push("Отмена");
+},
+attributes: {
+"class": "close-link modal__close"
+}
+}, "a");
+},
+attributes: {
+"class": "line _submit"
+}
+});
+},
+attributes: {
+name: "paypal-currency-form",
+"class": "form"
+}
+}, "form");
+},
+attributes: {
 "class": "paypal-currency-form"
 }
 });
-}.call(this, "bem" in i ? i.bem : "undefined" != typeof bem ? bem : void 0), t.join("");
+}.call(this, "bem" in r ? r.bem : "undefined" != typeof bem ? bem : void 0), o.join("");
 };
 }
 });
-//# sourceMappingURL=ebook.179505dc89ee16db403a.js.map
+//# sourceMappingURL=ebook.1663d0cdae3a5bf7ae32.js.map

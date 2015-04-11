@@ -175,8 +175,8 @@ if (t) {
 var n = new s({
 elem: t,
 size: "small",
-"class": "submit-button__spinner",
-elemClass: "submit-button_progress"
+"class": "",
+elemClass: "button_loading"
 });
 n.start();
 }
@@ -1060,4 +1060,4 @@ e;
 },
 91: function() {}
 });
-//# sourceMappingURL=authClient-7.179505dc89ee16db403a.js.map
+//# sourceMappingURL=authClient-7.1663d0cdae3a5bf7ae32.js.map
