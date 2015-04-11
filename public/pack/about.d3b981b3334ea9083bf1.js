@@ -35,12 +35,11 @@ setOpacity: function(e) {
 this.options.opacity = e, 1 > e && L.DomUtil.setOpacity(this._container, e);
 },
 _initContainer: function() {
-var e = this._map._container;
-first = e.firstChild, this._container || (this._container = L.DomUtil.create("div", "leaflet-google-layer leaflet-top leaflet-left"), 
-this._container.id = "_GMapContainer"), e.insertBefore(this._container, first), 
-this.setOpacity(this.options.opacity);
-var t = this._map.getSize();
-this._container.style.width = t.x + "px", this._container.style.height = t.y + "px";
+var e = this._map._container, t = e.firstChild;
+this._container || (this._container = L.DomUtil.create("div", "leaflet-google-layer leaflet-top leaflet-left"), 
+this._container.id = "_GMapContainer"), e.insertBefore(this._container, t), this.setOpacity(this.options.opacity);
+var n = this._map.getSize();
+this._container.style.width = n.x + "px", this._container.style.height = n.y + "px";
 },
 _initMapObject: function() {
 this._google_center = new google.maps.LatLng(0, 0);
@@ -272,4 +271,4 @@ radius: 2e4
 },
 104: function() {}
 });
-//# sourceMappingURL=about.b6f3c82f8e466d8bd62e.js.map
+//# sourceMappingURL=about.d3b981b3334ea9083bf1.js.map
