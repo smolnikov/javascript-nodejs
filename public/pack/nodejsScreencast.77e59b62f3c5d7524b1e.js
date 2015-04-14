@@ -173,7 +173,7 @@ attributes: {
 }
 }, "p"), n.e.call({
 block: function() {
-t.push("Курс &mdash; это практика разработки, реальные и подробные рецепты по решению разных задач, возможность повысить свой уровень, обсудив ваши решения с опытным разработчиком. И, конечно, самые последние и грамотные технологии.");
+t.push("Курс &mdash; это практическая разработка, обсуждение грамотных решений самых разных задач с разработчиком, который использует Node, начиная с версий 0.1.");
 }
 }, "p"), n.e.call({
 block: function() {
@@ -217,7 +217,7 @@ type: "submit",
 attributes: {
 "data-newsletter-subscribe-form": "nodejs-bottom",
 onsubmit: "return false",
-action: "/newsletter/subscriptions",
+action: "/newsletter/subscribe",
 method: "POST",
 "class": "form"
 }
@@ -358,4 +358,4 @@ e;
 },
 91: function() {}
 });
-//# sourceMappingURL=nodejsScreencast.668f2f28b9b63e9d45d4.js.map
+//# sourceMappingURL=nodejsScreencast.77e59b62f3c5d7524b1e.js.map

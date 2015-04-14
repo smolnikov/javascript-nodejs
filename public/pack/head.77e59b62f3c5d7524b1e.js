@@ -37,7 +37,7 @@ o.type = "text/javascript", o.charset = "utf-8", o.async = !0, o.src = t.p + "" 
 "11": "invoice",
 "12": "about",
 "13": "ebookExtras"
-}[e] || e) + "-" + e + ".668f2f28b9b63e9d45d4.js", r.appendChild(o);
+}[e] || e) + "-" + e + ".77e59b62f3c5d7524b1e.js", r.appendChild(o);
 }
 }, t.m = e, t.c = r, t.p = "/pack/", t(0);
 }([ function(e, t, n) {
@@ -723,4 +723,4 @@ return e.parentNode.removeChild(e), t - r;
 }
 e.exports = t;
 }, , , , , , , , , , , , , , , function() {} ]);
-//# sourceMappingURL=head.668f2f28b9b63e9d45d4.js.map
+//# sourceMappingURL=head.77e59b62f3c5d7524b1e.js.map
