@@ -175,28 +175,6 @@ var e = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
 return e ? e[1] : null;
 };
 },
-39: function(e, t) {
-"use strict";
-function o() {
-for (var e = document.querySelectorAll('a[href^="/"]'), t = 0; t < e.length; t++) {
-var o = e[t];
-document.getElementById(o.getAttribute("href")) && o.setAttribute("href", "#" + o.getAttribute("href"));
-}
-}
-function i() {
-for (var e = document.querySelectorAll('a[href^="#"]'), t = 0; t < e.length; t++) {
-var o = e[t];
-o.setAttribute("href", o.getAttribute("href").replace(/\//g, "-"));
-}
-for (var i = document.querySelectorAll("[id]"), t = 0; t < i.length; t++) {
-var n = i[t];
-n.id = n.id.replace(/\//g, "-");
-}
-}
-t.init = function() {
-o(), i();
-};
-},
 54: function(e, t) {
 "use strict";
 t.thumb = function(e, t, o) {
@@ -495,7 +473,7 @@ attributes: {
 block: function() {
 n.e.call({
 block: function() {
-o.push("Если у вас Paypal аккаунт в рублях, вы не сможете оплатить в другой валюте");
+o.push("Если у вас Российский Paypal-аккаунт, вы можете оплатить только в RUB.");
 },
 attributes: {
 "class": "note"
@@ -550,4 +528,4 @@ attributes: {
 };
 }
 });
-//# sourceMappingURL=ebook.40520d084aa52fbb1263.js.map
+//# sourceMappingURL=ebook.668f2f28b9b63e9d45d4.js.map

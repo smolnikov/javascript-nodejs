@@ -383,7 +383,7 @@ attributes: {
 block: function() {
 r.e.call({
 block: function() {
-n.push("Если у вас Paypal аккаунт в рублях, вы не сможете оплатить в другой валюте");
+n.push("Если у вас Российский Paypal-аккаунт, вы можете оплатить только в RUB.");
 },
 attributes: {
 "class": "note"
@@ -529,4 +529,4 @@ e.classList.remove("modal-overlay_light"), t && t.stop();
 s.delegateMixin(u.prototype), e.exports = u;
 }
 });
-//# sourceMappingURL=invoice.40520d084aa52fbb1263.js.map
+//# sourceMappingURL=invoice.668f2f28b9b63e9d45d4.js.map

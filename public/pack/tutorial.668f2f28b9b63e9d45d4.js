@@ -9,8 +9,8 @@ var i = t[o];
 if (i.getBoundingClientRect().top > 0) break;
 }
 if (o--, o >= 0) {
-var n = t[o].firstElementChild && t[o].firstElementChild.getAttribute("href"), a = document.querySelector('.sidebar__navigation-link a[href="' + n + '"]');
-n && a && a.classList.add("sidebar__navigation-link_active");
+var n = t[o].firstElementChild && t[o].firstElementChild.getAttribute("href"), r = document.querySelector('.sidebar__navigation-link a[href="' + n + '"]');
+n && r && r.classList.add("sidebar__navigation-link_active");
 }
 }
 document.addEventListener("DOMContentLoaded", function() {
@@ -18,27 +18,27 @@ e(), window.addEventListener("scroll", e);
 });
 }
 function n() {
-r(document, ".task__solution", "click", function(e) {
+a(document, ".task__solution", "click", function(e) {
 e.target.closest(".task").classList.toggle("task__answer_open");
-}), r(document, ".task__answer-close", "click", function(e) {
+}), a(document, ".task__answer-close", "click", function(e) {
 e.target.closest(".task").classList.toggle("task__answer_open");
-}), r(document, ".task__step-show", "click", function(e) {
+}), a(document, ".task__step-show", "click", function(e) {
 e.target.closest(".task__step").classList.toggle("task__step_open");
 });
 }
-function a() {
-r(document, ".lessons-list__lesson_level_1 > .lessons-list__link", "click", function(e) {
+function r() {
+a(document, ".lessons-list__lesson_level_1 > .lessons-list__link", "click", function(e) {
 var t = e.delegateTarget, o = t.closest(".lessons-list").querySelector(".lessons-list__lesson_open");
 o && o != t.parentNode && o.classList.remove("lessons-list__lesson_open"), t.parentNode.classList.toggle("lessons-list__lesson_open"), 
 e.preventDefault();
 });
 }
-var r = o(40), s = o(36), l = (o(34), o(37));
+var a = o(40), s = o(36), l = (o(34), o(37));
 t.init = function() {
-n(), a(), i(), r(document, '[data-action="tutorial-map"]', "click", function(e) {
+n(), r(), i(), a(document, '[data-action="tutorial-map"]', "click", function(e) {
 new l(), e.preventDefault();
-}), s.init(), window.isEbook && o.e(1, function() {
-o(39).init();
+}), s.init(), window.ebookType && o.e(13, function() {
+o(106).init();
 });
 }, t.TutorialMap = o(38);
 }, , , , function(e) {
@@ -48,10 +48,10 @@ for (var e = document.querySelectorAll("[data-sticky]"), t = 0; t < e.length; t+
 var i = e[t], n = i.dataset.sticky ? document.querySelector(i.dataset.sticky) : document.body;
 if (i.getBoundingClientRect().top < 0) {
 if (i.style.cssText) return;
-var a = i.getBoundingClientRect().left, r = o(i);
-i.parentNode.insertBefore(r, i), n.appendChild(i), i.classList.add("sticky"), i.style.position = "fixed", 
-i.style.top = 0, i.style.left = a + "px", i.style.zIndex = 101, i.style.background = "white", 
-i.style.margin = 0, i.style.width = r.offsetWidth + "px", i.placeholder = r;
+var r = i.getBoundingClientRect().left, a = o(i);
+i.parentNode.insertBefore(a, i), n.appendChild(i), i.classList.add("sticky"), i.style.position = "fixed", 
+i.style.top = 0, i.style.left = r + "px", i.style.zIndex = 101, i.style.background = "white", 
+i.style.margin = 0, i.style.width = a.offsetWidth + "px", i.placeholder = a;
 } else i.placeholder && i.placeholder.getBoundingClientRect().top > 0 && (i.style.cssText = "", 
 i.classList.remove("sticky"), i.placeholder.parentNode.insertBefore(i, i.placeholder), 
 i.placeholder.remove(), i.placeholder = null);
@@ -79,9 +79,9 @@ function i(e, o) {
 var i = t("success", o);
 i.result = e, n.dispatchEvent(i);
 }
-var n = new XMLHttpRequest(), r = e.method || "GET", s = e.body, l = e.url;
-n.open(r, l, e.sync ? !1 : !0), n.method = r;
-var p = a();
+var n = new XMLHttpRequest(), a = e.method || "GET", s = e.body, l = e.url;
+n.open(a, l, e.sync ? !1 : !0), n.method = a;
+var p = r();
 p && !e.skipCsrf && n.setRequestHeader("X-XSRF-TOKEN", p), "[object Object]" == {}.toString.call(s) && (n.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
 s = JSON.stringify(s)), e.noDocumentEvents || (n.addEventListener("loadstart", function(e) {
 n.timeStart = Date.now();
@@ -107,18 +107,18 @@ o("Запрос был прерван.", e);
 }), n.addEventListener("load", function(t) {
 if (!n.status) return void o("Не получен ответ от сервера.", t);
 if (-1 == c.indexOf(n.status)) return void o("Ошибка на стороне сервера (код " + n.status + "), попытайтесь позднее", t);
-var a = n.responseText, r = n.getResponseHeader("Content-Type");
-if (r.match(/^application\/json/) || e.json) try {
-a = JSON.parse(a);
+var r = n.responseText, a = n.getResponseHeader("Content-Type");
+if (a.match(/^application\/json/) || e.json) try {
+r = JSON.parse(r);
 } catch (t) {
 return void o("Некорректный формат ответа от сервера", t);
 }
-i(a, t);
+i(r, t);
 }), setTimeout(function() {
 n.send(s);
 }, 0), n;
 }
-var n = o(23), a = o(35);
+var n = o(23), r = o(35);
 document.addEventListener("xhrfail", function(e) {
 new n.Error(e.reason);
 }), e.exports = i;
@@ -133,28 +133,28 @@ return e ? e[1] : null;
 function i(e) {
 for (var t = e.querySelectorAll(".code-example:not([data-prism-done])"), o = 0; o < t.length; o++) {
 var i = t[o];
-new r(i), i.setAttribute("data-prism-done", "1");
+new a(i), i.setAttribute("data-prism-done", "1");
 }
 }
 function n(e) {
 for (var t = e.querySelectorAll("div.code-tabs:not([data-prism-done])"), o = 0; o < t.length; o++) new s(t[o]), 
 t[o].setAttribute("data-prism-done", "1");
 }
-function a(e) {
+function r(e) {
 i(e), n(e);
 }
 o(62), o(63), o(64), o(65), o(66), o(67), o(68), o(69), o(70), o(71), o(72), o(73), 
 o(74), o(75), o(76), Prism.tokenTag = "code";
-var r = o(55), s = o(56);
+var a = o(55), s = o(56);
 t.init = function() {
 document.removeEventListener("DOMContentLoaded", Prism.highlightAll), document.addEventListener("DOMContentLoaded", function() {
-a(document);
+r(document);
 });
-}, t.highlight = a;
+}, t.highlight = r;
 }, function(e, t, o) {
 "use strict";
 function i() {
-var e = this, t = new r({
+var e = this, t = new a({
 hasClose: !1
 }), o = new s();
 t.setContent(o.elem), o.start(), this.onDocumentKeyDown = this.onDocumentKeyDown.bind(this);
@@ -172,8 +172,8 @@ e.elem.addEventListener("scroll", p), new l(e.elem.firstElementChild);
 return t.remove();
 });
 }
-var n = o(34), a = o(40), r = o(12), s = o(33), l = o(38), p = o(4);
-a.delegateMixin(i.prototype), i.prototype.remove = function() {
+var n = o(34), r = o(40), a = o(12), s = o(33), l = o(38), p = o(4);
+r.delegateMixin(i.prototype), i.prototype.remove = function() {
 this.elem.remove(), document.body.classList.remove("tutorial-map_on"), document.removeEventListener("keydown", this.onDocumentKeyDown);
 }, i.prototype.onDocumentKeyDown = function(e) {
 27 == e.keyCode && (e.preventDefault(), this.remove());
@@ -207,7 +207,7 @@ function n(e, t) {
 for (var o = 0, i = 0; o < e.length && i < t.length; ) e[o] == t[i] ? (o++, i++) : o++;
 return i == t.length;
 }
-var a = o(52), r = o(40);
+var r = o(52), a = o(40);
 i.prototype.showChaptersCollapsed = function() {
 for (var e = this.elem.querySelectorAll(".tutorial-map__item > .tutorial-map__link"), t = 0; t < e.length; t++) {
 var o = e[t];
@@ -236,22 +236,22 @@ return n(t.querySelector("a").innerHTML.toLowerCase(), e.replace(/\s/g, ""));
 }
 e = e.toLowerCase();
 for (var o = this.showTasksCheckbox.checked, i = (this.elem.querySelectorAll(".tutorial-map-link"), 
-this.elem.querySelectorAll(".tutorial-map__item")), a = 0; a < i.length; a++) {
-var r = i[a], s = r.querySelectorAll(".tutorial-map__sub-item"), l = Array.prototype.reduce.call(s, function(e, i) {
+this.elem.querySelectorAll(".tutorial-map__item")), r = 0; r < i.length; r++) {
+var a = i[r], s = a.querySelectorAll(".tutorial-map__sub-item"), l = Array.prototype.reduce.call(s, function(e, i) {
 var n = !1;
 if (o) {
-var a = i.querySelectorAll(".tutorial-map__sub-sub-item");
-n = Array.prototype.reduce.call(a, function(e, o) {
+var r = i.querySelectorAll(".tutorial-map__sub-sub-item");
+n = Array.prototype.reduce.call(r, function(e, o) {
 var i = t(o);
 return o.hidden = !i, e || i;
 }, !1);
 }
-var r = n || t(i);
-return i.hidden = !r, e || r;
+var a = n || t(i);
+return i.hidden = !a, e || a;
 }, !1);
-r.hidden = !(l || t(r));
+a.hidden = !(l || t(a));
 }
-}, i.prototype.throttleFilter = a(i.prototype.filter, 200), r.delegateMixin(i.prototype), 
+}, i.prototype.throttleFilter = r(i.prototype.filter, 200), a.delegateMixin(i.prototype), 
 e.exports = i;
 }, , , , , , , , , , , , , , , , , function(e, t, o) {
 "use strict";
@@ -274,16 +274,19 @@ m.appendChild(t), e.appendChild(m);
 }
 if (x) {
 var i = t.contentDocument || t.contentWindow.document;
-i.open(), i.write(c(f)), i.close(), void 0 === e.dataset.demoHeight && r.iframe(t), 
-k && void 0 !== e.dataset.autorun || s(m) || m.scrollIntoView(!1);
+i.open(), i.write(c(f)), i.close(), "epub" == window.ebookType && setTimeout(function() {
+[].forEach.call(i.querySelectorAll("script"), function(e) {
+e.remove();
+});
+}, 2e3), void 0 === e.dataset.demoHeight && a.iframe(t), k && void 0 !== e.dataset.autorun || s(m) || m.scrollIntoView(!1);
 } else {
 var n = document.createElement("form");
 n.style.display = "none", n.method = "POST", n.enctype = "multipart/form-data", 
 n.action = "https://ru.lookatcode.com/showhtml", n.target = t.name;
-var a = document.createElement("textarea");
-a.name = "code", a.value = c(f), n.appendChild(a), t.parentNode.insertBefore(n, t.nextSibling), 
+var r = document.createElement("textarea");
+r.name = "code", r.value = c(f), n.appendChild(r), t.parentNode.insertBefore(n, t.nextSibling), 
 n.submit(), n.remove(), k && void 0 !== e.dataset.autorun || (t.onload = function() {
-void 0 === e.dataset.demoHeight && r.iframe(t), s(m) || m.scrollIntoView(!1);
+void 0 === e.dataset.demoHeight && a.iframe(t), s(m) || m.scrollIntoView(!1);
 });
 }
 }
@@ -314,17 +317,17 @@ n.name = "description", n.value = "Fork from " + window.location, o.appendChild(
 o.submit(), o.remove();
 }
 function c() {
-var e = f.toLowerCase(), t = e.match("<body>"), o = e.match("</body>"), i = e.match("<html>"), n = e.match("</html>"), a = e.match(/^\s*<!doctype/);
-if (a) return f;
-var r = f;
-return i || (r = "<html>\n" + r), n || (r += "\n</html>"), t || (r = r.replace("<html>", '<html>\n<head>\n  <meta charset="utf-8">\n</head><body>\n')), 
-o || (r = r.replace("</html>", "\n</body>\n</html>")), r = "<!DOCTYPE HTML>\n" + r;
+var e = f.toLowerCase(), t = e.match("<body>"), o = e.match("</body>"), i = e.match("<html>"), n = e.match("</html>"), r = e.match(/^\s*<!doctype/);
+if (r) return f;
+var a = f;
+return i || (a = "<html>\n" + a), n || (a += "\n</html>"), t || (a = a.replace("<html>", '<html>\n<head>\n  <meta charset="utf-8">\n</head><body>\n')), 
+o || (a = a.replace("</html>", "\n</body>\n</html>")), a = "<!DOCTYPE HTML>\n" + a;
 }
 function d() {
 g ? i() : o(), k = !1;
 }
 var _ = e.querySelector("pre"), u = _.querySelector("code"), f = u.textContent;
-Prism.highlightElement(u), l(_), n(_, e.dataset.highlightBlock), a(_, e.dataset.highlightInline);
+Prism.highlightElement(u), l(_), n(_, e.dataset.highlightBlock), r(_, e.dataset.highlightInline);
 var b, m, g = _.classList.contains("language-javascript"), h = _.classList.contains("language-markup"), x = e.dataset.trusted, k = !0;
 if (g || h) {
 var w = e.querySelector('[data-action="run"]');
@@ -334,30 +337,30 @@ return this.blur(), d(), !1;
 var y = e.querySelector('[data-action="edit"]');
 y && (y.onclick = function() {
 return this.blur(), p(), !1;
-}), void 0 !== e.dataset.autorun && ("epub" == window.ebookFormat && "no-epub" == e.dataset.autorun ? e.querySelector("iframe").remove() : setTimeout(d, 1e3));
+}), void 0 !== e.dataset.autorun && ("epub" == window.ebookType && "no-epub" == e.dataset.autorun ? e.querySelector("iframe").remove() : setTimeout(d, 100));
 }
 }
 function n(e, t) {
 if (t) for (var o, i = t.replace(/\s+/g, "").split(","), n = 0; o = i[n++]; ) {
 o = o.split("-");
-var a = +o[0], r = +o[1] || a, s = '<code class="block-highlight" data-start="' + a + '" data-end="' + r + '">' + Array(a + 1).join("\n") + '<code class="mask">' + Array(r - a + 2).join("\n") + "</code></code>";
+var r = +o[0], a = +o[1] || r, s = '<code class="block-highlight" data-start="' + r + '" data-end="' + a + '">' + Array(r + 1).join("\n") + '<code class="mask">' + Array(a - r + 2).join("\n") + "</code></code>";
 e.insertAdjacentHTML("afterBegin", s);
 }
 }
-function a(e, t) {
+function r(e, t) {
 var o = e.querySelector('code[class*="language-"]');
 t = t ? t.split(",") : [];
 for (var i = 0; i < t.length; i++) {
-var n = t[i].split(":"), a = +n[0], r = n[1].split("-"), s = +r[0], l = +r[1], p = '<code class="inline-highlight">' + Array(a + 1).join("\n") + Array(s + 1).join(" ") + '<code class="mask">' + Array(l - s + 1).join(" ") + "</code></code>";
+var n = t[i].split(":"), r = +n[0], a = n[1].split("-"), s = +a[0], l = +a[1], p = '<code class="inline-highlight">' + Array(r + 1).join("\n") + Array(s + 1).join(" ") + '<code class="mask">' + Array(l - s + 1).join(" ") + "</code></code>";
 o.insertAdjacentHTML("afterBegin", p);
 }
 }
-var r = o(21), s = o(84), l = o(83);
+var a = o(21), s = o(84), l = o(83);
 e.exports = i;
 }, function(e, t, o) {
 "use strict";
 function i(e) {
-window.isEbook || (this.elem = e, this.translateX = 0, this.switchesElem = e.querySelector("[data-code-tabs-switches]"), 
+window.ebookType || (this.elem = e, this.translateX = 0, this.switchesElem = e.querySelector("[data-code-tabs-switches]"), 
 this.switchesElemItems = this.switchesElem.firstElementChild, this.arrowLeft = e.querySelector("[data-code-tabs-left]"), 
 this.arrowRight = e.querySelector("[data-code-tabs-right]"), this.arrowLeft.onclick = function(e) {
 e.preventDefault(), this.translateX = Math.max(0, this.translateX - this.switchesElem.offsetWidth), 
@@ -367,20 +370,20 @@ e.preventDefault(), this.translateX = Math.min(this.translateX + this.switchesEl
 this.renderTranslate();
 }.bind(this), this.delegate(".code-tabs__switch", "click", this.onSwitchClick));
 }
-var n = o(40), a = o(83);
+var n = o(40), r = o(83);
 i.prototype.onSwitchClick = function(e) {
 e.preventDefault();
 for (var t, o = e.delegateTarget.parentNode.children, i = this.elem.querySelector("[data-code-tabs-content]").children, n = 0; n < o.length; n++) {
-var a = o[n], r = i[n];
-a == e.delegateTarget ? (t = n, r.classList.add("code-tabs__section_current"), a.classList.add("code-tabs__switch_current")) : (r.classList.remove("code-tabs__section_current"), 
-a.classList.remove("code-tabs__switch_current"));
+var r = o[n], a = i[n];
+r == e.delegateTarget ? (t = n, a.classList.add("code-tabs__section_current"), r.classList.add("code-tabs__switch_current")) : (a.classList.remove("code-tabs__section_current"), 
+r.classList.remove("code-tabs__switch_current"));
 }
 0 === t ? this.elem.classList.add("code-tabs_result_on") : (this.elem.classList.remove("code-tabs_result_on"), 
 this.highlightTab(i[t]));
 }, i.prototype.highlightTab = function(e) {
 if (!e.highlighted) {
 var t = e.querySelector("pre"), o = t.querySelector("code");
-Prism.highlightElement(o), a(t), e.highlighted = !0;
+Prism.highlightElement(o), r(t), e.highlighted = !0;
 }
 }, i.prototype.renderTranslate = function() {
 this.switchesElemItems.style.transform = "translateX(-" + this.translateX + "px)", 
@@ -420,16 +423,16 @@ return i;
 },
 insertBefore: function(e, t, i, n) {
 n = n || o.languages;
-var a = n[e];
+var r = n[e];
 if (2 == arguments.length) {
 i = arguments[1];
-for (var r in i) i.hasOwnProperty(r) && (a[r] = i[r]);
-return a;
+for (var a in i) i.hasOwnProperty(a) && (r[a] = i[a]);
+return r;
 }
 var s = {};
-for (var l in a) if (a.hasOwnProperty(l)) {
-if (l == t) for (var r in i) i.hasOwnProperty(r) && (s[r] = i[r]);
-s[l] = a[l];
+for (var l in r) if (r.hasOwnProperty(l)) {
+if (l == t) for (var a in i) i.hasOwnProperty(a) && (s[a] = i[a]);
+s[l] = r[l];
 }
 return o.languages.DFS(o.languages, function(t, o) {
 o === n[e] && t != e && (this[t] = s);
@@ -440,47 +443,47 @@ for (var n in e) e.hasOwnProperty(n) && (t.call(e, n, e[n], i || n), "Object" ==
 }
 },
 highlightAll: function(e, t) {
-for (var i, n = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'), a = 0; i = n[a++]; ) o.highlightElement(i, e === !0, t);
+for (var i, n = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'), r = 0; i = n[r++]; ) o.highlightElement(i, e === !0, t);
 },
-highlightElement: function(t, n, a) {
-for (var r, s, l = t; l && !e.test(l.className); ) l = l.parentNode;
-if (l && (r = (l.className.match(e) || [ , "" ])[1], s = o.languages[r]), s) {
-t.className = t.className.replace(e, "").replace(/\s+/g, " ") + " language-" + r, 
-l = t.parentNode, /pre/i.test(l.nodeName) && (l.className = l.className.replace(e, "").replace(/\s+/g, " ") + " language-" + r);
+highlightElement: function(t, n, r) {
+for (var a, s, l = t; l && !e.test(l.className); ) l = l.parentNode;
+if (l && (a = (l.className.match(e) || [ , "" ])[1], s = o.languages[a]), s) {
+t.className = t.className.replace(e, "").replace(/\s+/g, " ") + " language-" + a, 
+l = t.parentNode, /pre/i.test(l.nodeName) && (l.className = l.className.replace(e, "").replace(/\s+/g, " ") + " language-" + a);
 var p = t.textContent;
 if (p) {
 var c = {
 element: t,
-language: r,
+language: a,
 grammar: s,
 code: p
 };
 if (o.hooks.run("before-highlight", c), n && self.Worker) {
 var d = new Worker(o.filename);
 d.onmessage = function(e) {
-c.highlightedCode = i.stringify(JSON.parse(e.data), r), o.hooks.run("before-insert", c), 
-c.element.innerHTML = c.highlightedCode, a && a.call(c.element), o.hooks.run("after-highlight", c);
+c.highlightedCode = i.stringify(JSON.parse(e.data), a), o.hooks.run("before-insert", c), 
+c.element.innerHTML = c.highlightedCode, r && r.call(c.element), o.hooks.run("after-highlight", c);
 }, d.postMessage(JSON.stringify({
 language: c.language,
 code: c.code
 }));
 } else c.highlightedCode = o.highlight(c.code, c.grammar, c.language), o.hooks.run("before-insert", c), 
-c.element.innerHTML = c.highlightedCode, a && a.call(t), o.hooks.run("after-highlight", c);
+c.element.innerHTML = c.highlightedCode, r && r.call(t), o.hooks.run("after-highlight", c);
 }
 }
 },
 highlight: function(e, t, n) {
-var a = o.tokenize(e, t);
-return i.stringify(o.util.encode(a), n);
+var r = o.tokenize(e, t);
+return i.stringify(o.util.encode(r), n);
 },
 tokenize: function(e, t) {
-var i = o.Token, n = [ e ], a = t.rest;
-if (a) {
-for (var r in a) t[r] = a[r];
+var i = o.Token, n = [ e ], r = t.rest;
+if (r) {
+for (var a in r) t[a] = r[a];
 delete t.rest;
 }
-e: for (var r in t) if (t.hasOwnProperty(r) && t[r]) {
-var s = t[r];
+e: for (var a in t) if (t.hasOwnProperty(a) && t[a]) {
+var s = t[a];
 s = "Array" === o.util.type(s) ? s : [ s ];
 for (var l = 0; l < s.length; ++l) {
 var p = s[l], c = p.inside, d = !!p.lookbehind, _ = 0, u = p.alias;
@@ -495,7 +498,7 @@ if (m) {
 d && (_ = m[1].length);
 var g = m.index - 1 + _, m = m[0].slice(_), h = m.length, x = g + h, k = b.slice(0, g + 1), w = b.slice(x + 1), y = [ f, 1 ];
 k && y.push(k);
-var v = new i(r, c ? o.tokenize(m, c) : m, u);
+var v = new i(a, c ? o.tokenize(m, c) : m, u);
 y.push(v), w && y.push(w), Array.prototype.splice.apply(n, y);
 }
 }
@@ -512,34 +515,34 @@ i[e] = i[e] || [], i[e].push(t);
 },
 run: function(e, t) {
 var i = o.hooks.all[e];
-if (i && i.length) for (var n, a = 0; n = i[a++]; ) n(t);
+if (i && i.length) for (var n, r = 0; n = i[r++]; ) n(t);
 }
 }
 }, i = o.Token = function(e, t, o) {
 this.type = e, this.content = t, this.alias = o;
 };
-if (i.stringify = function(e, n, a) {
+if (i.stringify = function(e, n, r) {
 if ("string" == typeof e) return e;
 if ("[object Array]" == Object.prototype.toString.call(e)) return e.map(function(t) {
 return i.stringify(t, n, e);
 }).join("");
-var r = {
+var a = {
 type: e.type,
-content: i.stringify(e.content, n, a),
+content: i.stringify(e.content, n, r),
 tag: t.tokenTag || "span",
 classes: [ "token", e.type ],
 attributes: {},
 language: n,
-parent: a
+parent: r
 };
-if ("comment" == r.type && (r.attributes.spellcheck = "true"), e.alias) {
+if ("comment" == a.type && (a.attributes.spellcheck = "true"), e.alias) {
 var s = "Array" === o.util.type(e.alias) ? e.alias : [ e.alias ];
-Array.prototype.push.apply(r.classes, s);
+Array.prototype.push.apply(a.classes, s);
 }
-o.hooks.run("wrap", r);
+o.hooks.run("wrap", a);
 var l = "";
-for (var p in r.attributes) l += p + '="' + (r.attributes[p] || "") + '"';
-return "<" + r.tag + ' class="' + r.classes.join(" ") + '" ' + l + ">" + r.content + "</" + r.tag + ">";
+for (var p in a.attributes) l += p + '="' + (a.attributes[p] || "") + '"';
+return "<" + a.tag + ' class="' + a.classes.join(" ") + '" ' + l + ">" + a.content + "</" + a.tag + ">";
 }, !self.document) return self.addEventListener ? (self.addEventListener("message", function(e) {
 var t = JSON.parse(e.data), i = t.language, n = t.code;
 self.postMessage(JSON.stringify(o.util.encode(o.tokenize(n, o.languages[i])))), 
@@ -938,4 +941,4 @@ return o > 10;
 }
 e.exports = t;
 } ]);
-//# sourceMappingURL=tutorial.40520d084aa52fbb1263.js.map
+//# sourceMappingURL=tutorial.668f2f28b9b63e9d45d4.js.map

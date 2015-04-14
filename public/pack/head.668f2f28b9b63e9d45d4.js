@@ -35,8 +35,9 @@ o.type = "text/javascript", o.charset = "utf-8", o.async = !0, o.src = t.p + "" 
 "8": "profile",
 "10": "quiz",
 "11": "invoice",
-"12": "about"
-}[e] || e) + "-" + e + ".40520d084aa52fbb1263.js", r.appendChild(o);
+"12": "about",
+"13": "ebookExtras"
+}[e] || e) + "-" + e + ".668f2f28b9b63e9d45d4.js", r.appendChild(o);
 }
 }, t.m = e, t.c = r, t.p = "/pack/", t(0);
 }([ function(e, t, n) {
@@ -272,7 +273,7 @@ document.location = i;
 }
 if (1 == t.which && !t.defaultPrevented) {
 var r = t.target.closest && t.target.closest("a");
-if (r && e != r.host) {
+if (r && e != r.host && ~[ "_self", "_top", "_parent" ].indexOf(r.target) && !(t.shiftKey || t.ctrlKey || t.altKey)) {
 t.preventDefault();
 var i = r.href;
 window.ga("send", "event", "outbound", "click", i, {
@@ -722,4 +723,4 @@ return e.parentNode.removeChild(e), t - r;
 }
 e.exports = t;
 }, , , , , , , , , , , , , , , function() {} ]);
-//# sourceMappingURL=head.40520d084aa52fbb1263.js.map
+//# sourceMappingURL=head.668f2f28b9b63e9d45d4.js.map

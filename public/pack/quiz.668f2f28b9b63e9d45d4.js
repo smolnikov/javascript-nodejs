@@ -200,8 +200,11 @@ g.appendChild(t), e.appendChild(g);
 }
 if (v) {
 var i = t.contentDocument || t.contentWindow.document;
-i.open(), i.write(u(h)), i.close(), void 0 === e.dataset.demoHeight && a.iframe(t), 
-x && void 0 !== e.dataset.autorun || s(g) || g.scrollIntoView(!1);
+i.open(), i.write(u(h)), i.close(), "epub" == window.ebookType && setTimeout(function() {
+[].forEach.call(i.querySelectorAll("script"), function(e) {
+e.remove();
+});
+}, 2e3), void 0 === e.dataset.demoHeight && a.iframe(t), x && void 0 !== e.dataset.autorun || s(g) || g.scrollIntoView(!1);
 } else {
 var r = document.createElement("form");
 r.style.display = "none", r.method = "POST", r.enctype = "multipart/form-data", 
@@ -260,7 +263,7 @@ return this.blur(), p(), !1;
 var w = e.querySelector('[data-action="edit"]');
 w && (w.onclick = function() {
 return this.blur(), c(), !1;
-}), void 0 !== e.dataset.autorun && ("epub" == window.ebookFormat && "no-epub" == e.dataset.autorun ? e.querySelector("iframe").remove() : setTimeout(p, 1e3));
+}), void 0 !== e.dataset.autorun && ("epub" == window.ebookType && "no-epub" == e.dataset.autorun ? e.querySelector("iframe").remove() : setTimeout(p, 100));
 }
 }
 function r(e, t) {
@@ -284,7 +287,7 @@ e.exports = i;
 56: function(e, t, n) {
 "use strict";
 function i(e) {
-window.isEbook || (this.elem = e, this.translateX = 0, this.switchesElem = e.querySelector("[data-code-tabs-switches]"), 
+window.ebookType || (this.elem = e, this.translateX = 0, this.switchesElem = e.querySelector("[data-code-tabs-switches]"), 
 this.switchesElemItems = this.switchesElem.firstElementChild, this.arrowLeft = e.querySelector("[data-code-tabs-left]"), 
 this.arrowRight = e.querySelector("[data-code-tabs-right]"), this.arrowLeft.onclick = function(e) {
 e.preventDefault(), this.translateX = Math.max(0, this.translateX - this.switchesElem.offsetWidth), 
@@ -884,4 +887,4 @@ e.exports = t;
 },
 103: function() {}
 });
-//# sourceMappingURL=quiz.40520d084aa52fbb1263.js.map
+//# sourceMappingURL=quiz.668f2f28b9b63e9d45d4.js.map
