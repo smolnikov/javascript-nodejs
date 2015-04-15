@@ -37,15 +37,17 @@ o.type = "text/javascript", o.charset = "utf-8", o.async = !0, o.src = t.p + "" 
 "11": "invoice",
 "12": "about",
 "13": "ebookExtras"
-}[e] || e) + "-" + e + ".77e59b62f3c5d7524b1e.js", r.appendChild(o);
+}[e] || e) + "-" + e + ".f97efa97f18f1678f22e.js", r.appendChild(o);
 }
 }, t.m = e, t.c = r, t.p = "/pack/", t(0);
-}([ function(e, t, n) {
+}({
+0: function(e, t, n) {
 "use strict";
-n(105), n(22), window.localStorage || (window.localStorage = {}), n(9), t.login = n(10), 
-n(11), t.Modal = n(12), t.fontTest = n(13), t.resizeOnload = n(21), n(14), n(15), 
-n(16), n(17), n(18), n(19), n(20), n(23).init();
-}, , , , , , , , , function() {
+n(157), n(127), window.localStorage || (window.localStorage = {}), n(111), t.login = n(112), 
+n(113), t.Modal = n(114), t.fontTest = n(115), t.resizeOnload = n(123), n(116), 
+n(117), n(118), n(119), n(120), n(121), n(122), n(128).init();
+},
+111: function() {
 "use strict";
 document.addEventListener("click", function(e) {
 for (var t = e.target; t; ) {
@@ -56,7 +58,8 @@ t = t.parentElement;
 }), document.addEventListener("submit", function(e) {
 e.target.className.match && e.target.className.match(/_unready\b/) && e.preventDefault();
 });
-}, function(e, t, n) {
+},
+112: function(e, t, n) {
 "use strict";
 function r() {
 var e = new i({
@@ -65,15 +68,16 @@ mixClass: "login-modal"
 }), t = new o();
 e.setContent(t.elem), t.start(), n.e(7, function() {
 e.remove();
-var t = n(43).AuthModal;
+var t = n(148).AuthModal;
 new t();
 });
 }
-var i = n(12), o = n(33);
+var i = n(114), o = n(144);
 document.addEventListener("click", function(e) {
 e.target.hasAttribute("data-action-login") && (e.preventDefault(), r());
 }), e.exports = r;
-}, function(e) {
+},
+113: function(e) {
 "use strict";
 function t() {
 var e = document.createElement("form");
@@ -83,7 +87,8 @@ document.body.appendChild(e), e.submit();
 document.addEventListener("click", function(e) {
 e.target.hasAttribute("data-action-user-logout") && (e.preventDefault(), t());
 }), e.exports = t;
-}, function(e) {
+},
+114: function(e) {
 "use strict";
 function t(e) {
 e = e || {}, this.render(), this.setHasClose(void 0 === e.hasClose ? !0 : e.hasClose), 
@@ -113,7 +118,8 @@ t && t.focus();
 document.body.classList.remove("paranja-open"), document.body.removeChild(this.elem), 
 document.removeEventListener("keydown", this.onDocumentKeyDown);
 }, e.exports = t;
-}, function(e) {
+},
+115: function(e) {
 "use strict";
 e.exports = function() {
 function e() {
@@ -124,7 +130,8 @@ document.body.appendChild(t), t.className = "font-test", t.style.fontFamily = "s
 var n = t.offsetWidth;
 t.style.fontFamily = "", e();
 };
-}, function() {
+},
+116: function() {
 "use strict";
 function e() {}
 function t() {
@@ -157,7 +164,8 @@ n(), i = null;
 }
 window.addEventListener("scroll", t), window.addEventListener("resize", t), document.addEventListener("DOMContentLoaded", t);
 }();
-}, function() {
+},
+117: function() {
 "use strict";
 function e(e) {
 if (e.target.closest) {
@@ -186,7 +194,8 @@ e.parentNode.removeChild(e), document.body.classList.remove("paranja-open"));
 }
 document.addEventListener("click", e);
 var r = !1;
-}, function() {
+},
+118: function() {
 "use strict";
 function e() {
 var e = document.querySelector(".page-wrapper");
@@ -205,7 +214,8 @@ e(), t.preventDefault();
 }
 }
 document.addEventListener("click", t), document.addEventListener("keydown", n);
-}, function(e, t, n) {
+},
+119: function(e, t, n) {
 "use strict";
 function r(e) {
 if (!~[ "INPUT", "TEXTAREA", "SELECT" ].indexOf(document.activeElement.tagName) && e[a + "Key"]) {
@@ -234,7 +244,7 @@ var r = document.querySelector('link[rel="prev"]');
 r && (e = document.querySelector('a[href="' + r.getAttribute("href") + '"] .page__nav-text-shortcut'), 
 e.innerHTML = t + ' + <span class="page__nav-text-arr">←</span>');
 }
-var o = n(50), a = ~navigator.userAgent.toLowerCase().indexOf("mac os x") ? "ctrl" : "alt";
+var o = n(158), a = ~navigator.userAgent.toLowerCase().indexOf("mac os x") ? "ctrl" : "alt";
 o(document, {
 onRight: function() {
 var e = document.querySelector('link[rel="prev"]');
@@ -245,7 +255,8 @@ var e = document.querySelector('link[rel="next"]');
 e && (document.location = e.href);
 }
 }), document.addEventListener("keydown", r), document.addEventListener("DOMContentLoaded", i);
-}, function() {
+},
+120: function() {
 "use strict";
 var e;
 document.addEventListener("mouseover", function(t) {
@@ -258,13 +269,15 @@ e && (e.classList.remove("hover"), e = null);
 }), document.addEventListener("mouseout", function(t) {
 e && (e.contains(t.relatedTarget) || (e.classList.remove("hover"), e = null));
 });
-}, function(module, exports, __webpack_require__) {
+},
+121: function(module, exports, __webpack_require__) {
 "use strict";
 window.runDemo = function(button) {
 for (var demoElem, parent = button; (parent = parent.parentElement) && !(demoElem = parent.querySelector("[data-demo]")); ) ;
 demoElem ? eval(demoElem.textContent) : alert("Ошибка, нет элемента с демо");
 };
-}, function() {
+},
+122: function() {
 "use strict";
 var e = window.location.host;
 document.addEventListener("click", function(t) {
@@ -282,9 +295,10 @@ hitCallback: n
 }
 }
 });
-}, function(e, t, n) {
+},
+123: function(e, t, n) {
 "use strict";
-var r = n(51), i = n(52), o = [];
+var r = n(159), i = n(162), o = [];
 t.iframe = function(e) {
 function t() {
 r.async(e, function(t, n) {
@@ -303,10 +317,12 @@ o.forEach(function(e) {
 e();
 });
 }, 200));
-}, function(e, t, n) {
+},
+127: function(e, t, n) {
 "use strict";
-n(53);
-}, function(e, t, n) {
+n(161);
+},
+128: function(e, t, n) {
 "use strict";
 var r = function m(e, t, n) {
 var r = Object.getOwnPropertyDescriptor(e, t);
@@ -344,7 +360,7 @@ return n && e(t.prototype, n), r && e(t, r), t;
 Object.defineProperty(t, "__esModule", {
 value: !0
 });
-var s, l = n(40), c = function() {
+var s, l = n(132), c = function() {
 function e() {
 var t = void 0 === arguments[0] ? {} : arguments[0];
 o(this, e), this.notifications = [], this.verticalSpace = t.verticalSpace || 8;
@@ -481,20 +497,8 @@ return 5e3;
 } ]), t;
 }(u);
 t.Error = h, t.Error = h;
-}, , , , , , , , , , function(e) {
-"use strict";
-function t(e) {
-if (e = e || {}, this.elem = e.elem, this.size = e.size || "medium", this.class = e.class ? " " + e.class : "", 
-this.elemClass = e.elemClass, "medium" != this.size && "small" != this.size && "large" != this.size) throw Error("Unsupported size: " + this.size);
-this.elem || (this.elem = document.createElement("div"));
-}
-t.prototype.start = function() {
-this.elemClass && this.elem.classList.toggle(this.elemClass), this.elem.insertAdjacentHTML("beforeend", '<span class="spinner spinner_active spinner_' + this.size + this.class + '"><span class="spinner__dot spinner__dot_1"></span><span class="spinner__dot spinner__dot_2"></span><span class="spinner__dot spinner__dot_3"></span></span>');
-}, t.prototype.stop = function() {
-var e = this.elem.querySelector(".spinner");
-e && (e.remove(), this.elemClass && this.elem.classList.toggle(this.elemClass));
-}, e.exports = t;
-}, , , , , , , function(e) {
+},
+132: function(e) {
 "use strict";
 function t(e, t) {
 for (var n = e.target; n; ) {
@@ -515,7 +519,23 @@ e.delegate = function(e, t, r) {
 n(this.elem, e, t, r, this);
 };
 }, e.exports = n;
-}, , , , , , , , , , function(e) {
+},
+144: function(e) {
+"use strict";
+function t(e) {
+if (e = e || {}, this.elem = e.elem, this.size = e.size || "medium", this.class = e.class ? " " + e.class : "", 
+this.elemClass = e.elemClass, "medium" != this.size && "small" != this.size && "large" != this.size) throw Error("Unsupported size: " + this.size);
+this.elem || (this.elem = document.createElement("div"));
+}
+t.prototype.start = function() {
+this.elemClass && this.elem.classList.toggle(this.elemClass), this.elem.insertAdjacentHTML("beforeend", '<span class="spinner spinner_active spinner_' + this.size + this.class + '"><span class="spinner__dot spinner__dot_1"></span><span class="spinner__dot spinner__dot_2"></span><span class="spinner__dot spinner__dot_3"></span></span>');
+}, t.prototype.stop = function() {
+var e = this.elem.querySelector(".spinner");
+e && (e.remove(), this.elemClass && this.elem.classList.toggle(this.elemClass));
+}, e.exports = t;
+},
+157: function() {},
+158: function(e) {
 "use strict";
 function t(e, t) {
 t = t || {};
@@ -530,7 +550,8 @@ i = t.pageX - n, o = Date.now() - a, Math.abs(t.pageY - r) > c || o > p || (i > 
 });
 }
 e.exports = t;
-}, function(e, t, n) {
+},
+159: function(e, t, n) {
 "use strict";
 function r(e, t) {
 function n(e, n) {
@@ -559,26 +580,14 @@ e.style.height = "", n(null, l);
 function i() {
 throw Error("Not implemented yet");
 }
-var o = n(78);
+var o = n(193);
 r.async = function(e, t) {
 setTimeout(function() {
 r(e, t);
 }, 0);
 }, e.exports = r;
-}, function(e) {
-"use strict";
-function t(e, t) {
-function n() {
-return o ? (r = arguments, void (i = this)) : (e.apply(this, arguments), o = !0, 
-void setTimeout(function() {
-o = !1, r && (n.apply(i, r), r = i = null);
-}, t));
-}
-var r, i, o = !1;
-return n;
-}
-e.exports = t;
-}, function(e, t, n) {
+},
+161: function(e, t, n) {
 "use strict";
 function r(e) {
 if (e.length) {
@@ -619,18 +628,23 @@ return null;
 }
 };
 for (var o in i) Element.prototype[o] || (Element.prototype[o] = i[o]);
-n(79), n(80), n(81), n(82);
-}, , , , , , , , , , , , , , , , , , , , , , , , , function(e, t, n) {
+n(189), n(190), n(191), n(192);
+},
+162: function(e) {
 "use strict";
-function r(e) {
-e = e || document;
-var t = Math.max(e.body.scrollHeight, e.documentElement.scrollHeight, e.body.offsetHeight, e.documentElement.offsetHeight, e.body.clientHeight, e.documentElement.clientHeight);
-return e.documentElement.scrollWidth > e.documentElement.clientWidth && (i || (i = o()), 
-t += i), t;
+function t(e, t) {
+function n() {
+return o ? (r = arguments, void (i = this)) : (e.apply(this, arguments), o = !0, 
+void setTimeout(function() {
+o = !1, r && (n.apply(i, r), r = i = null);
+}, t));
 }
-var i, o = n(90);
-e.exports = r;
-}, function() {
+var r, i, o = !1;
+return n;
+}
+e.exports = t;
+},
+189: function() {
 "use strict";
 try {
 new CustomEvent("IE has CustomEvent, but doesn't support constructor");
@@ -645,7 +659,8 @@ detail: void 0
 n;
 }, CustomEvent.prototype = Object.create(window.Event.prototype);
 }
-}, function() {
+},
+190: function() {
 "use strict";
 if (!(document.documentElement.dataset || Object.getOwnPropertyDescriptor(Element.prototype, "dataset") && Object.getOwnPropertyDescriptor(Element.prototype, "dataset").get)) {
 var e = {
@@ -684,7 +699,8 @@ Object.defineProperty(Element.prototype, "dataset", e);
 e.enumerable = !1, Object.defineProperty(Element.prototype, "dataset", e);
 }
 }
-}, function() {
+},
+191: function() {
 "use strict";
 void 0 === document.documentElement.hidden && (document.head.insertAdjacentHTML("<style> [hidden] { display: none } </style>"), 
 Object.defineProperty(Element.prototype, "hidden", {
@@ -695,7 +711,8 @@ get: function() {
 return this.getAttribute("hidden");
 }
 }));
-}, function() {
+},
+192: function() {
 "use strict";
 !function() {
 var e = 0;
@@ -708,7 +725,19 @@ return e = n + r, i;
 clearTimeout(e);
 });
 }();
-}, , , , , , , , function(e) {
+},
+193: function(e, t, n) {
+"use strict";
+function r(e) {
+e = e || document;
+var t = Math.max(e.body.scrollHeight, e.documentElement.scrollHeight, e.body.offsetHeight, e.documentElement.offsetHeight, e.body.clientHeight, e.documentElement.clientHeight);
+return e.documentElement.scrollWidth > e.documentElement.clientWidth && (i || (i = o()), 
+t += i), t;
+}
+var i, o = n(202);
+e.exports = r;
+},
+202: function(e) {
 "use strict";
 function t() {
 var e = document.createElement("div");
@@ -722,5 +751,6 @@ var r = n.offsetWidth;
 return e.parentNode.removeChild(e), t - r;
 }
 e.exports = t;
-}, , , , , , , , , , , , , , , function() {} ]);
-//# sourceMappingURL=head.77e59b62f3c5d7524b1e.js.map
+}
+});
+//# sourceMappingURL=head.f97efa97f18f1678f22e.js.map

@@ -1,8 +1,8 @@
 var profile = webpackJsonp_name_([ 8 ], {
 0: function(e, t, n) {
 "use strict";
-var i = n(1), r = n(23), o = n(30), a = i.module("profile", [ "ui.router", "ngResource", "global403Interceptor", "ajoslin.promise-tracker", "progress", "focusOn", "ngMessages" ]);
-n(24), n(25), n(26), n(27), n(28), n(29), a.factory("Me", [ "$resource", function(e) {
+var i = n(1), r = n(128), o = n(140), a = i.module("profile", [ "ui.router", "ngResource", "global403Interceptor", "ajoslin.promise-tracker", "progress", "focusOn", "ngMessages" ]);
+n(134), n(135), n(136), n(137), n(138), n(139), a.factory("Me", [ "$resource", function(e) {
 return e("/users/me", {}, {
 get: {
 method: "GET",
@@ -120,9 +120,9 @@ return o.duration(e, "seconds").humanize();
 1: function(e) {
 e.exports = angular;
 },
-24: function(e, t, n) {
+134: function(e, t, n) {
 "use strict";
-var i = n(23), r = n(1);
+var i = n(128), r = n(1);
 r.module("profile").directive("profileField", [ "promiseTracker", "$http", "$timeout", function(e, t, n) {
 return {
 templateUrl: "/profile/templates/partials/profileField",
@@ -178,9 +178,9 @@ a[0].querySelector("[control-transclude]").append(e[0]);
 };
 } ]);
 },
-25: function(e, t, n) {
+135: function(e, t, n) {
 "use strict";
-var i = n(23), r = n(1), o = n(54).thumb;
+var i = n(128), r = n(1), o = n(164).thumb;
 r.module("profile").directive("profilePhoto", [ "promiseTracker", "$http", "$timeout", function(e, t) {
 return {
 templateUrl: "/profile/templates/partials/profilePhoto",
@@ -225,9 +225,9 @@ t.width != t.height || t.width < 160 ? new i.Error("Изображение до�
 return o;
 });
 },
-26: function(e, t, n) {
+136: function(e, t, n) {
 "use strict";
-var i = n(23), r = n(1);
+var i = n(128), r = n(1);
 r.module("profile").directive("profilePassword", [ "promiseTracker", "$http", "$timeout", function(e, t, n) {
 return {
 templateUrl: "/profile/templates/partials/profilePassword",
@@ -271,9 +271,9 @@ e.editing = !1;
 };
 } ]);
 },
-27: function(e, t, n) {
+137: function(e, t, n) {
 "use strict";
-var i = (n(23), n(1));
+var i = (n(128), n(1));
 i.module("profile").directive("profileAuthProviders", [ "promiseTracker", "$http", "authPopup", "Me", function(e, t, n, i) {
 return {
 templateUrl: "/profile/templates/partials/profileAuthProviders",
@@ -304,7 +304,7 @@ onAuthFailure: i
 };
 });
 },
-28: function(e, t, n) {
+138: function(e, t, n) {
 "use strict";
 var i = n(1);
 i.module("profile").directive("dateValidator", function() {
@@ -323,9 +323,9 @@ return 4 != i[2].length ? !1 : r.getFullYear() == i[2] && r.getMonth() == i[1] -
 };
 });
 },
-29: function(e, t, n) {
+139: function(e, t, n) {
 "use strict";
-var i = (n(23), n(1)), r = n(30);
+var i = (n(128), n(1)), r = n(140);
 i.module("profile").directive("dateRangeValidator", function() {
 return {
 require: "ngModel",
@@ -343,11 +343,11 @@ return 4 != i[2].length ? !1 : r >= a && s >= r;
 };
 });
 },
-30: function(e, t, n) {
+140: function(e, t, n) {
 "use strict";
-n(96), e.exports = n(97);
+n(168), e.exports = n(172);
 },
-54: function(e, t) {
+164: function(e, t) {
 "use strict";
 t.thumb = function(e, t, n) {
 if (!e) return e;
@@ -357,20 +357,13 @@ var r = 160 >= t && 160 >= n ? "t" : 320 >= t && 320 >= n ? "m" : 640 >= t && 64
 return e.slice(0, e.lastIndexOf(".")) + r + e.slice(e.lastIndexOf("."));
 };
 },
-95: function(e) {
-"use strict";
-e.exports = function(e) {
-return e.webpackPolyfill || (e.deprecate = function() {}, e.paths = [], e.children = [], 
-e.webpackPolyfill = 1), e;
-};
-},
-96: function(e, t, n) {
+168: function(e, t, n) {
 //! moment.js locale configuration
 //! locale : russian (ru)
 //! author : Viktorminator : https://github.com/Viktorminator
 //! Author : Menelion Elensúle : https://github.com/Oire
 !function(e, t) {
-t(n(97));
+t(n(172));
 }(this, function(e) {
 "use strict";
 function t(e, t) {
@@ -498,10 +491,10 @@ doy: 7
 return a;
 });
 },
-97: function(e, t, n) {
+172: function(e, t, n) {
 (function(e) {
 //! moment.js
-//! version : 2.10.0
+//! version : 2.10.2
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
@@ -675,7 +668,7 @@ return e.match(/\[[\s\S]/) ? e.replace(/^\[|\]$/g, "") : e.replace(/\\/g, "");
 }
 function z(e) {
 var t, n, i = e.match(zn);
-for (t = 0, n = i.length; n > t; t++) i[t] = In[i[t]] ? In[i[t]] : L(i[t]);
+for (t = 0, n = i.length; n > t; t++) In[i[t]] ? i[t] = In[i[t]] : i[t] = L(i[t]);
 return function(r) {
 var o = "";
 for (t = 0; n > t; t++) o += i[t] instanceof Function ? i[t].call(r, e) : i[t];
@@ -1468,7 +1461,9 @@ n._useUTC = !0, n._tzm = Le(e);
 });
 var bi = /([\+\-]|\d\d)/gi;
 t.updateOffset = function() {};
-var vi = /(\-)?(?:(\d*)\.)?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?)?/, xi = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/, yi = Je(1, "add"), wi = Je(-1, "subtract");
+var vi = /(\-)?(?:(\d*)\.)?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?)?/, xi = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/;
+Ge.fn = Oe.prototype;
+var yi = Je(1, "add"), wi = Je(-1, "subtract");
 t.defaultFormat = "YYYY-MM-DDTHH:mm:ssZ";
 var $i = K("moment().lang() is deprecated. Instead, use moment().localeData() to get the language configuration. Use moment().locale() to change languages.", function(e) {
 return void 0 === e ? this.localeData() : this.locale(e);
@@ -1611,7 +1606,7 @@ j("X", function(e, t, n) {
 n._d = new Date(1e3 * parseFloat(e, 10));
 }), j("x", function(e, t, n) {
 n._d = new Date(m(e));
-}), t.version = "2.10.0", n(Se), t.fn = zi, t.min = Ce, t.max = Ae, t.utc = c, t.unix = Bt, 
+}), t.version = "2.10.2", n(Se), t.fn = zi, t.min = Ce, t.max = Ae, t.utc = c, t.unix = Bt, 
 t.months = on, t.isDate = o, t.locale = y, t.invalid = p, t.duration = Ge, t.isMoment = h, 
 t.weekdays = sn, t.parseZone = Gt, t.localeData = $, t.isDuration = Me, t.monthsShort = an, 
 t.weekdaysMin = cn, t.defineLocale = w, t.weekdaysShort = ln, t.normalizeUnits = E, 
@@ -1619,7 +1614,14 @@ t.relativeTimeThreshold = En;
 var lr = t;
 return lr;
 });
-}).call(t, n(95)(e));
+}).call(t, n(204)(e));
+},
+204: function(e) {
+"use strict";
+e.exports = function(e) {
+return e.webpackPolyfill || (e.deprecate = function() {}, e.paths = [], e.children = [], 
+e.webpackPolyfill = 1), e;
+};
 }
 });
-//# sourceMappingURL=profile.77e59b62f3c5d7524b1e.js.map
+//# sourceMappingURL=profile.f97efa97f18f1678f22e.js.map

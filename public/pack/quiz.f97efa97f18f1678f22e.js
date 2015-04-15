@@ -17,7 +17,7 @@ elemClass: "submit-button_progress"
 });
 r.start(), n.e(7, function() {
 r.stop();
-var e = n(43).AuthModal;
+var e = n(148).AuthModal;
 new e({
 callback: i
 });
@@ -85,11 +85,11 @@ e.innerHTML = t.result.html, l.highlight(e)) : i();
 });
 };
 }
-n(103);
-var a = n(33), s = n(34), l = n(36), c = n(23);
+n(156);
+var a = n(144), s = n(133), l = n(143), c = n(128);
 t.init = i;
 },
-34: function(e, t, n) {
+133: function(e, t, n) {
 "use strict";
 function i(e) {
 function t(e, t) {
@@ -143,19 +143,12 @@ i(o, t);
 r.send(s);
 }, 0), r;
 }
-var r = n(23), o = n(35);
+var r = n(128), o = n(163);
 document.addEventListener("xhrfail", function(e) {
 new r.Error(e.reason);
 }), e.exports = i;
 },
-35: function(e) {
-"use strict";
-e.exports = function() {
-var e = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
-return e ? e[1] : null;
-};
-},
-36: function(e, t, n) {
+143: function(e, t, n) {
 "use strict";
 function i(e) {
 for (var t = e.querySelectorAll(".code-example:not([data-prism-done])"), n = 0; n < t.length; n++) {
@@ -170,16 +163,24 @@ t[n].setAttribute("data-prism-done", "1");
 function o(e) {
 i(e), r(e);
 }
-n(62), n(63), n(64), n(65), n(66), n(67), n(68), n(69), n(70), n(71), n(72), n(73), 
-n(74), n(75), n(76), Prism.tokenTag = "code";
-var a = n(55), s = n(56);
+n(173), n(174), n(175), n(176), n(177), n(178), n(179), n(180), n(181), n(182), 
+n(183), n(184), n(185), n(186), n(187), Prism.tokenTag = "code";
+var a = n(165), s = n(166);
 t.init = function() {
 document.removeEventListener("DOMContentLoaded", Prism.highlightAll), document.addEventListener("DOMContentLoaded", function() {
 o(document);
 });
 }, t.highlight = o;
 },
-55: function(e, t, n) {
+156: function() {},
+163: function(e) {
+"use strict";
+e.exports = function() {
+var e = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
+return e ? e[1] : null;
+};
+},
+165: function(e, t, n) {
 "use strict";
 function i(e) {
 function t() {
@@ -281,10 +282,10 @@ var r = t[i].split(":"), o = +r[0], a = r[1].split("-"), s = +a[0], l = +a[1], c
 n.insertAdjacentHTML("afterBegin", c);
 }
 }
-var a = n(21), s = n(84), l = n(83);
+var a = n(123), s = n(195), l = n(194);
 e.exports = i;
 },
-56: function(e, t, n) {
+166: function(e, t, n) {
 "use strict";
 function i(e) {
 window.ebookType || (this.elem = e, this.translateX = 0, this.switchesElem = e.querySelector("[data-code-tabs-switches]"), 
@@ -297,7 +298,7 @@ e.preventDefault(), this.translateX = Math.min(this.translateX + this.switchesEl
 this.renderTranslate();
 }.bind(this), this.delegate(".code-tabs__switch", "click", this.onSwitchClick));
 }
-var r = n(40), o = n(83);
+var r = n(132), o = n(194);
 i.prototype.onSwitchClick = function(e) {
 e.preventDefault();
 for (var t, n = e.delegateTarget.parentNode.children, i = this.elem.querySelector("[data-code-tabs-content]").children, r = 0; r < n.length; r++) {
@@ -318,7 +319,7 @@ this.switchesElemItems.style.transform = "translateX(-" + this.translateX + "px)
 this.translateX === this.switchesElemItems.offsetWidth - this.switchesElem.offsetWidth ? this.arrowRight.setAttribute("disabled", "") : this.arrowRight.removeAttribute("disabled");
 }, r.delegateMixin(i.prototype), e.exports = i;
 },
-62: function(e) {
+173: function(e) {
 self = "undefined" != typeof window ? window : "undefined" != typeof WorkerGlobalScope && self instanceof WorkerGlobalScope ? self : {};
 var t = function() {
 var e = /\blang(?:uage)?-(?!\*)(\w+)\b/i, n = self.Prism = {
@@ -482,7 +483,7 @@ self.Prism;
 }();
 void 0 !== e && e.exports && (e.exports = t);
 },
-63: function() {
+174: function() {
 Prism.languages.markup = {
 comment: /<!--[\w\W]*?-->/g,
 prolog: /<\?.+?\?>/,
@@ -518,7 +519,7 @@ entity: /\&#?[\da-z]{1,8};/gi
 "entity" === e.type && (e.attributes.title = e.content.replace(/&amp;/, "&"));
 });
 },
-64: function() {
+175: function() {
 Prism.languages.css = {
 comment: /\/\*[\w\W]*?\*\//g,
 atrule: {
@@ -564,7 +565,7 @@ alias: "language-css"
 }
 }, Prism.languages.markup.tag));
 },
-65: function() {
+176: function() {
 Prism.languages.css.selector = {
 pattern: /[^\{\}\s][^\{\}]*(?=\s*\{)/g,
 inside: {
@@ -579,7 +580,7 @@ entity: /\\[\da-f]{1,8}/gi,
 number: /[\d%\.]+/g
 });
 },
-66: function() {
+177: function() {
 Prism.languages.clike = {
 comment: [ {
 pattern: /(^|[^\\])\/\*[\w\W]*?\*\//g,
@@ -610,7 +611,7 @@ ignore: /&(lt|gt|amp);/gi,
 punctuation: /[{}[\];(),.:]/g
 };
 },
-67: function() {
+178: function() {
 Prism.languages.javascript = Prism.languages.extend("clike", {
 keyword: /\b(break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|false|finally|for|function|get|if|implements|import|in|instanceof|interface|let|new|null|package|private|protected|public|return|set|static|super|switch|this|throw|true|try|typeof|var|void|while|with|yield)\b/g,
 number: /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|-?Infinity)\b/g,
@@ -634,7 +635,7 @@ alias: "language-javascript"
 }
 });
 },
-68: function() {
+179: function() {
 !function(e) {
 var t = /#(?!\{).+/g, n = {
 pattern: /#\{[^}]+\}/g,
@@ -692,7 +693,7 @@ property: /(?!\d)\w+(?=\s*:(?!:))/g
 });
 }(Prism);
 },
-69: function() {
+180: function() {
 Prism.languages.http = {
 "request-line": {
 pattern: /^(POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b\shttps?:\/\/\S+\sHTTP\/[0-9.]+/g,
@@ -726,7 +727,7 @@ rest: e[t]
 }, Prism.languages.insertBefore("http", "keyword", n);
 }
 },
-70: function() {
+181: function() {
 Prism.languages.scss = Prism.languages.extend("css", {
 comment: {
 pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,
@@ -747,7 +748,7 @@ statement: /\B!(default|optional)\b/gi,
 operator: /\s+([-+]{1,2}|={1,2}|!=|\|?\||\?|\*|\/|\%)\s+/g
 });
 },
-71: function() {
+182: function() {
 Prism.languages.sql = {
 comment: {
 pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|((--)|(\/\/)|#).*?(\r?\n|$))/g,
@@ -766,7 +767,7 @@ operator: /\b(?:ALL|AND|ANY|BETWEEN|EXISTS|IN|LIKE|NOT|OR|IS|UNIQUE|CHARACTER SE
 punctuation: /[;[\]()`,.]/g
 };
 },
-72: function() {
+183: function() {
 Prism.languages.php = Prism.languages.extend("clike", {
 keyword: /\b(and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|private|protected|parent|throw|null|echo|print|trait|namespace|final|yield|goto|instanceof|finally|try|catch)\b/gi,
 constant: /\b[A-Z0-9_]{2,}\b/g,
@@ -810,7 +811,7 @@ inside: Prism.languages.markup
 php: /\{\{\{PHP[0-9]+\}\}\}/g
 }));
 },
-73: function() {
+184: function() {
 Prism.languages.insertBefore("php", "variable", {
 "this": /\$this/g,
 global: /\$_?(GLOBALS|SERVER|GET|POST|FILES|REQUEST|SESSION|ENV|COOKIE|HTTP_RAW_POST_DATA|argc|argv|php_errormsg|http_response_header)/g,
@@ -823,7 +824,7 @@ punctuation: /(::|\\)/
 }
 });
 },
-74: function() {
+185: function() {
 Prism.languages.python = {
 comment: {
 pattern: /(^|[^\\])#.*?(\r?\n|$)/g,
@@ -838,7 +839,7 @@ ignore: /&(lt|gt|amp);/gi,
 punctuation: /[{}[\];(),.:]/g
 };
 },
-75: function() {
+186: function() {
 Prism.languages.ruby = Prism.languages.extend("clike", {
 comment: /#[^\r\n]*(\r?\n|$)/g,
 keyword: /\b(alias|and|BEGIN|begin|break|case|class|def|define_method|defined|do|each|else|elsif|END|end|ensure|false|for|if|in|module|new|next|nil|not|or|raise|redo|require|rescue|retry|return|self|super|then|throw|true|undef|unless|until|when|while|yield)\b/g,
@@ -853,7 +854,7 @@ variable: /[@$]+\b[a-zA-Z_][a-zA-Z_0-9]*[?!]?\b/g,
 symbol: /:\b[a-zA-Z_][a-zA-Z_0-9]*[?!]?\b/g
 });
 },
-76: function() {
+187: function() {
 Prism.languages.java = Prism.languages.extend("clike", {
 keyword: /\b(abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)\b/g,
 number: /\b0b[01]+\b|\b0x[\da-f]*\.?[\da-fp\-]+\b|\b\d*\.?\d+[e]?[\d]*[df]\b|\b\d*\.?\d+\b/gi,
@@ -863,7 +864,7 @@ lookbehind: !0
 }
 });
 },
-83: function(e) {
+194: function(e) {
 "use strict";
 function t(e) {
 var t, n = 1 + e.innerHTML.split("\n").length, i = Array(n);
@@ -873,7 +874,7 @@ e.appendChild(t);
 }
 e.exports = t;
 },
-84: function(e) {
+195: function(e) {
 "use strict";
 function t(e) {
 var t = e.getBoundingClientRect(), n = 0;
@@ -884,7 +885,6 @@ n = window.innerHeight - top;
 return n > 10;
 }
 e.exports = t;
-},
-103: function() {}
+}
 });
-//# sourceMappingURL=quiz.77e59b62f3c5d7524b1e.js.map
+//# sourceMappingURL=quiz.f97efa97f18f1678f22e.js.map

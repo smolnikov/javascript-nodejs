@@ -1,8 +1,8 @@
 var about = webpackJsonp_name_([ 12 ], {
 0: function(e, t, n) {
 "use strict";
-n(104);
-var i = n(102);
+n(155);
+var i = n(142);
 L.Google = L.Class.extend({
 includes: L.Mixin.Events,
 options: {
@@ -124,7 +124,7 @@ e.addLayer(n);
 })(n);
 };
 },
-102: function(e) {
+142: function(e) {
 "use strict";
 e.exports = {
 "Москва": {
@@ -269,6 +269,6 @@ radius: 2e4
 }
 };
 },
-104: function() {}
+155: function() {}
 });
-//# sourceMappingURL=about.77e59b62f3c5d7524b1e.js.map
+//# sourceMappingURL=about.f97efa97f18f1678f22e.js.map

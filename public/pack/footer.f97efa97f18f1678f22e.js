@@ -1,14 +1,14 @@
 var footer = webpackJsonp_name_([ 3 ], {
 0: function(e, t, o) {
 "use strict";
-var i = o(2), n = o(3), r = o(4);
+var i = o(124), n = o(125), r = o(126);
 t.init = function() {
 i(), window.devicePixelRatio > 1 && n(), window.addEventListener("scroll", r), r();
 }, t.trackSticky = r;
 },
-2: function(e, t, o) {
+124: function(e, t, o) {
 "use strict";
-var i = o(49);
+var i = o(160);
 e.exports = function() {
 function e(e) {
 var t = e.clientX + r;
@@ -33,7 +33,7 @@ var n = null, r = 8, a = 10;
 i("a,[data-tooltip]", t, o);
 };
 },
-3: function(e) {
+125: function(e) {
 "use strict";
 e.exports = function() {
 for (var e = document.querySelectorAll('figure img[src$=".png"]'), t = function() {
@@ -49,7 +49,7 @@ this.width && this.height && (t.src = this.src);
 }, o = 0; o < e.length; o++) t();
 };
 },
-4: function(e) {
+126: function(e) {
 "use strict";
 function t() {
 for (var e = document.querySelectorAll("[data-sticky]"), t = 0; t < e.length; t++) {
@@ -73,7 +73,7 @@ t.style.marginTop = o.marginTop, t;
 }
 e.exports = t;
 },
-49: function(e) {
+160: function(e) {
 "use strict";
 function t(e, t, o) {
 c[e] = {
@@ -116,4 +116,4 @@ document.addEventListener("mousemove", o), document.addEventListener("mouseout",
 e.exports = t;
 }
 });
-//# sourceMappingURL=footer.77e59b62f3c5d7524b1e.js.map
+//# sourceMappingURL=footer.f97efa97f18f1678f22e.js.map

@@ -1,5 +1,5 @@
 webpackJsonp_name_([ 13 ], {
-106: function(e, t) {
+131: function(e, t) {
 "use strict";
 function n() {
 for (var e = document.querySelectorAll('a[href^="/"]'), t = 0; t < e.length; t++) {
@@ -22,4 +22,4 @@ n(), i();
 };
 }
 });
-//# sourceMappingURL=ebookExtras-13.77e59b62f3c5d7524b1e.js.map
+//# sourceMappingURL=ebookExtras-13.f97efa97f18f1678f22e.js.map
