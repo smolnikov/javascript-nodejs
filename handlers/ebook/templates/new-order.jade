@@ -20,7 +20,7 @@ block content
   +b("form").complex-form(data-order-form)
 
     +e.step._current
-      +e.step-content
+        +e('h2').alternate-title Выберите курс
         +b.extract._small.__extract
           each orderTemplate, i in orderTemplates
             +e.item(data-add-class-on-hover)
@@ -44,12 +44,13 @@ block content
           +e.email-note После оплаты ссылка на скачивание учебника придет на этот адрес.
 
         +e('h2').alternate-title Выберите метод оплаты
-        +b.pay-method.__pay-method
-          +e.methods
-            each paymentMethod in paymentMethods
-              +e.method(data-add-class-on-hover)
-                // classes get prefix automatically from dynamic mixins
-                +e('button')(class=["send", "_"+paymentMethod.name] name="paymentMethod" type="button" value=paymentMethod.name)
+        +e.body
+          +b.extract._small.__extract
+            include ../../payments/common/templates/payment-methods
+
+        +e.submit-line
+          +b('button')(type="submit").button._action
+            +e('span').text Продолжить
 
     +b('ul').grayed-list.__next
       +e('li').item.__next-item Подтверждение

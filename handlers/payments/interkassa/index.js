@@ -19,4 +19,11 @@ exports.createTransaction = function*(order) {
 };
 
 
-exports.title = "Интеркасса";
+
+exports.info = {
+  title: "Интеркасса",
+  name:    path.basename(__dirname),
+  hasIcon: false,
+  cards: ['visa-mastercard', 'privatbank'],
+  subtitle: "и другие методы (Украина)"
+};

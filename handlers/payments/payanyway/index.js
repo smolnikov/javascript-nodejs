@@ -19,4 +19,11 @@ exports.createTransaction = function*(order) {
 };
 
 
-exports.title = "PayAnyWay";
+exports.info = {
+  title: "Payanyway",
+  name:    path.basename(__dirname),
+  subtitle: "и много других методов",
+  cards: ['visa-mastercard'],
+  hasIcon: false
+};
+
