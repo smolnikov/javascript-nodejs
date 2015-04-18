@@ -7,7 +7,7 @@ var e = document.getElementsByClassName("sidebar__navigation-link_active");
 e[0] && e[0].classList.remove("sidebar__navigation-link_active");
 for (var t = document.getElementsByTagName("h2"), o = 0; o < t.length; o++) {
 var i = t[o];
-if (i.getBoundingClientRect().top > 0) break;
+if (i.getBoundingClientRect().top > 1) break;
 }
 if (o--, o >= 0) {
 var n = t[o].firstElementChild && t[o].firstElementChild.getAttribute("href"), a = document.querySelector('.sidebar__navigation-link a[href="' + n + '"]');
@@ -968,4 +968,4 @@ return o > 10;
 e.exports = t;
 }
 });
-//# sourceMappingURL=tutorial.49f91da0410ed6291509.js.map
+//# sourceMappingURL=tutorial.29cdf3d5ef3df918da8d.js.map
