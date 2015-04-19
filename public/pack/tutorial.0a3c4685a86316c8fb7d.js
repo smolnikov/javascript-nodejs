@@ -342,8 +342,8 @@ var k = e.querySelector('[data-action="run"]');
 k && (k.onclick = function() {
 return this.blur(), d(), !1;
 });
-var v = e.querySelector('[data-action="edit"]');
-v && (v.onclick = function() {
+var y = e.querySelector('[data-action="edit"]');
+y && (y.onclick = function() {
 return this.blur(), p(), !1;
 }), e.hasAttribute("data-autorun") && ("epub" == window.ebookType && "no-epub" == e.getAttribute("data-autorun") ? e.querySelector("iframe").remove() : setTimeout(d, 100));
 }
@@ -506,10 +506,10 @@ p.lastIndex = 0;
 var g = p.exec(f);
 if (g) {
 d && (_ = g[1].length);
-var m = g.index - 1 + _, g = g[0].slice(_), h = g.length, x = m + h, w = f.slice(0, m + 1), k = f.slice(x + 1), v = [ b, 1 ];
-w && v.push(w);
-var y = new i(r, c ? o.tokenize(g, c) : g, u);
-v.push(y), k && v.push(k), Array.prototype.splice.apply(n, v);
+var m = g.index - 1 + _, g = g[0].slice(_), h = g.length, x = m + h, w = f.slice(0, m + 1), k = f.slice(x + 1), y = [ b, 1 ];
+w && y.push(w);
+var v = new i(r, c ? o.tokenize(g, c) : g, u);
+y.push(v), k && y.push(k), Array.prototype.splice.apply(n, y);
 }
 }
 }
@@ -968,4 +968,4 @@ return o > 10;
 e.exports = t;
 }
 });
-//# sourceMappingURL=tutorial.29cdf3d5ef3df918da8d.js.map
+//# sourceMappingURL=tutorial.0a3c4685a86316c8fb7d.js.map

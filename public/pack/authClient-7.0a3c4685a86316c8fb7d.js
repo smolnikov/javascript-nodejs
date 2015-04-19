@@ -9,62 +9,62 @@ return n.originalEvent = t, n;
 }
 function n(e, n) {
 var i = t("fail", n);
-i.reason = e, r.dispatchEvent(i);
+i.reason = e, o.dispatchEvent(i);
 }
 function i(e, n) {
 var i = t("success", n);
-i.result = e, r.dispatchEvent(i);
+i.result = e, o.dispatchEvent(i);
 }
-var r = new XMLHttpRequest(), a = e.method || "GET", s = e.body, l = e.url;
-r.open(a, l, e.sync ? !1 : !0), r.method = a;
-var c = o();
-c && !e.skipCsrf && r.setRequestHeader("X-XSRF-TOKEN", c), "[object Object]" == {}.toString.call(s) && (r.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
-s = JSON.stringify(s)), e.noDocumentEvents || (r.addEventListener("loadstart", function(e) {
-r.timeStart = Date.now();
+var o = new XMLHttpRequest(), a = e.method || "GET", s = e.body, l = e.url;
+o.open(a, l, e.sync ? !1 : !0), o.method = a;
+var c = r();
+c && !e.skipCsrf && o.setRequestHeader("X-XSRF-TOKEN", c), "[object Object]" == {}.toString.call(s) && (o.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
+s = JSON.stringify(s)), e.noDocumentEvents || (o.addEventListener("loadstart", function(e) {
+o.timeStart = Date.now();
 var n = t("xhrstart", e);
 document.dispatchEvent(n);
-}), r.addEventListener("loadend", function(e) {
+}), o.addEventListener("loadend", function(e) {
 var n = t("xhrend", e);
 document.dispatchEvent(n);
-}), r.addEventListener("success", function(e) {
+}), o.addEventListener("success", function(e) {
 var n = t("xhrsuccess", e);
 n.result = e.result, document.dispatchEvent(n);
-}), r.addEventListener("fail", function(e) {
+}), o.addEventListener("fail", function(e) {
 var n = t("xhrfail", e);
 n.reason = e.reason, document.dispatchEvent(n);
-})), e.raw || r.setRequestHeader("Accept", "application/json"), r.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+})), e.raw || o.setRequestHeader("Accept", "application/json"), o.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 var u = e.normalStatuses || [ 200 ];
-return r.addEventListener("error", function(e) {
+return o.addEventListener("error", function(e) {
 n("Ошибка связи с сервером.", e);
-}), r.addEventListener("timeout", function(e) {
+}), o.addEventListener("timeout", function(e) {
 n("Превышено максимально допустимое время ожидания ответа от сервера.", e);
-}), r.addEventListener("abort", function(e) {
+}), o.addEventListener("abort", function(e) {
 n("Запрос был прерван.", e);
-}), r.addEventListener("load", function(t) {
-if (!r.status) return void n("Не получен ответ от сервера.", t);
-if (-1 == u.indexOf(r.status)) return void n("Ошибка на стороне сервера (код " + r.status + "), попытайтесь позднее", t);
-var o = r.responseText, a = r.getResponseHeader("Content-Type");
+}), o.addEventListener("load", function(t) {
+if (!o.status) return void n("Не получен ответ от сервера.", t);
+if (-1 == u.indexOf(o.status)) return void n("Ошибка на стороне сервера (код " + o.status + "), попытайтесь позднее", t);
+var r = o.responseText, a = o.getResponseHeader("Content-Type");
 if (a.match(/^application\/json/) || e.json) try {
-o = JSON.parse(o);
+r = JSON.parse(r);
 } catch (t) {
 return void n("Некорректный формат ответа от сервера", t);
 }
-i(o, t);
+i(r, t);
 }), setTimeout(function() {
-r.send(s);
-}, 0), r;
+o.send(s);
+}, 0), o;
 }
-var r = n(128), o = n(163);
+var o = n(128), r = n(163);
 document.addEventListener("xhrfail", function(e) {
-new r.Error(e.reason);
+new o.Error(e.reason);
 }), e.exports = i;
 },
 141: function(e, t, n) {
 "use strict";
 function i(e) {
-e.bem = r, e.thumb = o;
+e.bem = o, e.thumb = r;
 }
-var r = n(169)(), o = n(164).thumb;
+var o = n(169)(), r = n(164).thumb;
 e.exports = function(e, t) {
 return t = t ? Object.create(t) : {}, i(t), e(t);
 };
@@ -86,27 +86,27 @@ t.thumb = function(e, t, n) {
 if (!e) return e;
 var i = window.devicePixelRatio;
 t *= i, n *= i;
-var r = 160 >= t && 160 >= n ? "t" : 320 >= t && 320 >= n ? "m" : 640 >= t && 640 >= n ? "i" : 1024 >= t && 1024 >= n ? "h" : "";
-return e.slice(0, e.lastIndexOf(".")) + r + e.slice(e.lastIndexOf("."));
+var o = 160 >= t && 160 >= n ? "t" : 320 >= t && 320 >= n ? "m" : 640 >= t && 640 >= n ? "i" : 1024 >= t && 1024 >= n ? "h" : "";
+return e.slice(0, e.lastIndexOf(".")) + o + e.slice(e.lastIndexOf("."));
 };
 },
 169: function(e, t, n) {
 "use strict";
 var i = n(199);
 e.exports = function(e) {
-function t(t, n, r, o, a, s) {
+function t(t, n, o, r, a, s) {
 var l = s || e.default_tag, c = a.length;
 switch (s || ("inline" === a[c - 1] ? l = "span" : "list" === a[c - 1] && (l = "li"), 
-r.href ? l = "a" : r.for ? l = "label" : r.src && (l = "img")), "list" === a[c - 1] && "li" !== l ? t.push("<li>") : "list" !== a[c - 1] && "pseudo-list" !== a[c - 1] && "li" === l ? (t.push("<ul>"), 
+o.href ? l = "a" : o.for ? l = "label" : o.src && (l = "img")), "list" === a[c - 1] && "li" !== l ? t.push("<li>") : "list" !== a[c - 1] && "pseudo-list" !== a[c - 1] && "li" === l ? (t.push("<ul>"), 
 a[a.length] = "pseudo-list") : "pseudo-list" === a[c - 1] && "li" !== l && (t.push("</ul>"), 
 a.pop()), -1 !== [ "a", "abbr", "acronym", "b", "br", "code", "em", "font", "i", "img", "ins", "kbd", "map", "samp", "small", "span", "strong", "sub", "sup", "label", "p", "h1", "h2", "h3", "h4", "h5", "h6" ].indexOf(l) ? a[a.length] = "inline" : -1 !== [ "ul", "ol" ].indexOf(l) ? a[a.length] = "list" : a[a.length] = "block", 
 l) {
 case "img":
-r.alt && !r.title && (r.title = ""), r.title && !r.alt && (r.alt = r.title), r.alt || (r.alt = "");
+o.alt && !o.title && (o.title = ""), o.title && !o.alt && (o.alt = o.title), o.alt || (o.alt = "");
 break;
 
 case "input":
-r.type || (r.type = "text");
+o.type || (o.type = "text");
 break;
 
 case "html":
@@ -114,13 +114,13 @@ t.push("<!DOCTYPE HTML>");
 break;
 
 case "a":
-r.href || (r.href = "#");
+o.href || (o.href = "#");
 }
-t.push("<" + l + i.attrs(i.merge([ r ]), !0) + ">"), n && n(), -1 == [ "area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "menuitem", "meta", "param", "source", "track", "wbr" ].indexOf(l) && t.push("</" + l + ">"), 
+t.push("<" + l + i.attrs(i.merge([ o ]), !0) + ">"), n && n(), -1 == [ "area", "base", "br", "col", "embed", "hr", "img", "input", "keygen", "link", "menuitem", "meta", "param", "source", "track", "wbr" ].indexOf(l) && t.push("</" + l + ">"), 
 "list" === a[c - 1] && "li" != l && t.push("</li>");
 }
 return e = e || {}, e.prefix = e.prefix || "", e.element = e.element || "__", e.modifier = e.modifier || "_", 
-e.default_tag = e.default_tag || "div", function(n, i, r, o, a) {
+e.default_tag = e.default_tag || "div", function(n, i, o, r, a) {
 var s = this.block, l = this.attributes || {};
 if (l.class) {
 var c = l.class;
@@ -141,7 +141,7 @@ c[f].match(RegExp("^" + d + "($|(?=" + e.element + "|" + e.modifier + "))")) && 
 }
 l.class = c.sort().join(" ");
 }
-t(n, s, l, i, r, o), a || i.pop(), r.pop();
+t(n, s, l, i, o, r), a || i.pop(), o.pop();
 };
 };
 },
@@ -152,8 +152,8 @@ a.apply(this, arguments), e = e || {}, e.successRedirect || (e.successRedirect =
 this.options = e, this.setContent(p(l)), e.message && this.showFormMessage(e.message, "info"), 
 this.initEventHandlers();
 }
-var r = n(133), o = n(132), a = n(114), s = n(144), l = n(196), c = n(197), u = n(198), p = n(141);
-i.prototype = Object.create(a.prototype), o.delegateMixin(i.prototype), i.prototype.render = function() {
+var o = n(133), r = n(132), a = n(114), s = n(144), l = n(196), c = n(197), u = n(198), p = n(141);
+i.prototype = Object.create(a.prototype), r.delegateMixin(i.prototype), i.prototype.render = function() {
 a.prototype.render.apply(this, arguments), this.elem.classList.add("login-form-modal");
 }, i.prototype.successRedirect = function() {
 window.location.href == this.options.successRedirect ? window.location.reload() : window.location.href = this.options.successRedirect;
@@ -164,7 +164,7 @@ e.classList.remove("text-input_invalid");
 e.remove();
 }), this.elem.querySelector("[data-notification]").innerHTML = "";
 }, i.prototype.request = function(e) {
-var t = r(e);
+var t = o(e);
 return t.addEventListener("loadstart", function() {
 var e = this.startRequestIndication();
 t.addEventListener("loadend", e);
@@ -211,9 +211,9 @@ var i = this.request({
 method: "POST",
 url: "/auth/reverify",
 body: t
-}), r = this;
+}), o = this;
 i.addEventListener("success", function(e) {
-200 == this.status ? r.showFormMessage("\n        <p>Письмо-подтверждение отправлено ещё раз.</p>\n        <p><a href='#' data-action-verify-email='" + n + "'>перезапросить подтверждение.</a></p>\n        ", "success") : r.showFormMessage(e.result, "error");
+200 == this.status ? o.showFormMessage("\n        <p>Письмо-подтверждение отправлено ещё раз.</p>\n        <p><a href='#' data-action-verify-email='" + n + "'>перезапросить подтверждение.</a></p>\n        ", "success") : o.showFormMessage(e.result, "error");
 });
 });
 }, i.prototype.submitRegisterForm = function(e) {
@@ -230,10 +230,10 @@ method: "POST",
 url: "/auth/register",
 normalStatuses: [ 201, 400 ],
 body: n
-}), r = this;
+}), o = this;
 i.addEventListener("success", function(t) {
-if (201 == this.status) return r.setContent(p(l)), void r.showFormMessage("<p>С адреса notify@javascript.ru отправлено письмо со ссылкой-подтверждением.</p><p><a href='#' data-action-verify-email='" + e.elements.email.value + "'>перезапросить подтверждение.</a></p>", "success");
-if (400 != this.status) r.showFormMessage("Неизвестный статус ответа сервера", "error"); else for (var n in t.result.errors) r.showInputError(e.elements[n], t.result.errors[n]);
+if (201 == this.status) return o.setContent(p(l)), void o.showFormMessage("<p>С адреса notify@javascript.ru отправлено письмо со ссылкой-подтверждением.</p><p><a href='#' data-action-verify-email='" + e.elements.email.value + "'>перезапросить подтверждение.</a></p>", "success");
+if (400 != this.status) o.showFormMessage("Неизвестный статус ответа сервера", "error"); else for (var n in t.result.errors) o.showInputError(e.elements[n], t.result.errors[n]);
 });
 }
 }, i.prototype.submitForgotForm = function(e) {
@@ -248,9 +248,9 @@ method: "POST",
 url: "/auth/forgot",
 normalStatuses: [ 200, 404 ],
 body: n
-}), r = this;
+}), o = this;
 i.addEventListener("success", function(e) {
-200 == this.status ? (r.setContent(p(l)), r.showFormMessage(e.result, "success")) : 404 == this.status && r.showFormMessage(e.result, "error");
+200 == this.status ? (o.setContent(p(l)), o.showFormMessage(e.result, "success")) : 404 == this.status && o.showFormMessage(e.result, "error");
 });
 }
 }, i.prototype.showInputError = function(e, t) {
@@ -269,24 +269,24 @@ var n = !1;
 if (e.elements.email.value || (n = !0, this.showInputError(e.elements.email, "Введите, пожалуста, email.")), 
 e.elements.password.value || (n = !0, this.showInputError(e.elements.password, "Введите, пожалуста, пароль.")), 
 !n) {
-var i = r({
+var i = o({
 method: "POST",
 url: "/auth/login/local",
 noDocumentEvents: !0,
 normalStatuses: [ 200, 401 ],
 body: new FormData(e)
-}), o = this.startRequestIndication();
+}), r = this.startRequestIndication();
 i.addEventListener("success", function(e) {
-return 401 == i.status ? (o(), void t.onAuthFailure(e.result.message)) : void (t.options.callback ? (o(), 
+return 401 == i.status ? (r(), void t.onAuthFailure(e.result.message)) : void (t.options.callback ? (r(), 
 t.onAuthSuccess(e.result.user)) : t.onAuthSuccess(e.result.user));
 }), i.addEventListener("fail", function(e) {
-o(), t.onAuthFailure(e.reason);
+r(), t.onAuthFailure(e.reason);
 });
 }
 }, i.prototype.openAuthPopup = function(e) {
 this.authPopup && !this.authPopup.closed && this.authPopup.close();
-var t = 800, n = 600, i = (window.outerHeight - n) / 2, r = (window.outerWidth - t) / 2;
-window.authModal = this, this.authPopup = window.open(e, "authModal", "width=" + t + ",height=" + n + ",scrollbars=0,top=" + i + ",left=" + r);
+var t = 800, n = 600, i = (window.outerHeight - n) / 2, o = (window.outerWidth - t) / 2;
+window.authModal = this, this.authPopup = window.open(e, "authModal", "width=" + t + ",height=" + n + ",scrollbars=0,top=" + i + ",left=" + o);
 }, i.prototype.onAuthSuccess = function(e) {
 window.currentUser = e, this.options.callback ? this.options.callback() : this.successRedirect();
 }, i.prototype.onAuthFailure = function(e) {
@@ -296,20 +296,20 @@ this.showFormMessage(e || "Отказ в авторизации.", "error");
 196: function(e, t, n) {
 var i = n(199);
 e.exports = function(e) {
-var t = [], n = {}, r = e || {};
+var t = [], n = {}, o = e || {};
 return function(e) {
 t.push("");
-var r = [], o = [ "block" ];
+var o = [], r = [ "block" ];
 n.b = function(n, i, a) {
 this && this.block, this && this.attributes || {};
-e.call(this, t, r, o, n, i, a);
+e.call(this, t, o, r, n, i, a);
 }, n.e = function(e) {
-var t = this && this.block, r = this && this.attributes || {};
+var t = this && this.block, o = this && this.attributes || {};
 n.b.call({
 block: function() {
 t && t();
 },
-attributes: i.merge([ r ])
+attributes: i.merge([ o ])
 }, e, !0);
 }, n.b.call({
 block: function() {
@@ -528,26 +528,26 @@ attributes: {
 "class": "login-form"
 }
 });
-}.call(this, "bem" in r ? r.bem : "undefined" != typeof bem ? bem : void 0), t.join("");
+}.call(this, "bem" in o ? o.bem : "undefined" != typeof bem ? bem : void 0), t.join("");
 };
 },
 197: function(e, t, n) {
 var i = n(199);
 e.exports = function(e) {
-var t = [], n = {}, r = e || {};
+var t = [], n = {}, o = e || {};
 return function(e) {
 t.push("");
-var r = [], o = [ "block" ];
+var o = [], r = [ "block" ];
 n.b = function(n, i, a) {
 this && this.block, this && this.attributes || {};
-e.call(this, t, r, o, n, i, a);
+e.call(this, t, o, r, n, i, a);
 }, n.e = function(e) {
-var t = this && this.block, r = this && this.attributes || {};
+var t = this && this.block, o = this && this.attributes || {};
 n.b.call({
 block: function() {
 t && t();
 },
-attributes: i.merge([ r ])
+attributes: i.merge([ o ])
 }, e, !0);
 }, n.b.call({
 block: function() {
@@ -795,26 +795,26 @@ attributes: {
 "class": "login-form"
 }
 });
-}.call(this, "bem" in r ? r.bem : "undefined" != typeof bem ? bem : void 0), t.join("");
+}.call(this, "bem" in o ? o.bem : "undefined" != typeof bem ? bem : void 0), t.join("");
 };
 },
 198: function(e, t, n) {
 var i = n(199);
 e.exports = function(e) {
-var t = [], n = {}, r = e || {};
+var t = [], n = {}, o = e || {};
 return function(e) {
 t.push("");
-var r = [], o = [ "block" ];
+var o = [], r = [ "block" ];
 n.b = function(n, i, a) {
 this && this.block, this && this.attributes || {};
-e.call(this, t, r, o, n, i, a);
+e.call(this, t, o, r, n, i, a);
 }, n.e = function(e) {
-var t = this && this.block, r = this && this.attributes || {};
+var t = this && this.block, o = this && this.attributes || {};
 n.b.call({
 block: function() {
 t && t();
 },
-attributes: i.merge([ r ])
+attributes: i.merge([ o ])
 }, e, !0);
 }, n.b.call({
 block: function() {
@@ -996,7 +996,7 @@ attributes: {
 "class": "login-form"
 }
 });
-}.call(this, "bem" in r ? r.bem : "undefined" != typeof bem ? bem : void 0), t.join("");
+}.call(this, "bem" in o ? o.bem : "undefined" != typeof bem ? bem : void 0), t.join("");
 };
 },
 199: function(e, t, n) {
@@ -1004,14 +1004,14 @@ attributes: {
 function i(e) {
 return null != e && "" !== e;
 }
-function r(e) {
-return (Array.isArray(e) ? e.map(r) : e && "object" == typeof e ? Object.keys(e).filter(function(t) {
+function o(e) {
+return (Array.isArray(e) ? e.map(o) : e && "object" == typeof e ? Object.keys(e).filter(function(t) {
 return e[t];
 }) : [ e ]).filter(i).join(" ");
 }
-t.merge = function o(e, t) {
+t.merge = function r(e, t) {
 if (1 === arguments.length) {
-for (var n = e[0], r = 1; r < e.length; r++) n = o(n, e[r]);
+for (var n = e[0], o = 1; o < e.length; o++) n = r(n, e[o]);
 return n;
 }
 var a = e.class, s = t.class;
@@ -1019,39 +1019,39 @@ var a = e.class, s = t.class;
 e.class = a.concat(s).filter(i));
 for (var l in t) "class" != l && (e[l] = t[l]);
 return e;
-}, t.joinClasses = r, t.cls = function(e, n) {
-for (var i = [], o = 0; o < e.length; o++) i.push(n && n[o] ? t.escape(r([ e[o] ])) : r(e[o]));
-var a = r(i);
+}, t.joinClasses = o, t.cls = function(e, n) {
+for (var i = [], r = 0; r < e.length; r++) i.push(n && n[r] ? t.escape(o([ e[r] ])) : o(e[r]));
+var a = o(i);
 return a.length ? ' class="' + a + '"' : "";
 }, t.style = function(e) {
 return e && "object" == typeof e ? Object.keys(e).map(function(t) {
 return t + ":" + e[t];
 }).join(";") : e;
-}, t.attr = function(e, n, i, r) {
-return "style" === e && (n = t.style(n)), "boolean" == typeof n || null == n ? n ? " " + (r ? e : e + '="' + e + '"') : "" : 0 == e.indexOf("data") && "string" != typeof n ? (-1 !== JSON.stringify(n).indexOf("&"), 
+}, t.attr = function(e, n, i, o) {
+return "style" === e && (n = t.style(n)), "boolean" == typeof n || null == n ? n ? " " + (o ? e : e + '="' + e + '"') : "" : 0 == e.indexOf("data") && "string" != typeof n ? (-1 !== JSON.stringify(n).indexOf("&"), 
 n && "function" == typeof n.toISOString, " " + e + "='" + JSON.stringify(n).replace(/'/g, "&apos;") + "'") : i ? (n && "function" == typeof n.toISOString, 
 " " + e + '="' + t.escape(n) + '"') : (n && "function" == typeof n.toISOString, 
 " " + e + '="' + n + '"');
 }, t.attrs = function(e, n) {
-var i = [], o = Object.keys(e);
-if (o.length) for (var a = 0; a < o.length; ++a) {
-var s = o[a], l = e[s];
-"class" == s ? (l = r(l)) && i.push(" " + s + '="' + l + '"') : i.push(t.attr(s, l, !1, n));
+var i = [], r = Object.keys(e);
+if (r.length) for (var a = 0; a < r.length; ++a) {
+var s = r[a], l = e[s];
+"class" == s ? (l = o(l)) && i.push(" " + s + '="' + l + '"') : i.push(t.attr(s, l, !1, n));
 }
 return i.join("");
 }, t.escape = function(e) {
 var t = (e + "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 return t === "" + e ? e : t;
-}, t.rethrow = function a(e, t, i, r) {
+}, t.rethrow = function a(e, t, i, o) {
 if (!(e instanceof Error)) throw e;
-if (!("undefined" == typeof window && t || r)) throw e.message += " on line " + i, 
+if (!("undefined" == typeof window && t || o)) throw e.message += " on line " + i, 
 e;
 try {
-r = r || n(91).readFileSync(t, "utf8");
-} catch (o) {
+o = o || n(91).readFileSync(t, "utf8");
+} catch (r) {
 a(e, null, i);
 }
-var s = 3, l = r.split("\n"), c = Math.max(i - s, 0), u = Math.min(l.length, i + s), s = l.slice(c, u).map(function(e, t) {
+var s = 3, l = o.split("\n"), c = Math.max(i - s, 0), u = Math.min(l.length, i + s), s = l.slice(c, u).map(function(e, t) {
 var n = t + c + 1;
 return (n == i ? "  > " : "    ") + n + "| " + e;
 }).join("\n");
@@ -1060,4 +1060,4 @@ e;
 };
 }
 });
-//# sourceMappingURL=authClient-7.29cdf3d5ef3df918da8d.js.map
+//# sourceMappingURL=authClient-7.0a3c4685a86316c8fb7d.js.map
