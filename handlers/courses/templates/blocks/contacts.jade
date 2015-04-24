@@ -1,0 +1,34 @@
++b('form')(data-elem="contact").complex-form._step_2
+  +e.step._current
+    +b.course-register-contacts.courses-register-common
+      +e('h2').title.courses-register-common__title Контактная информация
+      +e('p').note
+        | Оставьте ваши контактные данные, чтобы мы могли связаться с вами
+        | в случае необходимости
+
+      +e.body
+        +b.contact-form
+          +e.content
+            +e.fields
+              +e.name
+                label(for="contact-name") Имя и Фамилия:
+                +b.text-input._small.__name-input
+                  +e('input')(data-elem="contactName", required, value="Tester").control#contact-name
+              +e.tel
+                label(for="contact-phone") Телефон:
+                +b.full-phone.__full-phone
+                  +e.tel-wrap
+                    +b.text-input._small.__tel
+                      +e('input').control#contact-phone(data-elem="contactPhone" type='tel', pattern='[+0-9()# ]{6,}', placeholder='+X (XXX) XXX-XXXX')
+            +e.note
+              +e('h5').note-title Ваши данные в безопасности
+              p
+                | Никакие ваши личные данные
+                | не будут переданы третьим лицам, кроме как по вашему желанию или для
+                | целей выполнения заключенного с вами договора.
+
+      +e.next.courses-register-common__next
+        +b('button')(type="submit").button._action
+          +e('span').text Сохранить и продолжить
+
+

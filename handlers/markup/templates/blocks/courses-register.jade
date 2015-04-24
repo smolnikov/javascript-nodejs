@@ -4,7 +4,7 @@
 // _step_3 Pyament
 // _step_3 Result
 
-+b.courses-register._step_1
++b.courses-register._step_4
 
     +b.receipts._register
 
@@ -70,8 +70,9 @@
               +e.body
                 +b.number-input
                   +e('button')(disabled).btn._dec &minus;
-                  +b.text-input._small.__text
-                    +e('input')(type="number" value="1" min="1").control.__input
+                  +b.text-input._small.__text._invalid
+                    +e('input')(type="number" value="1").control.__input
+                    +e('span').err Укажите поменьше людей
                   +e('button').btn._inc +
 
             +e.is-participant.course-register-settings__cell
@@ -91,7 +92,7 @@
                   +e('span').secondary (≈&nbsp;200$)
 
           +e.add-participants
-            +b.course-add-participants
+            +b.course-add-participants._visible
               +e('input')(type="checkbox" id="add-participants").checkbox
               +e('label').add(for="add-participants") Укзать участников
               +e('p').note (это можно сделать позже)
@@ -100,7 +101,7 @@
                 +e('ul').dropdown-list
                   - var n = 0
                     while n < 6
-                      +e('li').dropdown-item
+                      +b('li').course-add-participants-item
                         +e('label').participant
                           +e('span').participant-n Участник
                           +b('span').text-input
@@ -134,13 +135,9 @@
                   +e.tel
                     label(for="contact-phone") Телефон:
                     +b.full-phone.__full-phone
-                      +e.code-wrap
-                        +b('select').input-select._small.__codes
-                          +e('option').option(value="+7") RU (+7)
-                          +e('option').option(value="+38") UA (+38)
                       +e.tel-wrap
                         +b.text-input._small.__tel
-                          +e('input').control#contact-phone(placeholder="XXX XXX-XX-XX")
+                          +e('input').control#contact-phone(placeholder="+X (XXX) XXX-XX-XX")
                 +e.note
                   +e('h5').note-title Ваши данные в безопасности
                   p
@@ -169,7 +166,7 @@
                 - paymentMethods.push({ name: 'webmoney', image: true });
                 - paymentMethods.push({ name: 'paypal', image: true, settings: true });
                 - paymentMethods.push({ name: 'payanyway', image: false, title: 'Payanyway', subtitle: 'и много других методов', cards: ['visa-mastercard'] });
-                - paymentMethods.push({ name: 'banksimple', image: false, title: 'Банковская квитанция'});
+                - paymentMethods.push({ name: 'banksimple', image: false, title: 'Банковсий перевод', subtitle: 'или другой банк', cards: ['sberbank']});
                 - paymentMethods.push({ name: 'interkassa', image: false, title: 'Interkassa', subtitle: 'и другие методы (Украина)', cards: ['visa-mastercard', 'privatbank'] });
                 - paymentMethods.push({ name: 'invoice', image: false, title: 'Счет на компанию', subtitle: 'Для юрлиц из России', settings: true });
 
@@ -223,7 +220,40 @@
 
             p Если у вас возникли какие-либо вопросы, присылайте их на <a href="#{mailto}">orders@javascript.ru</a>.
 
+    +b.login-form(data-form="login").complex-form.complex-form_step_4
+        +e.step.complex-form__step.complex-form__step_current
+            +e('form').form(action="#")
+              +e.line
+                +e('label').label(for="auth-email") Email:
+                +b('span').text-input.__input
+                  +e('input').control#auth-email(name="email" type="email" value="bla@bla.com" disabled)
+              +e.line
+                +e('label').label(for="auth-password") Пароль:
+                +b('span').text-input._with-aside.__input
+                  +e('input').control#auth-password(type="password", name="password")
+                  +e('button').aside.__forgot.__button-link(type="button" data-switch="forgot-form") Забыли?
+              +e.line.__footer
+                  +b('button').button._action(type="submit")
+                    +e('span').text Войти
 
+    +b.login-form(data-form="login").complex-form.complex-form_step_4
+        +e.step.complex-form__step.complex-form__step_current
+            +e('form').form(action="#")
+              +e.line
+                +e('label').label(for="auth-email") Email:
+                +b('span').text-input.__input
+                  +e('input').control#auth-email(name="email" type="email" value="bla@bla.com" disabled)
+              +e.line
+                +e('label').label(for="auth-login") Имя пользвателя:
+                +b('span').text-input.__input
+                  +e('input').control#auth-login(name="login" type="text")
+              +e.line
+                +e('label').label(for="auth-password") Новый пароль:
+                +b('span').text-input._with-aside.__input
+                  +e('input').control#auth-password(type="password", name="password")
+              +e.line.__footer
+                  +b('button').button._action(type="submit")
+                    +e('span').text Войти
 
     +b('ul').grayed-list
         +e('li').item._step_2 Контактная информация

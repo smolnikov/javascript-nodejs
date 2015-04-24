@@ -1,35 +1,89 @@
+const payments = require('payments');
+var getOrderInfo = payments.getOrderInfo;
 var Course = require('../models/course');
 var CourseGroup = require('../models/courseGroup');
 var config = require('config');
+var moment = require('momentWithLocale');
+var money = require('money');
+var pluralize = require('textUtil/pluralize');
+
 
 exports.get = function*() {
+  this.nocache();
 
-  var group = this.locals.group = yield CourseGroup.findOne({
-    slug: this.params.group
-  }).populate('course').exec();
+  this.locals.sitetoolbar = true;
 
-  var course = group.course;
+  var group;
 
-  if (!this.locals.group) {
-    this.throw(404);
+  if (this.params.orderNumber) {
+    yield* this.loadOrder({
+      ensureSuccessTimeout: 5000
+    });
+
+    this.locals.order = this.order;
+    this.locals.title = 'Заказ №' + this.order.number;
+
+    group = this.locals.group = yield CourseGroup.findOne({
+      slug: this.order.data.slug
+    }).populate('course').exec();
+
+  } else {
+
+    if (!this.isAuthenticated()) {
+      this.redirect(group.course.getUrl());
+      return;
+    }
+
+    group = this.locals.group = yield CourseGroup.findOne({
+      slug: this.params.group
+    }).populate('course').exec();
+
+    this.locals.title = group.course.title;
   }
 
-  // only authorized users may signup
-  if (!this.isAuthenticated()) {
-    this.redirect(group.course.getUrl());
-    return;
+  if (!group) {
+    this.throw(404, "Нет такой группы.");
   }
 
-
-  this.locals.title = course.title;
+  this.locals.paymentMethods = require('../lib/paymentMethods');
 
   this.locals.breadcrumbs = [
-    { title: 'JavaScript.ru', url: 'http://javascript.ru' },
-    { title: 'Курсы', url: '/courses' }
+    {title: 'JavaScript.ru', url: 'http://javascript.ru'},
+    {title: 'Курсы', url: '/courses'}
   ];
 
+  if (this.order) {
+    this.locals.orderInfo = yield* getOrderInfo(this.order);
+    this.locals.receiptTitle = `Участие в курсе для ${this.order.data.count}
+      ${pluralize(this.order.data.count, 'человека', 'человек', 'человек')}`;
 
-  // TODO
+    this.locals.receiptAmount = this.order.amount;
+    this.locals.receiptContactPhone = this.order.data.contactPhone;
+    this.locals.receiptContactName = this.order.data.contactName;
+
+  } else {
+    this.locals.orderInfo = {};
+  }
+
+  this.locals.mailto = "mailto:orders@javascript.ru";
+  if (this.order) {
+    this.locals.mailto += '?subject=' + encodeURIComponent('Заказ ' + this.order.number);
+  }
+
+
+  this.locals.formatGroupDate = function(date) {
+    return moment(date).format('D MMM YY').replace(/[а-я]/, function(letter) {
+      return letter.toUpperCase();
+    });
+  };
+
+  this.locals.rateUsdRub = money.convert(1, {from: 'USD', to: 'RUB'});
+
+  this.locals.groupInfo = {
+    price:           group.price,
+    participantsMax: group.participantsLimit,
+    slug:            group.slug
+  };
 
   this.body = this.render('signup');
 };

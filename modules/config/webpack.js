@@ -59,7 +59,7 @@ var webpackConfig = {
     search:           'search/client',
     quiz:             'quiz/client',
     ebook:            'ebook/client',
-    //invoice:          'invoice/client',
+    courses:          'courses/client',
     footer:           'client/footer',
     nodejsScreencast: 'nodejsScreencast/client'
   },
@@ -159,7 +159,8 @@ var webpackConfig = {
 };
 
 
-if (process.env.NODE_ENV != 'development') { // production, ebook
+//if (process.env.NODE_ENV != 'development') { // production, ebook
+if (process.env.NODE_ENV == 'production') { // production, ebook
   webpackConfig.plugins.push(
     function clearBeforeRun() {
       function clear(compiler, callback) {

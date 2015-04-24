@@ -1,0 +1,19 @@
+
++b('form')(data-elem="payment").complex-form._step_3
+  +e.step._current
+    +b.course-register-payment.courses-register-common
+      +e('h2').title.courses-register-common__title Оплата
+      if orderInfo.status == 'pending'
+        p Не оплачивайте дважды. Меняйте метод оплаты лишь если уверены, что оплата не произошла.
+
+      +e.body
+        include ../../../payments/common/templates/payment-methods
+
+      if orderInfo.status
+        p Если у вас возникли какие-либо вопросы, присылайте их на <a href="#{mailto}">orders@javascript.ru</a>.
+
+      +e.next.courses-register-common__next
+        +b('button')(type="submit").button._action
+          +e('span').text Перейти к оплате
+
+

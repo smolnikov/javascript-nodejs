@@ -1,9 +1,9 @@
 //require("time-require");
 
 const config = require('config');
-
+const fs = require('fs');
 const Application = require('application');
-var app = new Application();
+const app = new Application();
 
 if (process.env.NODE_ENV != 'development') {
 
@@ -38,14 +38,6 @@ app.requireHandler('requestId');
 app.requireHandler('requestLog');
 
 app.requireHandler('nocache');
-
-/*
- app.id = Math.random();
- app.use(function*(next) {
- console.log(app.id);
- yield next;
- });
- */
 
 //app.requireHandler('time');
 
@@ -92,13 +84,6 @@ app.requireHandler('flash');
 
 app.requireHandler('paymentsMethods');
 
-//app.requireHandler('sendMail');
-
-// right before endpoints
-// so that the error won't fall through the handlers above
-// all above ^^^ handlers can finish processing the usual way
-//app.requireHandler('throwFinish');
-
 // ======== Endpoint services that actually generate something ==========
 
 var endpoints = [];
@@ -121,10 +106,13 @@ endpoints.forEach(function(name) {
   app.requireHandler(name);
 });
 
-require('fs').readdirSync(config.extraHandlersRoot).forEach(function(extraHandler) {
-  if (extraHandler[0] == '.') return;
-  app.requireHandler(extraHandler);
-});
+
+if (fs.existsSync(config.extraHandlersRoot)) {
+  fs.readdirSync(config.extraHandlersRoot).forEach(function(extraHandler) {
+    if (extraHandler[0] == '.') return;
+    app.requireHandler(extraHandler);
+  });
+}
 
 // uncomment for time-require to work
 //process.emit('exit');
