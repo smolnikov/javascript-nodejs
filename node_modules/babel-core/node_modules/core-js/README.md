@@ -1035,22 +1035,50 @@ dict.toString;            // => undefined
 Dict.isDict({});     // => false
 Dict.isDict(Dict()); // => true
 ```
-`Dict.keys`, `Dict.values` and `Dict.entries` returns iterators for objects, [examples](http://goo.gl/JRkgM8):
+`Dict.keys`, `Dict.values` and `Dict.entries` returns iterators for objects, [examples](http://goo.gl/4u8UDK):
 ```javascript
 var dict = {a: 1, b: 2, c: 3};
 
 for(var key of Dict.keys(dict))log(key); // => 'a', 'b', 'c'
+
+for(var val of Dict.values(dict))log(val); // => 1, 2, 3
 
 for(var [key, val] of Dict.entries(dict)){
   log(key); // => 'a', 'b', 'c'
   log(val); // => 1, 2, 3
 }
 
-$for(Dict.values(dict)).of(log); // => 1, 2, 3
-
 new Map(Dict.entries(dict)); // => Map {a: 1, b: 2, c: 3}
 
 new Map((for([k, v] of Dict.entries(dict))if(v % 2)[k + k, v * v])); // =>  Map {aa: 1, cc: 9}
+```
+Basic dict operations for objects with prototype [example](http://goo.gl/B28UnG):
+```js
+'q' in {q: 1};            // => true
+'toString' in {};         // => true
+
+Dict.has({q: 1}, 'q');    // => true
+Dict.has({}, 'toString'); // => false
+
+({q: 1})['q'];            // => 1
+({}).toString;            // => function toString(){ [native code] }
+
+Dict.get({q: 1}, 'q');    // => 1
+Dict.get({}, 'toString'); // => undefined
+
+var O = {};
+O['q'] = 1;
+O['q'];         // => 1
+O['__proto__'] = {w: 2};
+O['__proto__']; // => {w: 2}
+O['w'];         // => 2
+
+var O = {};
+Dict.set(O, 'q', 1);
+O['q'];         // => 1
+Dict.set(O, '__proto__', {w: 2});
+O['__proto__']; // => {w: 2}
+O['w'];         // => undefined
 ```
 Other methods of `Dict` module are static equialents of `Array.prototype` methods for dictionaries, [examples](http://goo.gl/yARYXR):
 ```javascript
@@ -1231,11 +1259,9 @@ Number
   #random(lim = 0) -> num
   #{...Math} 
 ```
-Number Iterator [examples](http://goo.gl/mkReUE):
+Number Iterator [examples](http://goo.gl/RI60Ot):
 ```javascript
 for(var i of 3)log(i); // => 0, 1, 2
-
-$for(3).of(log); // => 0, 1, 2
 
 Array.from(10, Math.random); // => [0.9817775336559862, 0.02720663254149258, ...]
 
@@ -1249,16 +1275,6 @@ Array.from(10, function(it){
 [for(i of 10)if(i % 2)i * i]; // => [1, 9, 25, 49, 81]
 
 Dict((for(i of 3)['key' + i, !(i % 2)])); // => {key0: true, key1: false, key2: true}
-
-$for(10).filter(function(i){
-  return i % 2;
-}).array(function(i){
-  return i * i;
-});  // => [1, 9, 25, 49, 81]
-
-Dict($for(3).map(function(i){
-  return ['key' + i, !(i % 2)];
-})); // => {key0: true, key1: false, key2: true}
 ```
 `Math` methods in `Number.prototype` [examples](http://goo.gl/06bs1k):
 ```javascript
@@ -1297,6 +1313,9 @@ delay(1e3).then(() => log('after 1 sec'));
 ```
 
 ## Changelog
+##### 0.8.4 - 2015.04.18
+  * uses `webpack` instead of `browserify` for browser builds - more compression-friendly result
+
 ##### 0.8.3 - 2015.04.14
   * fixed `Array` statics with single entry points
 
