@@ -160,14 +160,14 @@ attributes: {
 }
 }, "h3"), n.e.call({
 block: function() {
-t.push("Время от времени проходит онлайн-курс по Node.JS / IO.JS.");
+t.push("Время от времени я провожу онлайн-курс по Node.JS / IO.JS.");
 },
 attributes: {
 "class": "text"
 }
 }, "p"), n.e.call({
 block: function() {
-t.push("Курс &mdash; это практическая разработка, создание архитектуры и решение задач. Ведущий использует Node.JS, начиная с 2010 года.");
+t.push("Курс &mdash; это практическая разработка, создание архитектуры и решение задач.");
 }
 }, "p"), n.e.call({
 block: function() {
@@ -353,4 +353,4 @@ t(n, a, s, i, r), o || i.pop();
 };
 }
 });
-//# sourceMappingURL=nodejsScreencast.5e396e93c365854ef6bd.js.map
+//# sourceMappingURL=nodejsScreencast.15cc8f6488e8eca8a5ff.js.map
