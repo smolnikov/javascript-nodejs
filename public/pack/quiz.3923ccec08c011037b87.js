@@ -81,6 +81,7 @@ elemClass: "button_loading"
 u.start(), c.disabled = !0, o.addEventListener("fail", i), o.addEventListener("success", function(t) {
 t.result.reload ? window.location.reload() : t.result.html ? (i(), document.querySelector(".quiz-timeline .quiz-timeline__number_current").classList.remove("quiz-timeline__number_current"), 
 document.querySelectorAll(".quiz-timeline span")[t.result.questionNumber].classList.add("quiz-timeline__number_current"), 
+document.querySelector(".quiz-tablet-timeline__num").innerHTML = "&nbsp;" + (t.result.questionNumber + 1) + "&nbsp;", 
 e.innerHTML = t.result.html, l.highlight(e)) : i();
 });
 };
@@ -887,4 +888,4 @@ return n > 10;
 e.exports = t;
 }
 });
-//# sourceMappingURL=quiz.15cc8f6488e8eca8a5ff.js.map
+//# sourceMappingURL=quiz.3923ccec08c011037b87.js.map

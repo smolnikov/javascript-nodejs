@@ -18,61 +18,61 @@ return o.originalEvent = t, o;
 }
 function o(e, o) {
 var i = t("fail", o);
-i.reason = e, n.dispatchEvent(i);
+i.reason = e, r.dispatchEvent(i);
 }
 function i(e, o) {
 var i = t("success", o);
-i.result = e, n.dispatchEvent(i);
+i.result = e, r.dispatchEvent(i);
 }
-var n = new XMLHttpRequest(), a = e.method || "GET", l = e.body, s = e.url;
-n.open(a, s, e.sync ? !1 : !0), n.method = a;
-var p = r();
-p && !e.skipCsrf && n.setRequestHeader("X-XSRF-TOKEN", p), "[object Object]" == {}.toString.call(l) && (n.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
-l = JSON.stringify(l)), e.noDocumentEvents || (n.addEventListener("loadstart", function(e) {
-n.timeStart = Date.now();
+var r = new XMLHttpRequest(), n = e.method || "GET", s = e.body, l = e.url;
+r.open(n, l, e.sync ? !1 : !0), r.method = n;
+var p = a();
+p && !e.skipCsrf && r.setRequestHeader("X-XSRF-TOKEN", p), "[object Object]" == {}.toString.call(s) && (r.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
+s = JSON.stringify(s)), e.noDocumentEvents || (r.addEventListener("loadstart", function(e) {
+r.timeStart = Date.now();
 var o = t("xhrstart", e);
 document.dispatchEvent(o);
-}), n.addEventListener("loadend", function(e) {
+}), r.addEventListener("loadend", function(e) {
 var o = t("xhrend", e);
 document.dispatchEvent(o);
-}), n.addEventListener("success", function(e) {
+}), r.addEventListener("success", function(e) {
 var o = t("xhrsuccess", e);
 o.result = e.result, document.dispatchEvent(o);
-}), n.addEventListener("fail", function(e) {
+}), r.addEventListener("fail", function(e) {
 var o = t("xhrfail", e);
 o.reason = e.reason, document.dispatchEvent(o);
-})), e.raw || n.setRequestHeader("Accept", "application/json"), n.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+})), e.raw || r.setRequestHeader("Accept", "application/json"), r.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 var _ = e.normalStatuses || [ 200 ];
-return n.addEventListener("error", function(e) {
+return r.addEventListener("error", function(e) {
 o("Ошибка связи с сервером.", e);
-}), n.addEventListener("timeout", function(e) {
+}), r.addEventListener("timeout", function(e) {
 o("Превышено максимально допустимое время ожидания ответа от сервера.", e);
-}), n.addEventListener("abort", function(e) {
+}), r.addEventListener("abort", function(e) {
 o("Запрос был прерван.", e);
-}), n.addEventListener("load", function(t) {
-if (!n.status) return void o("Не получен ответ от сервера.", t);
-if (-1 == _.indexOf(n.status)) return void o("Ошибка на стороне сервера (код " + n.status + "), попытайтесь позднее", t);
-var r = n.responseText, a = n.getResponseHeader("Content-Type");
-if (a.match(/^application\/json/) || e.json) try {
-r = JSON.parse(r);
+}), r.addEventListener("load", function(t) {
+if (!r.status) return void o("Не получен ответ от сервера.", t);
+if (-1 == _.indexOf(r.status)) return void o("Ошибка на стороне сервера (код " + r.status + "), попытайтесь позднее", t);
+var a = r.responseText, n = r.getResponseHeader("Content-Type");
+if (n.match(/^application\/json/) || e.json) try {
+a = JSON.parse(a);
 } catch (t) {
 return void o("Некорректный формат ответа от сервера", t);
 }
-i(r, t);
+i(a, t);
 }), setTimeout(function() {
-n.send(l);
-}, 0), n;
+r.send(s);
+}, 0), r;
 }
-var n = o(128), r = o(163);
+var r = o(128), a = o(163);
 document.addEventListener("xhrfail", function(e) {
-new n.Error(e.reason);
+new r.Error(e.reason);
 }), e.exports = i;
 },
 145: function(e, t, o) {
 "use strict";
 var i = function(e, t) {
 if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
-}, n = function() {
+}, r = function() {
 function e(e, t) {
 for (var o = 0; o < t.length; o++) {
 var i = t[o];
@@ -83,7 +83,7 @@ Object.defineProperty(e, i.key, i);
 return function(t, o, i) {
 return o && e(t.prototype, o), i && e(t, i), t;
 };
-}(), r = (o(133), o(128)), a = o(132), l = o(171).FormPayment, s = (o(144), o(114), 
+}(), a = (o(133), o(128)), n = o(132), s = o(171).FormPayment, l = (o(144), o(114), 
 function() {
 function e(t) {
 var o = this;
@@ -97,10 +97,10 @@ this.elem.querySelector("[data-order-form-step-receipt]").style.display = "none"
 e.delegateTarget.querySelector('[type="radio"]').checked = !0;
 });
 }
-return n(e, [ {
+return r(e, [ {
 key: "onSubmit",
 value: function(e) {
-e.preventDefault(), new l(this, this.elem.querySelector(".pay-method")).submit();
+e.preventDefault(), new s(this, this.elem.querySelector(".pay-method")).submit();
 }
 }, {
 key: "getOrderData",
@@ -114,7 +114,7 @@ if (this.elem.elements.email) {
 if (!this.elem.elements.email.value) return window.ga("send", "event", "payment", "checkout-no-email", "ebook"), 
 window.metrika.reachGoal("CHECKOUT-NO-EMAIL", {
 product: "ebook"
-}), new r.Error("Введите email."), this.elem.elements.email.scrollIntoView(), setTimeout(function() {
+}), new a.Error("Введите email."), this.elem.elements.email.scrollIntoView(), setTimeout(function() {
 window.scrollBy(0, -200);
 }, 0), void this.elem.elements.email.focus();
 e.email = this.elem.elements.email.value;
@@ -123,7 +123,7 @@ return e;
 }
 } ]), e;
 }());
-a.delegateMixin(s.prototype), e.exports = s;
+n.delegateMixin(l.prototype), e.exports = l;
 },
 163: function(e) {
 "use strict";
@@ -140,7 +140,7 @@ t.FormPayment = o(201);
 "use strict";
 var i = function(e, t) {
 if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
-}, n = function() {
+}, r = function() {
 function e(e, t) {
 for (var o = 0; o < t.length; o++) {
 var i = t[o];
@@ -151,11 +151,11 @@ Object.defineProperty(e, i.key, i);
 return function(t, o, i) {
 return o && e(t.prototype, o), i && e(t, i), t;
 };
-}(), r = o(128), a = o(133), l = o(144), s = (o(114), function() {
+}(), a = o(128), n = o(133), s = o(144), l = (o(114), function() {
 function e(t, o) {
 i(this, e), this.orderForm = t, this.paymentMethodElem = o;
 }
-return n(e, [ {
+return r(e, [ {
 key: "request",
 value: function(e) {
 function t() {
@@ -165,7 +165,7 @@ return t.toString = function() {
 return "" + e;
 }, t;
 }(function(e) {
-var t = a(e);
+var t = n(e);
 return t.addEventListener("loadstart", function() {
 var e = this.startRequestIndication();
 t.addEventListener("loadend", e);
@@ -176,7 +176,7 @@ key: "startRequestIndication",
 value: function() {
 var e = this;
 this.paymentMethodElem.classList.add("modal-overlay_light");
-var t = new l({
+var t = new s({
 elem: this.paymentMethodElem,
 size: "medium",
 "class": "pay-method__spinner"
@@ -199,9 +199,9 @@ value: function() {
 var e = this, t = this.orderForm.getOrderData();
 if (t) {
 var o = this.readPaymentData();
-if (!o.paymentMethod) return void new r.Error("Выберите метод оплаты.");
+if (!o.paymentMethod) return void new a.Error("Выберите метод оплаты.");
 for (var i in o) t[i] = o[i];
-var n = a({
+var r = n({
 method: "POST",
 url: "/payments/common/checkout",
 normalStatuses: [ 200, 403, 400 ],
@@ -220,20 +220,20 @@ product: this.orderForm.product,
 method: t.paymentMethod,
 price: t.amount
 }), window.ga("send", "event", "payment", "checkout", "ebook"), window.ga("send", "event", "payment", "checkout-method-" + t.paymentMethod, this.orderForm.product);
-var l = this.startRequestIndication();
-n.addEventListener("success", function(o) {
-if (403 == n.status) return new r.Error("<p>" + (o.result.description || o.result.message) + "</p><p>Пожалуйста, начните оформление заново.</p><p>Если вы считаете, что на сервере ошибка &mdash; свяжитесь со <a href='mailto:orders@javascript.ru'>службой поддержки</a>.</p>"), 
-void l();
-if (400 == n.status) return new r.Error("<p>" + o.result.message + "</p><p>Если вы считаете, что произошла ошибка &mdash; свяжитесь со <a href='mailto:orders@javascript.ru'>службой поддержки</a>.</p>"), 
-void l();
+var s = this.startRequestIndication();
+r.addEventListener("success", function(o) {
+if (403 == r.status) return new a.Error("<p>" + (o.result.description || o.result.message) + "</p><p>Пожалуйста, начните оформление заново.</p><p>Если вы считаете, что на сервере ошибка &mdash; свяжитесь со <a href='mailto:orders@javascript.ru'>службой поддержки</a>.</p>"), 
+void s();
+if (400 == r.status) return new a.Error("<p>" + o.result.message + "</p><p>Если вы считаете, что произошла ошибка &mdash; свяжитесь со <a href='mailto:orders@javascript.ru'>службой поддержки</a>.</p>"), 
+void s();
 var i = o.result;
 if (i.form) {
 window.ga("ec:setAction", "purchase", {
 id: i.orderNumber
 });
-var a = document.createElement("div");
-a.hidden = !0, a.innerHTML = i.form, document.body.appendChild(a);
-var s = function(e) {
+var n = document.createElement("div");
+n.hidden = !0, n.innerHTML = i.form, document.body.appendChild(n);
+var l = function(e) {
 function t() {
 return e.apply(this, arguments);
 }
@@ -241,23 +241,23 @@ return t.toString = function() {
 return "" + e;
 }, t;
 }(function() {
-s.called || (s.called = !0, a.firstChild.submit());
+l.called || (l.called = !0, n.firstChild.submit());
 });
 window.ga("send", "event", "payment", "purchase", "ebook", {
-hitCallback: s
-}), setTimeout(s, 500), window.metrika.reachGoal("PURCHASE", {
+hitCallback: l
+}), setTimeout(l, 500), window.metrika.reachGoal("PURCHASE", {
 product: e.orderForm.product,
 method: t.paymentMethod,
 price: t.amount,
 number: i.orderNumber
 });
-} else l(), new r.Error("Ошибка на сервере, свяжитесь со <a href='mailto:orders@javascript.ru'>службой поддержки</a>.");
-}), n.addEventListener("fail", l);
+} else s(), new a.Error("Ошибка на сервере, свяжитесь со <a href='mailto:orders@javascript.ru'>службой поддержки</a>.");
+}), r.addEventListener("fail", s);
 }
 }
 } ]), e;
 }());
-e.exports = s;
+e.exports = l;
 }
 });
-//# sourceMappingURL=ebook.15cc8f6488e8eca8a5ff.js.map
+//# sourceMappingURL=ebook.3923ccec08c011037b87.js.map
