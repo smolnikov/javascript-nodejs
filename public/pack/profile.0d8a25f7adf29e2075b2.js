@@ -118,7 +118,9 @@ headers: {
 transformRequest: i.identity,
 data: new FormData()
 }).then(function() {
-alert("Пользователь удалён."), window.location.href = "/";
+new r.Success("Пользователь удалён."), setTimeout(function() {
+window.location.href = "/";
+}, 1500);
 }, function(e) {
 new r.Error("Ошибка загрузки, статус " + e.status);
 });
@@ -1680,4 +1682,4 @@ throw Error("Unsupported count: " + e);
 e.exports = n;
 }
 });
-//# sourceMappingURL=profile.32a1f8398917f38926af.js.map
+//# sourceMappingURL=profile.0d8a25f7adf29e2075b2.js.map
