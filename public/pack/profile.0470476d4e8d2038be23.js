@@ -1,8 +1,8 @@
 var profile = webpackJsonp_name_([ 8 ], {
 0: function(e, t, n) {
 "use strict";
-var i = n(1), r = n(128), o = n(140), a = i.module("profile", [ "ui.router", "ngResource", "global403Interceptor", "ajoslin.promise-tracker", "progress", "focusOn", "ngMessages" ]);
-n(134), n(135), n(136), n(137), n(138), n(139), a.factory("Me", [ "$resource", function(e) {
+var i = n(1), r = n(128), o = n(140), a = n(211), s = i.module("profile", [ "ui.router", "ngResource", "global403Interceptor", "ajoslin.promise-tracker", "progress", "focusOn", "ngMessages" ]);
+n(134), n(135), n(136), n(137), n(138), n(139), s.factory("Me", [ "$resource", function(e) {
 return e("/users/me", {}, {
 get: {
 method: "GET",
@@ -11,7 +11,7 @@ return e = JSON.parse(e), e.created = new Date(e.created), e;
 }
 }
 });
-} ]), a.factory("QuizResults", [ "$resource", function(e) {
+} ]), s.factory("QuizResults", [ "$resource", function(e) {
 return e("/quiz/results/user/" + window.currentUser.id, {}, {
 query: {
 method: "GET",
@@ -23,8 +23,8 @@ e.created = new Date(e.created);
 }
 }
 });
-} ]), a.factory("Orders", [ "$resource", function(e) {
-return e("/quiz/results/user/" + window.currentUser.id, {}, {
+} ]), s.factory("Orders", [ "$resource", function(e) {
+return e("/orders/user/" + window.currentUser.id, {}, {
 query: {
 method: "GET",
 isArray: !0,
@@ -35,7 +35,7 @@ e.created = new Date(e.created);
 }
 }
 });
-} ]), a.config([ "$locationProvider", "$stateProvider", function(e, t) {
+} ]), s.config([ "$locationProvider", "$stateProvider", function(e, t) {
 e.html5Mode(!0), t.state("root", {
 "abstract": !0,
 resolve: {
@@ -93,8 +93,16 @@ name: e.name,
 url: e.url
 };
 });
-} ]).controller("ProfileOrdersCtrl", [ "$scope", "me", function(e, t) {
-e.me = t;
+} ]).controller("ProfileOrdersCtrl", [ "$scope", "orders", function(e, t) {
+e.orders = t.map(function(e) {
+return e.countDetails = {
+free: e.participants.length - e.count,
+busy: e.participants.length,
+accepted: e.participants.filter(function(e) {
+return e.accepted;
+}).length
+}, e;
+});
 } ]).controller("ProfileAboutMeCtrl", [ "$scope", "me", function(e, t) {
 e.me = t;
 } ]).controller("ProfileQuizResultsCtrl", [ "$scope", "quizResults", function(e, t) {
@@ -132,7 +140,7 @@ new r.Error("Ошибка загрузки, статус " + e.status);
 return function(e) {
 return e[0].toUpperCase() + e.slice(1);
 };
-}).filter("quizDate", function() {
+}).filter("longDate", function() {
 return function(e) {
 return o(e).format("D MMMM YYYY в LT");
 };
@@ -140,6 +148,8 @@ return o(e).format("D MMMM YYYY в LT");
 return function(e) {
 return o.duration(e, "seconds").humanize();
 };
+}).filter("pluralize", function() {
+return a;
 });
 },
 1: function(e) {
@@ -1647,6 +1657,29 @@ e.exports = function(e) {
 return e.webpackPolyfill || (e.deprecate = function() {}, e.paths = [], e.children = [], 
 e.webpackPolyfill = 1), e;
 };
+},
+211: function(e) {
+"use strict";
+function t(e) {
+return e % 10 == 1 && e % 100 != 11 ? "one" : e % 10 >= 2 && 4 >= e % 10 && (12 > e % 100 || e % 100 > 14) && e == Math.floor(e) ? "few" : e % 10 === 0 || e % 10 >= 5 && 9 >= e % 10 || e % 100 >= 11 && 14 >= e % 100 && e == Math.floor(e) ? "many" : "other";
+}
+function n(e, n, i, r) {
+var o = t(e);
+switch (o) {
+case "one":
+return n;
+
+case "few":
+return i;
+
+case "many":
+return r;
+
+default:
+throw Error("Unsupported count: " + e);
+}
+}
+e.exports = n;
 }
 });
-//# sourceMappingURL=profile.9b712457774fa114e7cc.js.map
+//# sourceMappingURL=profile.0470476d4e8d2038be23.js.map
