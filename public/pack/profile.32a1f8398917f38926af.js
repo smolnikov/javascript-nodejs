@@ -24,13 +24,19 @@ e.created = new Date(e.created);
 }
 });
 } ]), s.factory("Orders", [ "$resource", function(e) {
-return e("/orders/user/" + window.currentUser.id, {}, {
+return e("/payments/common/orders/user/" + window.currentUser.id, {}, {
 query: {
 method: "GET",
 isArray: !0,
 transformResponse: function(e) {
 return e = JSON.parse(e), e.forEach(function(e) {
-e.created = new Date(e.created);
+e.created = new Date(e.created), e.countDetails = {
+free: e.participants.length - e.count,
+busy: e.participants.length,
+accepted: e.participants.filter(function(e) {
+return e.accepted;
+}).length
+};
 }), e;
 }
 }
@@ -94,15 +100,7 @@ url: e.url
 };
 });
 } ]).controller("ProfileOrdersCtrl", [ "$scope", "orders", function(e, t) {
-e.orders = t.map(function(e) {
-return e.countDetails = {
-free: e.participants.length - e.count,
-busy: e.participants.length,
-accepted: e.participants.filter(function(e) {
-return e.accepted;
-}).length
-}, e;
-});
+e.orders = t;
 } ]).controller("ProfileAboutMeCtrl", [ "$scope", "me", function(e, t) {
 e.me = t;
 } ]).controller("ProfileQuizResultsCtrl", [ "$scope", "quizResults", function(e, t) {
@@ -1682,4 +1680,4 @@ throw Error("Unsupported count: " + e);
 e.exports = n;
 }
 });
-//# sourceMappingURL=profile.0470476d4e8d2038be23.js.map
+//# sourceMappingURL=profile.32a1f8398917f38926af.js.map

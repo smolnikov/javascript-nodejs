@@ -224,6 +224,8 @@ var e = this, t = this.orderForm.getOrderData();
 if (t) {
 var n = this.readPaymentData();
 if (!n.paymentMethod) return void new o.Error("Выберите метод оплаты.");
+if ("invoice" == n.paymentMethod && !n.invoiceCompanyName) return new o.Error("Укажите название компании."), 
+void this.paymentMethodElem.querySelector('[name="invoiceCompanyName"]').focus();
 for (var i in n) t[i] = n[i];
 var r = a({
 method: "POST",
@@ -697,4 +699,4 @@ attributes: {
 };
 }
 });
-//# sourceMappingURL=courses.0470476d4e8d2038be23.js.map
+//# sourceMappingURL=courses.32a1f8398917f38926af.js.map
