@@ -150,7 +150,11 @@ return o.duration(e, "seconds").humanize();
 };
 }).filter("pluralize", function() {
 return a;
-});
+}).filter("trust_html", [ "$sce", function(e) {
+return function(t) {
+return t = e.trustAsHtml(t);
+};
+} ]);
 },
 1: function(e) {
 e.exports = angular;
@@ -1682,4 +1686,4 @@ throw Error("Unsupported count: " + e);
 e.exports = n;
 }
 });
-//# sourceMappingURL=profile.0d8a25f7adf29e2075b2.js.map
+//# sourceMappingURL=profile.7f712877f7989c9c9a8e.js.map

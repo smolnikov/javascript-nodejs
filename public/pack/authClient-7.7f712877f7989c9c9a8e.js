@@ -1003,6 +1003,7 @@ e.push("<" + a + i.attrs(i.merge([ n ]), !0) + ">"), t && t(), -1 == [ "area", "
 return e = e || {}, e.prefix = e.prefix || "", e.element = e.element || "__", e.modifier = e.modifier || "_", 
 function(n, i, r, o) {
 var a = this.block, s = this.attributes || {};
+if (!s.class && r && !o) throw Error("Block without class: " + r);
 if (s.class) {
 var l = s.class;
 l instanceof Array && (l = l.join(" ")), l = l.split(" ");
@@ -1012,7 +1013,7 @@ c = l[0].match(RegExp("^(((?!" + e.element + "|" + e.modifier + ").)+)"))[1];
 } catch (u) {
 throw Error("Incorrect bem class: " + l[0]);
 }
-o ? l[0] = i[i.length - 1] + e.element + l[0] : (i[i.length] = c, l[0] = l[0]);
+o ? l[0] = i[i.length - 1] + e.element + l[0] : i[i.length] = c;
 var p = (o ? i[i.length - 1] + e.element : "") + c;
 -1 === l.indexOf(p) && (l[l.length] = p);
 for (var d = 0; d < l.length; d++) {
@@ -1027,4 +1028,4 @@ t(n, a, s, i, r), o || i.pop();
 };
 }
 });
-//# sourceMappingURL=authClient-7.0d8a25f7adf29e2075b2.js.map
+//# sourceMappingURL=authClient-7.7f712877f7989c9c9a8e.js.map
