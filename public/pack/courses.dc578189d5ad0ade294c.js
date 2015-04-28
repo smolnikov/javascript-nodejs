@@ -322,10 +322,7 @@ o.elem.addEventListener("select", this.onContactFormSelect.bind(this)), this.ele
 e.preventDefault(), n.goStep2();
 };
 }
-this.elems.payment.onsubmit = this.onPaymentSubmit.bind(this), this.delegate("[data-order-payment-change]", "click", function(e) {
-e.preventDefault(), n.elem.className = n.elem.className.replace(/courses-register_step_\d/, ""), 
-n.elem.classList.add("courses-register_step_3");
-});
+this.elems.payment.onsubmit = this.onPaymentSubmit.bind(this);
 }
 return r(e, [ {
 key: "onPaymentSubmit",
@@ -700,4 +697,4 @@ attributes: {
 };
 }
 });
-//# sourceMappingURL=courses.0ec413405eff3200604d.js.map
+//# sourceMappingURL=courses.dc578189d5ad0ade294c.js.map
