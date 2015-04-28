@@ -24,9 +24,9 @@ function i(e, o) {
 var i = t("success", o);
 i.result = e, r.dispatchEvent(i);
 }
-var r = new XMLHttpRequest(), a = e.method || "GET", s = e.body, l = e.url;
-r.open(a, l, e.sync ? !1 : !0), r.method = a;
-var p = n();
+var r = new XMLHttpRequest(), n = e.method || "GET", s = e.body, l = e.url;
+r.open(n, l, e.sync ? !1 : !0), r.method = n;
+var p = a();
 p && !e.skipCsrf && r.setRequestHeader("X-XSRF-TOKEN", p), "[object Object]" == {}.toString.call(s) && (r.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
 s = JSON.stringify(s)), e.noDocumentEvents || (r.addEventListener("loadstart", function(e) {
 r.timeStart = Date.now();
@@ -52,18 +52,18 @@ o("Запрос был прерван.", e);
 }), r.addEventListener("load", function(t) {
 if (!r.status) return void o("Не получен ответ от сервера.", t);
 if (-1 == _.indexOf(r.status)) return void o("Ошибка на стороне сервера (код " + r.status + "), попытайтесь позднее", t);
-var n = r.responseText, a = r.getResponseHeader("Content-Type");
-if (a.match(/^application\/json/) || e.json) try {
-n = JSON.parse(n);
+var a = r.responseText, n = r.getResponseHeader("Content-Type");
+if (n.match(/^application\/json/) || e.json) try {
+a = JSON.parse(a);
 } catch (t) {
 return void o("Некорректный формат ответа от сервера", t);
 }
-i(n, t);
+i(a, t);
 }), setTimeout(function() {
 r.send(s);
 }, 0), r;
 }
-var r = o(128), n = o(163);
+var r = o(128), a = o(163);
 document.addEventListener("xhrfail", function(e) {
 new r.Error(e.reason);
 }), e.exports = i;
@@ -83,7 +83,7 @@ Object.defineProperty(e, i.key, i);
 return function(t, o, i) {
 return o && e(t.prototype, o), i && e(t, i), t;
 };
-}(), n = (o(133), o(128)), a = o(132), s = o(171).FormPayment, l = (o(144), o(114), 
+}(), a = (o(133), o(128)), n = o(132), s = o(171).FormPayment, l = (o(144), o(114), 
 function() {
 function e(t) {
 var o = this;
@@ -114,7 +114,7 @@ if (this.elem.elements.email) {
 if (!this.elem.elements.email.value) return window.ga("send", "event", "payment", "checkout-no-email", "ebook"), 
 window.metrika.reachGoal("CHECKOUT-NO-EMAIL", {
 product: "ebook"
-}), new n.Error("Введите email."), this.elem.elements.email.scrollIntoView(), setTimeout(function() {
+}), new a.Error("Введите email."), this.elem.elements.email.scrollIntoView(), setTimeout(function() {
 window.scrollBy(0, -200);
 }, 0), void this.elem.elements.email.focus();
 e.email = this.elem.elements.email.value;
@@ -123,7 +123,7 @@ return e;
 }
 } ]), e;
 }());
-a.delegateMixin(l.prototype), e.exports = l;
+n.delegateMixin(l.prototype), e.exports = l;
 },
 163: function(e) {
 "use strict";
@@ -151,7 +151,7 @@ Object.defineProperty(e, i.key, i);
 return function(t, o, i) {
 return o && e(t.prototype, o), i && e(t, i), t;
 };
-}(), n = o(128), a = o(133), s = o(144), l = (o(114), function() {
+}(), a = o(128), n = o(133), s = o(144), l = (o(114), function() {
 function e(t, o) {
 i(this, e), this.orderForm = t, this.paymentMethodElem = o;
 }
@@ -165,7 +165,7 @@ return t.toString = function() {
 return "" + e;
 }, t;
 }(function(e) {
-var t = a(e);
+var t = n(e);
 return t.addEventListener("loadstart", function() {
 var e = this.startRequestIndication();
 t.addEventListener("loadend", e);
@@ -199,11 +199,11 @@ value: function() {
 var e = this, t = this.orderForm.getOrderData();
 if (t) {
 var o = this.readPaymentData();
-if (!o.paymentMethod) return void new n.Error("Выберите метод оплаты.");
-if ("invoice" == o.paymentMethod && !o.invoiceCompanyName) return new n.Error("Укажите название компании."), 
+if (!o.paymentMethod) return void new a.Error("Выберите метод оплаты.");
+if ("invoice" == o.paymentMethod && !o.invoiceCompanyName) return new a.Error("Укажите название компании."), 
 void this.paymentMethodElem.querySelector('[name="invoiceCompanyName"]').focus();
 for (var i in o) t[i] = o[i];
-var r = a({
+var r = n({
 method: "POST",
 url: "/payments/common/checkout",
 normalStatuses: [ 200, 403, 400 ],
@@ -224,17 +224,17 @@ price: t.amount
 }), window.ga("send", "event", "payment", "checkout", "ebook"), window.ga("send", "event", "payment", "checkout-method-" + t.paymentMethod, this.orderForm.product);
 var s = this.startRequestIndication();
 r.addEventListener("success", function(o) {
-if (403 == r.status) return new n.Error("<p>" + (o.result.description || o.result.message) + "</p><p>Пожалуйста, начните оформление заново.</p><p>Если вы считаете, что на сервере ошибка &mdash; свяжитесь со <a href='mailto:orders@javascript.ru'>службой поддержки</a>.</p>"), 
+if (403 == r.status) return new a.Error("<p>" + (o.result.description || o.result.message) + "</p><p>Пожалуйста, начните оформление заново.</p><p>Если вы считаете, что на сервере ошибка &mdash; свяжитесь со <a href='mailto:orders@javascript.ru'>службой поддержки</a>.</p>"), 
 void s();
-if (400 == r.status) return new n.Error("<p>" + o.result.message + "</p><p>Если вы считаете, что произошла ошибка &mdash; свяжитесь со <a href='mailto:orders@javascript.ru'>службой поддержки</a>.</p>"), 
+if (400 == r.status) return new a.Error("<p>" + o.result.message + "</p><p>Если вы считаете, что произошла ошибка &mdash; свяжитесь со <a href='mailto:orders@javascript.ru'>службой поддержки</a>.</p>"), 
 void s();
 var i = o.result;
 if (i.form) {
 window.ga("ec:setAction", "purchase", {
 id: i.orderNumber
 });
-var a = document.createElement("div");
-a.hidden = !0, a.innerHTML = i.form, document.body.appendChild(a);
+var n = document.createElement("div");
+n.hidden = !0, n.innerHTML = i.form, document.body.appendChild(n);
 var l = function(e) {
 function t() {
 return e.apply(this, arguments);
@@ -243,7 +243,7 @@ return t.toString = function() {
 return "" + e;
 }, t;
 }(function() {
-l.called || (l.called = !0, a.firstChild.submit());
+l.called || (l.called = !0, n.firstChild.submit());
 });
 window.ga("send", "event", "payment", "purchase", "ebook", {
 hitCallback: l
@@ -253,7 +253,7 @@ method: t.paymentMethod,
 price: t.amount,
 number: i.orderNumber
 });
-} else s(), new n.Error("Ошибка на сервере, свяжитесь со <a href='mailto:orders@javascript.ru'>службой поддержки</a>.");
+} else s(), new a.Error("Ошибка на сервере, свяжитесь со <a href='mailto:orders@javascript.ru'>службой поддержки</a>.");
 }), r.addEventListener("fail", s);
 }
 }
@@ -262,4 +262,4 @@ number: i.orderNumber
 e.exports = l;
 }
 });
-//# sourceMappingURL=ebook.7f712877f7989c9c9a8e.js.map
+//# sourceMappingURL=ebook.0ec413405eff3200604d.js.map

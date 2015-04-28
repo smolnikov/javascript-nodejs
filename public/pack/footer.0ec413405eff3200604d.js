@@ -1,35 +1,35 @@
 var footer = webpackJsonp_name_([ 3 ], {
 0: function(e, t, o) {
 "use strict";
-var i = o(124), n = o(125), a = o(126);
+var i = o(124), r = o(125), n = o(126);
 t.init = function() {
-i(), window.devicePixelRatio > 1 && n(), window.addEventListener("scroll", a), a();
-}, t.trackSticky = a;
+i(), window.devicePixelRatio > 1 && r(), window.addEventListener("scroll", n), n();
+}, t.trackSticky = n;
 },
 124: function(e, t, o) {
 "use strict";
 var i = o(160);
 e.exports = function() {
 function e(e) {
-var t = e.clientX + a;
-t + n.offsetWidth > document.documentElement.clientWidth && (t = Math.max(0, e.clientX - a - n.offsetWidth)), 
-n.style.left = t + "px";
-var o = e.clientY + r;
-o + n.offsetHeight > document.documentElement.clientHeight && (o = Math.max(0, e.clientY - r - n.offsetHeight)), 
-n.style.top = o + "px";
+var t = e.clientX + n;
+t + r.offsetWidth > document.documentElement.clientWidth && (t = Math.max(0, e.clientX - n - r.offsetWidth)), 
+r.style.left = t + "px";
+var o = e.clientY + a;
+o + r.offsetHeight > document.documentElement.clientHeight && (o = Math.max(0, e.clientY - a - r.offsetHeight)), 
+r.style.top = o + "px";
 }
 function t(t) {
 if (t.target.closest) {
 var o = t.target.closest("a, [data-tooltip]");
-o && ("A" == o.tagName && o.closest(".toolbar") || (n = document.createElement("span"), 
-n.className = "link__type", o.getAttribute("data-tooltip") ? n.setAttribute("data-tooltip", o.getAttribute("data-tooltip")) : n.setAttribute("data-url", o.getAttribute("href")), 
-document.body.appendChild(n), e(t), document.addEventListener("mousemove", e)));
+o && ("A" == o.tagName && o.closest(".toolbar") || (r = document.createElement("span"), 
+r.className = "link__type", o.getAttribute("data-tooltip") ? r.setAttribute("data-tooltip", o.getAttribute("data-tooltip")) : r.setAttribute("data-url", o.getAttribute("href")), 
+document.body.appendChild(r), e(t), document.addEventListener("mousemove", e)));
 }
 }
 function o() {
-n && (document.removeEventListener("mousemove", e), n.remove(), n = null);
+r && (document.removeEventListener("mousemove", e), r.remove(), r = null);
 }
-var n = null, a = 8, r = 10;
+var r = null, n = 8, a = 10;
 i("a,[data-tooltip]", t, o);
 };
 },
@@ -53,13 +53,13 @@ this.width && this.height && (t.src = this.src);
 "use strict";
 function t() {
 for (var e = document.querySelectorAll("[data-sticky]"), t = 0; t < e.length; t++) {
-var i = e[t], n = i.dataset.sticky ? document.querySelector(i.dataset.sticky) : document.body;
+var i = e[t], r = i.dataset.sticky ? document.querySelector(i.dataset.sticky) : document.body;
 if (i.getBoundingClientRect().top < 0) {
 if (i.style.cssText) return;
-var a = i.getBoundingClientRect().left, r = o(i);
-i.parentNode.insertBefore(r, i), n.appendChild(i), i.classList.add("sticky"), i.style.position = "fixed", 
-i.style.top = 0, i.style.left = a + "px", i.style.zIndex = 101, i.style.background = "white", 
-i.style.margin = 0, i.style.width = r.offsetWidth + "px", i.placeholder = r;
+var n = i.getBoundingClientRect().left, a = o(i);
+i.parentNode.insertBefore(a, i), r.appendChild(i), i.classList.add("sticky"), i.style.position = "fixed", 
+i.style.top = 0, i.style.left = n + "px", i.style.zIndex = 101, i.style.background = "white", 
+i.style.margin = 0, i.style.width = a.offsetWidth + "px", i.placeholder = a;
 } else i.placeholder && i.placeholder.getBoundingClientRect().top > 0 && (i.style.cssText = "", 
 i.classList.remove("sticky"), i.placeholder.parentNode.insertBefore(i, i.placeholder), 
 i.placeholder.remove(), i.placeholder = null);
@@ -82,38 +82,38 @@ out: o
 };
 }
 function o(e) {
-if (!a) {
-var t = Math.sqrt(Math.pow(e.pageX - r, 2) + Math.pow(e.pageY - s, 2)), o = t / (Date.now() - l);
+if (!n) {
+var t = Math.sqrt(Math.pow(e.pageX - a, 2) + Math.pow(e.pageY - s, 2)), o = t / (Date.now() - l);
 if (p > o) {
 var i = document.elementFromPoint(e.clientX, e.clientY);
 if (!i) return;
-if (i != n) {
+if (i != r) {
 for (var d in c) {
 var _ = i.closest(d);
-_ && (a = {
+_ && (n = {
 elem: _,
 out: c[d].out
 }, c[d].over(e));
 }
-n = i;
+r = i;
 }
 }
-r = e.pageX, s = e.pageY, l = Date.now();
+a = e.pageX, s = e.pageY, l = Date.now();
 }
 }
 function i(e) {
-if (a) {
+if (n) {
 for (var t = e.relatedTarget; t; ) {
-if (t == a.elem) return;
+if (t == n.elem) return;
 t = t.parentElement;
 }
-var o = a.out;
-a = null, o(e);
+var o = n.out;
+n = null, o(e);
 }
 }
-var n, a, r = 1 / 0, s = 1 / 0, l = Date.now(), p = .2, c = {};
+var r, n, a = 1 / 0, s = 1 / 0, l = Date.now(), p = .2, c = {};
 document.addEventListener("mousemove", o), document.addEventListener("mouseout", i), 
 e.exports = t;
 }
 });
-//# sourceMappingURL=footer.7f712877f7989c9c9a8e.js.map
+//# sourceMappingURL=footer.0ec413405eff3200604d.js.map

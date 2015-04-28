@@ -1,155 +1,25 @@
 var profile = webpackJsonp_name_([ 8 ], {
 0: function(e, t, n) {
 "use strict";
-var i = n(1), r = n(128), o = n(140), a = n(211), s = i.module("profile", [ "ui.router", "ngResource", "global403Interceptor", "ajoslin.promise-tracker", "progress", "focusOn", "ngMessages" ]);
-n(134), n(135), n(136), n(137), n(138), n(139), s.factory("Me", [ "$resource", function(e) {
-return e("/users/me", {}, {
-get: {
-method: "GET",
-transformResponse: function(e) {
-return e = JSON.parse(e), e.created = new Date(e.created), e;
-}
-}
-});
-} ]), s.factory("QuizResults", [ "$resource", function(e) {
-return e("/quiz/results/user/" + window.currentUser.id, {}, {
-query: {
-method: "GET",
-isArray: !0,
-transformResponse: function(e) {
-return e = JSON.parse(e), e.forEach(function(e) {
-e.created = new Date(e.created);
-}), e;
-}
-}
-});
-} ]), s.factory("Orders", [ "$resource", function(e) {
-return e("/payments/common/orders/user/" + window.currentUser.id, {}, {
-query: {
-method: "GET",
-isArray: !0,
-transformResponse: function(e) {
-return e = JSON.parse(e), e.forEach(function(e) {
-e.created = new Date(e.created), e.countDetails = {
-free: e.participants.length - e.count,
-busy: e.participants.length,
-accepted: e.participants.filter(function(e) {
-return e.accepted;
-}).length
-};
-}), e;
-}
-}
-});
-} ]), s.config([ "$locationProvider", "$stateProvider", function(e, t) {
-e.html5Mode(!0), t.state("root", {
-"abstract": !0,
-resolve: {
-me: [ "Me", function(e) {
-return e.get();
-} ]
-},
-templateUrl: "/profile/templates/partials/root",
-controller: "ProfileRootCtrl"
-});
-var n = {
-"root.aboutme": {
-url: "/",
-title: "Публичный профиль",
-templateUrl: "/profile/templates/partials/aboutme",
-controller: "ProfileAboutMeCtrl"
-},
-"root.account": {
-url: "/account",
-title: "Аккаунт",
-templateUrl: "/profile/templates/partials/account",
-controller: "ProfileAccountCtrl"
-},
-"root.quiz": {
-url: "/quiz",
-title: "Тесты",
-templateUrl: "/profile/templates/partials/quiz",
-controller: "ProfileQuizResultsCtrl",
-resolve: {
-quizResults: function(e) {
-return e.query();
-}
-}
-},
-"root.orders": {
-url: "/orders",
-title: "Заказы",
-templateUrl: "/profile/templates/partials/orders",
-controller: "ProfileOrdersCtrl",
-resolve: {
-orders: function(e) {
-return e.query();
-}
-}
-}
-};
-for (var i in n) ~window.profileStatesEnabled.indexOf(i) && t.state(i, n[i]);
-} ]).controller("ProfileRootCtrl", [ "$scope", "$state", "$timeout", "$http", "me", "promiseTracker", function(e, t, n, i, r, o) {
-e.me = r, e.loadingTracker = o(), e.states = t.get().filter(function(e) {
-return !e.abstract;
-}).map(function(e) {
-return {
-title: e.title,
-name: e.name,
-url: e.url
-};
-});
-} ]).controller("ProfileOrdersCtrl", [ "$scope", "orders", function(e, t) {
-e.orders = t;
-} ]).controller("ProfileAboutMeCtrl", [ "$scope", "me", function(e, t) {
-e.me = t;
-} ]).controller("ProfileQuizResultsCtrl", [ "$scope", "quizResults", function(e, t) {
-e.quizResults = t;
-} ]).controller("ProfileAccountCtrl", [ "$scope", "$http", "me", "Me", function(e, t, n, o) {
-e.me = n, e.remove = function() {
-var o = confirm("" + n.displayName + " (" + n.email + ") - удалить пользователя без возможности восстановления?");
-o && t({
-method: "DELETE",
-url: "/users/me",
-tracker: e.loadingTracker,
-headers: {
-"Content-Type": void 0
-},
-transformRequest: i.identity,
-data: new FormData()
-}).then(function() {
-new r.Success("Пользователь удалён."), setTimeout(function() {
-window.location.href = "/";
-}, 1500);
-}, function(e) {
-new r.Error("Ошибка загрузки, статус " + e.status);
-});
-}, e.removeProvider = function(n) {
-var i = confirm("" + n + " - удалить привязку?");
-i && t({
-method: "POST",
-url: "/auth/disconnect/" + n,
-tracker: this.loadingTracker
-}).then(function() {
-e.me = o.get();
-}, function(e) {
-new r.Error("Ошибка загрузки, статус " + e.status);
-});
-};
-} ]).filter("capitalize", function() {
+var i = n(1), r = (n(128), n(140)), o = n(211), a = i.module("profile", [ "ui.router", "ngResource", "global403Interceptor", "ajoslin.promise-tracker", "progress", "focusOn", "ngMessages" ]);
+n(214), n(215), n(216), n(217), n(218), n(219), n(220), n(221), a.factory("Me", n(222)), 
+a.factory("QuizResults", n(223)), a.factory("Orders", n(224)), a.config(n(213)), 
+a.controller("ProfileRootCtrl", n(225)), a.controller("ProfileOrdersCtrl", n(226)), 
+a.controller("ProfileAboutMeCtrl", n(227)), a.controller("ProfileQuizResultsCtrl", n(228)), 
+a.controller("ProfileAccountCtrl", n(229)), a.filter("capitalize", function() {
 return function(e) {
 return e[0].toUpperCase() + e.slice(1);
 };
 }).filter("longDate", function() {
 return function(e) {
-return o(e).format("D MMMM YYYY в LT");
+return r(e).format("D MMMM YYYY в LT");
 };
 }).filter("quizDuration", function() {
 return function(e) {
-return o.duration(e, "seconds").humanize();
+return r.duration(e, "seconds").humanize();
 };
 }).filter("pluralize", function() {
-return a;
+return o;
 }).filter("trust_html", [ "$sce", function(e) {
 return function(t) {
 return t = e.trustAsHtml(t);
@@ -158,229 +28,6 @@ return t = e.trustAsHtml(t);
 },
 1: function(e) {
 e.exports = angular;
-},
-134: function(e, t, n) {
-"use strict";
-var i = n(128), r = n(1);
-r.module("profile").directive("profileField", [ "promiseTracker", "$http", "$timeout", function(e, t, n) {
-return {
-templateUrl: "/profile/templates/partials/profileField",
-scope: {
-title: "@fieldTitle",
-name: "@fieldName",
-formatValue: "=?fieldFormatValue",
-value: "=fieldValue"
-},
-replace: !0,
-transclude: !0,
-link: function(o, a, s, l, c) {
-o.formatValue || (o.formatValue = function(e) {
-return e;
-}), o.loadingTracker = e(), o.edit = function() {
-this.editing || (this.editing = !0, this.editingValue = this.value);
-}, o.submit = function() {
-var e = this;
-if (!this.form.$invalid) {
-if (this.value == this.editingValue) return this.editing = !1, void (this.editingValue = "");
-var n = new FormData();
-n.append(this.name, this.editingValue), t({
-method: "PATCH",
-url: "/users/me",
-tracker: this.loadingTracker,
-headers: {
-"Content-Type": void 0
-},
-transformRequest: r.identity,
-data: n
-}).then(function() {
-if ("displayName" == e.name) new i.Success("Изменение имени везде произойдёт после перезагрузки страницы.", "slow"); else if ("email" == e.name) new i.Warning("Требуется подтвердить смену email, проверьте почту.", "slow"); else if ("profileName" == e.name) {
-new i.Success("Ваш профиль доступен по новому адресу, страница будет перезагружена");
-var t = e.editingValue;
-setTimeout(function() {
-window.location.href = "/profile/" + t + "/account";
-}, 2e3);
-} else new i.Success("Информация обновлена.");
-e.editing = !1, e.value = e.editingValue, e.editingValue = "";
-}, function(e) {
-new i.Error(400 == e.status ? e.data.message : 409 == e.status ? e.data.message : "Ошибка загрузки, статус " + e.status);
-});
-}
-}, o.cancel = function() {
-var e = this;
-this.editing && n(function() {
-e.editing = !1, e.editingValue = "";
-});
-}, c(o, function(e) {
-a[0].querySelector("[control-transclude]").append(e[0]);
-});
-}
-};
-} ]);
-},
-135: function(e, t, n) {
-"use strict";
-var i = n(128), r = n(1), o = n(164).thumb;
-r.module("profile").directive("profilePhoto", [ "promiseTracker", "$http", "$timeout", function(e, t) {
-return {
-templateUrl: "/profile/templates/partials/profilePhoto",
-scope: {
-photo: "="
-},
-replace: !0,
-link: function(n) {
-function o(e) {
-var o = new FormData();
-o.append("photo", e), t({
-method: "PATCH",
-url: "/users/me",
-headers: {
-"Content-Type": void 0
-},
-tracker: n.loadingTracker,
-transformRequest: r.identity,
-data: o
-}).then(function(e) {
-n.photo = e.data.photo, new i.Success("Изображение обновлено.");
-}, function(e) {
-new i.Error(400 == e.status ? "Неверный тип файла или изображение повреждено." : "Ошибка загрузки, статус " + e.status);
-});
-}
-n.loadingTracker = e();
-n.changePhoto = function() {
-var e = document.createElement("input");
-e.type = "file", e.accept = "image/*", e.onchange = function() {
-var t = new FileReader(), n = e.files[0];
-t.onload = function(e) {
-var t = new Image();
-t.onload = function() {
-t.width != t.height || t.width < 160 ? new i.Error("Изображение должно быть квадратом, размер 160x160 или больше") : o(n);
-}, t.src = e.target.result;
-}, t.readAsDataURL(n);
-}, e.click();
-};
-}
-};
-} ]).filter("thumb", function() {
-return o;
-});
-},
-136: function(e, t, n) {
-"use strict";
-var i = n(128), r = n(1);
-r.module("profile").directive("profilePassword", [ "promiseTracker", "$http", "$timeout", function(e, t, n) {
-return {
-templateUrl: "/profile/templates/partials/profilePassword",
-scope: {
-hasPassword: "="
-},
-replace: !0,
-link: function(o, a) {
-o.password = "", o.passwordOld = "", o.loadingTracker = e(), o.edit = function() {
-this.editing || (this.editing = !0, n(function() {
-var e = a[0].elements[o.hasPassword ? "passwordOld" : "password"];
-e.focus();
-}));
-}, o.submit = function() {
-if (!o.form.$invalid) {
-var e = new FormData();
-e.append("password", this.password), e.append("passwordOld", this.passwordOld), 
-t({
-method: "PATCH",
-url: "/users/me",
-tracker: this.loadingTracker,
-headers: {
-"Content-Type": void 0
-},
-transformRequest: r.identity,
-data: e
-}).then(function() {
-new i.Success("Пароль обновлён."), o.editing = !1, o.hasPassword = !0, o.password = "", 
-o.passwordOld = "", o.form.$setPristine();
-}, function(e) {
-new i.Error(400 == e.status ? e.data.message || e.data.errors.password : "Ошибка загрузки, статус " + e.status);
-});
-}
-}, o.cancel = function() {
-var e = this;
-this.editing && n(function() {
-e.editing = !1;
-});
-};
-}
-};
-} ]);
-},
-137: function(e, t, n) {
-"use strict";
-var i = (n(128), n(1));
-i.module("profile").directive("profileAuthProviders", [ "promiseTracker", "$http", "authPopup", "Me", function(e, t, n, i) {
-return {
-templateUrl: "/profile/templates/partials/profileAuthProviders",
-replace: !0,
-link: function(e) {
-e.connect = function(t) {
-arguments;
-n("/auth/connect/" + t, function() {
-e.me = i.get();
-}, function() {});
-}, e.connected = function(t) {
-var n = !1;
-return e.me.providers ? (e.me.providers.forEach(function(e) {
-e.name == t && (n = !0);
-}), n) : !1;
-};
-}
-};
-} ]).service("authPopup", function() {
-var e;
-return function(t, n, i) {
-e && !e.closed && e.close();
-var r = 800, o = 600, a = (window.outerHeight - o) / 2, s = (window.outerWidth - r) / 2;
-window.authModal = {
-onAuthSuccess: n,
-onAuthFailure: i
-}, e = window.open(t, "authModal", "width=" + r + ",height=" + o + ",scrollbars=0,top=" + a + ",left=" + s);
-};
-});
-},
-138: function(e, t, n) {
-"use strict";
-var i = n(1);
-i.module("profile").directive("dateValidator", function() {
-return {
-require: "ngModel",
-link: function(e, t, n, i) {
-i.$validators.date = function(e, t) {
-var n = e || t;
-if (!n) return !0;
-var i = n.split(".");
-if (3 != i.length) return !1;
-var r = new Date(i[2], i[1] - 1, i[0]);
-return 4 != i[2].length ? !1 : r.getFullYear() == i[2] && r.getMonth() == i[1] - 1 && r.getDate() == i[0];
-};
-}
-};
-});
-},
-139: function(e, t, n) {
-"use strict";
-var i = (n(128), n(1)), r = n(140);
-i.module("profile").directive("dateRangeValidator", function() {
-return {
-require: "ngModel",
-link: function(e, t, n, i) {
-var o = n.dateRangeValidator.split("-"), a = o[0] ? r(o[0], "DD.MM.YYYY").toDate() : new Date(), s = o[1] ? r(o[1], "DD.MM.YYYY").toDate() : new Date();
-i.$validators.dateRange = function(e, t) {
-var n = e || t;
-if (!n) return !0;
-var i = n.split(".");
-if (3 != i.length) return !1;
-var r = new Date(i[2], i[1] - 1, i[0]);
-return 4 != i[2].length ? !1 : r >= a && s >= r;
-};
-}
-};
-});
 },
 140: function(e, t, n) {
 "use strict";
@@ -696,42 +343,42 @@ function z(e, t, n, i) {
 var r = i;
 "string" == typeof i && (r = function() {
 return this[i]();
-}), e && (In[e] = r), t && (In[t[0]] = function() {
+}), e && (Pn[e] = r), t && (Pn[t[0]] = function() {
 return O(r.apply(this, arguments), t[1], t[2]);
-}), n && (In[n] = function() {
+}), n && (Pn[n] = function() {
 return this.localeData().ordinal(r.apply(this, arguments), e);
 });
 }
 function D(e) {
 return e.match(/\[[\s\S]/) ? e.replace(/^\[|\]$/g, "") : e.replace(/\\/g, "");
 }
-function L(e) {
-var t, n, i = e.match(Ln);
-for (t = 0, n = i.length; n > t; t++) In[i[t]] ? i[t] = In[i[t]] : i[t] = D(i[t]);
+function q(e) {
+var t, n, i = e.match(qn);
+for (t = 0, n = i.length; n > t; t++) Pn[i[t]] ? i[t] = Pn[i[t]] : i[t] = D(i[t]);
 return function(r) {
 var o = "";
 for (t = 0; n > t; t++) o += i[t] instanceof Function ? i[t].call(r, e) : i[t];
 return o;
 };
 }
-function q(e, t) {
-return e.isValid() ? (t = N(t, e.localeData()), Nn[t] || (Nn[t] = L(t)), Nn[t](e)) : e.localeData().invalidDate();
+function L(e, t) {
+return e.isValid() ? (t = N(t, e.localeData()), Nn[t] || (Nn[t] = q(t)), Nn[t](e)) : e.localeData().invalidDate();
 }
 function N(e, t) {
 function n(e) {
 return t.longDateFormat(e) || e;
 }
 var i = 5;
-for (qn.lastIndex = 0; i >= 0 && qn.test(e); ) e = e.replace(qn, n), qn.lastIndex = 0, 
+for (Ln.lastIndex = 0; i >= 0 && Ln.test(e); ) e = e.replace(Ln, n), Ln.lastIndex = 0, 
 i -= 1;
 return e;
 }
-function I(e, t, n) {
+function P(e, t, n) {
 Kn[e] = "function" == typeof t ? t : function(e) {
 return e && n ? n : t;
 };
 }
-function P(e, t) {
+function I(e, t) {
 return s(Kn, e) ? Kn[e](t._strict, t._locale) : RegExp(R(e));
 }
 function R(e) {
@@ -906,9 +553,9 @@ function ve(e) {
 if (e._f === t.ISO_8601) return void ee(e);
 e._a = [], e._pf.empty = !0;
 var n, i, r, o, a, s = "" + e._i, l = s.length, c = 0;
-for (r = N(e._f, e._locale).match(Ln) || [], n = 0; n < r.length; n++) o = r[n], 
-i = (s.match(P(o, e)) || [])[0], i && (a = s.substr(0, s.indexOf(i)), a.length > 0 && e._pf.unusedInput.push(a), 
-s = s.slice(s.indexOf(i) + i.length), c += i.length), In[o] ? (i ? e._pf.empty = !1 : e._pf.unusedTokens.push(o), 
+for (r = N(e._f, e._locale).match(qn) || [], n = 0; n < r.length; n++) o = r[n], 
+i = (s.match(I(o, e)) || [])[0], i && (a = s.substr(0, s.indexOf(i)), a.length > 0 && e._pf.unusedInput.push(a), 
+s = s.slice(s.indexOf(i) + i.length), c += i.length), Pn[o] ? (i ? e._pf.empty = !1 : e._pf.unusedTokens.push(o), 
 U(o, i, e)) : e._strict && !i && e._pf.unusedTokens.push(o);
 e._pf.charsLeftOver = l - c, s.length > 0 && e._pf.unusedInput.push(s), e._pf.bigHour === !0 && e._a[ii] <= 12 && (e._pf.bigHour = void 0), 
 e._a[ii] = xe(e._locale, e._a[ii], e._meridiem), ge(e), Z(e);
@@ -986,29 +633,29 @@ function De(e) {
 var t = (e || "").match(Xn) || [], n = t[t.length - 1] || [], i = (n + "").match(bi) || [ "-", 0, 0 ], r = +(60 * i[1]) + m(i[2]);
 return "+" === i[0] ? r : -r;
 }
-function Le(e, n) {
+function qe(e, n) {
 var i, r;
 return n._isUTC ? (i = n.clone(), r = (h(e) || o(e) ? +e : +Se(e)) - +i, i._d.setTime(+i._d + r), 
 t.updateOffset(i, !1), i) : Se(e).local();
 }
-function qe(e) {
+function Le(e) {
 return 15 * -Math.round(e._d.getTimezoneOffset() / 15);
 }
 function Ne(e, n) {
 var i, r = this._offset || 0;
 return null != e ? ("string" == typeof e && (e = De(e)), Math.abs(e) < 16 && (e = 60 * e), 
-!this._isUTC && n && (i = qe(this)), this._offset = e, this._isUTC = !0, null != i && this.add(i, "m"), 
+!this._isUTC && n && (i = Le(this)), this._offset = e, this._isUTC = !0, null != i && this.add(i, "m"), 
 r !== e && (!n || this._changeInProgress ? Ke(this, Ge(e - r, "m"), 1, !1) : this._changeInProgress || (this._changeInProgress = !0, 
-t.updateOffset(this, !0), this._changeInProgress = null)), this) : this._isUTC ? r : qe(this);
+t.updateOffset(this, !0), this._changeInProgress = null)), this) : this._isUTC ? r : Le(this);
 }
-function Ie(e, t) {
+function Pe(e, t) {
 return null != e ? ("string" != typeof e && (e = -e), this.utcOffset(e, t), this) : -this.utcOffset();
 }
-function Pe(e) {
+function Ie(e) {
 return this.utcOffset(0, e);
 }
 function Re(e) {
-return this._isUTC && (this.utcOffset(0, e), this._isUTC = !1, e && this.subtract(qe(this), "m")), 
+return this._isUTC && (this.utcOffset(0, e), this._isUTC = !1, e && this.subtract(Le(this), "m")), 
 this;
 }
 function je() {
@@ -1077,7 +724,7 @@ n.milliseconds = +t - +e.clone().add(n.months, "M"), n;
 }
 function Ze(e, t) {
 var n;
-return t = Le(t, e), e.isBefore(t) ? n = Xe(e, t) : (n = Xe(t, e), n.milliseconds = -n.milliseconds, 
+return t = qe(t, e), e.isBefore(t) ? n = Xe(e, t) : (n = Xe(t, e), n.milliseconds = -n.milliseconds, 
 n.months = -n.months), n;
 }
 function Je(e, t) {
@@ -1094,7 +741,7 @@ r = null == r ? !0 : r, o && e._d.setTime(+e._d + o * i), a && A(e, "Date", C(e,
 s && G(e, C(e, "Month") + s * i), r && t.updateOffset(e, a || s);
 }
 function Qe(e) {
-var t = e || Se(), n = Le(t, this).startOf("day"), i = this.diff(n, "days", !0), r = -6 > i ? "sameElse" : -1 > i ? "lastWeek" : 0 > i ? "lastDay" : 1 > i ? "sameDay" : 2 > i ? "nextDay" : 7 > i ? "nextWeek" : "sameElse";
+var t = e || Se(), n = qe(t, this).startOf("day"), i = this.diff(n, "days", !0), r = -6 > i ? "sameElse" : -1 > i ? "lastWeek" : 0 > i ? "lastDay" : 1 > i ? "sameDay" : 2 > i ? "nextDay" : 7 > i ? "nextWeek" : "sameElse";
 return this.format(this.localeData().calendar(r, this, Se(t)));
 }
 function et() {
@@ -1122,7 +769,7 @@ function ot(e) {
 return 0 > e ? Math.ceil(e) : Math.floor(e);
 }
 function at(e, t, n) {
-var i, r, o = Le(e, this), a = 6e4 * (o.utcOffset() - this.utcOffset());
+var i, r, o = qe(e, this), a = 6e4 * (o.utcOffset() - this.utcOffset());
 return t = E(t), "year" === t || "month" === t || "quarter" === t ? (r = st(this, o), 
 "quarter" === t ? r /= 3 : "year" === t && (r /= 12)) : (i = this - o, r = "second" === t ? i / 1e3 : "minute" === t ? i / 6e4 : "hour" === t ? i / 36e5 : "day" === t ? (i - a) / 864e5 : "week" === t ? (i - a) / 6048e5 : i), 
 n ? r : ot(r);
@@ -1137,10 +784,10 @@ return this.clone().locale("en").format("ddd MMM DD YYYY HH:mm:ss [GMT]ZZ");
 }
 function ct() {
 var e = this.clone().utc();
-return 0 < e.year() && e.year() <= 9999 ? "function" == typeof Date.prototype.toISOString ? this.toDate().toISOString() : q(e, "YYYY-MM-DD[T]HH:mm:ss.SSS[Z]") : q(e, "YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]");
+return 0 < e.year() && e.year() <= 9999 ? "function" == typeof Date.prototype.toISOString ? this.toDate().toISOString() : L(e, "YYYY-MM-DD[T]HH:mm:ss.SSS[Z]") : L(e, "YYYYYY-MM-DD[T]HH:mm:ss.SSS[Z]");
 }
 function ut(e) {
-var n = q(this, e || t.defaultFormat);
+var n = L(this, e || t.defaultFormat);
 return this.localeData().postformat(n);
 }
 function pt(e, t) {
@@ -1247,10 +894,10 @@ return this._weekdays[e.day()];
 function Dt(e) {
 return this._weekdaysShort[e.day()];
 }
-function Lt(e) {
+function qt(e) {
 return this._weekdaysMin[e.day()];
 }
-function qt(e) {
+function Lt(e) {
 var t, n, i;
 for (this._weekdaysParse || (this._weekdaysParse = []), t = 0; 7 > t; t++) if (this._weekdaysParse[t] || (n = Se([ 2e3, 1 ]).day(t), 
 i = "^" + this.weekdays(n, "") + "|^" + this.weekdaysShort(n, "") + "|^" + this.weekdaysMin(n, ""), 
@@ -1260,11 +907,11 @@ function Nt(e) {
 var t = this._isUTC ? this._d.getUTCDay() : this._d.getDay();
 return null != e ? (e = Ot(e, this.localeData()), this.add(e - t, "d")) : t;
 }
-function It(e) {
+function Pt(e) {
 var t = (this.day() + 7 - this.localeData()._week.dow) % 7;
 return null == e ? t : this.add(e - t, "d");
 }
-function Pt(e) {
+function It(e) {
 return null == e ? this.day() || 7 : this.day(this.day() % 7 ? e : e - 7);
 }
 function Rt(e, t) {
@@ -1448,14 +1095,14 @@ function Tn() {
 var e = ar(this.years()), t = ar(this.months()), n = ar(this.days()), i = ar(this.hours()), r = ar(this.minutes()), o = ar(this.seconds() + this.milliseconds() / 1e3), a = this.asSeconds();
 return a ? (0 > a ? "-" : "") + "P" + (e ? e + "Y" : "") + (t ? t + "M" : "") + (n ? n + "D" : "") + (i || r || o ? "T" : "") + (i ? i + "H" : "") + (r ? r + "M" : "") + (o ? o + "S" : "") : "P0D";
 }
-var Cn, An, Mn = t.momentProperties = [], On = !1, zn = {}, Dn = {}, Ln = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|x|X|zz?|ZZ?|.)/g, qn = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, Nn = {}, In = {}, Pn = /\d/, Rn = /\d\d/, jn = /\d{3}/, Hn = /\d{4}/, Un = /[+-]?\d{6}/, Fn = /\d\d?/, Yn = /\d{1,3}/, Vn = /\d{1,4}/, Bn = /[+-]?\d{1,6}/, Gn = /\d+/, Wn = /[+-]?\d+/, Xn = /Z|[+-]\d\d:?\d\d/gi, Zn = /[+-]?\d+(\.\d{1,3})?/, Jn = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i, Kn = {}, Qn = {}, ei = 0, ti = 1, ni = 2, ii = 3, ri = 4, oi = 5, ai = 6;
+var Cn, An, Mn = t.momentProperties = [], On = !1, zn = {}, Dn = {}, qn = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|x|X|zz?|ZZ?|.)/g, Ln = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, Nn = {}, Pn = {}, In = /\d/, Rn = /\d\d/, jn = /\d{3}/, Hn = /\d{4}/, Un = /[+-]?\d{6}/, Fn = /\d\d?/, Yn = /\d{1,3}/, Vn = /\d{1,4}/, Bn = /[+-]?\d{1,6}/, Gn = /\d+/, Wn = /[+-]?\d+/, Xn = /Z|[+-]\d\d:?\d\d/gi, Zn = /[+-]?\d+(\.\d{1,3})?/, Jn = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i, Kn = {}, Qn = {}, ei = 0, ti = 1, ni = 2, ii = 3, ri = 4, oi = 5, ai = 6;
 z("M", [ "MM", 2 ], "Mo", function() {
 return this.month() + 1;
 }), z("MMM", 0, 0, function(e) {
 return this.localeData().monthsShort(this, e);
 }), z("MMMM", 0, 0, function(e) {
 return this.localeData().months(this, e);
-}), k("month", "M"), I("M", Fn), I("MM", Fn, Rn), I("MMM", Jn), I("MMMM", Jn), j([ "M", "MM" ], function(e, t) {
+}), k("month", "M"), P("M", Fn), P("MM", Fn, Rn), P("MMM", Jn), P("MMMM", Jn), j([ "M", "MM" ], function(e, t) {
 t[ti] = m(e) - 1;
 }), j([ "MMM", "MMMM" ], function(e, t, n, i) {
 var r = n._locale.monthsParse(e, i, n._strict);
@@ -1469,23 +1116,23 @@ e._d = new Date(e._i + (e._useUTC ? " UTC" : ""));
 }), z(0, [ "YY", 2 ], 0, function() {
 return this.year() % 100;
 }), z(0, [ "YYYY", 4 ], 0, "year"), z(0, [ "YYYYY", 5 ], 0, "year"), z(0, [ "YYYYYY", 6, !0 ], 0, "year"), 
-k("year", "y"), I("Y", Wn), I("YY", Fn, Rn), I("YYYY", Vn, Hn), I("YYYYY", Bn, Un), 
-I("YYYYYY", Bn, Un), j([ "YYYY", "YYYYY", "YYYYYY" ], ei), j("YY", function(e, n) {
+k("year", "y"), P("Y", Wn), P("YY", Fn, Rn), P("YYYY", Vn, Hn), P("YYYYY", Bn, Un), 
+P("YYYYYY", Bn, Un), j([ "YYYY", "YYYYY", "YYYYYY" ], ei), j("YY", function(e, n) {
 n[ei] = t.parseTwoDigitYear(e);
 }), t.parseTwoDigitYear = function(e) {
 return m(e) + (m(e) > 68 ? 1900 : 2e3);
 };
 var hi = T("FullYear", !1);
 z("w", [ "ww", 2 ], "wo", "week"), z("W", [ "WW", 2 ], "Wo", "isoWeek"), k("week", "w"), 
-k("isoWeek", "W"), I("w", Fn), I("ww", Fn, Rn), I("W", Fn), I("WW", Fn, Rn), H([ "w", "ww", "W", "WW" ], function(e, t, n, i) {
+k("isoWeek", "W"), P("w", Fn), P("ww", Fn, Rn), P("W", Fn), P("WW", Fn, Rn), H([ "w", "ww", "W", "WW" ], function(e, t, n, i) {
 t[i.substr(0, 1)] = m(e);
 });
 var mi = {
 dow: 0,
 doy: 6
 };
-z("DDD", [ "DDDD", 3 ], "DDDo", "dayOfYear"), k("dayOfYear", "DDD"), I("DDD", Yn), 
-I("DDDD", jn), j([ "DDD", "DDDD" ], function(e, t, n) {
+z("DDD", [ "DDDD", 3 ], "DDDo", "dayOfYear"), k("dayOfYear", "DDD"), P("DDD", Yn), 
+P("DDDD", jn), j([ "DDD", "DDDD" ], function(e, t, n) {
 n._dayOfYear = m(e);
 }), t.ISO_8601 = function() {};
 var _i = K("moment().min is deprecated, use moment.min instead. https://github.com/moment/moment/issues/1548", function() {
@@ -1495,7 +1142,7 @@ return this > e ? this : e;
 var e = Se.apply(null, arguments);
 return e > this ? this : e;
 });
-ze("Z", ":"), ze("ZZ", ""), I("Z", Xn), I("ZZ", Xn), j([ "Z", "ZZ" ], function(e, t, n) {
+ze("Z", ":"), ze("ZZ", ""), P("Z", Xn), P("ZZ", Xn), j([ "Z", "ZZ" ], function(e, t, n) {
 n._useUTC = !0, n._tzm = De(e);
 });
 var bi = /([\+\-]|\d\d)/gi;
@@ -1512,16 +1159,16 @@ return this.weekYear() % 100;
 }), z(0, [ "GG", 2 ], 0, function() {
 return this.isoWeekYear() % 100;
 }), kt("gggg", "weekYear"), kt("ggggg", "weekYear"), kt("GGGG", "isoWeekYear"), 
-kt("GGGGG", "isoWeekYear"), k("weekYear", "gg"), k("isoWeekYear", "GG"), I("G", Wn), 
-I("g", Wn), I("GG", Fn, Rn), I("gg", Fn, Rn), I("GGGG", Vn, Hn), I("gggg", Vn, Hn), 
-I("GGGGG", Bn, Un), I("ggggg", Bn, Un), H([ "gggg", "ggggg", "GGGG", "GGGGG" ], function(e, t, n, i) {
+kt("GGGGG", "isoWeekYear"), k("weekYear", "gg"), k("isoWeekYear", "GG"), P("G", Wn), 
+P("g", Wn), P("GG", Fn, Rn), P("gg", Fn, Rn), P("GGGG", Vn, Hn), P("gggg", Vn, Hn), 
+P("GGGGG", Bn, Un), P("ggggg", Bn, Un), H([ "gggg", "ggggg", "GGGG", "GGGGG" ], function(e, t, n, i) {
 t[i.substr(0, 2)] = m(e);
 }), H([ "gg", "GG" ], function(e, n, i, r) {
 n[r] = t.parseTwoDigitYear(e);
-}), z("Q", 0, 0, "quarter"), k("quarter", "Q"), I("Q", Pn), j("Q", function(e, t) {
+}), z("Q", 0, 0, "quarter"), k("quarter", "Q"), P("Q", In), j("Q", function(e, t) {
 t[ti] = 3 * (m(e) - 1);
-}), z("D", [ "DD", 2 ], "Do", "date"), k("date", "D"), I("D", Fn), I("DD", Fn, Rn), 
-I("Do", function(e, t) {
+}), z("D", [ "DD", 2 ], "Do", "date"), k("date", "D"), P("D", Fn), P("DD", Fn, Rn), 
+P("Do", function(e, t) {
 return e ? t._ordinalParse : t._ordinalParseLenient;
 }), j([ "D", "DD" ], ni), j("Do", function(e, t) {
 t[ni] = m(e.match(Fn)[0], 10);
@@ -1534,8 +1181,8 @@ return this.localeData().weekdaysShort(this, e);
 }), z("dddd", 0, 0, function(e) {
 return this.localeData().weekdays(this, e);
 }), z("e", 0, 0, "weekday"), z("E", 0, 0, "isoWeekday"), k("day", "d"), k("weekday", "e"), 
-k("isoWeekday", "E"), I("d", Fn), I("e", Fn), I("E", Fn), I("dd", Jn), I("ddd", Jn), 
-I("dddd", Jn), H([ "dd", "ddd", "dddd" ], function(e, t, n) {
+k("isoWeekday", "E"), P("d", Fn), P("e", Fn), P("E", Fn), P("dd", Jn), P("ddd", Jn), 
+P("dddd", Jn), H([ "dd", "ddd", "dddd" ], function(e, t, n) {
 var i = n._locale.weekdaysParse(e);
 null != i ? t.d = i : n._pf.invalidWeekday = e;
 }), H([ "d", "e", "E" ], function(e, t, n, i) {
@@ -1544,25 +1191,25 @@ t[i] = m(e);
 var Ei = "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), Si = "Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_"), Ti = "Su_Mo_Tu_We_Th_Fr_Sa".split("_");
 z("H", [ "HH", 2 ], 0, "hour"), z("h", [ "hh", 2 ], 0, function() {
 return this.hours() % 12 || 12;
-}), Rt("a", !0), Rt("A", !1), k("hour", "h"), I("a", jt), I("A", jt), I("H", Fn), 
-I("h", Fn), I("HH", Fn, Rn), I("hh", Fn, Rn), j([ "H", "HH" ], ii), j([ "a", "A" ], function(e, t, n) {
+}), Rt("a", !0), Rt("A", !1), k("hour", "h"), P("a", jt), P("A", jt), P("H", Fn), 
+P("h", Fn), P("HH", Fn, Rn), P("hh", Fn, Rn), j([ "H", "HH" ], ii), j([ "a", "A" ], function(e, t, n) {
 n._isPm = n._locale.isPM(e), n._meridiem = e;
 }), j([ "h", "hh" ], function(e, t, n) {
 t[ii] = m(e), n._pf.bigHour = !0;
 });
 var Ci = /[ap]\.?m?\.?/i, Ai = T("Hours", !0);
-z("m", [ "mm", 2 ], 0, "minute"), k("minute", "m"), I("m", Fn), I("mm", Fn, Rn), 
+z("m", [ "mm", 2 ], 0, "minute"), k("minute", "m"), P("m", Fn), P("mm", Fn, Rn), 
 j([ "m", "mm" ], ri);
 var Mi = T("Minutes", !1);
-z("s", [ "ss", 2 ], 0, "second"), k("second", "s"), I("s", Fn), I("ss", Fn, Rn), 
+z("s", [ "ss", 2 ], 0, "second"), k("second", "s"), P("s", Fn), P("ss", Fn, Rn), 
 j([ "s", "ss" ], oi);
 var Oi = T("Seconds", !1);
 z("S", 0, 0, function() {
 return ~~(this.millisecond() / 100);
 }), z(0, [ "SS", 2 ], 0, function() {
 return ~~(this.millisecond() / 10);
-}), Ft("SSS"), Ft("SSSS"), k("millisecond", "ms"), I("S", Yn, Pn), I("SS", Yn, Rn), 
-I("SSS", Yn, jn), I("SSSS", Gn), j([ "S", "SS", "SSS", "SSSS" ], function(e, t) {
+}), Ft("SSS"), Ft("SSSS"), k("millisecond", "ms"), P("S", Yn, In), P("SS", Yn, Rn), 
+P("SSS", Yn, jn), P("SSSS", Gn), j([ "S", "SS", "SSS", "SSSS" ], function(e, t) {
 t[ai] = m(1e3 * ("0." + e));
 });
 var zi = T("Milliseconds", !1);
@@ -1576,15 +1223,15 @@ Di.startOf = mt, Di.subtract = wi, Di.toArray = xt, Di.toDate = vt, Di.toISOStri
 Di.toJSON = ct, Di.toString = lt, Di.unix = bt, Di.valueOf = gt, Di.year = hi, Di.isLeapYear = ae, 
 Di.weekYear = St, Di.isoWeekYear = Tt, Di.quarter = Di.quarters = Mt, Di.month = W, 
 Di.daysInMonth = X, Di.week = Di.weeks = pe, Di.isoWeek = Di.isoWeeks = de, Di.weeksInYear = At, 
-Di.isoWeeksInYear = Ct, Di.date = ki, Di.day = Di.days = Nt, Di.weekday = It, Di.isoWeekday = Pt, 
+Di.isoWeeksInYear = Ct, Di.date = ki, Di.day = Di.days = Nt, Di.weekday = Pt, Di.isoWeekday = It, 
 Di.dayOfYear = he, Di.hour = Di.hours = Ai, Di.minute = Di.minutes = Mi, Di.second = Di.seconds = Oi, 
-Di.millisecond = Di.milliseconds = zi, Di.utcOffset = Ne, Di.utc = Pe, Di.local = Re, 
+Di.millisecond = Di.milliseconds = zi, Di.utcOffset = Ne, Di.utc = Ie, Di.local = Re, 
 Di.parseZone = je, Di.hasAlignedHourOffset = He, Di.isDST = Ue, Di.isDSTShifted = Fe, 
 Di.isLocal = Ye, Di.isUtcOffset = Ve, Di.isUtc = Be, Di.isUTC = Be, Di.zoneAbbr = Yt, 
 Di.zoneName = Vt, Di.dates = K("dates accessor is deprecated. Use date instead.", ki), 
 Di.months = K("months accessor is deprecated. Use month instead", W), Di.years = K("years accessor is deprecated. Use year instead", hi), 
-Di.zone = K("moment().zone is deprecated, use moment().utcOffset instead. https://github.com/moment/moment/issues/1779", Ie);
-var Li = Di, qi = {
+Di.zone = K("moment().zone is deprecated, use moment().utcOffset instead. https://github.com/moment/moment/issues/1779", Pe);
+var qi = Di, Li = {
 sameDay: "[Today at] LT",
 nextDay: "[Tomorrow at] LT",
 nextWeek: "dddd [at] LT",
@@ -1598,7 +1245,7 @@ L: "MM/DD/YYYY",
 LL: "MMMM D, YYYY",
 LLL: "MMMM D, YYYY LT",
 LLLL: "dddd, MMMM D, YYYY LT"
-}, Ii = "Invalid date", Pi = "%d", Ri = /\d{1,2}/, ji = {
+}, Pi = "Invalid date", Ii = "%d", Ri = /\d{1,2}/, ji = {
 future: "in %s",
 past: "%s ago",
 s: "a few seconds",
@@ -1613,13 +1260,13 @@ MM: "%d months",
 y: "a year",
 yy: "%d years"
 }, Hi = g.prototype;
-Hi._calendar = qi, Hi.calendar = Wt, Hi._longDateFormat = Ni, Hi.longDateFormat = Xt, 
-Hi._invalidDate = Ii, Hi.invalidDate = Zt, Hi._ordinal = Pi, Hi.ordinal = Jt, Hi._ordinalParse = Ri, 
+Hi._calendar = Li, Hi.calendar = Wt, Hi._longDateFormat = Ni, Hi.longDateFormat = Xt, 
+Hi._invalidDate = Pi, Hi.invalidDate = Zt, Hi._ordinal = Ii, Hi.ordinal = Jt, Hi._ordinalParse = Ri, 
 Hi.preparse = Kt, Hi.postformat = Kt, Hi._relativeTime = ji, Hi.relativeTime = Qt, 
 Hi.pastFuture = en, Hi.set = tn, Hi.months = Y, Hi._months = si, Hi.monthsShort = V, 
 Hi._monthsShort = li, Hi.monthsParse = B, Hi.week = le, Hi._week = mi, Hi.firstDayOfYear = ue, 
-Hi.firstDayOfWeek = ce, Hi.weekdays = zt, Hi._weekdays = Ei, Hi.weekdaysMin = Lt, 
-Hi._weekdaysMin = Ti, Hi.weekdaysShort = Dt, Hi._weekdaysShort = Si, Hi.weekdaysParse = qt, 
+Hi.firstDayOfWeek = ce, Hi.weekdays = zt, Hi._weekdays = Ei, Hi.weekdaysMin = qt, 
+Hi._weekdaysMin = Ti, Hi.weekdaysShort = Dt, Hi._weekdaysShort = Si, Hi.weekdaysParse = Lt, 
 Hi.isPM = Ht, Hi._meridiemParse = Ci, Hi.meridiem = Ut, y("en", {
 ordinalParse: /\d{1,2}(th|st|nd|rd)/,
 ordinal: function(e) {
@@ -1640,12 +1287,12 @@ sr.asMonths = Xi, sr.asYears = Zi, sr.valueOf = bn, sr._bubble = hn, sr.get = xn
 sr.milliseconds = Ji, sr.seconds = Ki, sr.minutes = Qi, sr.hours = er, sr.days = tr, 
 sr.weeks = wn, sr.months = nr, sr.years = ir, sr.humanize = Sn, sr.toISOString = Tn, 
 sr.toString = Tn, sr.toJSON = Tn, sr.locale = ft, sr.localeData = ht, sr.toIsoString = K("toIsoString() is deprecated. Please use toISOString() instead (notice the capitals)", Tn), 
-sr.lang = $i, z("X", 0, 0, "unix"), z("x", 0, 0, "valueOf"), I("x", Wn), I("X", Zn), 
+sr.lang = $i, z("X", 0, 0, "unix"), z("x", 0, 0, "valueOf"), P("x", Wn), P("X", Zn), 
 j("X", function(e, t, n) {
 n._d = new Date(1e3 * parseFloat(e, 10));
 }), j("x", function(e, t, n) {
 n._d = new Date(m(e));
-}), t.version = "2.10.2", n(Se), t.fn = Li, t.min = Ce, t.max = Ae, t.utc = c, t.unix = Bt, 
+}), t.version = "2.10.2", n(Se), t.fn = qi, t.min = Ce, t.max = Ae, t.utc = c, t.unix = Bt, 
 t.months = on, t.isDate = o, t.locale = y, t.invalid = p, t.duration = Ge, t.isMoment = h, 
 t.weekdays = sn, t.parseZone = Gt, t.localeData = $, t.isDuration = Oe, t.monthsShort = an, 
 t.weekdaysMin = cn, t.defineLocale = w, t.weekdaysShort = ln, t.normalizeUnits = E, 
@@ -1684,6 +1331,497 @@ throw Error("Unsupported count: " + e);
 }
 }
 e.exports = n;
+},
+213: function(e) {
+"use strict";
+e.exports = function(e, t, n) {
+e.html5Mode(!0), n.otherwise("/"), t.state("root", {
+"abstract": !0,
+resolve: {
+me: function(e) {
+return e.get();
+}
+},
+templateUrl: "/profile/templates/partials/root",
+controller: "ProfileRootCtrl"
+});
+var i = {
+"root.aboutme": {
+url: "/",
+title: "Публичный профиль",
+templateUrl: "/profile/templates/partials/aboutme",
+controller: "ProfileAboutMeCtrl"
+},
+"root.account": {
+url: "/account",
+title: "Аккаунт",
+templateUrl: "/profile/templates/partials/account",
+controller: "ProfileAccountCtrl"
+},
+"root.quiz": {
+url: "/quiz",
+title: "Тесты",
+templateUrl: "/profile/templates/partials/quiz",
+controller: "ProfileQuizResultsCtrl",
+resolve: {
+quizResults: function(e) {
+return e.query();
+}
+}
+},
+"root.orders": {
+url: "/orders",
+title: "Заказы",
+templateUrl: "/profile/templates/partials/orders",
+controller: "ProfileOrdersCtrl",
+resolve: {
+orders: function(e) {
+return e.query();
+}
+}
+}
+};
+for (var r in i) ~window.profileStatesEnabled.indexOf(r) && t.state(r, i[r]);
+};
+},
+214: function(e, t, n) {
+"use strict";
+var i = n(128), r = n(1);
+r.module("profile").directive("profileField", [ "promiseTracker", "$http", "$timeout", function(e, t, n) {
+return {
+templateUrl: "/profile/templates/partials/profileField",
+scope: {
+title: "@fieldTitle",
+name: "@fieldName",
+formatValue: "=?fieldFormatValue",
+value: "=fieldValue"
+},
+replace: !0,
+transclude: !0,
+link: function(o, a, s, l, c) {
+o.formatValue || (o.formatValue = function(e) {
+return e;
+}), o.loadingTracker = e(), o.edit = function() {
+this.editing || (this.editing = !0, this.editingValue = this.value);
+}, o.submit = function() {
+var e = this;
+if (!this.form.$invalid) {
+if (this.value == this.editingValue) return this.editing = !1, void (this.editingValue = "");
+var n = new FormData();
+n.append(this.name, this.editingValue), t({
+method: "PATCH",
+url: "/users/me",
+tracker: this.loadingTracker,
+headers: {
+"Content-Type": void 0
+},
+transformRequest: r.identity,
+data: n
+}).then(function() {
+if ("displayName" == e.name) new i.Success("Изменение имени везде произойдёт после перезагрузки страницы.", "slow"); else if ("email" == e.name) new i.Warning("Требуется подтвердить смену email, проверьте почту.", "slow"); else if ("profileName" == e.name) {
+new i.Success("Ваш профиль доступен по новому адресу, страница будет перезагружена");
+var t = e.editingValue;
+setTimeout(function() {
+window.location.href = "/profile/" + t + "/account";
+}, 2e3);
+} else new i.Success("Информация обновлена.");
+e.editing = !1, e.value = e.editingValue, e.editingValue = "";
+}, function(e) {
+new i.Error(400 == e.status ? e.data.message : 409 == e.status ? e.data.message : "Ошибка загрузки, статус " + e.status);
+});
+}
+}, o.cancel = function() {
+var e = this;
+this.editing && n(function() {
+e.editing = !1, e.editingValue = "";
+});
+}, c(o, function(e) {
+a[0].querySelector("[control-transclude]").append(e[0]);
+});
+}
+};
+} ]);
+},
+215: function(e, t, n) {
+"use strict";
+var i = n(128), r = n(1);
+r.module("profile").directive("orderParticipants", [ "promiseTracker", "$http", "$timeout", function(e, t) {
+return {
+templateUrl: "/profile/templates/partials/orderParticipants",
+scope: {
+order: "="
+},
+replace: !0,
+link: function(n) {
+function o(e) {
+for (var t = [], i = 0; i < e.participants.length; i++) {
+var r = e.participants[i], o = !n.participants.some(function(e) {
+return e.email == r.email;
+});
+o && t.push(r.email);
+}
+return t;
+}
+for (n.participants = r.copy(n.order.participants); n.participants.length != n.order.count; ) n.participants.push({
+accepted: !1,
+email: ""
+});
+n.loadingTracker = e(), n.submit = function() {
+if (!this.participantsForm.$invalid) {
+if ("success" == n.order.status) {
+var e = o(n.order), a = confirm("Вы удалили участников, которые получили приглашения на курс: " + e + ".\nПри продолжении их приглашения станут недействительными.\nПродолжить?");
+if (!a) return;
+}
+var s = new FormData();
+s.append("orderNumber", n.order.number);
+var l = n.participants.map(function(e) {
+return e.accepted ? void 0 : e.email;
+}).filter(Boolean);
+s.append("emails", l), t({
+method: "PATCH",
+url: "/courses/order",
+tracker: this.loadingTracker,
+headers: {
+"Content-Type": void 0
+},
+transformRequest: r.identity,
+data: s
+}).then(function() {
+new i.Success("Информация обновлена."), n.order.participants = r.copy(n.participants);
+}, function(e) {
+new i.Error(400 == e.status ? e.data.message : "Ошибка загрузки, статус " + e.status);
+});
+}
+};
+}
+};
+} ]);
+},
+216: function(e, t, n) {
+"use strict";
+var i = n(128), r = n(1);
+r.module("profile").directive("orderContact", [ "promiseTracker", "$http", "$timeout", function(e, t) {
+return {
+templateUrl: "/profile/templates/partials/orderContact",
+scope: {
+order: "="
+},
+replace: !0,
+link: function(n) {
+n.contactName = n.order.contactName, n.contactPhone = n.order.contactPhone, n.loadingTracker = e(), 
+n.submit = function() {
+if (!this.contactForm.$invalid) {
+var e = new FormData();
+e.append("orderNumber", n.order.number), e.append("contactName", n.contactName), 
+e.append("contactPhone", n.contactPhone), t({
+method: "PATCH",
+url: "/courses/order",
+tracker: this.loadingTracker,
+headers: {
+"Content-Type": void 0
+},
+transformRequest: r.identity,
+data: e
+}).then(function() {
+new i.Success("Информация обновлена."), n.order.contactName = n.contactName, n.order.contactPhone = n.contactPhone;
+}, function(e) {
+new i.Error(400 == e.status ? e.data.message : "Ошибка загрузки, статус " + e.status);
+});
+}
+};
+}
+};
+} ]);
+},
+217: function(e, t, n) {
+"use strict";
+var i = n(128), r = n(1), o = n(164).thumb;
+r.module("profile").directive("profilePhoto", [ "promiseTracker", "$http", "$timeout", function(e, t) {
+return {
+templateUrl: "/profile/templates/partials/profilePhoto",
+scope: {
+photo: "="
+},
+replace: !0,
+link: function(n) {
+function o(e) {
+var o = new FormData();
+o.append("photo", e), t({
+method: "PATCH",
+url: "/users/me",
+headers: {
+"Content-Type": void 0
+},
+tracker: n.loadingTracker,
+transformRequest: r.identity,
+data: o
+}).then(function(e) {
+n.photo = e.data.photo, new i.Success("Изображение обновлено.");
+}, function(e) {
+new i.Error(400 == e.status ? "Неверный тип файла или изображение повреждено." : "Ошибка загрузки, статус " + e.status);
+});
+}
+n.loadingTracker = e();
+n.changePhoto = function() {
+var e = document.createElement("input");
+e.type = "file", e.accept = "image/*", e.onchange = function() {
+var t = new FileReader(), n = e.files[0];
+t.onload = function(e) {
+var t = new Image();
+t.onload = function() {
+t.width != t.height || t.width < 160 ? new i.Error("Изображение должно быть квадратом, размер 160x160 или больше") : o(n);
+}, t.src = e.target.result;
+}, t.readAsDataURL(n);
+}, e.click();
+};
+}
+};
+} ]).filter("thumb", function() {
+return o;
+});
+},
+218: function(e, t, n) {
+"use strict";
+var i = n(128), r = n(1);
+r.module("profile").directive("profilePassword", [ "promiseTracker", "$http", "$timeout", function(e, t, n) {
+return {
+templateUrl: "/profile/templates/partials/profilePassword",
+scope: {
+hasPassword: "="
+},
+replace: !0,
+link: function(o, a) {
+o.password = "", o.passwordOld = "", o.loadingTracker = e(), o.edit = function() {
+this.editing || (this.editing = !0, n(function() {
+var e = a[0].elements[o.hasPassword ? "passwordOld" : "password"];
+e.focus();
+}));
+}, o.submit = function() {
+if (!o.form.$invalid) {
+var e = new FormData();
+e.append("password", this.password), e.append("passwordOld", this.passwordOld), 
+t({
+method: "PATCH",
+url: "/users/me",
+tracker: this.loadingTracker,
+headers: {
+"Content-Type": void 0
+},
+transformRequest: r.identity,
+data: e
+}).then(function() {
+new i.Success("Пароль обновлён."), o.editing = !1, o.hasPassword = !0, o.password = "", 
+o.passwordOld = "", o.form.$setPristine();
+}, function(e) {
+new i.Error(400 == e.status ? e.data.message || e.data.errors.password : "Ошибка загрузки, статус " + e.status);
+});
+}
+}, o.cancel = function() {
+var e = this;
+this.editing && n(function() {
+e.editing = !1;
+});
+};
+}
+};
+} ]);
+},
+219: function(e, t, n) {
+"use strict";
+var i = (n(128), n(1));
+i.module("profile").directive("profileAuthProviders", [ "promiseTracker", "$http", "authPopup", "Me", function(e, t, n, i) {
+return {
+templateUrl: "/profile/templates/partials/profileAuthProviders",
+replace: !0,
+link: function(e) {
+e.connect = function(t) {
+arguments;
+n("/auth/connect/" + t, function() {
+e.me = i.get();
+}, function() {});
+}, e.connected = function(t) {
+var n = !1;
+return e.me.providers ? (e.me.providers.forEach(function(e) {
+e.name == t && (n = !0);
+}), n) : !1;
+};
+}
+};
+} ]).service("authPopup", function() {
+var e;
+return function(t, n, i) {
+e && !e.closed && e.close();
+var r = 800, o = 600, a = (window.outerHeight - o) / 2, s = (window.outerWidth - r) / 2;
+window.authModal = {
+onAuthSuccess: n,
+onAuthFailure: i
+}, e = window.open(t, "authModal", "width=" + r + ",height=" + o + ",scrollbars=0,top=" + a + ",left=" + s);
+};
+});
+},
+220: function(e, t, n) {
+"use strict";
+var i = n(1);
+i.module("profile").directive("dateValidator", function() {
+return {
+require: "ngModel",
+link: function(e, t, n, i) {
+i.$validators.date = function(e, t) {
+var n = e || t;
+if (!n) return !0;
+var i = n.split(".");
+if (3 != i.length) return !1;
+var r = new Date(i[2], i[1] - 1, i[0]);
+return 4 != i[2].length ? !1 : r.getFullYear() == i[2] && r.getMonth() == i[1] - 1 && r.getDate() == i[0];
+};
+}
+};
+});
+},
+221: function(e, t, n) {
+"use strict";
+var i = (n(128), n(1)), r = n(140);
+i.module("profile").directive("dateRangeValidator", function() {
+return {
+require: "ngModel",
+link: function(e, t, n, i) {
+var o = n.dateRangeValidator.split("-"), a = o[0] ? r(o[0], "DD.MM.YYYY").toDate() : new Date(), s = o[1] ? r(o[1], "DD.MM.YYYY").toDate() : new Date();
+i.$validators.dateRange = function(e, t) {
+var n = e || t;
+if (!n) return !0;
+var i = n.split(".");
+if (3 != i.length) return !1;
+var r = new Date(i[2], i[1] - 1, i[0]);
+return 4 != i[2].length ? !1 : r >= a && s >= r;
+};
+}
+};
+});
+},
+222: function(e) {
+"use strict";
+e.exports = function(e) {
+return e("/users/me", {}, {
+get: {
+method: "GET",
+transformResponse: function(e) {
+return e = JSON.parse(e), e.created = new Date(e.created), e;
+}
 }
 });
-//# sourceMappingURL=profile.7f712877f7989c9c9a8e.js.map
+};
+},
+223: function(e) {
+"use strict";
+e.exports = function(e) {
+return e("/quiz/results/user/" + window.currentUser.id, {}, {
+query: {
+method: "GET",
+isArray: !0,
+transformResponse: function(e) {
+return e = JSON.parse(e), e.forEach(function(e) {
+e.created = new Date(e.created);
+}), e;
+}
+}
+});
+};
+},
+224: function(e) {
+"use strict";
+e.exports = function(e) {
+return e("/payments/common/orders/user/" + window.currentUser.id, {}, {
+query: {
+method: "GET",
+isArray: !0,
+transformResponse: function(e) {
+return e = JSON.parse(e), e.forEach(function(e) {
+e.created = new Date(e.created), e.countDetails = {
+free: e.count - e.participants.length,
+busy: e.participants.length,
+accepted: e.participants.filter(function(e) {
+return e.accepted;
+}).length
+};
+}), e;
+}
+}
+});
+};
+},
+225: function(e) {
+"use strict";
+e.exports = function(e, t, n, i, r, o) {
+e.me = r, e.loadingTracker = o(), e.states = t.get().filter(function(e) {
+return !e.abstract;
+}).map(function(e) {
+return {
+title: e.title,
+name: e.name,
+url: e.url
+};
+});
+};
+},
+226: function(e, t, n) {
+"use strict";
+n(1), n(128), n(140);
+e.exports = function(e, t, n, i) {
+e.orders = i, e.changePayment = function(e) {
+n.location.href = "/courses/orders/" + e.number + "?changePayment=1";
+};
+};
+},
+227: function(e) {
+"use strict";
+e.exports = function(e, t) {
+e.me = t;
+};
+},
+228: function(e) {
+"use strict";
+e.exports = function(e, t) {
+e.quizResults = t;
+};
+},
+229: function(e, t, n) {
+"use strict";
+{
+var i = n(1), r = n(128);
+n(140);
+}
+e.exports = function(e, t, n, o) {
+e.me = n, e.remove = function() {
+var o = confirm("" + n.displayName + " (" + n.email + ") - удалить пользователя без возможности восстановления?");
+o && t({
+method: "DELETE",
+url: "/users/me",
+tracker: e.loadingTracker,
+headers: {
+"Content-Type": void 0
+},
+transformRequest: i.identity,
+data: new FormData()
+}).then(function() {
+new r.Success("Пользователь удалён."), setTimeout(function() {
+window.location.href = "/";
+}, 1500);
+}, function(e) {
+new r.Error("Ошибка загрузки, статус " + e.status);
+});
+}, e.removeProvider = function(n) {
+var i = confirm("" + n + " - удалить привязку?");
+i && t({
+method: "POST",
+url: "/auth/disconnect/" + n,
+tracker: this.loadingTracker
+}).then(function() {
+e.me = o.get();
+}, function(e) {
+new r.Error("Ошибка загрузки, статус " + e.status);
+});
+};
+};
+}
+});
+//# sourceMappingURL=profile.0ec413405eff3200604d.js.map
