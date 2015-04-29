@@ -16,7 +16,8 @@ return r(e).format("D MMMM YYYY в LT");
 };
 }).filter("quizDuration", function() {
 return function(e) {
-return r.duration(e, "seconds").humanize();
+var t = Math.round(e / 1e3);
+return r.duration(t, "seconds").humanize();
 };
 }).filter("pluralize", function() {
 return o;
@@ -1381,7 +1382,7 @@ return e.query();
 }
 }
 };
-for (var r in i) ~window.profileStatesEnabled.indexOf(r) && t.state(r, i[r]);
+for (var r in i) t.state(r, i[r]);
 };
 },
 214: function(e, t, n) {
@@ -1752,13 +1753,16 @@ return e.accepted;
 225: function(e) {
 "use strict";
 e.exports = function(e, t, n, i, r, o) {
-e.me = r, e.loadingTracker = o(), e.states = t.get().filter(function(e) {
-return !e.abstract;
-}).map(function(e) {
+e.me = r, e.loadingTracker = o();
+var a = [ "root.aboutme", "root.account" ];
+window.currentUser.profileTabsEnabled.forEach(function(e) {
+a.push("root." + e);
+}), e.tabs = a.map(function(e) {
+var n = t.get(e);
 return {
-title: e.title,
-name: e.name,
-url: e.url
+title: n.title,
+name: n.name,
+url: n.url
 };
 });
 };
@@ -1824,4 +1828,4 @@ new r.Error("Ошибка загрузки, статус " + e.status);
 };
 }
 });
-//# sourceMappingURL=profile.dc578189d5ad0ade294c.js.map
+//# sourceMappingURL=profile.3c2220b215a9c77194c7.js.map

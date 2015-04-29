@@ -36,7 +36,7 @@ size: "small",
 elemClass: "button_loading"
 });
 r.start(), i.disabled = !0, n.addEventListener("loadend", t), n.addEventListener("success", function() {
-new c.Success("Результат сохранён в профиле! <a href='/profile'>Перейти в профиль</a>.", "slow");
+new c.Success("Результат сохранён в профиле! <a href='/profile/" + window.currentUser.profileName + "/quiz'>Перейти в профиль</a>.", "slow");
 });
 }
 e.onsubmit = function(e) {
@@ -888,4 +888,4 @@ return n > 10;
 e.exports = t;
 }
 });
-//# sourceMappingURL=quiz.dc578189d5ad0ade294c.js.map
+//# sourceMappingURL=quiz.3c2220b215a9c77194c7.js.map
