@@ -10,4 +10,4 @@ var t = document.querySelector(".search-form_fixed"), o = t.querySelector(".sear
 window.addEventListener("scroll", e), e();
 };
 } ]);
-//# sourceMappingURL=search.3c2220b215a9c77194c7.js.map
+//# sourceMappingURL=search.537ac198714e6363d1d1.js.map

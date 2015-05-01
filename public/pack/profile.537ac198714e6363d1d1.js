@@ -1464,10 +1464,17 @@ o && t.push(r.email);
 return t;
 }
 for (n.participants = r.copy(n.order.participants); n.participants.length != n.order.count; ) n.participants.push({
-accepted: !1,
+inGroup: !1,
 email: ""
 });
-n.loadingTracker = e(), n.submit = function() {
+n.loadingTracker = e(), n.onEmailKeyDown = function(e) {
+if (13 == e.keyCode) {
+var t = e.target.name.split("_");
+t.push(+t.pop() + 1), t = t.join("_");
+var n = document.getElementById(t);
+n && n.focus();
+}
+}, n.submit = function() {
 if (!this.participantsForm.$invalid) {
 if ("success" == n.order.status) {
 var e = o(n.order), a = confirm("Вы удалили участников, которые получили приглашения на курс: " + e + ".\nПри продолжении их приглашения станут недействительными.\nПродолжить?");
@@ -1476,19 +1483,19 @@ if (!a) return;
 var s = new FormData();
 s.append("orderNumber", n.order.number);
 var l = n.participants.map(function(e) {
-return e.accepted ? void 0 : e.email;
+return e.inGroup ? void 0 : e.email;
 }).filter(Boolean);
 s.append("emails", l), t({
 method: "PATCH",
-url: "/courses/order",
+url: "/payments/common/order",
 tracker: this.loadingTracker,
 headers: {
 "Content-Type": void 0
 },
 transformRequest: r.identity,
 data: s
-}).then(function() {
-new i.Success("Информация обновлена."), n.order.participants = r.copy(n.participants);
+}).then(function(e) {
+new i.Success(e.data), n.order.participants = r.copy(n.participants);
 }, function(e) {
 new i.Error(400 == e.status ? e.data.message : "Ошибка загрузки, статус " + e.status);
 });
@@ -1516,7 +1523,7 @@ var e = new FormData();
 e.append("orderNumber", n.order.number), e.append("contactName", n.contactName), 
 e.append("contactPhone", n.contactPhone), t({
 method: "PATCH",
-url: "/courses/order",
+url: "/payments/common/order",
 tracker: this.loadingTracker,
 headers: {
 "Content-Type": void 0
@@ -1740,8 +1747,8 @@ return e = JSON.parse(e), e.forEach(function(e) {
 e.created = new Date(e.created), e.countDetails = {
 free: e.count - e.participants.length,
 busy: e.participants.length,
-accepted: e.participants.filter(function(e) {
-return e.accepted;
+inGroup: e.participants.filter(function(e) {
+return e.inGroup;
 }).length
 };
 }), e;
@@ -1769,10 +1776,31 @@ url: n.url
 },
 226: function(e, t, n) {
 "use strict";
-n(1), n(128), n(140);
-e.exports = function(e, t, n, i) {
-e.orders = i, e.changePayment = function(e) {
+{
+var i = n(1), r = n(128);
+n(140);
+}
+e.exports = function(e, t, n, o) {
+e.orders = o, e.changePayment = function(e) {
 n.location.href = "/courses/orders/" + e.number + "?changePayment=1";
+}, e.cancelOrder = function(e) {
+var n = confirm("Заказ будет отменён, без возможности восстановления. Продолжать?");
+if (n) {
+var a = new FormData();
+a.append("orderNumber", e.number), t({
+method: "DELETE",
+url: "/payments/common/order",
+headers: {
+"Content-Type": void 0
+},
+transformRequest: i.identity,
+data: a
+}).then(function() {
+o.splice(o.indexOf(e), 1), new r.Success("Заказ удалён.");
+}, function(e) {
+new r.Error(400 == e.status ? e.data.message : "Ошибка загрузки, статус " + e.status);
+});
+}
 };
 };
 },
@@ -1828,4 +1856,4 @@ new r.Error("Ошибка загрузки, статус " + e.status);
 };
 }
 });
-//# sourceMappingURL=profile.3c2220b215a9c77194c7.js.map
+//# sourceMappingURL=profile.537ac198714e6363d1d1.js.map

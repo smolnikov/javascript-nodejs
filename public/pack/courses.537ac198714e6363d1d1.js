@@ -697,4 +697,4 @@ attributes: {
 };
 }
 });
-//# sourceMappingURL=courses.3c2220b215a9c77194c7.js.map
+//# sourceMappingURL=courses.537ac198714e6363d1d1.js.map
