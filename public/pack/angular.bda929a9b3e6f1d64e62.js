@@ -12,16 +12,9 @@ e.exports = n(167);
 var i = n(128), r = n(107);
 r.module("global403Interceptor", []).factory("http403Interceptor", [ "$q", "$log", function(e, t) {
 return {
-response: function(e) {
-function t() {
-return e.apply(this, arguments);
-}
-return t.toString = function() {
-return "" + e;
-}, t;
-}(function(t) {
+response: function(t) {
 return t || e.when(t);
-}),
+},
 responseError: function(n) {
 return t.error("error with status " + n.status), t.error(n), 401 == n.status ? new i.Error("Нет авторизации: вы вышли с сайта?") : 500 == n.status ? new i.Error("Ошибка на стороне сервера. Попытайтесь позднее.") : n.status || new i.Error("Сетевая ошибка. Нет связи?"), 
 e.reject(n);
@@ -7284,4 +7277,4 @@ J(t, Q);
 e.exports = angular;
 }
 });
-//# sourceMappingURL=angular.e3d78030c19b9fbe6317.js.map
+//# sourceMappingURL=angular.bda929a9b3e6f1d64e62.js.map

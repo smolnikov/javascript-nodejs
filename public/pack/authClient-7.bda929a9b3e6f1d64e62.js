@@ -191,11 +191,11 @@ n.append("successRedirect", this.options.successRedirect);
 var i = this.request({
 method: "POST",
 url: "/auth/forgot",
-normalStatuses: [ 200, 404 ],
+normalStatuses: [ 200, 404, 403 ],
 body: n
 }), r = this;
 i.addEventListener("success", function(e) {
-200 == this.status ? (r.setContent(p(l)), r.showFormMessage(e.result, "success")) : 404 == this.status && r.showFormMessage(e.result, "error");
+200 == this.status ? (r.setContent(p(l)), r.showFormMessage(e.result, "success")) : 404 == this.status ? r.showFormMessage(e.result, "error") : 403 == this.status && r.showFormMessage(e.result.message || "Действие запрещено.", "error");
 });
 }
 }, i.prototype.showInputError = function(e, t) {
@@ -1029,4 +1029,4 @@ t(n, a, s, i, r), o || i.pop();
 };
 }
 });
-//# sourceMappingURL=authClient-7.e3d78030c19b9fbe6317.js.map
+//# sourceMappingURL=authClient-7.bda929a9b3e6f1d64e62.js.map

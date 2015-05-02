@@ -181,20 +181,13 @@ i(this, e), this.orderForm = t, this.paymentMethodElem = n;
 }
 return r(e, [ {
 key: "request",
-value: function(e) {
-function t() {
-return e.apply(this, arguments);
-}
-return t.toString = function() {
-return "" + e;
-}, t;
-}(function(e) {
+value: function t(e) {
 var t = a(e);
 return t.addEventListener("loadstart", function() {
 var e = this.startRequestIndication();
 t.addEventListener("loadend", e);
 }.bind(this)), t;
-})
+}
 }, {
 key: "startRequestIndication",
 value: function() {
@@ -259,16 +252,9 @@ id: i.orderNumber
 });
 var a = document.createElement("div");
 a.hidden = !0, a.innerHTML = i.form, document.body.appendChild(a);
-var l = function(e) {
-function t() {
-return e.apply(this, arguments);
-}
-return t.toString = function() {
-return "" + e;
-}, t;
-}(function() {
-l.called || (l.called = !0, a.firstChild.submit());
-});
+var l = function c() {
+c.called || (c.called = !0, a.firstChild.submit());
+};
 window.ga("send", "event", "payment", "purchase", "ebook", {
 hitCallback: l
 }), setTimeout(l, 500), window.metrika.reachGoal("PURCHASE", {
@@ -371,20 +357,13 @@ e;
 }
 }, {
 key: "request",
-value: function(e) {
-function t() {
-return e.apply(this, arguments);
-}
-return t.toString = function() {
-return "" + e;
-}, t;
-}(function(e) {
+value: function t(e) {
 var t = o(e);
 return t.addEventListener("loadstart", function() {
 var e = this.startRequestIndication();
 t.addEventListener("loadend", e);
 }.bind(this)), t;
-})
+}
 }, {
 key: "startRequestIndication",
 value: function() {
@@ -697,4 +676,4 @@ attributes: {
 };
 }
 });
-//# sourceMappingURL=courses.e3d78030c19b9fbe6317.js.map
+//# sourceMappingURL=courses.bda929a9b3e6f1d64e62.js.map

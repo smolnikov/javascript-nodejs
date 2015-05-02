@@ -157,20 +157,13 @@ i(this, e), this.orderForm = t, this.paymentMethodElem = o;
 }
 return r(e, [ {
 key: "request",
-value: function(e) {
-function t() {
-return e.apply(this, arguments);
-}
-return t.toString = function() {
-return "" + e;
-}, t;
-}(function(e) {
+value: function t(e) {
 var t = n(e);
 return t.addEventListener("loadstart", function() {
 var e = this.startRequestIndication();
 t.addEventListener("loadend", e);
 }.bind(this)), t;
-})
+}
 }, {
 key: "startRequestIndication",
 value: function() {
@@ -235,16 +228,9 @@ id: i.orderNumber
 });
 var n = document.createElement("div");
 n.hidden = !0, n.innerHTML = i.form, document.body.appendChild(n);
-var l = function(e) {
-function t() {
-return e.apply(this, arguments);
-}
-return t.toString = function() {
-return "" + e;
-}, t;
-}(function() {
-l.called || (l.called = !0, n.firstChild.submit());
-});
+var l = function p() {
+p.called || (p.called = !0, n.firstChild.submit());
+};
 window.ga("send", "event", "payment", "purchase", "ebook", {
 hitCallback: l
 }), setTimeout(l, 500), window.metrika.reachGoal("PURCHASE", {
@@ -262,4 +248,4 @@ number: i.orderNumber
 e.exports = l;
 }
 });
-//# sourceMappingURL=ebook.e3d78030c19b9fbe6317.js.map
+//# sourceMappingURL=ebook.bda929a9b3e6f1d64e62.js.map

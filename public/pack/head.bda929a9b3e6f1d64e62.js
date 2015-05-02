@@ -37,7 +37,7 @@ o.type = "text/javascript", o.charset = "utf-8", o.async = !0, o.src = t.p + "" 
 "12": "about",
 "13": "ebookExtras",
 "14": "courses"
-}[e] || e) + "-" + e + ".e3d78030c19b9fbe6317.js", i.appendChild(o);
+}[e] || e) + "-" + e + ".bda929a9b3e6f1d64e62.js", i.appendChild(o);
 }
 }, t.m = e, t.c = i, t.p = "/pack/", t(0);
 }({
@@ -324,16 +324,23 @@ n(161);
 },
 128: function(e, t, n) {
 "use strict";
-var i = function m(e, t, n) {
-var i = Object.getOwnPropertyDescriptor(e, t);
-if (void 0 === i) {
-var r = Object.getPrototypeOf(e);
-return null === r ? void 0 : m(r, t, n);
+Object.defineProperty(t, "__esModule", {
+value: !0
+});
+var i, r = function(e, t, n) {
+for (var i = !0; i; ) {
+s = c = l = void 0, i = !1;
+var r = e, o = t, a = n, s = Object.getOwnPropertyDescriptor(r, o);
+if (void 0 !== s) {
+if ("value" in s) return s.value;
+var l = s.get;
+return void 0 === l ? void 0 : l.call(a);
 }
-if ("value" in i) return i.value;
-var o = i.get;
-return void 0 === o ? void 0 : o.call(n);
-}, r = function(e, t) {
+var c = Object.getPrototypeOf(r);
+if (null === c) return void 0;
+e = c, t = o, n = a, i = !0;
+}
+}, o = function(e, t) {
 if ("function" != typeof t && null !== t) throw new TypeError("Super expression must either be null or a function, not " + typeof t);
 e.prototype = Object.create(t && t.prototype, {
 constructor: {
@@ -343,9 +350,9 @@ writable: !0,
 configurable: !0
 }
 }), t && (e.__proto__ = t);
-}, o = function(e, t) {
+}, a = function(e, t) {
 if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function");
-}, a = function() {
+}, s = function() {
 function e(e, t) {
 for (var n = 0; n < t.length; n++) {
 var i = t[n];
@@ -356,16 +363,12 @@ Object.defineProperty(e, i.key, i);
 return function(t, n, i) {
 return n && e(t.prototype, n), i && e(t, i), t;
 };
-}();
-Object.defineProperty(t, "__esModule", {
-value: !0
-});
-var s, l = n(132), c = function() {
+}(), l = n(132), c = function() {
 function e() {
 var t = void 0 === arguments[0] ? {} : arguments[0];
-o(this, e), this.notifications = [], this.verticalSpace = t.verticalSpace || 8;
+a(this, e), this.notifications = [], this.verticalSpace = t.verticalSpace || 8;
 }
-return a(e, [ {
+return s(e, [ {
 key: "register",
 value: function(e) {
 var t = this;
@@ -390,14 +393,14 @@ n.top = t, t += n.height + e.verticalSpace;
 } ]), e;
 }();
 t.init = function(e) {
-s = new c(e);
+i = new c(e);
 };
 var u = function() {
-function e(t, n, i) {
-o(this, e);
-var r = '<div class="notification notification_popup notification_' + n + '">\n    <div class="notification__content">' + t + '</div>\n    <button title="Закрыть" class="notification__close"></button></div>';
-switch (document.body.insertAdjacentHTML("beforeEnd", r), this.elem = document.body.lastElementChild, 
-i) {
+function e(t, n, r) {
+a(this, e);
+var o = '<div class="notification notification_popup notification_' + n + '">\n    <div class="notification__content">' + t + '</div>\n    <button title="Закрыть" class="notification__close"></button></div>';
+switch (document.body.insertAdjacentHTML("beforeEnd", o), this.elem = document.body.lastElementChild, 
+r) {
 case void 0:
 this.timeout = this.TIMEOUT_DEFAULT;
 break;
@@ -411,11 +414,11 @@ this.timeout = this.TIMEOUT_FAST;
 break;
 
 default:
-this.timeout = i;
+this.timeout = r;
 }
-s.register(this), this.setupCloseHandler(), this.setupCloseTimeout();
+i.register(this), this.setupCloseHandler(), this.setupCloseTimeout();
 }
-return a(e, [ {
+return s(e, [ {
 key: "TIMEOUT_DEFAULT",
 get: function() {
 return 2500;
@@ -433,7 +436,7 @@ return 1500;
 }, {
 key: "close",
 value: function() {
-this.elem.parentNode && (this.elem.remove(), s.unregister(this));
+this.elem.parentNode && (this.elem.remove(), i.unregister(this));
 }
 }, {
 key: "setupCloseHandler",
@@ -466,30 +469,30 @@ this.elem.style.transform = "translateY(" + e + "px)";
 l.delegateMixin(u.prototype);
 var p = function(e) {
 function t(e, n) {
-o(this, t), i(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "info", n);
+a(this, t), r(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "info", n);
 }
-return r(t, e), t;
+return o(t, e), t;
 }(u);
 t.Info = p;
 var d = function(e) {
 function t(e, n) {
-o(this, t), i(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "warning", n);
+a(this, t), r(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "warning", n);
 }
-return r(t, e), t;
+return o(t, e), t;
 }(u);
 t.Warning = d;
 var f = function(e) {
 function t(e, n) {
-o(this, t), i(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "success", n);
+a(this, t), r(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "success", n);
 }
-return r(t, e), t;
+return o(t, e), t;
 }(u);
 t.Success = f;
 var h = function(e) {
 function t(e, n) {
-o(this, t), i(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "error", n);
+a(this, t), r(Object.getPrototypeOf(t.prototype), "constructor", this).call(this, e, "error", n);
 }
-return r(t, e), a(t, [ {
+return o(t, e), s(t, [ {
 key: "TIMEOUT_DEFAULT",
 get: function() {
 return 5e3;
@@ -702,7 +705,7 @@ e.enumerable = !1, Object.defineProperty(Element.prototype, "dataset", e);
 },
 191: function() {
 "use strict";
-void 0 === document.documentElement.hidden && (document.head.insertAdjacentHTML("<style> [hidden] { display: none } </style>"), 
+void 0 === document.documentElement.hidden && (document.head.insertAdjacentHTML("beforeEnd", "<style> [hidden] { display: none } </style>"), 
 Object.defineProperty(Element.prototype, "hidden", {
 set: function(e) {
 this.setAttribute("hidden", e);
@@ -753,4 +756,4 @@ return e.parentNode.removeChild(e), t - i;
 e.exports = t;
 }
 });
-//# sourceMappingURL=head.e3d78030c19b9fbe6317.js.map
+//# sourceMappingURL=head.bda929a9b3e6f1d64e62.js.map
