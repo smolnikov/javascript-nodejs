@@ -597,6 +597,7 @@ id: "register-password",
 type: "password",
 name: "password",
 required: !0,
+minlength: "4",
 "class": "control"
 }
 }, "input");
@@ -1028,4 +1029,4 @@ t(n, a, s, i, r), o || i.pop();
 };
 }
 });
-//# sourceMappingURL=authClient-7.9c155813eba57d060e7b.js.map
+//# sourceMappingURL=authClient-7.e3d78030c19b9fbe6317.js.map
