@@ -4,7 +4,7 @@ var nodejsScreencast = webpackJsonp_name_([ 5 ], {
 function i() {
 for (var e = document.querySelectorAll("li[data-mnemo]"), t = 0; t < e.length; t++) {
 var n = e[t], i = n.getAttribute("data-mnemo");
-n.insertAdjacentHTML("beforeEnd", '<div class="lessons-list__download"><div class="lessons-list__popup"><ul class="lessons-list__popup-list"><li class="lessons-list__popup-item"><a href="/nodejs-screencast/nodejs-mp4-low/' + i + '.mp4">Компактный размер</a></li><li class="lessons-list__popup-item"><a href="/nodejs-screencast/nodejs-mp4/' + i + '.mp4">Высокое качество</a></li></ul></div></div>');
+n.insertAdjacentHTML("beforeEnd", '<div class="lessons-list__download"><div class="lessons-list__popup"><ul class="lessons-list__popup-list"><li class="lessons-list__popup-item"><a data-track-outbound href="/nodejs-screencast/nodejs-mp4-low/' + i + '.mp4">Компактный размер</a></li><li class="lessons-list__popup-item"><a data-track-outbound href="/nodejs-screencast/nodejs-mp4/' + i + '.mp4">Высокое качество</a></li></ul></div></div>');
 }
 }
 var r = n(237), o = n(154), a = n(275), s = n(283);
@@ -354,4 +354,4 @@ e;
 };
 }
 });
-//# sourceMappingURL=nodejsScreencast.5e8e441adce04cbab383.js.map
+//# sourceMappingURL=nodejsScreencast.f149159474a121ab88ea.js.map

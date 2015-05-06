@@ -1,113 +1,65 @@
-var quiz = webpackJsonp_name_([ 10 ], {
-0: function(e, t, n) {
+var tutorial = webpackJsonp_name_([ 2 ], {
+0: function(e, t, o) {
 "use strict";
 function i() {
-var e = document.querySelector("[data-quiz-question-form]");
-e && o(e);
-var t = document.querySelector("[data-quiz-result-save-form]");
-t && r(t), l.init();
+function e() {
+var e = document.getElementsByClassName("sidebar__navigation-link_active");
+e[0] && e[0].classList.remove("sidebar__navigation-link_active");
+for (var t = document.getElementsByTagName("h2"), o = 0; o < t.length; o++) {
+var i = t[o];
+if (i.getBoundingClientRect().top > 1) break;
 }
-function r(e) {
-function t() {
-var t = e.querySelector('[type="submit"]'), r = new a({
-elem: t,
-size: "small",
-"class": "submit-button__spinner",
-elemClass: "submit-button_progress"
-});
-r.start(), n.e(7, function() {
-r.stop();
-var e = n(282).AuthModal;
-new e({
-callback: i
-});
+if (o--, o >= 0) {
+var r = t[o].firstElementChild && t[o].firstElementChild.getAttribute("href"), a = document.querySelector('.sidebar__navigation-link a[href="' + r + '"]');
+r && a && a.classList.add("sidebar__navigation-link_active");
+}
+}
+document.addEventListener("DOMContentLoaded", function() {
+e(), window.addEventListener("scroll", e);
 });
 }
-function i() {
-function t() {
-r.stop(), i.disabled = !1;
-}
-var n = s({
-method: "POST",
-url: e.action
-}), i = e.querySelector('[type="submit"]'), r = new a({
-elem: i,
-size: "small",
-elemClass: "button_loading"
-});
-r.start(), i.disabled = !0, n.addEventListener("loadend", t), n.addEventListener("success", function() {
-new c.Success("Результат сохранён в профиле! <a href='/profile/" + window.currentUser.profileName + "/quiz'>Перейти в профиль</a>.", "slow");
+function r() {
+n(document, ".task__solution", "click", function(e) {
+e.target.closest(".task").classList.toggle("task__answer_open");
+}), n(document, ".task__answer-close", "click", function(e) {
+e.target.closest(".task").classList.toggle("task__answer_open");
+}), n(document, ".task__step-show", "click", function(e) {
+e.target.closest(".task__step").classList.toggle("task__step_open");
 });
 }
-e.onsubmit = function(e) {
-return e.preventDefault(), window.currentUser ? void i() : void t();
-};
-}
-function o(e) {
-function t() {
-for (var t = e.elements.type.value, n = e.elements.answer, i = [], r = 0; r < n.length; r++) n[r].checked && i.push(+n[r].value);
-return "single" == t && (i = i[0]), i;
-}
-e.onchange = function() {
-var n = t();
-switch (e.elements.type.value) {
-case "single":
-e.querySelector('[type="submit"]').disabled = void 0 === n;
-break;
-
-case "multi":
-e.querySelector('[type="submit"]').disabled = n.length ? !1 : !0;
-break;
-
-default:
-throw Error("unknown type");
-}
-}, e.onsubmit = function(n) {
-function i() {
-u.stop(), c.disabled = !1;
-}
-n.preventDefault();
-var r = t(), o = s({
-method: "POST",
-url: e.action,
-body: {
-answer: r
-}
-}), c = e.querySelector('[type="submit"]'), u = new a({
-elem: c,
-size: "small",
-elemClass: "button_loading"
+function a() {
+n(document, ".lessons-list__lesson_level_1 > .lessons-list__link", "click", function(e) {
+var t = e.delegateTarget, o = t.closest(".lessons-list").querySelector(".lessons-list__lesson_open");
+o && o != t.parentNode && o.classList.remove("lessons-list__lesson_open"), t.parentNode.classList.toggle("lessons-list__lesson_open"), 
+e.preventDefault();
 });
-u.start(), c.disabled = !0, o.addEventListener("fail", i), o.addEventListener("success", function(t) {
-t.result.reload ? window.location.reload() : t.result.html ? (i(), document.querySelector(".quiz-timeline .quiz-timeline__number_current").classList.remove("quiz-timeline__number_current"), 
-document.querySelectorAll(".quiz-timeline span")[t.result.questionNumber].classList.add("quiz-timeline__number_current"), 
-document.querySelector(".quiz-tablet-timeline__num").innerHTML = "&nbsp;" + (t.result.questionNumber + 1) + "&nbsp;", 
-e.innerHTML = t.result.html, l.highlight(e)) : i();
-});
-};
 }
-n(156);
-var a = n(278), s = n(256), l = n(277), c = n(251);
-t.init = i;
+var n = o(255), s = o(277), l = (o(256), o(252));
+t.init = function() {
+r(), a(), i(), n(document, '[data-action="tutorial-map"]', "click", function(e) {
+new l(), e.preventDefault();
+}), s.init(), window.ebookType && o.e(13, function() {
+o(254).init();
+});
+}, t.TutorialMap = o(253);
 },
-156: function() {},
 173: function(e) {
 self = "undefined" != typeof window ? window : "undefined" != typeof WorkerGlobalScope && self instanceof WorkerGlobalScope ? self : {};
 var t = function() {
-var e = /\blang(?:uage)?-(?!\*)(\w+)\b/i, n = self.Prism = {
+var e = /\blang(?:uage)?-(?!\*)(\w+)\b/i, o = self.Prism = {
 util: {
 encode: function(e) {
-return e instanceof i ? new i(e.type, n.util.encode(e.content), e.alias) : "Array" === n.util.type(e) ? e.map(n.util.encode) : e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/\u00a0/g, " ");
+return e instanceof i ? new i(e.type, o.util.encode(e.content), e.alias) : "Array" === o.util.type(e) ? e.map(o.util.encode) : e.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/\u00a0/g, " ");
 },
 type: function(e) {
 return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1];
 },
 clone: function(e) {
-var t = n.util.type(e);
+var t = o.util.type(e);
 switch (t) {
 case "Object":
 var i = {};
-for (var r in e) e.hasOwnProperty(r) && (i[r] = n.util.clone(e[r]));
+for (var r in e) e.hasOwnProperty(r) && (i[r] = o.util.clone(e[r]));
 return i;
 
 case "Array":
@@ -118,89 +70,89 @@ return e;
 },
 languages: {
 extend: function(e, t) {
-var i = n.util.clone(n.languages[e]);
+var i = o.util.clone(o.languages[e]);
 for (var r in t) i[r] = t[r];
 return i;
 },
 insertBefore: function(e, t, i, r) {
-r = r || n.languages;
-var o = r[e];
+r = r || o.languages;
+var a = r[e];
 if (2 == arguments.length) {
 i = arguments[1];
-for (var a in i) i.hasOwnProperty(a) && (o[a] = i[a]);
-return o;
+for (var n in i) i.hasOwnProperty(n) && (a[n] = i[n]);
+return a;
 }
 var s = {};
-for (var l in o) if (o.hasOwnProperty(l)) {
-if (l == t) for (var a in i) i.hasOwnProperty(a) && (s[a] = i[a]);
-s[l] = o[l];
+for (var l in a) if (a.hasOwnProperty(l)) {
+if (l == t) for (var n in i) i.hasOwnProperty(n) && (s[n] = i[n]);
+s[l] = a[l];
 }
-return n.languages.DFS(n.languages, function(t, n) {
-n === r[e] && t != e && (this[t] = s);
+return o.languages.DFS(o.languages, function(t, o) {
+o === r[e] && t != e && (this[t] = s);
 }), r[e] = s;
 },
 DFS: function(e, t, i) {
-for (var r in e) e.hasOwnProperty(r) && (t.call(e, r, e[r], i || r), "Object" === n.util.type(e[r]) ? n.languages.DFS(e[r], t) : "Array" === n.util.type(e[r]) && n.languages.DFS(e[r], t, r));
+for (var r in e) e.hasOwnProperty(r) && (t.call(e, r, e[r], i || r), "Object" === o.util.type(e[r]) ? o.languages.DFS(e[r], t) : "Array" === o.util.type(e[r]) && o.languages.DFS(e[r], t, r));
 }
 },
 highlightAll: function(e, t) {
-for (var i, r = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'), o = 0; i = r[o++]; ) n.highlightElement(i, e === !0, t);
+for (var i, r = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'), a = 0; i = r[a++]; ) o.highlightElement(i, e === !0, t);
 },
-highlightElement: function(t, r, o) {
-for (var a, s, l = t; l && !e.test(l.className); ) l = l.parentNode;
-if (l && (a = (l.className.match(e) || [ , "" ])[1], s = n.languages[a]), s) {
-t.className = t.className.replace(e, "").replace(/\s+/g, " ") + " language-" + a, 
-l = t.parentNode, /pre/i.test(l.nodeName) && (l.className = l.className.replace(e, "").replace(/\s+/g, " ") + " language-" + a);
-var c = t.textContent;
-if (c) {
-var u = {
+highlightElement: function(t, r, a) {
+for (var n, s, l = t; l && !e.test(l.className); ) l = l.parentNode;
+if (l && (n = (l.className.match(e) || [ , "" ])[1], s = o.languages[n]), s) {
+t.className = t.className.replace(e, "").replace(/\s+/g, " ") + " language-" + n, 
+l = t.parentNode, /pre/i.test(l.nodeName) && (l.className = l.className.replace(e, "").replace(/\s+/g, " ") + " language-" + n);
+var p = t.textContent;
+if (p) {
+var c = {
 element: t,
-language: a,
+language: n,
 grammar: s,
-code: c
+code: p
 };
-if (n.hooks.run("before-highlight", u), r && self.Worker) {
-var p = new Worker(n.filename);
-p.onmessage = function(e) {
-u.highlightedCode = i.stringify(JSON.parse(e.data), a), n.hooks.run("before-insert", u), 
-u.element.innerHTML = u.highlightedCode, o && o.call(u.element), n.hooks.run("after-highlight", u);
-}, p.postMessage(JSON.stringify({
-language: u.language,
-code: u.code
+if (o.hooks.run("before-highlight", c), r && self.Worker) {
+var d = new Worker(o.filename);
+d.onmessage = function(e) {
+c.highlightedCode = i.stringify(JSON.parse(e.data), n), o.hooks.run("before-insert", c), 
+c.element.innerHTML = c.highlightedCode, a && a.call(c.element), o.hooks.run("after-highlight", c);
+}, d.postMessage(JSON.stringify({
+language: c.language,
+code: c.code
 }));
-} else u.highlightedCode = n.highlight(u.code, u.grammar, u.language), n.hooks.run("before-insert", u), 
-u.element.innerHTML = u.highlightedCode, o && o.call(t), n.hooks.run("after-highlight", u);
+} else c.highlightedCode = o.highlight(c.code, c.grammar, c.language), o.hooks.run("before-insert", c), 
+c.element.innerHTML = c.highlightedCode, a && a.call(t), o.hooks.run("after-highlight", c);
 }
 }
 },
 highlight: function(e, t, r) {
-var o = n.tokenize(e, t);
-return i.stringify(n.util.encode(o), r);
+var a = o.tokenize(e, t);
+return i.stringify(o.util.encode(a), r);
 },
 tokenize: function(e, t) {
-var i = n.Token, r = [ e ], o = t.rest;
-if (o) {
-for (var a in o) t[a] = o[a];
+var i = o.Token, r = [ e ], a = t.rest;
+if (a) {
+for (var n in a) t[n] = a[n];
 delete t.rest;
 }
-e: for (var a in t) if (t.hasOwnProperty(a) && t[a]) {
-var s = t[a];
-s = "Array" === n.util.type(s) ? s : [ s ];
+e: for (var n in t) if (t.hasOwnProperty(n) && t[n]) {
+var s = t[n];
+s = "Array" === o.util.type(s) ? s : [ s ];
 for (var l = 0; l < s.length; ++l) {
-var c = s[l], u = c.inside, p = !!c.lookbehind, d = 0, f = c.alias;
-c = c.pattern || c;
-for (var h = 0; h < r.length; h++) {
-var m = r[h];
+var p = s[l], c = p.inside, d = !!p.lookbehind, _ = 0, u = p.alias;
+p = p.pattern || p;
+for (var b = 0; b < r.length; b++) {
+var f = r[b];
 if (r.length > e.length) break e;
-if (!(m instanceof i)) {
-c.lastIndex = 0;
-var g = c.exec(m);
+if (!(f instanceof i)) {
+p.lastIndex = 0;
+var g = p.exec(f);
 if (g) {
-p && (d = g[1].length);
-var _ = g.index - 1 + d, g = g[0].slice(d), b = g.length, v = _ + b, x = m.slice(0, _ + 1), y = m.slice(v + 1), w = [ h, 1 ];
-x && w.push(x);
-var $ = new i(a, u ? n.tokenize(g, u) : g, f);
-w.push($), y && w.push(y), Array.prototype.splice.apply(r, w);
+d && (_ = g[1].length);
+var m = g.index - 1 + _, g = g[0].slice(_), h = g.length, x = m + h, w = f.slice(0, m + 1), k = f.slice(x + 1), y = [ b, 1 ];
+w && y.push(w);
+var v = new i(n, c ? o.tokenize(g, c) : g, u);
+y.push(v), k && y.push(k), Array.prototype.splice.apply(r, y);
 }
 }
 }
@@ -211,46 +163,46 @@ return r;
 hooks: {
 all: {},
 add: function(e, t) {
-var i = n.hooks.all;
+var i = o.hooks.all;
 i[e] = i[e] || [], i[e].push(t);
 },
 run: function(e, t) {
-var i = n.hooks.all[e];
-if (i && i.length) for (var r, o = 0; r = i[o++]; ) r(t);
+var i = o.hooks.all[e];
+if (i && i.length) for (var r, a = 0; r = i[a++]; ) r(t);
 }
 }
-}, i = n.Token = function(e, t, n) {
-this.type = e, this.content = t, this.alias = n;
+}, i = o.Token = function(e, t, o) {
+this.type = e, this.content = t, this.alias = o;
 };
-if (i.stringify = function(e, r, o) {
+if (i.stringify = function(e, r, a) {
 if ("string" == typeof e) return e;
 if ("[object Array]" == Object.prototype.toString.call(e)) return e.map(function(t) {
 return i.stringify(t, r, e);
 }).join("");
-var a = {
+var n = {
 type: e.type,
-content: i.stringify(e.content, r, o),
+content: i.stringify(e.content, r, a),
 tag: t.tokenTag || "span",
 classes: [ "token", e.type ],
 attributes: {},
 language: r,
-parent: o
+parent: a
 };
-if ("comment" == a.type && (a.attributes.spellcheck = "true"), e.alias) {
-var s = "Array" === n.util.type(e.alias) ? e.alias : [ e.alias ];
-Array.prototype.push.apply(a.classes, s);
+if ("comment" == n.type && (n.attributes.spellcheck = "true"), e.alias) {
+var s = "Array" === o.util.type(e.alias) ? e.alias : [ e.alias ];
+Array.prototype.push.apply(n.classes, s);
 }
-n.hooks.run("wrap", a);
+o.hooks.run("wrap", n);
 var l = "";
-for (var c in a.attributes) l += c + '="' + (a.attributes[c] || "") + '"';
-return "<" + a.tag + ' class="' + a.classes.join(" ") + '" ' + l + ">" + a.content + "</" + a.tag + ">";
+for (var p in n.attributes) l += p + '="' + (n.attributes[p] || "") + '"';
+return "<" + n.tag + ' class="' + n.classes.join(" ") + '" ' + l + ">" + n.content + "</" + n.tag + ">";
 }, !self.document) return self.addEventListener ? (self.addEventListener("message", function(e) {
 var t = JSON.parse(e.data), i = t.language, r = t.code;
-self.postMessage(JSON.stringify(n.util.encode(n.tokenize(r, n.languages[i])))), 
+self.postMessage(JSON.stringify(o.util.encode(o.tokenize(r, o.languages[i])))), 
 self.close();
 }, !1), self.Prism) : self.Prism;
 var r = document.getElementsByTagName("script");
-return r = r[r.length - 1], r && (n.filename = r.src, document.addEventListener && !r.hasAttribute("data-manual") && document.addEventListener("DOMContentLoaded", n.highlightAll)), 
+return r = r[r.length - 1], r && (o.filename = r.src, document.addEventListener && !r.hasAttribute("data-manual") && document.addEventListener("DOMContentLoaded", o.highlightAll)), 
 self.Prism;
 }();
 void 0 !== e && e.exports && (e.exports = t);
@@ -409,7 +361,7 @@ alias: "language-javascript"
 },
 179: function() {
 !function(e) {
-var t = /#(?!\{).+/g, n = {
+var t = /#(?!\{).+/g, o = {
 pattern: /#\{[^}]+\}/g,
 alias: "variable"
 };
@@ -418,7 +370,7 @@ comment: t,
 string: [ /'(?:\\?[\s\S])*?'/g, {
 pattern: /"(?:\\?[\s\S])*?"/g,
 inside: {
-interpolation: n
+interpolation: o
 }
 } ],
 keyword: /\b(and|break|by|catch|class|continue|debugger|delete|do|each|else|extend|extends|false|finally|for|if|in|instanceof|is|isnt|let|loop|namespace|new|no|not|null|of|off|on|or|own|return|super|switch|then|this|throw|true|try|typeof|undefined|unless|until|when|while|window|with|yes|yield)\b/g,
@@ -436,7 +388,7 @@ pattern: /\/{3}[\s\S]*?\/{3}/,
 alias: "regex",
 inside: {
 comment: t,
-interpolation: n
+interpolation: o
 }
 }
 }), e.languages.insertBefore("coffeescript", "string", {
@@ -457,7 +409,7 @@ alias: "string"
 pattern: /"""[\s\S]*?"""/,
 alias: "string",
 inside: {
-interpolation: n
+interpolation: o
 }
 } ]
 }), e.languages.insertBefore("coffeescript", "keyword", {
@@ -489,14 +441,14 @@ var e = {
 "text/html": Prism.languages.markup
 };
 for (var t in e) if (e[t]) {
-var n = {};
-n[t] = {
+var o = {};
+o[t] = {
 pattern: RegExp("(content-type:\\s*" + t + "[\\w\\W]*?)\\n\\n[\\w\\W]*", "gi"),
 lookbehind: !0,
 inside: {
 rest: e[t]
 }
-}, Prism.languages.insertBefore("http", "keyword", n);
+}, Prism.languages.insertBefore("http", "keyword", o);
 }
 },
 181: function() {
@@ -570,7 +522,7 @@ return e.tokenStack.push(t), "{{{PHP" + e.tokenStack.length + "}}}";
 "php" === e.language && (e.code = e.backupCode, delete e.backupCode);
 }), Prism.hooks.add("after-highlight", function(e) {
 if ("php" === e.language) {
-for (var t, n = 0; t = e.tokenStack[n]; n++) e.highlightedCode = e.highlightedCode.replace("{{{PHP" + (n + 1) + "}}}", Prism.highlight(t, e.grammar, "php"));
+for (var t, o = 0; t = e.tokenStack[o]; o++) e.highlightedCode = e.highlightedCode.replace("{{{PHP" + (o + 1) + "}}}", Prism.highlight(t, e.grammar, "php"));
 e.element.innerHTML = e.highlightedCode;
 }
 }), Prism.hooks.add("wrap", function(e) {
@@ -636,88 +588,216 @@ lookbehind: !0
 }
 });
 },
-256: function(e, t, n) {
+249: function(e) {
+"use strict";
+function t() {
+for (var e = document.querySelectorAll("[data-sticky]"), t = 0; t < e.length; t++) {
+var i = e[t], r = i.dataset.sticky ? document.querySelector(i.dataset.sticky) : document.body;
+if (i.getBoundingClientRect().top < 0) {
+if (i.style.cssText) return;
+var a = i.getBoundingClientRect().left, n = o(i);
+i.parentNode.insertBefore(n, i), r.appendChild(i), i.classList.add("sticky"), i.style.position = "fixed", 
+i.style.top = 0, i.style.left = a + "px", i.style.zIndex = 101, i.style.background = "white", 
+i.style.margin = 0, i.style.width = n.offsetWidth + "px", i.placeholder = n;
+} else i.placeholder && i.placeholder.getBoundingClientRect().top > 0 && (i.style.cssText = "", 
+i.classList.remove("sticky"), i.placeholder.parentNode.insertBefore(i, i.placeholder), 
+i.placeholder.remove(), i.placeholder = null);
+}
+}
+function o(e) {
+var t = document.createElement("div"), o = getComputedStyle(e);
+return t.style.width = e.offsetWidth + "px", t.style.marginLeft = o.marginLeft, 
+t.style.marginRight = o.marginRight, t.style.height = e.offsetHeight + "px", t.style.marginBottom = o.marginBottom, 
+t.style.marginTop = o.marginTop, t;
+}
+e.exports = t;
+},
+252: function(e, t, o) {
+"use strict";
+function i() {
+var e = this, t = new n({
+hasClose: !1
+}), o = new s();
+t.setContent(o.elem), o.start(), this.onDocumentKeyDown = this.onDocumentKeyDown.bind(this);
+var i = r({
+url: "/tutorial/map"
+});
+i.addEventListener("success", function(o) {
+t.remove(), document.body.insertAdjacentHTML("beforeEnd", '<div class="tutorial-map-overlay"></div>'), 
+e.elem = document.body.lastChild, e.elem.innerHTML = o.result + '<button class="close-button tutorial-map-overlay__close"></button>', 
+e.elem.addEventListener("click", function(t) {
+t.target.classList.contains("tutorial-map-overlay__close") && e.remove();
+}), document.addEventListener("keydown", e.onDocumentKeyDown), document.body.classList.add("tutorial-map_on"), 
+e.elem.addEventListener("scroll", p), new l(e.elem.firstElementChild);
+}), i.addEventListener("fail", function() {
+return t.remove();
+});
+}
+var r = o(256), a = o(255), n = o(237), s = o(278), l = o(253), p = o(249);
+a.delegateMixin(i.prototype), i.prototype.remove = function() {
+this.elem.remove(), document.body.classList.remove("tutorial-map_on"), document.removeEventListener("keydown", this.onDocumentKeyDown);
+}, i.prototype.onDocumentKeyDown = function(e) {
+27 == e.keyCode && (e.preventDefault(), this.remove());
+}, e.exports = i;
+},
+253: function(e, t, o) {
+"use strict";
+function i(e) {
+var t = this;
+this.elem = e, this.showTasksCheckbox = e.querySelector("[data-tutorial-map-show-tasks]"), 
+this.showTasksCheckbox.checked = +localStorage.showTasksCheckbox, this.updateShowTasks(), 
+this.showTasksCheckbox.onchange = this.updateShowTasks.bind(this), this.filterInput = this.elem.querySelector("[data-tutorial-map-filter]"), 
+this.textInputBlock = this.elem.querySelector(".tutorial-map__filter .text-input"), 
+this.layoutSwitch = this.elem.querySelector("[data-tutorial-map-layout-switch]");
+var o = +localStorage.isMapSingleColumn;
+this.layoutSwitch.querySelector('[value="0"]').checked = !o, this.layoutSwitch.querySelector('[value="1"]').checked = o, 
+this.updateLayout(), this.layoutSwitch.onchange = this.onLayoutSwitchChange.bind(this), 
+this.filterInput.oninput = this.onFilterInput.bind(this), this.filterInput.onkeydown = this.onFilterKeydown.bind(this), 
+this.elem.querySelector(".close-button").onclick = function() {
+t.filterInput.value = "", t.showClearButton(!1), t.filter("");
+}, this.chaptersCollapsed = JSON.parse(localStorage.tutorialMapChapters || "{}"), 
+this.showChaptersCollapsed(), this.delegate(".tutorial-map__item > .tutorial-map__link", "click", function(e) {
+e.preventDefault();
+var t = e.delegateTarget.getAttribute("href");
+this.chaptersCollapsed[t] ? delete this.chaptersCollapsed[t] : this.chaptersCollapsed[t] = 1, 
+localStorage.tutorialMapChapters = JSON.stringify(this.chaptersCollapsed), this.showChaptersCollapsed();
+});
+var i = this.elem.querySelector('[href="' + location.pathname + '"]');
+i && i.classList.add("tutorial-map__link_active"), this.filterInput.focus();
+}
+function r(e, t) {
+for (var o = 0, i = 0; o < e.length && i < t.length; ) e[o] == t[i] ? (o++, i++) : o++;
+return i == t.length;
+}
+var a = o(290), n = o(255);
+i.prototype.showChaptersCollapsed = function() {
+for (var e = this.elem.querySelectorAll(".tutorial-map__item > .tutorial-map__link"), t = 0; t < e.length; t++) {
+var o = e[t];
+this.chaptersCollapsed[o.getAttribute("href")] ? o.parentNode.classList.add("tutorial-map__item_collapsed") : o.parentNode.classList.remove("tutorial-map__item_collapsed");
+}
+}, i.prototype.onLayoutSwitchChange = function() {
+this.updateLayout();
+}, i.prototype.updateLayout = function() {
+var e = +this.elem.querySelector('[name="map-layout"]:checked').value;
+e ? this.elem.classList.add("tutorial-map_singlecol") : this.elem.classList.remove("tutorial-map_singlecol"), 
+localStorage.isMapSingleColumn = e ? "1" : "0";
+}, i.prototype.updateShowTasks = function() {
+this.showTasksCheckbox.checked ? this.elem.classList.add("tutorial-map_show-tasks") : this.elem.classList.remove("tutorial-map_show-tasks"), 
+localStorage.showTasksCheckbox = this.showTasksCheckbox.checked ? "1" : "0";
+}, i.prototype.onFilterInput = function(e) {
+this.showClearButton(e.target.value), this.throttleFilter(e.target.value);
+}, i.prototype.onFilterKeydown = function(e) {
+27 == e.keyCode && (this.filterInput.value = "", this.showClearButton(!1), this.filter(""));
+}, i.prototype.showClearButton = function(e) {
+e ? this.textInputBlock.classList.add("text-input_clear-button") : this.textInputBlock.classList.remove("text-input_clear-button");
+}, i.prototype.focus = function() {
+this.elem.tabIndex = -1, this.elem.focus();
+}, i.prototype.filter = function(e) {
+function t(t) {
+return r(t.querySelector("a").innerHTML.toLowerCase(), e.replace(/\s/g, ""));
+}
+e = e.toLowerCase();
+for (var o = this.showTasksCheckbox.checked, i = (this.elem.querySelectorAll(".tutorial-map-link"), 
+this.elem.querySelectorAll(".tutorial-map__item")), a = 0; a < i.length; a++) {
+var n = i[a], s = n.querySelectorAll(".tutorial-map__sub-item"), l = Array.prototype.reduce.call(s, function(e, i) {
+var r = !1;
+if (o) {
+var a = i.querySelectorAll(".tutorial-map__sub-sub-item");
+r = Array.prototype.reduce.call(a, function(e, o) {
+var i = t(o);
+return o.hidden = !i, e || i;
+}, !1);
+}
+var n = r || t(i);
+return i.hidden = !n, e || n;
+}, !1);
+n.hidden = !(l || t(n));
+}
+}, i.prototype.throttleFilter = a(i.prototype.filter, 200), n.delegateMixin(i.prototype), 
+e.exports = i;
+},
+256: function(e, t, o) {
 "use strict";
 function i(e) {
 function t(e, t) {
-var n = new CustomEvent(e);
-return n.originalEvent = t, n;
+var o = new CustomEvent(e);
+return o.originalEvent = t, o;
 }
-function n(e, n) {
-var i = t("fail", n);
+function o(e, o) {
+var i = t("fail", o);
 i.reason = e, r.dispatchEvent(i);
 }
-function i(e, n) {
-var i = t("success", n);
+function i(e, o) {
+var i = t("success", o);
 i.result = e, r.dispatchEvent(i);
 }
-var r = new XMLHttpRequest(), a = e.method || "GET", s = e.body, l = e.url;
-r.open(a, l, e.sync ? !1 : !0), r.method = a;
-var c = o();
-c && !e.skipCsrf && r.setRequestHeader("X-XSRF-TOKEN", c), "[object Object]" == {}.toString.call(s) && (r.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
+var r = new XMLHttpRequest(), n = e.method || "GET", s = e.body, l = e.url;
+r.open(n, l, e.sync ? !1 : !0), r.method = n;
+var p = a();
+p && !e.skipCsrf && r.setRequestHeader("X-XSRF-TOKEN", p), "[object Object]" == {}.toString.call(s) && (r.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
 s = JSON.stringify(s)), e.noDocumentEvents || (r.addEventListener("loadstart", function(e) {
 r.timeStart = Date.now();
-var n = t("xhrstart", e);
-document.dispatchEvent(n);
+var o = t("xhrstart", e);
+document.dispatchEvent(o);
 }), r.addEventListener("loadend", function(e) {
-var n = t("xhrend", e);
-document.dispatchEvent(n);
+var o = t("xhrend", e);
+document.dispatchEvent(o);
 }), r.addEventListener("success", function(e) {
-var n = t("xhrsuccess", e);
-n.result = e.result, document.dispatchEvent(n);
+var o = t("xhrsuccess", e);
+o.result = e.result, document.dispatchEvent(o);
 }), r.addEventListener("fail", function(e) {
-var n = t("xhrfail", e);
-n.reason = e.reason, document.dispatchEvent(n);
+var o = t("xhrfail", e);
+o.reason = e.reason, document.dispatchEvent(o);
 })), e.raw || r.setRequestHeader("Accept", "application/json"), r.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-var u = e.normalStatuses || [ 200 ];
+var c = e.normalStatuses || [ 200 ];
 return r.addEventListener("error", function(e) {
-n("Ошибка связи с сервером.", e);
+o("Ошибка связи с сервером.", e);
 }), r.addEventListener("timeout", function(e) {
-n("Превышено максимально допустимое время ожидания ответа от сервера.", e);
+o("Превышено максимально допустимое время ожидания ответа от сервера.", e);
 }), r.addEventListener("abort", function(e) {
-n("Запрос был прерван.", e);
+o("Запрос был прерван.", e);
 }), r.addEventListener("load", function(t) {
-if (!r.status) return void n("Не получен ответ от сервера.", t);
-if (-1 == u.indexOf(r.status)) return void n("Ошибка на стороне сервера (код " + r.status + "), попытайтесь позднее", t);
-var o = r.responseText, a = r.getResponseHeader("Content-Type");
-if (a.match(/^application\/json/) || e.json) try {
-o = JSON.parse(o);
+if (!r.status) return void o("Не получен ответ от сервера.", t);
+if (-1 == c.indexOf(r.status)) return void o("Ошибка на стороне сервера (код " + r.status + "), попытайтесь позднее", t);
+var a = r.responseText, n = r.getResponseHeader("Content-Type");
+if (n.match(/^application\/json/) || e.json) try {
+a = JSON.parse(a);
 } catch (t) {
-return void n("Некорректный формат ответа от сервера", t);
+return void o("Некорректный формат ответа от сервера", t);
 }
-i(o, t);
+i(a, t);
 }), setTimeout(function() {
 r.send(s);
 }, 0), r;
 }
-var r = n(251), o = n(291);
+var r = o(251), a = o(291);
 document.addEventListener("xhrfail", function(e) {
 new r.Error(e.reason);
 }), e.exports = i;
 },
-277: function(e, t, n) {
+277: function(e, t, o) {
 "use strict";
 function i(e) {
-for (var t = e.querySelectorAll(".code-example:not([data-prism-done])"), n = 0; n < t.length; n++) {
-var i = t[n];
-new a(i), i.setAttribute("data-prism-done", "1");
+for (var t = e.querySelectorAll(".code-example:not([data-prism-done])"), o = 0; o < t.length; o++) {
+var i = t[o];
+new n(i), i.setAttribute("data-prism-done", "1");
 }
 }
 function r(e) {
-for (var t = e.querySelectorAll("div.code-tabs:not([data-prism-done])"), n = 0; n < t.length; n++) new s(t[n]), 
-t[n].setAttribute("data-prism-done", "1");
+for (var t = e.querySelectorAll("div.code-tabs:not([data-prism-done])"), o = 0; o < t.length; o++) new s(t[o]), 
+t[o].setAttribute("data-prism-done", "1");
 }
-function o(e) {
+function a(e) {
 i(e), r(e);
 }
-n(173), n(174), n(175), n(176), n(177), n(178), n(179), n(180), n(181), n(182), 
-n(183), n(184), n(185), n(186), n(187), Prism.tokenTag = "code";
-var a = n(294), s = n(295);
+o(173), o(174), o(175), o(176), o(177), o(178), o(179), o(180), o(181), o(182), 
+o(183), o(184), o(185), o(186), o(187), Prism.tokenTag = "code";
+var n = o(294), s = o(295);
 t.init = function() {
 document.removeEventListener("DOMContentLoaded", Prism.highlightAll), document.addEventListener("DOMContentLoaded", function() {
-o(document);
+a(document);
 });
-}, t.highlight = o;
+}, t.highlight = a;
 },
 291: function(e) {
 "use strict";
@@ -726,112 +806,112 @@ var e = document.cookie.match(/XSRF-TOKEN=([\w-]+)/);
 return e ? e[1] : null;
 };
 },
-294: function(e, t, n) {
+294: function(e, t, o) {
 "use strict";
 function i(e) {
 function t() {
-var e = m.contentWindow;
-return "function" != typeof e.postMessage ? void alert("Извините, запуск кода требует более современный браузер") : void e.postMessage(h, "https://ru.lookatcode.com/showjs");
+var e = f.contentWindow;
+return "function" != typeof e.postMessage ? void alert("Извините, запуск кода требует более современный браузер") : void e.postMessage(b, "https://ru.lookatcode.com/showjs");
 }
-function n() {
+function o() {
 var t;
 if (g && e.hasAttribute("data-refresh") && (g.remove(), g = null), g || (g = e.querySelector(".code-result")), 
 g) t = g.querySelector("iframe"); else {
 if (g = document.createElement("div"), g.className = "code-result code-example__result", 
 t = document.createElement("iframe"), t.name = "frame-" + Math.random(), t.className = "code-result__iframe", 
 "0" === e.getAttribute("data-demo-height")) t.style.display = "none"; else if (e.hasAttribute("data-demo-height")) {
-var n = +e.getAttribute("data-demo-height");
-t.style.height = n + "px";
+var o = +e.getAttribute("data-demo-height");
+t.style.height = o + "px";
 }
 g.appendChild(t), e.appendChild(g);
 }
-if (v) {
+if (x) {
 var i = t.contentDocument || t.contentWindow.document;
-i.open(), i.write(u(h)), i.close(), "epub" == window.ebookType && setTimeout(function() {
+i.open(), i.write(c(b)), i.close(), "epub" == window.ebookType && setTimeout(function() {
 [].forEach.call(i.querySelectorAll("script"), function(e) {
 e.remove();
 });
-}, 2e3), e.hasAttribute("data-demo-height") || a.iframe(t), x && e.hasAttribute("data-autorun") || s(g) || g.scrollIntoView(!1);
+}, 2e3), e.hasAttribute("data-demo-height") || n.iframe(t), w && e.hasAttribute("data-autorun") || s(g) || g.scrollIntoView(!1);
 } else {
 var r = document.createElement("form");
 r.style.display = "none", r.method = "POST", r.enctype = "multipart/form-data", 
 r.action = "https://ru.lookatcode.com/showhtml", r.target = t.name;
-var o = document.createElement("textarea");
-o.name = "code", o.value = u(h), r.appendChild(o), t.parentNode.insertBefore(r, t.nextSibling), 
-r.submit(), r.remove(), x && e.hasAttribute("data-autorun") || (t.onload = function() {
-e.hasAttribute("data-demo-height") || a.iframe(t), s(g) || g.scrollIntoView(!1);
+var a = document.createElement("textarea");
+a.name = "code", a.value = c(b), r.appendChild(a), t.parentNode.insertBefore(r, t.nextSibling), 
+r.submit(), r.remove(), w && e.hasAttribute("data-autorun") || (t.onload = function() {
+e.hasAttribute("data-demo-height") || n.iframe(t), s(g) || g.scrollIntoView(!1);
 });
 }
 }
 function i() {
-if (v) try {
-window.eval.call(window, h);
-} catch (n) {
-alert("Ошибка: " + n.message);
-} else e.hasAttribute("data-refresh") && m && (m.remove(), m = null), m ? t() : (m = document.createElement("iframe"), 
-m.className = "js-frame", m.src = "https://ru.lookatcode.com/showjs", m.style.width = 0, 
-m.style.height = 0, m.style.border = "none", m.onload = function() {
+if (x) try {
+window.eval.call(window, b);
+} catch (o) {
+alert("Ошибка: " + o.message);
+} else e.hasAttribute("data-refresh") && f && (f.remove(), f = null), f ? t() : (f = document.createElement("iframe"), 
+f.className = "js-frame", f.src = "https://ru.lookatcode.com/showjs", f.style.width = 0, 
+f.style.height = 0, f.style.border = "none", f.onload = function() {
 t();
-}, document.body.appendChild(m));
-}
-function c() {
-var e;
-if (b) e = u(h); else {
-var t = h.replace(/^/gim, "    ");
-e = "<!DOCTYPE html>\n<html>\n\n<body>\n  <script>\n" + t + "\n  </script>\n</body>\n\n</html>";
-}
-var n = document.createElement("form");
-n.action = "http://plnkr.co/edit/?p=preview", n.method = "POST", n.target = "_blank", 
-document.body.appendChild(n);
-var i = document.createElement("textarea");
-i.name = "files[index.html]", i.value = e, n.appendChild(i);
-var r = document.createElement("input");
-r.name = "description", r.value = "Fork from " + window.location, n.appendChild(r), 
-n.submit(), n.remove();
-}
-function u() {
-var e = h.toLowerCase(), t = e.match("<body>"), n = e.match("</body>"), i = e.match("<html>"), r = e.match("</html>"), o = e.match(/^\s*<!doctype/);
-if (o) return h;
-var a = h;
-return i || (a = "<html>\n" + a), r || (a += "\n</html>"), t || (a = a.replace("<html>", '<html>\n<head>\n  <meta charset="utf-8">\n</head><body>\n')), 
-n || (a = a.replace("</html>", "\n</body>\n</html>")), a = "<!DOCTYPE HTML>\n" + a;
+}, document.body.appendChild(f));
 }
 function p() {
-_ ? i() : n(), x = !1;
+var e;
+if (h) e = c(b); else {
+var t = b.replace(/^/gim, "    ");
+e = "<!DOCTYPE html>\n<html>\n\n<body>\n  <script>\n" + t + "\n  </script>\n</body>\n\n</html>";
 }
-var d = e.querySelector("pre"), f = d.querySelector("code"), h = f.textContent;
-Prism.highlightElement(f), l(d), r(d, e.getAttribute("data-highlight-block")), o(d, e.getAttribute("data-highlight-inline"));
-var m, g, _ = d.classList.contains("language-javascript"), b = d.classList.contains("language-markup"), v = +e.getAttribute("data-trusted"), x = !0;
-if (_ || b) {
-var y = e.querySelector('[data-action="run"]');
+var o = document.createElement("form");
+o.action = "http://plnkr.co/edit/?p=preview", o.method = "POST", o.target = "_blank", 
+document.body.appendChild(o);
+var i = document.createElement("textarea");
+i.name = "files[index.html]", i.value = e, o.appendChild(i);
+var r = document.createElement("input");
+r.name = "description", r.value = "Fork from " + window.location, o.appendChild(r), 
+o.submit(), o.remove();
+}
+function c() {
+var e = b.toLowerCase(), t = e.match("<body>"), o = e.match("</body>"), i = e.match("<html>"), r = e.match("</html>"), a = e.match(/^\s*<!doctype/);
+if (a) return b;
+var n = b;
+return i || (n = "<html>\n" + n), r || (n += "\n</html>"), t || (n = n.replace("<html>", '<html>\n<head>\n  <meta charset="utf-8">\n</head><body>\n')), 
+o || (n = n.replace("</html>", "\n</body>\n</html>")), n = "<!DOCTYPE HTML>\n" + n;
+}
+function d() {
+m ? i() : o(), w = !1;
+}
+var _ = e.querySelector("pre"), u = _.querySelector("code"), b = u.textContent;
+Prism.highlightElement(u), l(_), r(_, e.getAttribute("data-highlight-block")), a(_, e.getAttribute("data-highlight-inline"));
+var f, g, m = _.classList.contains("language-javascript"), h = _.classList.contains("language-markup"), x = +e.getAttribute("data-trusted"), w = !0;
+if (m || h) {
+var k = e.querySelector('[data-action="run"]');
+k && (k.onclick = function() {
+return this.blur(), d(), !1;
+});
+var y = e.querySelector('[data-action="edit"]');
 y && (y.onclick = function() {
 return this.blur(), p(), !1;
-});
-var w = e.querySelector('[data-action="edit"]');
-w && (w.onclick = function() {
-return this.blur(), c(), !1;
-}), e.hasAttribute("data-autorun") && ("epub" == window.ebookType && "no-epub" == e.getAttribute("data-autorun") ? e.querySelector("iframe").remove() : setTimeout(p, 100));
+}), e.hasAttribute("data-autorun") && ("epub" == window.ebookType && "no-epub" == e.getAttribute("data-autorun") ? e.querySelector("iframe").remove() : setTimeout(d, 100));
 }
 }
 function r(e, t) {
-if (t) for (var n, i = t.replace(/\s+/g, "").split(","), r = 0; n = i[r++]; ) {
-n = n.split("-");
-var o = +n[0], a = +n[1] || o, s = '<code class="block-highlight" data-start="' + o + '" data-end="' + a + '">' + Array(o + 1).join("\n") + '<code class="mask">' + Array(a - o + 2).join("\n") + "</code></code>";
+if (t) for (var o, i = t.replace(/\s+/g, "").split(","), r = 0; o = i[r++]; ) {
+o = o.split("-");
+var a = +o[0], n = +o[1] || a, s = '<code class="block-highlight" data-start="' + a + '" data-end="' + n + '">' + Array(a + 1).join("\n") + '<code class="mask">' + Array(n - a + 2).join("\n") + "</code></code>";
 e.insertAdjacentHTML("afterBegin", s);
 }
 }
-function o(e, t) {
-var n = e.querySelector('code[class*="language-"]');
+function a(e, t) {
+var o = e.querySelector('code[class*="language-"]');
 t = t ? t.split(",") : [];
 for (var i = 0; i < t.length; i++) {
-var r = t[i].split(":"), o = +r[0], a = r[1].split("-"), s = +a[0], l = +a[1], c = '<code class="inline-highlight">' + Array(o + 1).join("\n") + Array(s + 1).join(" ") + '<code class="mask">' + Array(l - s + 1).join(" ") + "</code></code>";
-n.insertAdjacentHTML("afterBegin", c);
+var r = t[i].split(":"), a = +r[0], n = r[1].split("-"), s = +n[0], l = +n[1], p = '<code class="inline-highlight">' + Array(a + 1).join("\n") + Array(s + 1).join(" ") + '<code class="mask">' + Array(l - s + 1).join(" ") + "</code></code>";
+o.insertAdjacentHTML("afterBegin", p);
 }
 }
-var a = n(246), s = n(305), l = n(303);
+var n = o(246), s = o(305), l = o(303);
 e.exports = i;
 },
-295: function(e, t, n) {
+295: function(e, t, o) {
 "use strict";
 function i(e) {
 window.ebookType || (this.elem = e, this.translateX = 0, this.switchesElem = e.querySelector("[data-code-tabs-switches]"), 
@@ -844,20 +924,20 @@ e.preventDefault(), this.translateX = Math.min(this.translateX + this.switchesEl
 this.renderTranslate();
 }.bind(this), this.delegate(".code-tabs__switch", "click", this.onSwitchClick));
 }
-var r = n(255), o = n(303);
+var r = o(255), a = o(303);
 i.prototype.onSwitchClick = function(e) {
 e.preventDefault();
-for (var t, n = e.delegateTarget.parentNode.children, i = this.elem.querySelector("[data-code-tabs-content]").children, r = 0; r < n.length; r++) {
-var o = n[r], a = i[r];
-o == e.delegateTarget ? (t = r, a.classList.add("code-tabs__section_current"), o.classList.add("code-tabs__switch_current")) : (a.classList.remove("code-tabs__section_current"), 
-o.classList.remove("code-tabs__switch_current"));
+for (var t, o = e.delegateTarget.parentNode.children, i = this.elem.querySelector("[data-code-tabs-content]").children, r = 0; r < o.length; r++) {
+var a = o[r], n = i[r];
+a == e.delegateTarget ? (t = r, n.classList.add("code-tabs__section_current"), a.classList.add("code-tabs__switch_current")) : (n.classList.remove("code-tabs__section_current"), 
+a.classList.remove("code-tabs__switch_current"));
 }
 0 === t ? this.elem.classList.add("code-tabs_result_on") : (this.elem.classList.remove("code-tabs_result_on"), 
 this.highlightTab(i[t]));
 }, i.prototype.highlightTab = function(e) {
 if (!e.highlighted) {
-var t = e.querySelector("pre"), n = t.querySelector("code");
-Prism.highlightElement(n), o(t), e.highlighted = !0;
+var t = e.querySelector("pre"), o = t.querySelector("code");
+Prism.highlightElement(o), a(t), e.highlighted = !0;
 }
 }, i.prototype.renderTranslate = function() {
 this.switchesElemItems.style.transform = "translateX(-" + this.translateX + "px)", 
@@ -868,7 +948,7 @@ this.translateX === this.switchesElemItems.offsetWidth - this.switchesElem.offse
 303: function(e) {
 "use strict";
 function t(e) {
-var t, n = 1 + e.innerHTML.split("\n").length, i = Array(n);
+var t, o = 1 + e.innerHTML.split("\n").length, i = Array(o);
 i = i.join("<span></span>"), t = document.createElement("span"), t.className = "line-numbers-rows", 
 t.innerHTML = i, e.hasAttribute("data-start") && (e.style.counterReset = "linenumber " + +e.dataset.start - 1), 
 e.appendChild(t);
@@ -878,14 +958,14 @@ e.exports = t;
 305: function(e) {
 "use strict";
 function t(e) {
-var t = e.getBoundingClientRect(), n = 0;
-if (t.top < 0) n = t.bottom; else {
+var t = e.getBoundingClientRect(), o = 0;
+if (t.top < 0) o = t.bottom; else {
 if (!(t.bottom > window.innerHeight)) return !0;
-n = window.innerHeight - top;
+o = window.innerHeight - top;
 }
-return n > 10;
+return o > 10;
 }
 e.exports = t;
 }
 });
-//# sourceMappingURL=quiz.5e8e441adce04cbab383.js.map
+//# sourceMappingURL=tutorial.f149159474a121ab88ea.js.map

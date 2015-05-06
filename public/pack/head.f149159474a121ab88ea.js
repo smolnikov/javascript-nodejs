@@ -37,7 +37,7 @@ o.type = "text/javascript", o.charset = "utf-8", o.async = !0, o.src = t.p + "" 
 "12": "about",
 "13": "ebookExtras",
 "14": "courses"
-}[e] || e) + "-" + e + ".5e8e441adce04cbab383.js", i.appendChild(o);
+}[e] || e) + "-" + e + ".f149159474a121ab88ea.js", i.appendChild(o);
 }
 }, t.m = e, t.c = i, t.p = "/pack/", t(0);
 }({
@@ -287,7 +287,7 @@ document.location = r;
 }
 if (1 == t.which && !t.defaultPrevented) {
 var i = t.target.closest && t.target.closest("a");
-if (i && e != i.host && ~[ "_self", "_top", "_parent" ].indexOf(i.target) && !(t.shiftKey || t.ctrlKey || t.altKey)) {
+if (i && (e != i.host || i.hasAttribute("data-track-outbound")) && ~[ "_self", "_top", "_parent" ].indexOf(i.target) && !(t.shiftKey || t.ctrlKey || t.altKey)) {
 t.preventDefault();
 var r = i.href;
 window.ga("send", "event", "outbound", "click", r, {
@@ -756,4 +756,4 @@ return e.parentNode.removeChild(e), t - i;
 e.exports = t;
 }
 });
-//# sourceMappingURL=head.5e8e441adce04cbab383.js.map
+//# sourceMappingURL=head.f149159474a121ab88ea.js.map
