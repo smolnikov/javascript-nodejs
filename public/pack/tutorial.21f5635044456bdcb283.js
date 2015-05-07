@@ -146,12 +146,12 @@ var f = r[b];
 if (r.length > e.length) break e;
 if (!(f instanceof i)) {
 p.lastIndex = 0;
-var g = p.exec(f);
-if (g) {
-d && (_ = g[1].length);
-var m = g.index - 1 + _, g = g[0].slice(_), h = g.length, x = m + h, w = f.slice(0, m + 1), k = f.slice(x + 1), y = [ b, 1 ];
+var m = p.exec(f);
+if (m) {
+d && (_ = m[1].length);
+var g = m.index - 1 + _, m = m[0].slice(_), h = m.length, x = g + h, w = f.slice(0, g + 1), k = f.slice(x + 1), y = [ b, 1 ];
 w && y.push(w);
-var v = new i(n, c ? o.tokenize(g, c) : g, u);
+var v = new i(n, c ? o.tokenize(m, c) : m, u);
 y.push(v), k && y.push(k), Array.prototype.splice.apply(r, y);
 }
 }
@@ -815,15 +815,15 @@ return "function" != typeof e.postMessage ? void alert("Извините, зап
 }
 function o() {
 var t;
-if (g && e.hasAttribute("data-refresh") && (g.remove(), g = null), g || (g = e.querySelector(".code-result")), 
-g) t = g.querySelector("iframe"); else {
-if (g = document.createElement("div"), g.className = "code-result code-example__result", 
+if (m && e.hasAttribute("data-refresh") && (m.remove(), m = null), m || (m = e.querySelector(".code-result")), 
+m) t = m.querySelector("iframe"); else {
+if (m = document.createElement("div"), m.className = "code-result code-example__result", 
 t = document.createElement("iframe"), t.name = "frame-" + Math.random(), t.className = "code-result__iframe", 
 "0" === e.getAttribute("data-demo-height")) t.style.display = "none"; else if (e.hasAttribute("data-demo-height")) {
 var o = +e.getAttribute("data-demo-height");
 t.style.height = o + "px";
 }
-g.appendChild(t), e.appendChild(g);
+m.appendChild(t), e.appendChild(m);
 }
 if (x) {
 var i = t.contentDocument || t.contentWindow.document;
@@ -831,7 +831,7 @@ i.open(), i.write(c(b)), i.close(), "epub" == window.ebookType && setTimeout(fun
 [].forEach.call(i.querySelectorAll("script"), function(e) {
 e.remove();
 });
-}, 2e3), e.hasAttribute("data-demo-height") || n.iframe(t), w && e.hasAttribute("data-autorun") || s(g) || g.scrollIntoView(!1);
+}, 2e3), e.hasAttribute("data-demo-height") || n.iframe(t), w && e.hasAttribute("data-autorun") || s(m) || m.scrollIntoView(!1);
 } else {
 var r = document.createElement("form");
 r.style.display = "none", r.method = "POST", r.enctype = "multipart/form-data", 
@@ -839,7 +839,7 @@ r.action = "https://ru.lookatcode.com/showhtml", r.target = t.name;
 var a = document.createElement("textarea");
 a.name = "code", a.value = c(b), r.appendChild(a), t.parentNode.insertBefore(r, t.nextSibling), 
 r.submit(), r.remove(), w && e.hasAttribute("data-autorun") || (t.onload = function() {
-e.hasAttribute("data-demo-height") || n.iframe(t), s(g) || g.scrollIntoView(!1);
+e.hasAttribute("data-demo-height") || n.iframe(t), s(m) || m.scrollIntoView(!1);
 });
 }
 }
@@ -877,12 +877,12 @@ return i || (n = "<html>\n" + n), r || (n += "\n</html>"), t || (n = n.replace("
 o || (n = n.replace("</html>", "\n</body>\n</html>")), n = "<!DOCTYPE HTML>\n" + n;
 }
 function d() {
-m ? i() : o(), w = !1;
+g ? i() : o(), w = !1;
 }
 var _ = e.querySelector("pre"), u = _.querySelector("code"), b = u.textContent;
 Prism.highlightElement(u), l(_), r(_, e.getAttribute("data-highlight-block")), a(_, e.getAttribute("data-highlight-inline"));
-var f, g, m = _.classList.contains("language-javascript"), h = _.classList.contains("language-markup"), x = +e.getAttribute("data-trusted"), w = !0;
-if (m || h) {
+var f, m, g = _.classList.contains("language-javascript"), h = _.classList.contains("language-markup"), x = +e.getAttribute("data-trusted"), w = !0;
+if (g || h) {
 var k = e.querySelector('[data-action="run"]');
 k && (k.onclick = function() {
 return this.blur(), d(), !1;
@@ -968,4 +968,4 @@ return o > 10;
 e.exports = t;
 }
 });
-//# sourceMappingURL=tutorial.5049f2ab49ed306079c0.js.map
+//# sourceMappingURL=tutorial.21f5635044456bdcb283.js.map

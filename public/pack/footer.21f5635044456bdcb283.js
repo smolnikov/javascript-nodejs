@@ -1,35 +1,35 @@
 var footer = webpackJsonp_name_([ 3 ], {
 0: function(e, t, o) {
 "use strict";
-var i = o(247), r = o(248), n = o(249);
+var i = o(247), n = o(248), r = o(249);
 t.init = function() {
-i(), window.devicePixelRatio > 1 && r(), window.addEventListener("scroll", n), n();
-}, t.trackSticky = n;
+i(), window.devicePixelRatio > 1 && n(), window.addEventListener("scroll", r), r();
+}, t.trackSticky = r;
 },
 247: function(e, t, o) {
 "use strict";
 var i = o(286);
 e.exports = function() {
 function e(e) {
-var t = e.clientX + n;
-t + r.offsetWidth > document.documentElement.clientWidth && (t = Math.max(0, e.clientX - n - r.offsetWidth)), 
-r.style.left = t + "px";
+var t = e.clientX + r;
+t + n.offsetWidth > document.documentElement.clientWidth && (t = Math.max(0, e.clientX - r - n.offsetWidth)), 
+n.style.left = t + "px";
 var o = e.clientY + a;
-o + r.offsetHeight > document.documentElement.clientHeight && (o = Math.max(0, e.clientY - a - r.offsetHeight)), 
-r.style.top = o + "px";
+o + n.offsetHeight > document.documentElement.clientHeight && (o = Math.max(0, e.clientY - a - n.offsetHeight)), 
+n.style.top = o + "px";
 }
 function t(t) {
 if (t.target.closest) {
 var o = t.target.closest("a, [data-tooltip]");
-o && ("A" == o.tagName && o.closest(".toolbar") || (r = document.createElement("span"), 
-r.className = "link__type", o.getAttribute("data-tooltip") ? r.setAttribute("data-tooltip", o.getAttribute("data-tooltip")) : r.setAttribute("data-url", o.getAttribute("href")), 
-document.body.appendChild(r), e(t), document.addEventListener("mousemove", e)));
+o && ("A" == o.tagName && o.closest(".toolbar") || (n = document.createElement("span"), 
+n.className = "link__type", o.getAttribute("data-tooltip") ? n.setAttribute("data-tooltip", o.getAttribute("data-tooltip")) : n.setAttribute("data-url", o.getAttribute("href")), 
+document.body.appendChild(n), e(t), document.addEventListener("mousemove", e)));
 }
 }
 function o() {
-r && (document.removeEventListener("mousemove", e), r.remove(), r = null);
+n && (document.removeEventListener("mousemove", e), n.remove(), n = null);
 }
-var r = null, n = 8, a = 10;
+var n = null, r = 8, a = 10;
 i("a,[data-tooltip]", t, o);
 };
 },
@@ -53,12 +53,12 @@ this.width && this.height && (t.src = this.src);
 "use strict";
 function t() {
 for (var e = document.querySelectorAll("[data-sticky]"), t = 0; t < e.length; t++) {
-var i = e[t], r = i.dataset.sticky ? document.querySelector(i.dataset.sticky) : document.body;
+var i = e[t], n = i.dataset.sticky ? document.querySelector(i.dataset.sticky) : document.body;
 if (i.getBoundingClientRect().top < 0) {
 if (i.style.cssText) return;
-var n = i.getBoundingClientRect().left, a = o(i);
-i.parentNode.insertBefore(a, i), r.appendChild(i), i.classList.add("sticky"), i.style.position = "fixed", 
-i.style.top = 0, i.style.left = n + "px", i.style.zIndex = 101, i.style.background = "white", 
+var r = i.getBoundingClientRect().left, a = o(i);
+i.parentNode.insertBefore(a, i), n.appendChild(i), i.classList.add("sticky"), i.style.position = "fixed", 
+i.style.top = 0, i.style.left = r + "px", i.style.zIndex = 101, i.style.background = "white", 
 i.style.margin = 0, i.style.width = a.offsetWidth + "px", i.placeholder = a;
 } else i.placeholder && i.placeholder.getBoundingClientRect().top > 0 && (i.style.cssText = "", 
 i.classList.remove("sticky"), i.placeholder.parentNode.insertBefore(i, i.placeholder), 
@@ -82,38 +82,38 @@ out: o
 };
 }
 function o(e) {
-if (!n) {
+if (!r) {
 var t = Math.sqrt(Math.pow(e.pageX - a, 2) + Math.pow(e.pageY - s, 2)), o = t / (Date.now() - l);
 if (p > o) {
 var i = document.elementFromPoint(e.clientX, e.clientY);
 if (!i) return;
-if (i != r) {
+if (i != n) {
 for (var d in c) {
 var _ = i.closest(d);
-_ && (n = {
+_ && (r = {
 elem: _,
 out: c[d].out
 }, c[d].over(e));
 }
-r = i;
+n = i;
 }
 }
 a = e.pageX, s = e.pageY, l = Date.now();
 }
 }
 function i(e) {
-if (n) {
+if (r) {
 for (var t = e.relatedTarget; t; ) {
-if (t == n.elem) return;
+if (t == r.elem) return;
 t = t.parentElement;
 }
-var o = n.out;
-n = null, o(e);
+var o = r.out;
+r = null, o(e);
 }
 }
-var r, n, a = 1 / 0, s = 1 / 0, l = Date.now(), p = .2, c = {};
+var n, r, a = 1 / 0, s = 1 / 0, l = Date.now(), p = .2, c = {};
 document.addEventListener("mousemove", o), document.addEventListener("mouseout", i), 
 e.exports = t;
 }
 });
-//# sourceMappingURL=footer.5049f2ab49ed306079c0.js.map
+//# sourceMappingURL=footer.21f5635044456bdcb283.js.map
