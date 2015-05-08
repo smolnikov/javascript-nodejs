@@ -3,13 +3,17 @@ var profile = webpackJsonp_name_([ 8 ], {
 "use strict";
 var i = n(1), r = (n(251), n(274)), o = n(279), a = i.module("profile", [ "ui.router", "ngResource", "global403Interceptor", "ajoslin.promise-tracker", "progress", "focusOn", "ngMessages" ]);
 n(258), n(259), n(260), n(261), n(262), n(263), n(264), n(265), n(266), n(267), 
-n(268), n(257), n(269), n(270), n(271), n(272), n(273), a.filter("capitalize", function() {
+n(268), n(309), n(257), n(269), n(270), n(310), n(271), n(272), n(273), a.filter("capitalize", function() {
 return function(e) {
 return e[0].toUpperCase() + e.slice(1);
 };
 }).filter("longDate", function() {
 return function(e) {
 return r(e).format("D MMMM YYYY в LT");
+};
+}).filter("shortDate", function() {
+return function(e) {
+return r(e).format("D MMM YYYY");
 };
 }).filter("quizDuration", function() {
 return function(e) {
@@ -393,7 +397,7 @@ return this._months[e.month()];
 function V(e) {
 return this._monthsShort[e.month()];
 }
-function B(e, t, n) {
+function G(e, t, n) {
 var i, r, o;
 for (this._monthsParse || (this._monthsParse = [], this._longMonthsParse = [], this._shortMonthsParse = []), 
 i = 0; 12 > i; i++) {
@@ -405,13 +409,13 @@ if (n && "MMM" === t && this._shortMonthsParse[i].test(e)) return i;
 if (!n && this._monthsParse[i].test(e)) return i;
 }
 }
-function G(e, t) {
+function B(e, t) {
 var n;
 return "string" == typeof t && (t = e.localeData().monthsParse(t), "number" != typeof t) ? e : (n = Math.min(e.date(), F(e.year(), t)), 
 e._d["set" + (e._isUTC ? "UTC" : "") + "Month"](t, n), e);
 }
 function W(e) {
-return null != e ? (G(this, e), t.updateOffset(this, !0), this) : C(this, "Month");
+return null != e ? (B(this, e), t.updateOffset(this, !0), this) : C(this, "Month");
 }
 function X() {
 return F(this.year(), this.month());
@@ -629,7 +633,7 @@ function Ne(e, n) {
 var i, r = this._offset || 0;
 return null != e ? ("string" == typeof e && (e = De(e)), Math.abs(e) < 16 && (e = 60 * e), 
 !this._isUTC && n && (i = Le(this)), this._offset = e, this._isUTC = !0, null != i && this.add(i, "m"), 
-r !== e && (!n || this._changeInProgress ? Ke(this, Ge(e - r, "m"), 1, !1) : this._changeInProgress || (this._changeInProgress = !0, 
+r !== e && (!n || this._changeInProgress ? Ke(this, Be(e - r, "m"), 1, !1) : this._changeInProgress || (this._changeInProgress = !0, 
 t.updateOffset(this, !0), this._changeInProgress = null)), this) : this._isUTC ? r : Le(this);
 }
 function Pe(e, t) {
@@ -665,10 +669,10 @@ return !this._isUTC;
 function Ve() {
 return this._isUTC;
 }
-function Be() {
+function Ge() {
 return this._isUTC && 0 === this._offset;
 }
-function Ge(e, t) {
+function Be(e, t) {
 var n, i, r, o = e, a = null;
 return Oe(e) ? o = {
 ms: e._milliseconds,
@@ -715,14 +719,14 @@ function Je(e, t) {
 return function(n, i) {
 var r, o;
 return null === i || isNaN(+i) || (Q(t, "moment()." + t + "(period, number) is deprecated. Please use moment()." + t + "(number, period)."), 
-o = n, n = i, i = o), n = "string" == typeof n ? +n : n, r = Ge(n, i), Ke(this, r, e), 
+o = n, n = i, i = o), n = "string" == typeof n ? +n : n, r = Be(n, i), Ke(this, r, e), 
 this;
 };
 }
 function Ke(e, n, i, r) {
 var o = n._milliseconds, a = n._days, s = n._months;
 r = null == r ? !0 : r, o && e._d.setTime(+e._d + o * i), a && A(e, "Date", C(e, "Date") + a * i), 
-s && G(e, C(e, "Month") + s * i), r && t.updateOffset(e, a || s);
+s && B(e, C(e, "Month") + s * i), r && t.updateOffset(e, a || s);
 }
 function Qe(e) {
 var t = e || Se(), n = qe(t, this).startOf("day"), i = this.diff(n, "days", !0), r = -6 > i ? "sameElse" : -1 > i ? "lastWeek" : 0 > i ? "lastDay" : 1 > i ? "sameDay" : 2 > i ? "nextDay" : 7 > i ? "nextWeek" : "sameElse";
@@ -775,7 +779,7 @@ var n = L(this, e || t.defaultFormat);
 return this.localeData().postformat(n);
 }
 function pt(e, t) {
-return Ge({
+return Be({
 to: this,
 from: e
 }).locale(this.locale()).humanize(!t);
@@ -921,10 +925,10 @@ return this._isUTC ? "UTC" : "";
 function Vt() {
 return this._isUTC ? "Coordinated Universal Time" : "";
 }
-function Bt(e) {
+function Gt(e) {
 return Se(1e3 * e);
 }
-function Gt() {
+function Bt() {
 return Se.apply(null, arguments).parseZone();
 }
 function Wt(e, t, n) {
@@ -992,7 +996,7 @@ e.minutes = Ui(e.minutes), e.hours = Ui(e.hours), e.months = Ui(e.months), e.yea
 this;
 }
 function pn(e, t, n, i) {
-var r = Ge(t, n);
+var r = Be(t, n);
 return e._milliseconds += i * r._milliseconds, e._days += i * r._days, e._months += i * r._months, 
 e._bubble();
 }
@@ -1065,7 +1069,7 @@ function $n(e, t, n, i, r) {
 return r.relativeTime(t || 1, !!n, e, i);
 }
 function kn(e, t, n) {
-var i = Ge(e).abs(), r = rr(i.as("s")), o = rr(i.as("m")), a = rr(i.as("h")), s = rr(i.as("d")), l = rr(i.as("M")), c = rr(i.as("y")), u = r < or.s && [ "s", r ] || 1 === o && [ "m" ] || o < or.m && [ "mm", o ] || 1 === a && [ "h" ] || a < or.h && [ "hh", a ] || 1 === s && [ "d" ] || s < or.d && [ "dd", s ] || 1 === l && [ "M" ] || l < or.M && [ "MM", l ] || 1 === c && [ "y" ] || [ "yy", c ];
+var i = Be(e).abs(), r = rr(i.as("s")), o = rr(i.as("m")), a = rr(i.as("h")), s = rr(i.as("d")), l = rr(i.as("M")), c = rr(i.as("y")), u = r < or.s && [ "s", r ] || 1 === o && [ "m" ] || o < or.m && [ "mm", o ] || 1 === a && [ "h" ] || a < or.h && [ "hh", a ] || 1 === s && [ "d" ] || s < or.d && [ "dd", s ] || 1 === l && [ "M" ] || l < or.M && [ "MM", l ] || 1 === c && [ "y" ] || [ "yy", c ];
 return u[2] = t, u[3] = +e > 0, u[4] = n, $n.apply(null, u);
 }
 function En(e, t) {
@@ -1079,7 +1083,7 @@ function Tn() {
 var e = ar(this.years()), t = ar(this.months()), n = ar(this.days()), i = ar(this.hours()), r = ar(this.minutes()), o = ar(this.seconds() + this.milliseconds() / 1e3), a = this.asSeconds();
 return a ? (0 > a ? "-" : "") + "P" + (e ? e + "Y" : "") + (t ? t + "M" : "") + (n ? n + "D" : "") + (i || r || o ? "T" : "") + (i ? i + "H" : "") + (r ? r + "M" : "") + (o ? o + "S" : "") : "P0D";
 }
-var Cn, An, Mn = t.momentProperties = [], On = !1, zn = {}, Dn = {}, qn = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|x|X|zz?|ZZ?|.)/g, Ln = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, Nn = {}, Pn = {}, In = /\d/, Rn = /\d\d/, jn = /\d{3}/, Hn = /\d{4}/, Un = /[+-]?\d{6}/, Fn = /\d\d?/, Yn = /\d{1,3}/, Vn = /\d{1,4}/, Bn = /[+-]?\d{1,6}/, Gn = /\d+/, Wn = /[+-]?\d+/, Xn = /Z|[+-]\d\d:?\d\d/gi, Zn = /[+-]?\d+(\.\d{1,3})?/, Jn = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i, Kn = {}, Qn = {}, ei = 0, ti = 1, ni = 2, ii = 3, ri = 4, oi = 5, ai = 6;
+var Cn, An, Mn = t.momentProperties = [], On = !1, zn = {}, Dn = {}, qn = /(\[[^\[]*\])|(\\)?(Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Q|YYYYYY|YYYYY|YYYY|YY|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|mm?|ss?|S{1,4}|x|X|zz?|ZZ?|.)/g, Ln = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, Nn = {}, Pn = {}, In = /\d/, Rn = /\d\d/, jn = /\d{3}/, Hn = /\d{4}/, Un = /[+-]?\d{6}/, Fn = /\d\d?/, Yn = /\d{1,3}/, Vn = /\d{1,4}/, Gn = /[+-]?\d{1,6}/, Bn = /\d+/, Wn = /[+-]?\d+/, Xn = /Z|[+-]\d\d:?\d\d/gi, Zn = /[+-]?\d+(\.\d{1,3})?/, Jn = /[0-9]*['a-z\u00A0-\u05FF\u0700-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+|[\u0600-\u06FF\/]+(\s*?[\u0600-\u06FF]+){1,2}/i, Kn = {}, Qn = {}, ei = 0, ti = 1, ni = 2, ii = 3, ri = 4, oi = 5, ai = 6;
 z("M", [ "MM", 2 ], "Mo", function() {
 return this.month() + 1;
 }), z("MMM", 0, 0, function(e) {
@@ -1100,8 +1104,8 @@ e._d = new Date(e._i + (e._useUTC ? " UTC" : ""));
 }), z(0, [ "YY", 2 ], 0, function() {
 return this.year() % 100;
 }), z(0, [ "YYYY", 4 ], 0, "year"), z(0, [ "YYYYY", 5 ], 0, "year"), z(0, [ "YYYYYY", 6, !0 ], 0, "year"), 
-k("year", "y"), P("Y", Wn), P("YY", Fn, Rn), P("YYYY", Vn, Hn), P("YYYYY", Bn, Un), 
-P("YYYYYY", Bn, Un), j([ "YYYY", "YYYYY", "YYYYYY" ], ei), j("YY", function(e, n) {
+k("year", "y"), P("Y", Wn), P("YY", Fn, Rn), P("YYYY", Vn, Hn), P("YYYYY", Gn, Un), 
+P("YYYYYY", Gn, Un), j([ "YYYY", "YYYYY", "YYYYYY" ], ei), j("YY", function(e, n) {
 n[ei] = t.parseTwoDigitYear(e);
 }), t.parseTwoDigitYear = function(e) {
 return m(e) + (m(e) > 68 ? 1900 : 2e3);
@@ -1132,7 +1136,7 @@ n._useUTC = !0, n._tzm = De(e);
 var bi = /([\+\-]|\d\d)/gi;
 t.updateOffset = function() {};
 var vi = /(\-)?(?:(\d*)\.)?(\d+)\:(\d+)(?:\:(\d+)\.?(\d{3})?)?/, xi = /^(-)?P(?:(?:([0-9,.]*)Y)?(?:([0-9,.]*)M)?(?:([0-9,.]*)D)?(?:T(?:([0-9,.]*)H)?(?:([0-9,.]*)M)?(?:([0-9,.]*)S)?)?|([0-9,.]*)W)$/;
-Ge.fn = Me.prototype;
+Be.fn = Me.prototype;
 var yi = Je(1, "add"), wi = Je(-1, "subtract");
 t.defaultFormat = "YYYY-MM-DDTHH:mm:ssZ";
 var $i = K("moment().lang() is deprecated. Instead, use moment().localeData() to get the language configuration. Use moment().locale() to change languages.", function(e) {
@@ -1145,7 +1149,7 @@ return this.isoWeekYear() % 100;
 }), kt("gggg", "weekYear"), kt("ggggg", "weekYear"), kt("GGGG", "isoWeekYear"), 
 kt("GGGGG", "isoWeekYear"), k("weekYear", "gg"), k("isoWeekYear", "GG"), P("G", Wn), 
 P("g", Wn), P("GG", Fn, Rn), P("gg", Fn, Rn), P("GGGG", Vn, Hn), P("gggg", Vn, Hn), 
-P("GGGGG", Bn, Un), P("ggggg", Bn, Un), H([ "gggg", "ggggg", "GGGG", "GGGGG" ], function(e, t, n, i) {
+P("GGGGG", Gn, Un), P("ggggg", Gn, Un), H([ "gggg", "ggggg", "GGGG", "GGGGG" ], function(e, t, n, i) {
 t[i.substr(0, 2)] = m(e);
 }), H([ "gg", "GG" ], function(e, n, i, r) {
 n[r] = t.parseTwoDigitYear(e);
@@ -1193,7 +1197,7 @@ return ~~(this.millisecond() / 100);
 }), z(0, [ "SS", 2 ], 0, function() {
 return ~~(this.millisecond() / 10);
 }), Ft("SSS"), Ft("SSSS"), k("millisecond", "ms"), P("S", Yn, In), P("SS", Yn, Rn), 
-P("SSS", Yn, jn), P("SSSS", Gn), j([ "S", "SS", "SSS", "SSSS" ], function(e, t) {
+P("SSS", Yn, jn), P("SSSS", Bn), j([ "S", "SS", "SSS", "SSSS" ], function(e, t) {
 t[ai] = m(1e3 * ("0." + e));
 });
 var zi = T("Milliseconds", !1);
@@ -1211,7 +1215,7 @@ Di.isoWeeksInYear = Ct, Di.date = ki, Di.day = Di.days = Nt, Di.weekday = Pt, Di
 Di.dayOfYear = he, Di.hour = Di.hours = Ai, Di.minute = Di.minutes = Mi, Di.second = Di.seconds = Oi, 
 Di.millisecond = Di.milliseconds = zi, Di.utcOffset = Ne, Di.utc = Ie, Di.local = Re, 
 Di.parseZone = je, Di.hasAlignedHourOffset = He, Di.isDST = Ue, Di.isDSTShifted = Fe, 
-Di.isLocal = Ye, Di.isUtcOffset = Ve, Di.isUtc = Be, Di.isUTC = Be, Di.zoneAbbr = Yt, 
+Di.isLocal = Ye, Di.isUtcOffset = Ve, Di.isUtc = Ge, Di.isUTC = Ge, Di.zoneAbbr = Yt, 
 Di.zoneName = Vt, Di.dates = K("dates accessor is deprecated. Use date instead.", ki), 
 Di.months = K("months accessor is deprecated. Use month instead", W), Di.years = K("years accessor is deprecated. Use year instead", hi), 
 Di.zone = K("moment().zone is deprecated, use moment().utcOffset instead. https://github.com/moment/moment/issues/1779", Pe);
@@ -1248,7 +1252,7 @@ Hi._calendar = Li, Hi.calendar = Wt, Hi._longDateFormat = Ni, Hi.longDateFormat 
 Hi._invalidDate = Pi, Hi.invalidDate = Zt, Hi._ordinal = Ii, Hi.ordinal = Jt, Hi._ordinalParse = Ri, 
 Hi.preparse = Kt, Hi.postformat = Kt, Hi._relativeTime = ji, Hi.relativeTime = Qt, 
 Hi.pastFuture = en, Hi.set = tn, Hi.months = Y, Hi._months = si, Hi.monthsShort = V, 
-Hi._monthsShort = li, Hi.monthsParse = B, Hi.week = le, Hi._week = mi, Hi.firstDayOfYear = ue, 
+Hi._monthsShort = li, Hi.monthsParse = G, Hi.week = le, Hi._week = mi, Hi.firstDayOfYear = ue, 
 Hi.firstDayOfWeek = ce, Hi.weekdays = zt, Hi._weekdays = Ei, Hi.weekdaysMin = qt, 
 Hi._weekdaysMin = Ti, Hi.weekdaysShort = Dt, Hi._weekdaysShort = Si, Hi.weekdaysParse = Lt, 
 Hi.isPM = Ht, Hi._meridiemParse = Ci, Hi.meridiem = Ut, y("en", {
@@ -1258,7 +1262,7 @@ var t = e % 10, n = 1 === m(e % 100 / 10) ? "th" : 1 === t ? "st" : 2 === t ? "n
 return e + n;
 }
 }), t.lang = K("moment.lang is deprecated. Use moment.locale instead.", y), t.langData = K("moment.langData is deprecated. Use moment.localeData instead.", $);
-var Ui = Math.abs, Fi = vn("ms"), Yi = vn("s"), Vi = vn("m"), Bi = vn("h"), Gi = vn("d"), Wi = vn("w"), Xi = vn("M"), Zi = vn("y"), Ji = yn("milliseconds"), Ki = yn("seconds"), Qi = yn("minutes"), er = yn("hours"), tr = yn("days"), nr = yn("months"), ir = yn("years"), rr = Math.round, or = {
+var Ui = Math.abs, Fi = vn("ms"), Yi = vn("s"), Vi = vn("m"), Gi = vn("h"), Bi = vn("d"), Wi = vn("w"), Xi = vn("M"), Zi = vn("y"), Ji = yn("milliseconds"), Ki = yn("seconds"), Qi = yn("minutes"), er = yn("hours"), tr = yn("days"), nr = yn("months"), ir = yn("years"), rr = Math.round, or = {
 s: 45,
 m: 45,
 h: 22,
@@ -1266,7 +1270,7 @@ d: 26,
 M: 11
 }, ar = Math.abs, sr = Me.prototype;
 sr.abs = un, sr.add = dn, sr.subtract = fn, sr.as = gn, sr.asMilliseconds = Fi, 
-sr.asSeconds = Yi, sr.asMinutes = Vi, sr.asHours = Bi, sr.asDays = Gi, sr.asWeeks = Wi, 
+sr.asSeconds = Yi, sr.asMinutes = Vi, sr.asHours = Gi, sr.asDays = Bi, sr.asWeeks = Wi, 
 sr.asMonths = Xi, sr.asYears = Zi, sr.valueOf = bn, sr._bubble = hn, sr.get = xn, 
 sr.milliseconds = Ji, sr.seconds = Ki, sr.minutes = Qi, sr.hours = er, sr.days = tr, 
 sr.weeks = wn, sr.months = nr, sr.years = ir, sr.humanize = Sn, sr.toISOString = Tn, 
@@ -1276,9 +1280,9 @@ j("X", function(e, t, n) {
 n._d = new Date(1e3 * parseFloat(e, 10));
 }), j("x", function(e, t, n) {
 n._d = new Date(m(e));
-}), t.version = "2.10.2", n(Se), t.fn = qi, t.min = Ce, t.max = Ae, t.utc = c, t.unix = Bt, 
-t.months = on, t.isDate = o, t.locale = y, t.invalid = p, t.duration = Ge, t.isMoment = h, 
-t.weekdays = sn, t.parseZone = Gt, t.localeData = $, t.isDuration = Oe, t.monthsShort = an, 
+}), t.version = "2.10.2", n(Se), t.fn = qi, t.min = Ce, t.max = Ae, t.utc = c, t.unix = Gt, 
+t.months = on, t.isDate = o, t.locale = y, t.invalid = p, t.duration = Be, t.isMoment = h, 
+t.weekdays = sn, t.parseZone = Bt, t.localeData = $, t.isDuration = Oe, t.monthsShort = an, 
 t.weekdaysMin = cn, t.defineLocale = w, t.weekdaysShort = ln, t.normalizeUnits = E, 
 t.relativeTimeThreshold = En;
 var lr = t;
@@ -1331,6 +1335,17 @@ templateUrl: "/profile/templates/partials/orders",
 controller: "ProfileOrdersCtrl",
 resolve: {
 orders: function(e) {
+return e.query();
+}
+}
+},
+"root.courseGroups": {
+url: "/courses",
+title: "Курсы",
+templateUrl: "/profile/templates/partials/courseGroups",
+controller: "ProfileCourseGroupsCtrl",
+resolve: {
+courseGroups: function(e) {
 return e.query();
 }
 }
@@ -1855,6 +1870,30 @@ e.exports = function(e) {
 return e.webpackPolyfill || (e.deprecate = function() {}, e.paths = [], e.children = [], 
 e.webpackPolyfill = 1), e;
 };
+},
+309: function(e, t, n) {
+"use strict";
+var i = n(1);
+i.module("profile").factory("CourseGroups", [ "$resource", function(e) {
+return e("/courses/profile/" + window.currentUser.id, {}, {
+query: {
+method: "GET",
+isArray: !0,
+transformResponse: function(e) {
+return e = JSON.parse(e), e.forEach(function(e) {
+e.dateStart = new Date(e.dateStart), e.dateEnd = new Date(e.dateEnd);
+}), e;
+}
 }
 });
-//# sourceMappingURL=profile.21f5635044456bdcb283.js.map
+} ]);
+},
+310: function(e, t, n) {
+"use strict";
+var i = n(1), r = (n(251), n(274), i.module("profile"));
+r.controller("ProfileCourseGroupsCtrl", [ "$scope", "$http", "$window", "courseGroups", function(e, t, n, i) {
+e.courseGroups = i;
+} ]);
+}
+});
+//# sourceMappingURL=profile.057a6d4dfbfdbc533206.js.map

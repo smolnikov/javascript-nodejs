@@ -6,21 +6,58 @@ for (var e = document.querySelectorAll("li[data-mnemo]"), t = 0; t < e.length; t
 var n = e[t], i = n.getAttribute("data-mnemo");
 n.insertAdjacentHTML("beforeEnd", '<div class="lessons-list__download"><div class="lessons-list__popup"><ul class="lessons-list__popup-list"><li class="lessons-list__popup-item"><a data-track-outbound href="/nodejs-screencast/nodejs-mp4-low/' + i + '.mp4">Компактный размер</a></li><li class="lessons-list__popup-item"><a data-track-outbound href="/nodejs-screencast/nodejs-mp4/' + i + '.mp4">Высокое качество</a></li></ul></div></div>');
 }
+for (var o = document.querySelectorAll("a[data-video-id]"), t = 0; t < o.length; t++) {
+var a = o[t];
+a.onclick = function(e) {
+e.preventDefault();
+var t = this.getAttribute("data-video-id");
+window.ga("send", "event", "nodejs-screencast", "open", t, {
+hitCallback: c(function() {
+r(t);
+})
+});
+};
 }
-var r = n(237), o = n(154), a = n(275), s = n(283);
+}
+function r(e) {
+for (var t = [ {
+width: 0,
+height: 0
+}, {
+width: 640,
+height: 390
+}, {
+width: 853,
+height: 510
+}, {
+width: 1280,
+height: 750
+} ], n = 0; n < t.length && !(document.documentElement.clientHeight < t[n].height || document.documentElement.clientWidth < t[n].width); n++) ;
+n--;
+var i = t[n].width, r = t[n].height;
+window.ga("send", "event", "nodejs-screencast", "open", e + "-" + i + "x" + r, {
+hitCallback: c(function() {
+if (0 === n) window.location.href = "//www.youtube.com/watch?v=" + e; else {
+var t = new o();
+t.setContent('<iframe width="' + i + '" height="' + r + '" src="//www.youtube.com/embed/' + e + '" frameborder="0" allowfullscreen></iframe>');
+}
+})
+});
+}
+var o = n(237), a = n(154), s = n(275), l = n(283), c = n(311);
 t.init = function() {
 i();
 var e = document.querySelector("[data-newsletter-subscribe-form]");
 e.onsubmit = function(t) {
-t.preventDefault(), s.submitSubscribeForm(e);
+t.preventDefault(), l.submitSubscribeForm(e);
 };
 var t = document.querySelector("[data-nodejs-screencast-top-subscribe]");
 t.onclick = function(e) {
-var t = new r();
-t.setContent(a(o));
+var t = new o();
+t.setContent(s(a));
 var n = t.elem.querySelector("form");
 n.setAttribute("data-newsletter-subscribe-form", "nodejs-top"), n.onsubmit = function(e) {
-e.preventDefault(), s.submitSubscribeForm(n, function() {
+e.preventDefault(), l.submitSubscribeForm(n, function() {
 t.remove();
 });
 }, e.preventDefault();
@@ -352,6 +389,15 @@ return (n == i ? "  > " : "    ") + n + "| " + e;
 throw e.path = t, e.message = (t || "Jade") + ":" + i + "\n" + s + "\n\n" + e.message, 
 e;
 };
+},
+311: function(e) {
+"use strict";
+e.exports = function(e) {
+function t() {
+t.wasCalled || (t.wasCalled = !0, e());
+}
+return setTimeout(t, 500), t;
+};
 }
 });
-//# sourceMappingURL=nodejsScreencast.21f5635044456bdcb283.js.map
+//# sourceMappingURL=nodejsScreencast.057a6d4dfbfdbc533206.js.map
