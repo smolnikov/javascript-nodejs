@@ -1339,7 +1339,7 @@ return e.query();
 }
 }
 },
-"root.courseGroups": {
+"root.courses": {
 url: "/courses",
 title: "Курсы",
 templateUrl: "/profile/templates/partials/courseGroups",
@@ -1896,4 +1896,4 @@ e.courseGroups = i;
 } ]);
 }
 });
-//# sourceMappingURL=profile.057a6d4dfbfdbc533206.js.map
+//# sourceMappingURL=profile.448f6b082c56dfa2216b.js.map
