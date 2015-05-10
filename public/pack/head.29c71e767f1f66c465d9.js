@@ -37,15 +37,23 @@ o.type = "text/javascript", o.charset = "utf-8", o.async = !0, o.src = t.p + "" 
 "12": "about",
 "13": "ebookExtras",
 "14": "courses"
-}[e] || e) + "-" + e + ".448f6b082c56dfa2216b.js", i.appendChild(o);
+}[e] || e) + "-" + e + ".29c71e767f1f66c465d9.js", i.appendChild(o);
 }
 }, t.m = e, t.c = i, t.p = "/pack/", t(0);
 }({
 0: function(e, t, n) {
 "use strict";
-n(157), n(250), window.localStorage || (window.localStorage = {}), n(234), t.login = n(235), 
-n(236), t.Modal = n(237), t.fontTest = n(238), t.resizeOnload = n(246), n(239), 
-n(240), n(241), n(242), n(243), n(244), n(245), n(251).init();
+n(157), n(250);
+try {
+window.localStorage.testProperty = 1, delete window.localStorage.testProperty;
+} catch (i) {
+try {
+window.localStorage = {};
+} catch (i) {}
+}
+!window.localStorage, n(234), t.login = n(235), n(236), t.Modal = n(237), t.fontTest = n(238), 
+t.resizeOnload = n(246), n(239), n(240), n(241), n(242), n(243), n(244), n(245), 
+n(251).init();
 },
 157: function() {},
 234: function() {
@@ -756,4 +764,4 @@ return e.parentNode.removeChild(e), t - i;
 e.exports = t;
 }
 });
-//# sourceMappingURL=head.448f6b082c56dfa2216b.js.map
+//# sourceMappingURL=head.29c71e767f1f66c465d9.js.map
