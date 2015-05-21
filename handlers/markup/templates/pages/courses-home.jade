@@ -5,13 +5,14 @@ block append variables
     - var layout_header_class = "main__header_center"
     - var title = 'Online курсы Javascript'
     - var breadcrumbs = [{ title: 'Учебник', url: '/tutorial' }, { title: 'JavaScript.ru', url: 'http://javascript.ru' }]
-
+    - var sitetoolbar = true
     - var content_class = '_center'
 
 
 block content
     p Здесь находятся «правильные» курсы по профессиональному Javascript, цель которых — научить думать на Javascript, писать просто, быстро и красиво.
     +b.flex-column
+        include ../blocks/phone-toggler
         include ../blocks/courses-features
         include ../blocks/courses-programm-register
         include ../blocks/courses-master
@@ -19,5 +20,5 @@ block content
         include ../blocks/courses-tabbed-pane
         include ../blocks/courses-guarantee
         include ../blocks/courses-faq
-        +b.fixed-tab.tablet-only.courses-tab
+        +b.fixed-tab.phone-only.courses-tab
             a.courses-tab__link(href="#courses") Перейти к списку открытых курсов

@@ -8,7 +8,7 @@ block append variables
 
 block content
 
-  p Для подтверждения вам необходимо зарегистрироваться.
+  p Для продолжения вам необходимо зарегистрироваться.
 
   +b.login-form.complex-form.complex-form_step_4
     +e.step.complex-form__step.complex-form__step_current
@@ -26,13 +26,6 @@ block content
             +e('input').control#invite-displayName(name="displayName" type="text" required value=form.displayName autofocus)
             if errors.displayName
               +e.err= errors.displayName
-
-        +e.line
-          +e('label').label(for="invite-courseName") ФИО (только для курса, на сайте не отображается)
-          +b('span')(class=["text-input", "__input", errors.courseName ? '_invalid' : '' ])
-            +e('input').control#invite-courseName(type="text", name="courseName" required value=form.courseName placeholder="Пушкин Александр Сергеевич")
-            if errors.courseName
-              +e.err= errors.courseName
 
         +e.line
           +e('label').label(for="invite-password") Пароль

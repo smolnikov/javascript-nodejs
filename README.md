@@ -1,14 +1,12 @@
-# Новый javascript.ru 
-
-[![Join the chat at https://gitter.im/iliakan/javascript-nodejs](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iliakan/javascript-nodejs)
-
-## Powered by IO.js 
+# Движок javascript.ru на javascript
 
 Всем привет!
 
-А это исходный код для нового движка сайта [https://learn.javascript.ru](https://learn.javascript.ru).
+А это исходный код для движка сайта [https://learn.javascript.ru](https://learn.javascript.ru).
 
-<!-- mongod fails to install on travis, disable until fixed
+Он открытый, вы можете использовать его или его элементы в своих проектах, или даже поднять свою копию сайта и написать там о чём-то ещё ☺ 
+
+<!-- few modules fail to install on travis, disable until fixed
 [![Build Status](https://travis-ci.org/iliakan/javascript-nodejs.svg?branch=master)](https://travis-ci.org/iliakan/javascript-nodejs)
 -->
 
@@ -27,7 +25,7 @@
 В опен-сорсе весь код, который будет заставлять двигаться эту штуку. 
 Многие модули из него можно взять и выделить в отдельные проекты, было бы желание.
 
-Также в опен-сорсе - учебник JavaScript. Правда, это в другом репозитарии, здесь только код.
+Также в опен-сорсе &ndash; учебник JavaScript. Правда, это в другом репозитарии, здесь только код.
 
 Для установки dev-среды см. [INSTALL.md](https://github.com/iliakan/javascript-nodejs/blob/master/Install.md).
 

@@ -49,6 +49,9 @@ gulp.task('db:load', lazyRequireTask('./tasks/dbLoad'));
 gulp.task('db:clear', lazyRequireTask('./tasks/dbClear'));
 gulp.task('migrate:play', lazyRequireTask('./tasks/migratePlay'));
 
+gulp.task('migrate:up', lazyRequireTask('migrate/tasks/up'));
+gulp.task('migrate:down', lazyRequireTask('migrate/tasks/down'));
+gulp.task('migrate:create', lazyRequireTask('migrate/tasks/create'));
 
 gulp.task("nodemon", lazyRequireTask('./tasks/nodemon', {
   // shared client/server code has require('template.jade) which precompiles template on run
@@ -114,6 +117,11 @@ gulp.task('watch', lazyRequireTask('./tasks/watch', {
   ]
 }));
 
+gulp.task('deploy', lazyRequireTask('deploy/tasks/deploy'));
+gulp.task('deploy:init', lazyRequireTask('deploy/tasks/init'));
+gulp.task('deploy:post', lazyRequireTask('./tasks/deployPost'));
+gulp.task('deploy:pre', lazyRequireTask('./tasks/deployPre'));
+
 gulp.task("client:sync-resources", lazyRequireTask('./tasks/syncResources', {
   assets: 'public'
 }));
@@ -140,6 +148,7 @@ gulp.task('client:webpack', lazyRequireTask('./tasks/webpack'));
 
 
 gulp.task('build', function(callback) {
+  console.log(process.env.NODE_ENV, process.env.ASSET_VERSIONING);
   runSequence("client:sync-resources", 'client:webpack', callback);
 });
 

@@ -1,3 +1,5 @@
+// DEPRECATED
+
 const sendMail = require('mailer').send;
 const CourseInvite = require('../models/courseInvite');
 const _ = require('lodash');
