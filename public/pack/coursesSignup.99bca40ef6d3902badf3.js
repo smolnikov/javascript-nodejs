@@ -8,9 +8,7 @@ elem: t
 });
 }
 var i = n(58);
-e.init = function() {
 r();
-};
 },
 29: function(t, e, n) {
 "use strict";
@@ -683,4 +681,4 @@ number: r.orderNumber
 t.exports = u;
 }
 });
-//# sourceMappingURL=coursesSignup.79ee647d9b2a0ed2cf08.js.map
+//# sourceMappingURL=coursesSignup.99bca40ef6d3902badf3.js.map

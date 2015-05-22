@@ -2,24 +2,42 @@ var nodejsScreencast = webpackJsonp_name_([ 9 ], {
 0: function(t, e, n) {
 "use strict";
 function r() {
+i();
+var t = document.querySelector("[data-newsletter-subscribe-form]");
+t.onsubmit = function(e) {
+e.preventDefault(), c.submitSubscribeForm(t);
+};
+var e = document.querySelector("[data-nodejs-screencast-top-subscribe]");
+e.onclick = function(t) {
+var e = new o();
+e.setContent(u(s));
+var n = e.elem.querySelector("form");
+n.setAttribute("data-newsletter-subscribe-form", "nodejs-top"), n.onsubmit = function(t) {
+t.preventDefault(), c.submitSubscribeForm(n, function() {
+e.remove();
+});
+}, t.preventDefault();
+};
+}
+function i() {
 for (var t = document.querySelectorAll("li[data-mnemo]"), e = 0; e < t.length; e++) {
 var n = t[e], r = n.getAttribute("data-mnemo");
 n.insertAdjacentHTML("beforeEnd", '<div class="lessons-list__download"><div class="lessons-list__popup"><ul class="lessons-list__popup-list"><li class="lessons-list__popup-item"><a data-track-outbound href="/nodejs-screencast/nodejs-mp4-low/' + r + '.mp4">Компактный размер</a></li><li class="lessons-list__popup-item"><a data-track-outbound href="/nodejs-screencast/nodejs-mp4/' + r + '.mp4">Высокое качество</a></li></ul></div></div>');
 }
-for (var a = document.querySelectorAll("a[data-video-id]"), e = 0; e < a.length; e++) {
-var o = a[e];
+for (var i = document.querySelectorAll("a[data-video-id]"), e = 0; e < i.length; e++) {
+var o = i[e];
 o.onclick = function(t) {
 t.preventDefault();
 var e = this.getAttribute("data-video-id");
 window.ga("send", "event", "nodejs-screencast", "open", e, {
-hitCallback: c(function() {
-i(e);
+hitCallback: l(function() {
+a(e);
 })
 });
 };
 }
 }
-function i(t) {
+function a(t) {
 for (var e = [ {
 width: 0,
 height: 0
@@ -36,33 +54,16 @@ height: 750
 n--;
 var r = e[n].width, i = e[n].height;
 window.ga("send", "event", "nodejs-screencast", "open", t + "-" + r + "x" + i, {
-hitCallback: c(function() {
+hitCallback: l(function() {
 if (0 === n) window.location.href = "//www.youtube.com/watch?v=" + t; else {
-var e = new a();
+var e = new o();
 e.setContent('<iframe width="' + r + '" height="' + i + '" src="//www.youtube.com/embed/' + t + '" frameborder="0" allowfullscreen></iframe>');
 }
 })
 });
 }
-var a = n(11), o = n(66), s = n(50), u = n(61), c = n(51);
-e.init = function() {
+var o = n(11), s = n(66), u = n(50), c = n(61), l = n(51);
 r();
-var t = document.querySelector("[data-newsletter-subscribe-form]");
-t.onsubmit = function(e) {
-e.preventDefault(), u.submitSubscribeForm(t);
-};
-var e = document.querySelector("[data-nodejs-screencast-top-subscribe]");
-e.onclick = function(t) {
-var e = new a();
-e.setContent(s(o));
-var n = e.elem.querySelector("form");
-n.setAttribute("data-newsletter-subscribe-form", "nodejs-top"), n.onsubmit = function(t) {
-t.preventDefault(), u.submitSubscribeForm(n, function() {
-e.remove();
-});
-}, t.preventDefault();
-};
-};
 },
 29: function(t, e, n) {
 "use strict";
@@ -400,4 +401,4 @@ t;
 },
 117: function() {}
 });
-//# sourceMappingURL=nodejsScreencast.79ee647d9b2a0ed2cf08.js.map
+//# sourceMappingURL=nodejsScreencast.99bca40ef6d3902badf3.js.map

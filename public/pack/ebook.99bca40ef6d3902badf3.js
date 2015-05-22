@@ -1,13 +1,14 @@
 var ebook = webpackJsonp_name_([ 8 ], {
 0: function(t, e, n) {
 "use strict";
-var r = n(56);
-e.init = function() {
+function r() {
 var t = document.querySelector("[data-order-form]");
-t && new r({
+t && new i({
 elem: t
 });
-};
+}
+var i = n(56);
+r();
 },
 29: function(t, e, n) {
 "use strict";
@@ -249,4 +250,4 @@ number: r.orderNumber
 t.exports = u;
 }
 });
-//# sourceMappingURL=ebook.79ee647d9b2a0ed2cf08.js.map
+//# sourceMappingURL=ebook.99bca40ef6d3902badf3.js.map

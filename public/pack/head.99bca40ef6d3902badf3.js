@@ -39,7 +39,7 @@ o.type = "text/javascript", o.charset = "utf-8", o.async = !0, o.src = e.p + "" 
 "11": "coursesParticipantDetails",
 "12": "quiz",
 "13": "about"
-}[t] || t) + "-" + t + ".79ee647d9b2a0ed2cf08.js", r.appendChild(o);
+}[t] || t) + "-" + t + ".99bca40ef6d3902badf3.js", r.appendChild(o);
 }
 }, e.m = t, e.c = r, e.p = "/pack/", e(0);
 }({
@@ -54,7 +54,7 @@ window.localStorage = {};
 } catch (r) {}
 }
 !window.localStorage, n(8), e.login = n(9), n(10), e.Modal = n(11), e.fontTest = n(12), 
-e.resizeOnload = n(19), n(7), n(13), n(14), n(15), n(16), n(17), n(18), n(24).init();
+e.resizeOnload = n(19), n(7), n(13), n(14), n(15), n(16), n(18), n(24).init();
 },
 7: function() {
 "use strict";
@@ -278,13 +278,6 @@ t && (t.classList.remove("hover"), t = null);
 }), document.addEventListener("mouseout", function(e) {
 t && (t.contains(e.relatedTarget) || (t.classList.remove("hover"), t = null));
 });
-},
-17: function(module, exports, __webpack_require__) {
-"use strict";
-window.runDemo = function(button) {
-for (var demoElem, parent = button; (parent = parent.parentElement) && !(demoElem = parent.querySelector("[data-demo]")); ) ;
-demoElem ? eval(demoElem.textContent) : alert("Ошибка, нет элемента с демо");
-};
 },
 18: function() {
 "use strict";
@@ -768,4 +761,4 @@ return t.parentNode.removeChild(t), e - r;
 t.exports = e;
 }
 });
-//# sourceMappingURL=head.79ee647d9b2a0ed2cf08.js.map
+//# sourceMappingURL=head.99bca40ef6d3902badf3.js.map

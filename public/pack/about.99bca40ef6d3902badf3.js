@@ -1,8 +1,30 @@
 var about = webpackJsonp_name_([ 13 ], {
 0: function(t, e, n) {
 "use strict";
+function r() {
+var t = new L.Map("map", {
+center: new L.LatLng(54.231473, 37.734144),
+zoom: 5,
+attributionControl: !1,
+scrollWheelZoom: !1,
+markerZoomAnimation: !1
+}), e = new L.Google("TERRAIN");
+t.addLayer(e);
+for (var n in i) (function(e) {
+var n = L.circleMarker([ i[e].location.lat - .01, i[e].location.lng ], {
+radius: i[e].radius / 3e3,
+stroke: !1,
+opacity: 1,
+fill: !0,
+clickable: !1,
+fillColor: "#C13335",
+fillOpacity: 1
+});
+t.addLayer(n);
+})(n);
+}
 n(67);
-var r = n(52);
+var i = n(52);
 L.Google = L.Class.extend({
 includes: L.Mixin.Events,
 options: {
@@ -101,28 +123,7 @@ var t = this._map.getSize();
 this._container.style.height = t.y + "px", google.maps.event.trigger(this._google, "resize"));
 },
 onReposition: function() {}
-}), e.init = function() {
-var t = new L.Map("map", {
-center: new L.LatLng(54.231473, 37.734144),
-zoom: 5,
-attributionControl: !1,
-scrollWheelZoom: !1,
-markerZoomAnimation: !1
-}), e = new L.Google("TERRAIN");
-t.addLayer(e);
-for (var n in r) (function(e) {
-var n = L.circleMarker([ r[e].location.lat - .01, r[e].location.lng ], {
-radius: r[e].radius / 3e3,
-stroke: !1,
-opacity: 1,
-fill: !0,
-clickable: !1,
-fillColor: "#C13335",
-fillOpacity: 1
-});
-t.addLayer(n);
-})(n);
-};
+}), e.init = r;
 },
 52: function(t) {
 "use strict";
@@ -271,4 +272,4 @@ radius: 2e4
 },
 67: function() {}
 });
-//# sourceMappingURL=about.79ee647d9b2a0ed2cf08.js.map
+//# sourceMappingURL=about.99bca40ef6d3902badf3.js.map

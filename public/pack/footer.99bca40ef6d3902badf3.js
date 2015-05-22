@@ -1,10 +1,11 @@
 var footer = webpackJsonp_name_([ 3 ], {
 0: function(t, e, s) {
 "use strict";
-var n = s(20), o = s(21), a = s(22);
-e.init = function() {
-n(), window.devicePixelRatio > 1 && o(), window.addEventListener("scroll", a), a();
-}, e.trackSticky = a;
+function n() {
+o(), window.devicePixelRatio > 1 && a(), window.addEventListener("scroll", i), i();
+}
+var o = s(20), a = s(21), i = s(22);
+n();
 },
 20: function(t, e, s) {
 "use strict";
@@ -116,4 +117,4 @@ document.addEventListener("mousemove", s), document.addEventListener("mouseout",
 t.exports = e;
 }
 });
-//# sourceMappingURL=footer.79ee647d9b2a0ed2cf08.js.map
+//# sourceMappingURL=footer.99bca40ef6d3902badf3.js.map

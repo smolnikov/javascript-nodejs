@@ -2,52 +2,53 @@ var coursesParticipantDetails = webpackJsonp_name_([ 11 ], {
 0: function(t, e, n) {
 "use strict";
 function r() {
+i();
+}
+function i() {
 var t = document.querySelector("[data-photo-load]");
-t && new i({
+t && new o({
 elem: t
 });
 }
-function i(t) {
+function o(t) {
 function e(t) {
 var e = new FormData();
 e.append("photo", t);
-var o = u({
+var o = c({
 method: "POST",
 url: "/imgur/upload",
 body: e,
 normalStatuses: [ 200, 400 ]
 });
 o.addEventListener("loadstart", r), o.addEventListener("loadend", i), o.addEventListener("fail", function(t) {
-new s.Error("Ошибка загрузки: " + t.reason);
+new u.Error("Ошибка загрузки: " + t.reason);
 }), o.addEventListener("success", function(t) {
-400 == o.status ? new s.Error("Неверный тип файла или изображение повреждено.") : n(t.result);
+400 == o.status ? new u.Error("Неверный тип файла или изображение повреждено.") : n(t.result);
 });
 }
 function n(t) {
-h.style.backgroundImage = "url('" + o(t.link, 64, 64) + "')", d.value = t.imgurId;
+h.style.backgroundImage = "url('" + a(t.link, 64, 64) + "')", d.value = t.imgurId;
 }
 function r() {
-p.start(), l.classList.add("modal-overlay_light");
+p.start(), o.classList.add("modal-overlay_light");
 }
 function i() {
-p.stop(), l.classList.remove("modal-overlay_light");
+p.stop(), o.classList.remove("modal-overlay_light");
 }
-var l = t.elem, f = l.querySelector("a"), h = l.querySelector("div"), d = l.querySelector("input");
+var o = t.elem, f = o.querySelector("a"), h = o.querySelector("div"), d = o.querySelector("input");
 f.onclick = function(t) {
-t.preventDefault(), a({
+t.preventDefault(), s({
 minSize: 160,
 onSuccess: e
 });
 };
-var p = new c({
+var p = new l({
 elem: h,
 size: "small"
 });
 }
-var o = n(57).thumb, a = n(1).promptSquarePhoto, s = n(24), u = n(29), c = n(54);
-e.init = function() {
+var a = n(57).thumb, s = n(1).promptSquarePhoto, u = n(24), c = n(29), l = n(54);
 r();
-};
 },
 1: function(t, e, n) {
 "use strict";
@@ -789,4 +790,4 @@ y: this.y + this.size / 2
 t.exports = r;
 }
 });
-//# sourceMappingURL=coursesParticipantDetails.79ee647d9b2a0ed2cf08.js.map
+//# sourceMappingURL=coursesParticipantDetails.99bca40ef6d3902badf3.js.map
