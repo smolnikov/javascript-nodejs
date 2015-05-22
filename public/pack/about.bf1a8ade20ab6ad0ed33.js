@@ -113,9 +113,8 @@ this._initContainer();
 },
 _update: function() {
 this._resize();
-var t = this._map.getBounds(), e = t.getNorthEast(), n = t.getSouthWest(), r = (new google.maps.LatLngBounds(new google.maps.LatLng(n.lat, n.lng), new google.maps.LatLng(e.lat, e.lng)), 
-this._map.getCenter()), i = new google.maps.LatLng(r.lat, r.lng);
-this._google.setCenter(i), this._google.setZoom(this._map.getZoom());
+var t = this._map.getBounds(), e = (t.getNorthEast(), t.getSouthWest(), this._map.getCenter()), n = new google.maps.LatLng(e.lat, e.lng);
+this._google.setCenter(n), this._google.setZoom(this._map.getZoom());
 },
 _resize: function() {
 var t = this._map.getSize();
@@ -272,4 +271,4 @@ radius: 2e4
 },
 66: function() {}
 });
-//# sourceMappingURL=about.2f135483682528334dda.js.map
+//# sourceMappingURL=about.bf1a8ade20ab6ad0ed33.js.map

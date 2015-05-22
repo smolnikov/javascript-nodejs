@@ -64,9 +64,9 @@ title: "Тесты",
 templateUrl: "/profile/templates/partials/quiz",
 controller: "ProfileQuizResultsCtrl",
 resolve: {
-quizResults: function(t) {
+quizResults: [ "QuizResults", function(t) {
 return t.query();
-}
+} ]
 }
 },
 "root.orders": {
@@ -75,9 +75,9 @@ title: "Заказы",
 templateUrl: "/profile/templates/partials/orders",
 controller: "ProfileOrdersCtrl",
 resolve: {
-orders: function(t) {
+orders: [ "Orders", function(t) {
 return t.query();
-}
+} ]
 }
 },
 "root.courses": {
@@ -86,9 +86,9 @@ title: "Курсы",
 templateUrl: "/profile/templates/partials/courseGroups",
 controller: "ProfileCourseGroupsCtrl",
 resolve: {
-courseGroups: function(t) {
+courseGroups: [ "CourseGroups", function(t) {
 return t.query();
-}
+} ]
 }
 }
 };
@@ -2538,4 +2538,4 @@ y: this.y + this.size / 2
 }();
 t.exports = r;
 } ]);
-//# sourceMappingURL=profile.2f135483682528334dda.js.map
+//# sourceMappingURL=profile.bf1a8ade20ab6ad0ed33.js.map

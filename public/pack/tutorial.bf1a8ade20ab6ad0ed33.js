@@ -1,94 +1,181 @@
-var quiz = webpackJsonp_name_([ 13 ], {
-0: function(t, e, n) {
+var tutorial = webpackJsonp_name_([ 5 ], {
+0: function(module, exports, __webpack_require__) {
+"use strict";
+function init() {
+initTaskButtons(), initFolderList(), initSidebarHighlight(), delegate(document, '[data-action="tutorial-map"]', "click", function(t) {
+new TutorialMapModal(), t.preventDefault();
+}), prism.init(), window.ebookType && __webpack_require__.e(6, function() {
+__webpack_require__(26).init();
+});
+var t = document.querySelector(".tutorial-map");
+t && new TutorialMap(t);
+}
+function initSidebarHighlight() {
+function t() {
+var t = document.getElementsByClassName("sidebar__navigation-link_active");
+t[0] && t[0].classList.remove("sidebar__navigation-link_active");
+for (var e = document.getElementsByTagName("h2"), n = 0; n < e.length; n++) {
+var r = e[n];
+if (r.getBoundingClientRect().top > 1) break;
+}
+if (n--, n >= 0) {
+var i = e[n].firstElementChild && e[n].firstElementChild.getAttribute("href"), o = document.querySelector('.sidebar__navigation-link a[href="' + i + '"]');
+i && o && o.classList.add("sidebar__navigation-link_active");
+}
+}
+document.addEventListener("DOMContentLoaded", function() {
+t(), window.addEventListener("scroll", t);
+});
+}
+function initTaskButtons() {
+delegate(document, ".task__solution", "click", function(t) {
+t.target.closest(".task").classList.toggle("task__answer_open");
+}), delegate(document, ".task__answer-close", "click", function(t) {
+t.target.closest(".task").classList.toggle("task__answer_open");
+}), delegate(document, ".task__step-show", "click", function(t) {
+t.target.closest(".task__step").classList.toggle("task__step_open");
+});
+}
+function initFolderList() {
+delegate(document, ".lessons-list__lesson_level_1 > .lessons-list__link", "click", function(t) {
+var e = t.delegateTarget, n = e.closest(".lessons-list").querySelector(".lessons-list__lesson_open");
+n && n != e.parentNode && n.classList.remove("lessons-list__lesson_open"), e.parentNode.classList.toggle("lessons-list__lesson_open"), 
+t.preventDefault();
+});
+}
+var delegate = __webpack_require__(27), prism = __webpack_require__(52), xhr = __webpack_require__(28), TutorialMapModal = __webpack_require__(24), TutorialMap = __webpack_require__(25);
+window.runDemo = function(button) {
+for (var demoElem, parent = button; (parent = parent.parentElement) && !(demoElem = parent.querySelector("[data-demo]")); ) ;
+demoElem ? eval(demoElem.textContent) : alert("Ошибка, нет элемента с демо");
+}, init();
+},
+21: function(t) {
+"use strict";
+function e() {
+for (var t = document.querySelectorAll("[data-sticky]"), e = 0; e < t.length; e++) {
+var r = t[e], i = r.dataset.sticky ? document.querySelector(r.dataset.sticky) : document.body;
+if (r.getBoundingClientRect().top < 0) {
+if (r.style.cssText) return;
+var o = r.getBoundingClientRect().left, a = n(r);
+r.parentNode.insertBefore(a, r), i.appendChild(r), r.classList.add("sticky"), r.style.position = "fixed", 
+r.style.top = 0, r.style.left = o + "px", r.style.zIndex = 101, r.style.background = "white", 
+r.style.margin = 0, r.style.width = a.offsetWidth + "px", r.placeholder = a;
+} else r.placeholder && r.placeholder.getBoundingClientRect().top > 0 && (r.style.cssText = "", 
+r.classList.remove("sticky"), r.placeholder.parentNode.insertBefore(r, r.placeholder), 
+r.placeholder.remove(), r.placeholder = null);
+}
+}
+function n(t) {
+var e = document.createElement("div"), n = getComputedStyle(t);
+return e.style.width = t.offsetWidth + "px", e.style.marginLeft = n.marginLeft, 
+e.style.marginRight = n.marginRight, e.style.height = t.offsetHeight + "px", e.style.marginBottom = n.marginBottom, 
+e.style.marginTop = n.marginTop, e;
+}
+t.exports = e;
+},
+24: function(t, e, n) {
 "use strict";
 function r() {
-var t = document.querySelector("[data-quiz-question-form]");
-t && a(t);
-var e = document.querySelector("[data-quiz-result-save-form]");
-e && i(e), u.init();
-}
-function i(t) {
-function e() {
-var e = t.querySelector('[type="submit"]'), i = new o({
-elem: e,
-size: "small",
-"class": "submit-button__spinner",
-elemClass: "submit-button_progress"
+var t = this, e = new a({
+hasClose: !1
+}), n = new s();
+e.setContent(n.elem), n.start(), this.onDocumentKeyDown = this.onDocumentKeyDown.bind(this);
+var r = i({
+url: "/tutorial/map"
 });
-i.start(), n.e(2, function() {
-i.stop();
-var t = n(59).AuthModal;
-new t({
-callback: r
-});
+r.addEventListener("success", function(n) {
+e.remove(), document.body.insertAdjacentHTML("beforeEnd", '<div class="tutorial-map-overlay"></div>'), 
+t.elem = document.body.lastChild, t.elem.innerHTML = n.result + '<button class="close-button tutorial-map-overlay__close"></button>', 
+t.elem.addEventListener("click", function(e) {
+e.target.classList.contains("tutorial-map-overlay__close") && t.remove();
+}), document.addEventListener("keydown", t.onDocumentKeyDown), document.body.classList.add("tutorial-map_on"), 
+t.elem.addEventListener("scroll", l), new u(t.elem.firstElementChild);
+}), r.addEventListener("fail", function() {
+return e.remove();
 });
 }
-function r() {
-function e() {
-i.stop(), r.disabled = !1;
-}
-var n = s({
-method: "POST",
-url: t.action
-}), r = t.querySelector('[type="submit"]'), i = new o({
-elem: r,
-size: "small",
-elemClass: "button_loading"
+var i = n(28), o = n(27), a = n(10), s = n(53), u = n(25), l = n(21);
+o.delegateMixin(r.prototype), r.prototype.remove = function() {
+this.elem.remove(), document.body.classList.remove("tutorial-map_on"), document.removeEventListener("keydown", this.onDocumentKeyDown);
+}, r.prototype.onDocumentKeyDown = function(t) {
+27 == t.keyCode && (t.preventDefault(), this.remove());
+}, t.exports = r;
+},
+25: function(t, e, n) {
+"use strict";
+function r(t) {
+var e = this;
+this.elem = t, this.showTasksCheckbox = t.querySelector("[data-tutorial-map-show-tasks]"), 
+this.showTasksCheckbox.checked = +localStorage.showTasksCheckbox, this.updateShowTasks(), 
+this.showTasksCheckbox.onchange = this.updateShowTasks.bind(this), this.filterInput = this.elem.querySelector("[data-tutorial-map-filter]"), 
+this.textInputBlock = this.elem.querySelector(".tutorial-map__filter .text-input"), 
+this.layoutSwitch = this.elem.querySelector("[data-tutorial-map-layout-switch]");
+var n = +localStorage.isMapSingleColumn;
+this.layoutSwitch.querySelector('[value="0"]').checked = !n, this.layoutSwitch.querySelector('[value="1"]').checked = n, 
+this.updateLayout(), this.layoutSwitch.onchange = this.onLayoutSwitchChange.bind(this), 
+this.filterInput.oninput = this.onFilterInput.bind(this), this.filterInput.onkeydown = this.onFilterKeydown.bind(this), 
+this.elem.querySelector(".close-button").onclick = function() {
+e.filterInput.value = "", e.showClearButton(!1), e.filter("");
+}, this.chaptersCollapsed = JSON.parse(localStorage.tutorialMapChapters || "{}"), 
+this.showChaptersCollapsed(), this.delegate(".tutorial-map__item > .tutorial-map__link", "click", function(t) {
+t.preventDefault();
+var e = t.delegateTarget.getAttribute("href");
+this.chaptersCollapsed[e] ? delete this.chaptersCollapsed[e] : this.chaptersCollapsed[e] = 1, 
+localStorage.tutorialMapChapters = JSON.stringify(this.chaptersCollapsed), this.showChaptersCollapsed();
 });
-i.start(), r.disabled = !0, n.addEventListener("loadend", e), n.addEventListener("success", function() {
-new c.Success("Результат сохранён в профиле! <a href='/profile/" + window.currentUser.profileName + "/quiz'>Перейти в профиль</a>.", "slow");
-});
+var r = this.elem.querySelector('[href="' + location.pathname + '"]');
+r && r.classList.add("tutorial-map__link_active"), this.filterInput.focus();
 }
-t.onsubmit = function(t) {
-return t.preventDefault(), window.currentUser ? void r() : void e();
-};
+function i(t, e) {
+for (var n = 0, r = 0; n < t.length && r < e.length; ) t[n] == e[r] ? (n++, r++) : n++;
+return r == e.length;
 }
-function a(t) {
-function e() {
-for (var e = t.elements.type.value, n = t.elements.answer, r = [], i = 0; i < n.length; i++) n[i].checked && r.push(+n[i].value);
-return "single" == e && (r = r[0]), r;
+var o = n(76), a = n(27);
+r.prototype.showChaptersCollapsed = function() {
+for (var t = this.elem.querySelectorAll(".tutorial-map__item > .tutorial-map__link"), e = 0; e < t.length; e++) {
+var n = t[e];
+this.chaptersCollapsed[n.getAttribute("href")] ? n.parentNode.classList.add("tutorial-map__item_collapsed") : n.parentNode.classList.remove("tutorial-map__item_collapsed");
 }
-t.onchange = function() {
-var n = e();
-switch (t.elements.type.value) {
-case "single":
-t.querySelector('[type="submit"]').disabled = void 0 === n;
-break;
-
-case "multi":
-t.querySelector('[type="submit"]').disabled = n.length ? !1 : !0;
-break;
-
-default:
-throw Error("unknown type");
+}, r.prototype.onLayoutSwitchChange = function() {
+this.updateLayout();
+}, r.prototype.updateLayout = function() {
+var t = +this.elem.querySelector('[name="map-layout"]:checked').value;
+t ? this.elem.classList.add("tutorial-map_singlecol") : this.elem.classList.remove("tutorial-map_singlecol"), 
+localStorage.isMapSingleColumn = t ? "1" : "0";
+}, r.prototype.updateShowTasks = function() {
+this.showTasksCheckbox.checked ? this.elem.classList.add("tutorial-map_show-tasks") : this.elem.classList.remove("tutorial-map_show-tasks"), 
+localStorage.showTasksCheckbox = this.showTasksCheckbox.checked ? "1" : "0";
+}, r.prototype.onFilterInput = function(t) {
+this.showClearButton(t.target.value), this.throttleFilter(t.target.value);
+}, r.prototype.onFilterKeydown = function(t) {
+27 == t.keyCode && (this.filterInput.value = "", this.showClearButton(!1), this.filter(""));
+}, r.prototype.showClearButton = function(t) {
+t ? this.textInputBlock.classList.add("text-input_clear-button") : this.textInputBlock.classList.remove("text-input_clear-button");
+}, r.prototype.focus = function() {
+this.elem.tabIndex = -1, this.elem.focus();
+}, r.prototype.filter = function(t) {
+function e(e) {
+return i(e.querySelector("a").innerHTML.toLowerCase(), t.replace(/\s/g, ""));
 }
-}, t.onsubmit = function(n) {
-function r() {
-l.stop(), c.disabled = !1;
+t = t.toLowerCase();
+for (var n = this.showTasksCheckbox.checked, r = (this.elem.querySelectorAll(".tutorial-map-link"), 
+this.elem.querySelectorAll(".tutorial-map__item")), o = 0; o < r.length; o++) {
+var a = r[o], s = a.querySelectorAll(".tutorial-map__sub-item"), u = Array.prototype.reduce.call(s, function(t, r) {
+var i = !1;
+if (n) {
+var o = r.querySelectorAll(".tutorial-map__sub-sub-item");
+i = Array.prototype.reduce.call(o, function(t, n) {
+var r = e(n);
+return n.hidden = !r, t || r;
+}, !1);
 }
-n.preventDefault();
-var i = e(), a = s({
-method: "POST",
-url: t.action,
-body: {
-answer: i
+var a = i || e(r);
+return r.hidden = !a, t || a;
+}, !1);
+a.hidden = !(u || e(a));
 }
-}), c = t.querySelector('[type="submit"]'), l = new o({
-elem: c,
-size: "small",
-elemClass: "button_loading"
-});
-l.start(), c.disabled = !0, a.addEventListener("fail", r), a.addEventListener("success", function(e) {
-e.result.reload ? window.location.reload() : e.result.html ? (r(), document.querySelector(".quiz-timeline .quiz-timeline__number_current").classList.remove("quiz-timeline__number_current"), 
-document.querySelectorAll(".quiz-timeline span")[e.result.questionNumber].classList.add("quiz-timeline__number_current"), 
-document.querySelector(".quiz-tablet-timeline__num").innerHTML = "&nbsp;" + (e.result.questionNumber + 1) + "&nbsp;", 
-t.innerHTML = e.result.html, u.highlight(t)) : r();
-});
-};
-}
-n(67);
-var o = n(53), s = n(28), u = n(52), c = n(23);
-r();
+}, r.prototype.throttleFilter = o(r.prototype.filter, 200), a.delegateMixin(r.prototype), 
+t.exports = r;
 },
 28: function(t, e, n) {
 "use strict";
@@ -105,10 +192,10 @@ function r(t, n) {
 var r = e("success", n);
 r.result = t, i.dispatchEvent(r);
 }
-var i = new XMLHttpRequest(), o = t.method || "GET", s = t.body, u = t.url;
-i.open(o, u, t.sync ? !1 : !0), i.method = o;
-var c = a();
-c && !t.skipCsrf && i.setRequestHeader("X-XSRF-TOKEN", c), "[object Object]" == {}.toString.call(s) && (i.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
+var i = new XMLHttpRequest(), a = t.method || "GET", s = t.body, u = t.url;
+i.open(a, u, t.sync ? !1 : !0), i.method = a;
+var l = o();
+l && !t.skipCsrf && i.setRequestHeader("X-XSRF-TOKEN", l), "[object Object]" == {}.toString.call(s) && (i.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
 s = JSON.stringify(s)), t.noDocumentEvents || (i.addEventListener("loadstart", function(t) {
 i.timeStart = Date.now();
 var n = e("xhrstart", t);
@@ -123,7 +210,7 @@ n.result = t.result, document.dispatchEvent(n);
 var n = e("xhrfail", t);
 n.reason = t.reason, document.dispatchEvent(n);
 })), t.raw || i.setRequestHeader("Accept", "application/json"), i.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-var l = t.normalStatuses || [ 200 ];
+var c = t.normalStatuses || [ 200 ];
 return i.addEventListener("error", function(t) {
 n("Ошибка связи с сервером.", t);
 }), i.addEventListener("timeout", function(t) {
@@ -132,19 +219,19 @@ n("Превышено максимально допустимое время о�
 n("Запрос был прерван.", t);
 }), i.addEventListener("load", function(e) {
 if (!i.status) return void n("Не получен ответ от сервера.", e);
-if (-1 == l.indexOf(i.status)) return void n("Ошибка на стороне сервера (код " + i.status + "), попытайтесь позднее", e);
-var a = i.responseText, o = i.getResponseHeader("Content-Type");
-if (o.match(/^application\/json/) || t.json) try {
-a = JSON.parse(a);
+if (-1 == c.indexOf(i.status)) return void n("Ошибка на стороне сервера (код " + i.status + "), попытайтесь позднее", e);
+var o = i.responseText, a = i.getResponseHeader("Content-Type");
+if (a.match(/^application\/json/) || t.json) try {
+o = JSON.parse(o);
 } catch (e) {
 return void n("Некорректный формат ответа от сервера", e);
 }
-r(a, e);
+r(o, e);
 }), setTimeout(function() {
 i.send(s);
 }, 0), i;
 }
-var i = n(23), a = n(77);
+var i = n(23), o = n(77);
 document.addEventListener("xhrfail", function(t) {
 new i.Error(t.reason);
 }), t.exports = r;
@@ -154,26 +241,25 @@ new i.Error(t.reason);
 function r(t) {
 for (var e = t.querySelectorAll(".code-example:not([data-prism-done])"), n = 0; n < e.length; n++) {
 var r = e[n];
-new o(r), r.setAttribute("data-prism-done", "1");
+new a(r), r.setAttribute("data-prism-done", "1");
 }
 }
 function i(t) {
 for (var e = t.querySelectorAll("div.code-tabs:not([data-prism-done])"), n = 0; n < e.length; n++) new s(e[n]), 
 e[n].setAttribute("data-prism-done", "1");
 }
-function a(t) {
+function o(t) {
 r(t), i(t);
 }
 n(87), n(88), n(89), n(90), n(91), n(92), n(93), n(94), n(95), n(96), n(97), n(98), 
 n(99), n(100), n(101), Prism.tokenTag = "code";
-var o = n(79), s = n(80);
+var a = n(79), s = n(80);
 e.init = function() {
 document.removeEventListener("DOMContentLoaded", Prism.highlightAll), document.addEventListener("DOMContentLoaded", function() {
-a(document);
+o(document);
 });
-}, e.highlight = a;
+}, e.highlight = o;
 },
-67: function() {},
 77: function(t) {
 "use strict";
 t.exports = function() {
@@ -186,7 +272,7 @@ return t ? t[1] : null;
 function r(t) {
 function e() {
 var t = m.contentWindow;
-return "function" != typeof t.postMessage ? void alert("Извините, запуск кода требует более современный браузер") : void t.postMessage(p, "https://ru.lookatcode.com/showjs");
+return "function" != typeof t.postMessage ? void alert("Извините, запуск кода требует более современный браузер") : void t.postMessage(d, "https://ru.lookatcode.com/showjs");
 }
 function n() {
 var e;
@@ -200,27 +286,27 @@ e.style.height = n + "px";
 }
 g.appendChild(e), t.appendChild(g);
 }
-if (b) {
+if (y) {
 var r = e.contentDocument || e.contentWindow.document;
-r.open(), r.write(l(p)), r.close(), "epub" == window.ebookType && setTimeout(function() {
+r.open(), r.write(c(d)), r.close(), "epub" == window.ebookType && setTimeout(function() {
 [].forEach.call(r.querySelectorAll("script"), function(t) {
 t.remove();
 });
-}, 2e3), t.hasAttribute("data-demo-height") || o.iframe(e), $ && t.hasAttribute("data-autorun") || s(g) || g.scrollIntoView(!1);
+}, 2e3), t.hasAttribute("data-demo-height") || a.iframe(e), b && t.hasAttribute("data-autorun") || s(g) || g.scrollIntoView(!1);
 } else {
 var i = document.createElement("form");
 i.style.display = "none", i.method = "POST", i.enctype = "multipart/form-data", 
 i.action = "https://ru.lookatcode.com/showhtml", i.target = e.name;
-var a = document.createElement("textarea");
-a.name = "code", a.value = l(p), i.appendChild(a), e.parentNode.insertBefore(i, e.nextSibling), 
-i.submit(), i.remove(), $ && t.hasAttribute("data-autorun") || (e.onload = function() {
-t.hasAttribute("data-demo-height") || o.iframe(e), s(g) || g.scrollIntoView(!1);
+var o = document.createElement("textarea");
+o.name = "code", o.value = c(d), i.appendChild(o), e.parentNode.insertBefore(i, e.nextSibling), 
+i.submit(), i.remove(), b && t.hasAttribute("data-autorun") || (e.onload = function() {
+t.hasAttribute("data-demo-height") || a.iframe(e), s(g) || g.scrollIntoView(!1);
 });
 }
 }
 function r() {
-if (b) try {
-window.eval.call(window, p);
+if (y) try {
+window.eval.call(window, d);
 } catch (n) {
 alert("Ошибка: " + n.message);
 } else t.hasAttribute("data-refresh") && m && (m.remove(), m = null), m ? e() : (m = document.createElement("iframe"), 
@@ -229,10 +315,10 @@ m.style.height = 0, m.style.border = "none", m.onload = function() {
 e();
 }, document.body.appendChild(m));
 }
-function c() {
+function l() {
 var t;
-if (y) t = l(p); else {
-var e = p.replace(/^/gim, "    ");
+if (v) t = c(d); else {
+var e = d.replace(/^/gim, "    ");
 t = "<!DOCTYPE html>\n<html>\n\n<body>\n  <script>\n" + e + "\n  </script>\n</body>\n\n</html>";
 }
 var n = document.createElement("form");
@@ -244,46 +330,46 @@ var i = document.createElement("input");
 i.name = "description", i.value = "Fork from " + window.location, n.appendChild(i), 
 n.submit(), n.remove();
 }
-function l() {
-var t = p.toLowerCase(), e = t.match("<body>"), n = t.match("</body>"), r = t.match("<html>"), i = t.match("</html>"), a = t.match(/^\s*<!doctype/);
-if (a) return p;
-var o = p;
-return r || (o = "<html>\n" + o), i || (o += "\n</html>"), e || (o = o.replace("<html>", '<html>\n<head>\n  <meta charset="utf-8">\n</head><body>\n')), 
-n || (o = o.replace("</html>", "\n</body>\n</html>")), o = "<!DOCTYPE HTML>\n" + o;
+function c() {
+var t = d.toLowerCase(), e = t.match("<body>"), n = t.match("</body>"), r = t.match("<html>"), i = t.match("</html>"), o = t.match(/^\s*<!doctype/);
+if (o) return d;
+var a = d;
+return r || (a = "<html>\n" + a), i || (a += "\n</html>"), e || (a = a.replace("<html>", '<html>\n<head>\n  <meta charset="utf-8">\n</head><body>\n')), 
+n || (a = a.replace("</html>", "\n</body>\n</html>")), a = "<!DOCTYPE HTML>\n" + a;
 }
 function f() {
-v ? r() : n(), $ = !1;
+$ ? r() : n(), b = !1;
 }
-var h = t.querySelector("pre"), d = h.querySelector("code"), p = d.textContent;
-Prism.highlightElement(d), u(h), i(h, t.getAttribute("data-highlight-block")), a(h, t.getAttribute("data-highlight-inline"));
-var m, g, v = h.classList.contains("language-javascript"), y = h.classList.contains("language-markup"), b = +t.getAttribute("data-trusted"), $ = !0;
-if (v || y) {
+var h = t.querySelector("pre"), p = h.querySelector("code"), d = p.textContent;
+Prism.highlightElement(p), u(h), i(h, t.getAttribute("data-highlight-block")), o(h, t.getAttribute("data-highlight-inline"));
+var m, g, $ = h.classList.contains("language-javascript"), v = h.classList.contains("language-markup"), y = +t.getAttribute("data-trusted"), b = !0;
+if ($ || v) {
 var w = t.querySelector('[data-action="run"]');
 w && (w.onclick = function() {
 return this.blur(), f(), !1;
 });
 var E = t.querySelector('[data-action="edit"]');
 E && (E.onclick = function() {
-return this.blur(), c(), !1;
+return this.blur(), l(), !1;
 }), t.hasAttribute("data-autorun") && ("epub" == window.ebookType && "no-epub" == t.getAttribute("data-autorun") ? t.querySelector("iframe").remove() : setTimeout(f, 100));
 }
 }
 function i(t, e) {
 if (e) for (var n, r = e.replace(/\s+/g, "").split(","), i = 0; n = r[i++]; ) {
 n = n.split("-");
-var a = +n[0], o = +n[1] || a, s = '<code class="block-highlight" data-start="' + a + '" data-end="' + o + '">' + Array(a + 1).join("\n") + '<code class="mask">' + Array(o - a + 2).join("\n") + "</code></code>";
+var o = +n[0], a = +n[1] || o, s = '<code class="block-highlight" data-start="' + o + '" data-end="' + a + '">' + Array(o + 1).join("\n") + '<code class="mask">' + Array(a - o + 2).join("\n") + "</code></code>";
 t.insertAdjacentHTML("afterBegin", s);
 }
 }
-function a(t, e) {
+function o(t, e) {
 var n = t.querySelector('code[class*="language-"]');
 e = e ? e.split(",") : [];
 for (var r = 0; r < e.length; r++) {
-var i = e[r].split(":"), a = +i[0], o = i[1].split("-"), s = +o[0], u = +o[1], c = '<code class="inline-highlight">' + Array(a + 1).join("\n") + Array(s + 1).join(" ") + '<code class="mask">' + Array(u - s + 1).join(" ") + "</code></code>";
-n.insertAdjacentHTML("afterBegin", c);
+var i = e[r].split(":"), o = +i[0], a = i[1].split("-"), s = +a[0], u = +a[1], l = '<code class="inline-highlight">' + Array(o + 1).join("\n") + Array(s + 1).join(" ") + '<code class="mask">' + Array(u - s + 1).join(" ") + "</code></code>";
+n.insertAdjacentHTML("afterBegin", l);
 }
 }
-var o = n(18), s = n(112), u = n(109);
+var a = n(18), s = n(112), u = n(109);
 t.exports = r;
 },
 80: function(t, e, n) {
@@ -299,20 +385,20 @@ t.preventDefault(), this.translateX = Math.min(this.translateX + this.switchesEl
 this.renderTranslate();
 }.bind(this), this.delegate(".code-tabs__switch", "click", this.onSwitchClick));
 }
-var i = n(27), a = n(109);
+var i = n(27), o = n(109);
 r.prototype.onSwitchClick = function(t) {
 t.preventDefault();
 for (var e, n = t.delegateTarget.parentNode.children, r = this.elem.querySelector("[data-code-tabs-content]").children, i = 0; i < n.length; i++) {
-var a = n[i], o = r[i];
-a == t.delegateTarget ? (e = i, o.classList.add("code-tabs__section_current"), a.classList.add("code-tabs__switch_current")) : (o.classList.remove("code-tabs__section_current"), 
-a.classList.remove("code-tabs__switch_current"));
+var o = n[i], a = r[i];
+o == t.delegateTarget ? (e = i, a.classList.add("code-tabs__section_current"), o.classList.add("code-tabs__switch_current")) : (a.classList.remove("code-tabs__section_current"), 
+o.classList.remove("code-tabs__switch_current"));
 }
 0 === e ? this.elem.classList.add("code-tabs_result_on") : (this.elem.classList.remove("code-tabs_result_on"), 
 this.highlightTab(r[e]));
 }, r.prototype.highlightTab = function(t) {
 if (!t.highlighted) {
 var e = t.querySelector("pre"), n = e.querySelector("code");
-Prism.highlightElement(n), a(e), t.highlighted = !0;
+Prism.highlightElement(n), o(e), t.highlighted = !0;
 }
 }, r.prototype.renderTranslate = function() {
 this.switchesElemItems.style.transform = "translateX(-" + this.translateX + "px)", 
@@ -353,16 +439,16 @@ return r;
 },
 insertBefore: function(t, e, r, i) {
 i = i || n.languages;
-var a = i[t];
+var o = i[t];
 if (2 == arguments.length) {
 r = arguments[1];
-for (var o in r) r.hasOwnProperty(o) && (a[o] = r[o]);
-return a;
+for (var a in r) r.hasOwnProperty(a) && (o[a] = r[a]);
+return o;
 }
 var s = {};
-for (var u in a) if (a.hasOwnProperty(u)) {
-if (u == e) for (var o in r) r.hasOwnProperty(o) && (s[o] = r[o]);
-s[u] = a[u];
+for (var u in o) if (o.hasOwnProperty(u)) {
+if (u == e) for (var a in r) r.hasOwnProperty(a) && (s[a] = r[a]);
+s[u] = o[u];
 }
 return n.languages.DFS(n.languages, function(e, n) {
 n === i[t] && e != t && (this[e] = s);
@@ -373,62 +459,62 @@ for (var i in t) t.hasOwnProperty(i) && (e.call(t, i, t[i], r || i), "Object" ==
 }
 },
 highlightAll: function(t, e) {
-for (var r, i = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'), a = 0; r = i[a++]; ) n.highlightElement(r, t === !0, e);
+for (var r, i = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'), o = 0; r = i[o++]; ) n.highlightElement(r, t === !0, e);
 },
-highlightElement: function(e, i, a) {
-for (var o, s, u = e; u && !t.test(u.className); ) u = u.parentNode;
-if (u && (o = (u.className.match(t) || [ , "" ])[1], s = n.languages[o]), s) {
-e.className = e.className.replace(t, "").replace(/\s+/g, " ") + " language-" + o, 
-u = e.parentNode, /pre/i.test(u.nodeName) && (u.className = u.className.replace(t, "").replace(/\s+/g, " ") + " language-" + o);
-var c = e.textContent;
-if (c) {
-var l = {
+highlightElement: function(e, i, o) {
+for (var a, s, u = e; u && !t.test(u.className); ) u = u.parentNode;
+if (u && (a = (u.className.match(t) || [ , "" ])[1], s = n.languages[a]), s) {
+e.className = e.className.replace(t, "").replace(/\s+/g, " ") + " language-" + a, 
+u = e.parentNode, /pre/i.test(u.nodeName) && (u.className = u.className.replace(t, "").replace(/\s+/g, " ") + " language-" + a);
+var l = e.textContent;
+if (l) {
+var c = {
 element: e,
-language: o,
+language: a,
 grammar: s,
-code: c
+code: l
 };
-if (n.hooks.run("before-highlight", l), i && self.Worker) {
+if (n.hooks.run("before-highlight", c), i && self.Worker) {
 var f = new Worker(n.filename);
 f.onmessage = function(t) {
-l.highlightedCode = r.stringify(JSON.parse(t.data), o), n.hooks.run("before-insert", l), 
-l.element.innerHTML = l.highlightedCode, a && a.call(l.element), n.hooks.run("after-highlight", l);
+c.highlightedCode = r.stringify(JSON.parse(t.data), a), n.hooks.run("before-insert", c), 
+c.element.innerHTML = c.highlightedCode, o && o.call(c.element), n.hooks.run("after-highlight", c);
 }, f.postMessage(JSON.stringify({
-language: l.language,
-code: l.code
+language: c.language,
+code: c.code
 }));
-} else l.highlightedCode = n.highlight(l.code, l.grammar, l.language), n.hooks.run("before-insert", l), 
-l.element.innerHTML = l.highlightedCode, a && a.call(e), n.hooks.run("after-highlight", l);
+} else c.highlightedCode = n.highlight(c.code, c.grammar, c.language), n.hooks.run("before-insert", c), 
+c.element.innerHTML = c.highlightedCode, o && o.call(e), n.hooks.run("after-highlight", c);
 }
 }
 },
 highlight: function(t, e, i) {
-var a = n.tokenize(t, e);
-return r.stringify(n.util.encode(a), i);
+var o = n.tokenize(t, e);
+return r.stringify(n.util.encode(o), i);
 },
 tokenize: function(t, e) {
-var r = n.Token, i = [ t ], a = e.rest;
-if (a) {
-for (var o in a) e[o] = a[o];
+var r = n.Token, i = [ t ], o = e.rest;
+if (o) {
+for (var a in o) e[a] = o[a];
 delete e.rest;
 }
-t: for (var o in e) if (e.hasOwnProperty(o) && e[o]) {
-var s = e[o];
+t: for (var a in e) if (e.hasOwnProperty(a) && e[a]) {
+var s = e[a];
 s = "Array" === n.util.type(s) ? s : [ s ];
 for (var u = 0; u < s.length; ++u) {
-var c = s[u], l = c.inside, f = !!c.lookbehind, h = 0, d = c.alias;
-c = c.pattern || c;
-for (var p = 0; p < i.length; p++) {
-var m = i[p];
+var l = s[u], c = l.inside, f = !!l.lookbehind, h = 0, p = l.alias;
+l = l.pattern || l;
+for (var d = 0; d < i.length; d++) {
+var m = i[d];
 if (i.length > t.length) break t;
 if (!(m instanceof r)) {
-c.lastIndex = 0;
-var g = c.exec(m);
+l.lastIndex = 0;
+var g = l.exec(m);
 if (g) {
 f && (h = g[1].length);
-var v = g.index - 1 + h, g = g[0].slice(h), y = g.length, b = v + y, $ = m.slice(0, v + 1), w = m.slice(b + 1), E = [ p, 1 ];
-$ && E.push($);
-var S = new r(o, l ? n.tokenize(g, l) : g, d);
+var $ = g.index - 1 + h, g = g[0].slice(h), v = g.length, y = $ + v, b = m.slice(0, $ + 1), w = m.slice(y + 1), E = [ d, 1 ];
+b && E.push(b);
+var S = new r(a, c ? n.tokenize(g, c) : g, p);
 E.push(S), w && E.push(w), Array.prototype.splice.apply(i, E);
 }
 }
@@ -445,34 +531,34 @@ r[t] = r[t] || [], r[t].push(e);
 },
 run: function(t, e) {
 var r = n.hooks.all[t];
-if (r && r.length) for (var i, a = 0; i = r[a++]; ) i(e);
+if (r && r.length) for (var i, o = 0; i = r[o++]; ) i(e);
 }
 }
 }, r = n.Token = function(t, e, n) {
 this.type = t, this.content = e, this.alias = n;
 };
-if (r.stringify = function(t, i, a) {
+if (r.stringify = function(t, i, o) {
 if ("string" == typeof t) return t;
 if ("[object Array]" == Object.prototype.toString.call(t)) return t.map(function(e) {
 return r.stringify(e, i, t);
 }).join("");
-var o = {
+var a = {
 type: t.type,
-content: r.stringify(t.content, i, a),
+content: r.stringify(t.content, i, o),
 tag: e.tokenTag || "span",
 classes: [ "token", t.type ],
 attributes: {},
 language: i,
-parent: a
+parent: o
 };
-if ("comment" == o.type && (o.attributes.spellcheck = "true"), t.alias) {
+if ("comment" == a.type && (a.attributes.spellcheck = "true"), t.alias) {
 var s = "Array" === n.util.type(t.alias) ? t.alias : [ t.alias ];
-Array.prototype.push.apply(o.classes, s);
+Array.prototype.push.apply(a.classes, s);
 }
-n.hooks.run("wrap", o);
+n.hooks.run("wrap", a);
 var u = "";
-for (var c in o.attributes) u += c + '="' + (o.attributes[c] || "") + '"';
-return "<" + o.tag + ' class="' + o.classes.join(" ") + '" ' + u + ">" + o.content + "</" + o.tag + ">";
+for (var l in a.attributes) u += l + '="' + (a.attributes[l] || "") + '"';
+return "<" + a.tag + ' class="' + a.classes.join(" ") + '" ' + u + ">" + a.content + "</" + a.tag + ">";
 }, !self.document) return self.addEventListener ? (self.addEventListener("message", function(t) {
 var e = JSON.parse(t.data), r = e.language, i = e.code;
 self.postMessage(JSON.stringify(n.util.encode(n.tokenize(i, n.languages[r])))), 
@@ -888,4 +974,4 @@ return n > 10;
 t.exports = e;
 }
 });
-//# sourceMappingURL=quiz.2f135483682528334dda.js.map
+//# sourceMappingURL=tutorial.bf1a8ade20ab6ad0ed33.js.map

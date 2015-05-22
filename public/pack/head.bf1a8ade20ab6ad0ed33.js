@@ -39,7 +39,7 @@ o.type = "text/javascript", o.charset = "utf-8", o.async = !0, o.src = e.p + "" 
 "11": "coursesParticipantDetails",
 "12": "about",
 "13": "quiz"
-}[t] || t) + "-" + t + ".2f135483682528334dda.js", r.appendChild(o);
+}[t] || t) + "-" + t + ".bf1a8ade20ab6ad0ed33.js", r.appendChild(o);
 }
 }, e.m = t, e.c = r, e.p = "/pack/", e(0);
 }({
@@ -156,7 +156,7 @@ e.classList.add("sidebar_compact"));
 function n() {
 var n = document.querySelector(".sitetoolbar");
 if (!n) return void t("no sitetoolbar");
-var i = (n.offsetHeight, document.querySelector(".sidebar"));
+var i = document.querySelector(".sidebar");
 i && (i.style.top = Math.max(n.getBoundingClientRect().bottom, 0) + "px", e()), 
 r();
 }
@@ -761,4 +761,4 @@ return t.parentNode.removeChild(t), e - r;
 t.exports = e;
 }
 });
-//# sourceMappingURL=head.2f135483682528334dda.js.map
+//# sourceMappingURL=head.bf1a8ade20ab6ad0ed33.js.map
