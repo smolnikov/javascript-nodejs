@@ -39,7 +39,7 @@ o.type = "text/javascript", o.charset = "utf-8", o.async = !0, o.src = e.p + "" 
 "11": "coursesParticipantDetails",
 "12": "about",
 "13": "quiz"
-}[t] || t) + "-" + t + ".bf1a8ade20ab6ad0ed33.js", r.appendChild(o);
+}[t] || t) + "-" + t + ".1202f2f34157bc551b9c.js", r.appendChild(o);
 }
 }, e.m = t, e.c = r, e.p = "/pack/", e(0);
 }({
@@ -125,7 +125,7 @@ var e = this.contentElem.querySelector("[data-modal-autofocus],[autofocus]");
 e && e.focus();
 }, e.prototype.remove = function() {
 document.body.classList.remove("paranja-open"), document.body.removeChild(this.elem), 
-document.removeEventListener("keydown", this.onDocumentKeyDown);
+document.removeEventListener("keydown", this.onDocumentKeyDown), this.elem.dispatchEvent(new CustomEvent("modal-remove"));
 }, t.exports = e;
 },
 11: function(t) {
@@ -761,4 +761,4 @@ return t.parentNode.removeChild(t), e - r;
 t.exports = e;
 }
 });
-//# sourceMappingURL=head.bf1a8ade20ab6ad0ed33.js.map
+//# sourceMappingURL=head.1202f2f34157bc551b9c.js.map

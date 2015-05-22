@@ -790,4 +790,4 @@ y: this.y + this.size / 2
 t.exports = r;
 }
 });
-//# sourceMappingURL=coursesParticipantDetails.bf1a8ade20ab6ad0ed33.js.map
+//# sourceMappingURL=coursesParticipantDetails.1202f2f34157bc551b9c.js.map

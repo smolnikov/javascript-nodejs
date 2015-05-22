@@ -27,8 +27,8 @@ r.result = t, i.dispatchEvent(r);
 }
 var i = new XMLHttpRequest(), o = t.method || "GET", s = t.body, u = t.url;
 i.open(o, u, t.sync ? !1 : !0), i.method = o;
-var c = a();
-c && !t.skipCsrf && i.setRequestHeader("X-XSRF-TOKEN", c), "[object Object]" == {}.toString.call(s) && (i.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
+var l = a();
+l && !t.skipCsrf && i.setRequestHeader("X-XSRF-TOKEN", l), "[object Object]" == {}.toString.call(s) && (i.setRequestHeader("Content-Type", "application/json;charset=UTF-8"), 
 s = JSON.stringify(s)), t.noDocumentEvents || (i.addEventListener("loadstart", function(t) {
 i.timeStart = Date.now();
 var n = e("xhrstart", t);
@@ -43,7 +43,7 @@ n.result = t.result, document.dispatchEvent(n);
 var n = e("xhrfail", t);
 n.reason = t.reason, document.dispatchEvent(n);
 })), t.raw || i.setRequestHeader("Accept", "application/json"), i.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-var l = t.normalStatuses || [ 200 ];
+var c = t.normalStatuses || [ 200 ];
 return i.addEventListener("error", function(t) {
 n("Ошибка связи с сервером.", t);
 }), i.addEventListener("timeout", function(t) {
@@ -52,7 +52,7 @@ n("Превышено максимально допустимое время о�
 n("Запрос был прерван.", t);
 }), i.addEventListener("load", function(e) {
 if (!i.status) return void n("Не получен ответ от сервера.", e);
-if (-1 == l.indexOf(i.status)) return void n("Ошибка на стороне сервера (код " + i.status + "), попытайтесь позднее", e);
+if (-1 == c.indexOf(i.status)) return void n("Ошибка на стороне сервера (код " + i.status + "), попытайтесь позднее", e);
 var a = i.responseText, o = i.getResponseHeader("Content-Type");
 if (o.match(/^application\/json/) || t.json) try {
 a = JSON.parse(a);
@@ -128,14 +128,14 @@ Object.defineProperty(t, r.key, r);
 return function(e, n, r) {
 return n && t(e.prototype, n), r && t(e, r), e;
 };
-}(), a = n(28), o = (n(23), n(27)), s = n(85).FormPayment, u = n(53), c = (n(10), 
-n(73)), l = n(74), f = n(54), h = function() {
+}(), a = n(28), o = (n(23), n(27)), s = n(85).FormPayment, u = n(53), l = (n(10), 
+n(73)), c = n(74), f = n(54), h = function() {
 function t(e) {
 var n = this;
 if (r(this, t), this.elem = e.elem, this.product = "course", this.elems = {}, [].forEach.call(this.elem.querySelectorAll("[data-elem]"), function(t) {
 n.elems[t.getAttribute("data-elem")] = t;
 }), this.elems.participants) {
-var i = new c({
+var i = new l({
 elem: this.elems.participants
 });
 i.elem.addEventListener("select", this.onParticipantsFormSelect.bind(this)), this.elems.receiptParticipantsEditLink.onclick = function(t) {
@@ -143,7 +143,7 @@ t.preventDefault(), n.goStep1();
 };
 }
 if (this.elems.contact) {
-var a = this.contactForm = new l({
+var a = this.contactForm = new c({
 elem: this.elems.contact
 });
 a.elem.addEventListener("select", this.onContactFormSelect.bind(this)), this.elems.receiptContactEditLink.onclick = function(t) {
@@ -243,7 +243,7 @@ Object.defineProperty(t, r.key, r);
 return function(e, n, r) {
 return n && t(e.prototype, n), r && t(e, r), e;
 };
-}(), o = n(27), s = n(110), u = n(23), c = n(49), l = function() {
+}(), o = n(27), s = n(110), u = n(23), l = n(49), c = function() {
 function t(e) {
 var n = this;
 r(this, t), this.elem = e.elem, this.elems = {}, [].forEach.call(this.elem.querySelectorAll("[data-elem]"), function(t) {
@@ -303,7 +303,7 @@ for (this.elems.participantsAmount.innerHTML = window.groupInfo.price * t, this.
 this.elems.participantsCountInput.parentNode.classList.remove("text-input_invalid"), 
 !this.elems.participantsIsSelf.checked || t > 1 ? this.elems.participantsAddBox.classList.add("course-add-participants_visible") : this.elems.participantsAddBox.classList.remove("course-add-participants_visible"); this.elems.participantsAddList.children.length > t; ) this.elems.participantsAddList.lastElementChild.remove();
 for (;this.elems.participantsAddList.children.length < t; ) {
-var r = c(s);
+var r = l(s);
 this.elems.participantsAddList.insertAdjacentHTML("beforeEnd", r);
 }
 var i = this.elems.participantsAddList.firstElementChild.querySelector("input");
@@ -336,8 +336,8 @@ new u.Error("Исправьте, пожалуйста, ошибки.");
 }
 } ]), t;
 }();
-i.prototype = Object.create(Error.prototype), i.prototype.constructor = i, o.delegateMixin(l.prototype), 
-t.exports = l;
+i.prototype = Object.create(Error.prototype), i.prototype.constructor = i, o.delegateMixin(c.prototype), 
+t.exports = c;
 },
 74: function(t, e, n) {
 "use strict";
@@ -419,14 +419,14 @@ if (!s.class && i && !a) throw Error("Block without class: " + i);
 if (s.class) {
 var u = s.class;
 u instanceof Array && (u = u.join(" ")), u = u.split(" ");
-var c;
+var l;
 try {
-c = u[0].match(RegExp("^(((?!" + t.element + "|" + t.modifier + ").)+)"))[1];
-} catch (l) {
+l = u[0].match(RegExp("^(((?!" + t.element + "|" + t.modifier + ").)+)"))[1];
+} catch (c) {
 throw Error("Incorrect bem class: " + u[0]);
 }
-a ? u[0] = r[r.length - 1] + t.element + u[0] : r[r.length] = c;
-var f = (a ? r[r.length - 1] + t.element : "") + c;
+a ? u[0] = r[r.length - 1] + t.element + u[0] : r[r.length] = l;
+var f = (a ? r[r.length - 1] + t.element : "") + l;
 -1 === u.indexOf(f) && (u[u.length] = f);
 for (var h = 0; h < u.length; h++) {
 var p = u[h];
@@ -495,8 +495,8 @@ i = i || n(116).readFileSync(e, "utf8");
 } catch (a) {
 o(t, null, r);
 }
-var s = 3, u = i.split("\n"), c = Math.max(r - s, 0), l = Math.min(u.length, r + s), s = u.slice(c, l).map(function(t, e) {
-var n = e + c + 1;
+var s = 3, u = i.split("\n"), l = Math.max(r - s, 0), c = Math.min(u.length, r + s), s = u.slice(l, c).map(function(t, e) {
+var n = e + l + 1;
 return (n == r ? "  > " : "    ") + n + "| " + t;
 }).join("\n");
 throw t.path = e, t.message = (e || "Jade") + ":" + r + "\n" + s + "\n\n" + t.message, 
@@ -661,8 +661,8 @@ id: r.orderNumber
 });
 var o = document.createElement("div");
 o.hidden = !0, o.innerHTML = r.form, document.body.appendChild(o);
-var u = function c() {
-c.called || (c.called = !0, o.firstChild.submit());
+var u = function l() {
+l.called || (l.called = !0, o.firstChild.submit());
 };
 window.ga("send", "event", "payment", "purchase", "ebook", {
 hitCallback: u
@@ -681,4 +681,4 @@ number: r.orderNumber
 t.exports = u;
 }
 });
-//# sourceMappingURL=coursesSignup.bf1a8ade20ab6ad0ed33.js.map
+//# sourceMappingURL=coursesSignup.1202f2f34157bc551b9c.js.map
