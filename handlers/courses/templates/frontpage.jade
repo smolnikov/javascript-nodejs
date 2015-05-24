@@ -3,11 +3,11 @@ extends /layouts/main
 block append variables
 
   - var layout_header_class = "main__header_center"
-  - var title = 'Online курсы Javascript'
+  - var title = 'Курсы Javascript'
   - var breadcrumbs = [ { title: 'JavaScript.ru', url: 'http://javascript.ru' }, { title: 'Учебник', url: '/' }]
   - var sitetoolbar = true
   - var content_class = '_center'
-
+  - var comments = true
 
 block content
   p Здесь находятся «правильные» курсы по профессиональному Javascript, цель которых — научить думать на Javascript, писать просто, быстро и красиво.
@@ -20,7 +20,8 @@ block content
     //- include blocks/frontpage/testimonials
     include blocks/frontpage/tabbedPane
     include blocks/frontpage/guarantee
+    include blocks/frontpage/professionals
     include blocks/frontpage/faq
-    +b.fixed-tab.tablet-only.courses-tab
+    +b.fixed-tab.phone-only.courses-tab
       a.courses-tab__link(href="#courses") Перейти к списку открытых курсов
 

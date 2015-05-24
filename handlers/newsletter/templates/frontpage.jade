@@ -8,8 +8,6 @@ block append variables
 
 block content
 
-  p Темы:
-
   style.
     .main ul > li:before {
       content: '';
@@ -18,8 +16,26 @@ block content
       padding: 0;
     }
 
-  form(method="POST", action="/newsletter/subscriptions/" + accessKey)
+  form(method="POST", action="/newsletter/subscribe")
+
+    //- subscription can come from accessKey or current user or may be no subscription
+    if email
+      p Управление подписками для #{email}.
+    else
+      p Ваш email:
+
+      input(type="email", name="email", placeholder="my@mail.com", required, pattern=validate.patterns.email, style="font-size:125%")
+
     input(type="hidden", name="_csrf", value=csrf())
+    if accessKey
+      input(type="hidden", name="accessKey", value=accessKey)
+    else if email
+      input(type="hidden", name="email", value=email)
+
+    input(type="hidden", name="replace", value=1)
+
+    p Темы:
+
     ul
       each newsletter in newsletters
         li
@@ -35,7 +51,8 @@ block content
         label
           input(type="checkbox", name="remove" value="1")
           = ' '
-          | Удалить мой адрес из базы
+          | Удалить адрес из подписок
+
 
     +b('button').button._action.__save(type="submit")
       +e('span').text Сохранить
