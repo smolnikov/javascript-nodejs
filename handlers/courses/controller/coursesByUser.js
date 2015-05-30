@@ -3,6 +3,8 @@
 const CourseInvite = require('../models/courseInvite');
 const CourseParticipant = require('../models/courseParticipant');
 const CourseGroup = require('../models/courseGroup');
+const CourseFeedback = require('../models/courseFeedback');
+const _ = require('lodash');
 
 /**
  * The order form is sent to checkout when it's 100% valid (client-side code validated it)
@@ -25,16 +27,15 @@ exports.get = function*(next) {
   }).populate('group').exec();
 
   // plus groups where participates
-  var participant = yield CourseParticipant.findOne({
-    user: user._id
-  }).exec();
+  var participantWithGroups = yield CourseParticipant.find({
+    user: user._id,
+    isActive: true
+  }).populate('group').exec();
 
   var groups;
-  if (participant) {
+  if (participantWithGroups) {
     // plus groups where participates
-    groups = yield CourseGroup.find({
-      participants: participant._id
-    }).exec();
+    groups = _.pluck(participantWithGroups, 'group');
   } else {
     groups = [];
   }
@@ -57,7 +58,15 @@ exports.get = function*(next) {
     let group = groups[i];
     yield CourseGroup.populate(group, {path: 'course'});
 
+    let hasFeedback = yield CourseFeedback.findOne({
+      courseGroup: group._id,
+      participant: participantWithGroups._id
+    }).exec();
+
     let groupInfo = formatGroup(group);
+    groupInfo.hasFeedback = hasFeedback;
+    groupInfo.feedbackLink = `/courses/groups/${group.slug}/feedback`;
+
     groupInfo.links = [{
       url: group.course.getUrl(),
       title: 'Описание курса'
