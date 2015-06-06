@@ -1,8 +1,9 @@
+"use strict";
 
 var mongoose = require('mongoose');
 var log = require('log')();
 var co = require('co');
-var thunk = require('thunkify');
+var thunkify = require('thunkify');
 
 var db;
 
@@ -14,7 +15,9 @@ function *createEmptyDb() {
       return mongoose.connection.db;
     }
 
-    yield thunk(mongoose.connection.on)('open');
+    yield new Promise(function(resolve, reject) {
+      mongoose.connection.on('open', resolve)
+    });
 
     return mongoose.connection.db;
   }
@@ -41,7 +44,7 @@ function *createEmptyDb() {
 
     yield collectionNames.map(function(name) {
       log.debug("drop ", name);
-      return thunk(db.dropCollection)(name);
+      return thunkify(db.dropCollection)(name);
     });
 
   }
@@ -52,7 +55,7 @@ function *createEmptyDb() {
 
     yield mongoose.modelNames().map(function(modelName) {
       var model = mongoose.models[modelName];
-      return thunk(model.ensureIndexes.bind(model))();
+      return thunkify(model.ensureIndexes.bind(model))();
     });
 
   }
@@ -65,22 +68,22 @@ function *createEmptyDb() {
       var schema = model.schema;
       if (!schema.options.capped) return;
 
-      return thunk(db.command)({convertToCapped: model.collection.name, size: schema.options.capped});
+      return thunkify(db.command)({convertToCapped: model.collection.name, size: schema.options.capped});
     });
   }
 
   log.debug("co");
 
-  db = yield open();
+  db = yield* open();
   log.debug("open");
 
-  yield clearDatabase();
+  yield* clearDatabase();
   log.debug("clear");
 
-  yield ensureIndexes();
+  yield* ensureIndexes();
   log.debug('indexes');
 
-  yield ensureCapped();
+  yield* ensureCapped();
   log.debug('capped');
 
 }
@@ -88,50 +91,51 @@ function *createEmptyDb() {
 // tried using pow-mongoose-fixtures,
 // but it fails with capped collections, it calls remove() on them => everything dies
 // so rolling my own tiny-loader
-function *loadModels(data, options) {
+function *loadModels(objectOrFile, options) {
   options = options || {};
-  var modelsData = (typeof data == 'string') ? require(data) : data;
 
-  var modelNames = Object.keys(modelsData);
+  var modelObjectsByType = (typeof objectOrFile == 'string') ? require(objectOrFile) : objectOrFile;
+  var modelTypes = Object.keys(modelObjectsByType);
 
-  for(var modelName in modelsData) {
-    var Model = mongoose.models[modelName];
-    if (options.reset) {
-      yield Model.destroy({});
+  if (options.reset) {
+    for(let type of modelTypes) {
+      yield mongoose.models[type].destroy({});
     }
-    yield* loadModel(Model, modelsData[modelName]);
   }
-}
 
-// load data into the DB, replace if _id is the same
-function *loadModel(Model, data) {
+  var modelsByType = {
+    /* User => { name: "Vasya" } */
+  };
 
-  for (var i = 0; i < data.length; i++) {
-    if (data[i]._id) {
-      yield Model.destroy({_id: data[i]._id});
-    }
-    var model = new Model(data[i]);
+  for(let modelType of modelTypes) {
+    let Model = mongoose.models[modelType];
 
-    log.debug("persist", data[i]);
-    try {
-      yield model.persist();
-    } catch (e) {
-      if (e.name == 'ValidationError') {
-        log.error("loadModel persist validation error", e, e.errors);
+    let modelObjects = modelObjectsByType[modelType];
+
+    if (modelType == 'CourseGroup') console.log(Model.schema);
+    /*
+    for (var i = 0; i < modelsData[modelName].length; i++) {
+      var data = modelsData[modelName][i];
+      var model = new Model(data);
+
+      if (data._ref) {
+        refToModel[data._ref] = model;
       }
-      throw e;
-    }
-  }
 
-  log.debug("loadModel is done");
+      log.debug("persist", data[i]);
+      try {
+        yield model.persist();
+      } catch (e) {
+        if (e.name == 'ValidationError') {
+          log.error("loadModel persist validation error", e, e.errors);
+        }
+        throw e;
+      }
+    }
+     */
+
+  }
 }
 
 exports.loadModels = loadModels;
 exports.createEmptyDb = createEmptyDb;
-
-/*
- Usage:
- co(loadModels('sampleDb'))(function(err) {
- if (err) throw err;
- mongoose.connection.close();
- });*/

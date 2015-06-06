@@ -6,7 +6,6 @@ var CourseInvite = require('courses').CourseInvite;
 
 exports.Course = [
   {
-    "_id":            "543250000000000000000002",
     slug:             "js",
     videoKeyTag:      "js",
     title:            "Курс JavaScript/DOM/интерфейсы",
@@ -15,7 +14,6 @@ exports.Course = [
     weight:           1
   },
   {
-    "_id":            "543250000000000000000003",
     slug:             "nodejs",
     videoKeyTag:      "js",
     title:            "Курс по Node.JS",
@@ -31,7 +29,7 @@ exports.CourseFeedback = [];
 
 exports.CourseGroup = [
   {
-    course:            '543250000000000000000002',
+    course:            { slug: 'nodejs' },
     dateStart:         new Date(2016, 0, 1),
     dateEnd:           new Date(2016, 10, 10),
     timeDesc:          "пн/чт 19:30 - 21:00 GMT+3",
@@ -44,7 +42,7 @@ exports.CourseGroup = [
     title:             "Курс JavaScript/DOM/интерфейсы (01.01)"
   },
   {
-    course:            '543250000000000000000002',
+    course:            { slug: 'js' },
     dateStart:         new Date(2016, 6, 1),
     dateEnd:           new Date(2016, 11, 10),
     timeDesc:          "пн/чт 21:30 - 23:00 GMT+3",
@@ -57,7 +55,7 @@ exports.CourseGroup = [
     title:             "Курс JavaScript/DOM/интерфейсы (06.01)"
   },
   {
-    "course":          "543250000000000000000003",
+    "course":          { slug: 'nodejs' },
     dateStart:         new Date(2016, 6, 1),
     dateEnd:           new Date(2016, 11, 10),
     timeDesc:          "пн/чт 21:30 - 23:00 GMT+3",
