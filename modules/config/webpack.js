@@ -43,13 +43,13 @@ var webpackConfig = {
     library:       '[name]'
   },
 
-  cache:        process.env.NODE_ENV == 'development',
+  cache: process.env.NODE_ENV == 'development',
 
   watchOptions: {
     aggregateTimeout: 10
   },
 
-  watch:        process.env.NODE_ENV == 'development',
+  watch: process.env.NODE_ENV == 'development',
 
   devtool: process.env.NODE_ENV == 'development' ? "" : // try "eval" ?
              process.env.NODE_ENV == 'production' ? 'source-map' : "",
@@ -57,6 +57,7 @@ var webpackConfig = {
   profile: true,
 
   entry: {
+//    styles:                    'styles/' + config.lang,
     about:                     'about/client',
     auth:                      'auth/client',
     angular:                   'client/angular',
@@ -70,6 +71,7 @@ var webpackConfig = {
     coursesSignup:             'courses/client/signup',
     coursesParticipantDetails: 'courses/client/participantDetails',
     coursesMaterials:          'courses/client/materials',
+    coursesFeedbackEdit:       'courses/client/feedbackEdit',
     coursesFeedback:           'courses/client/feedback',
     coursesFrontpage:          'courses/client/frontpage',
     footer:                    'client/footer',
@@ -122,7 +124,11 @@ var webpackConfig = {
   },
 
   stylus: {
-    use: [nib()]
+    use: [
+      nib(),
+      function(style) {
+        style.define('lang', config.lang);
+      }]
   },
 
   resolve: {
@@ -142,6 +148,10 @@ var webpackConfig = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      LANG: JSON.stringify(config.lang)
+    }),
+
     // lodash is loaded when free variable _ occurs in the code
     new webpack.ProvidePlugin({
       _: 'lodash'
@@ -205,3 +215,4 @@ if (process.env.NODE_ENV == 'production') { // production, ebook
 }
 
 module.exports = webpackConfig;
+
