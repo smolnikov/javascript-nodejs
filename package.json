@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "prod": "NODE_ENV=production node --harmony_classes ./bin/server",
+    "prod": "NODE_ENV=production node ./bin/server",
     "fixperms": "sudo chown -R `id -u` . * ~/.n*",
     "//": "test must exit with status 1 if fails, don't use | or ensure the right exit code if you do",
     "test": "SELENIUM_LOCAL=1 NODE_ENV=test gulp test"
   },
   "precommit": "NODE_ENV=development node `which gulp` pre-commit",
   "//": "blueimp-canvas-to-blob is taken from a fork w/ browserify support",
+  "//": "node-xmpp-client installs for linux only",
   "dependencies": {
+    "node-xmpp-client": "*",
     "MD5": "*",
     "angular": "*",
     "angular-cookies": "*",
@@ -53,7 +55,6 @@
     "jade": "*",
     "jade-loader": "*",
     "js-yaml": "*",
-    "juice2": "*",
     "koa": "*",
     "koa-bodyparser": "*",
     "koa-compose": "*",
@@ -89,7 +90,6 @@
     "nib": "*",
     "node-static": "*",
     "node-uuid": "*",
-    "node-xmpp-client": "*",
     "node-zip": "*",
     "nodemailer": "*",
     "nodemailer-ses-transport": "*",

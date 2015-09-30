@@ -1,61 +1,102 @@
 extends root
 
+block append head
+  !=js("profileGuestAboutMe", {defer: true})
+
 block profileContent
-
-  +e.fields
-
-    if profileUser.realName
-      +b.profile-field
-        +e.lcell
-          +e.name Имя
-        +e.rcell
-          +e.value= profileUser.realName
-
-    if profileUser.country
-      +b.profile-field
-        +e.lcell
-          +e.name Страна
-        +e.rcell
-          +e.value= profileUser.country
-
-    if profileUser.town
-      +b.profile-field
-        +e.lcell
-          +e.name Город
-        +e.rcell
-          +e.value= profileUser.town
-
-    if profileUser.publicEmail
-      +b.profile-field
-        +e.lcell
-          +e.name E-Mail
-        +e.rcell
-          +e.value= profileUser.publicEmail
-
-
-    if profileUser.interests
-      +b.profile-field
-        +e.lcell
-          +e.name Интересы
-        +e.rcell
-          +e.value= profileUser.interests
-
-    if profileUser.birthday
-      +b.profile-field
-        +e.lcell
-          +e.name Дата рождения
-        +e.rcell
-          +e.value= profileUser.birthday
-
+  if profileUser.realName
     +b.profile-field
       +e.lcell
-        +e.name Зарегистрирован
+        +e.name Имя
       +e.rcell
-        +e.value= moment(profileUser.created).format('DD.MM.YY в LT')
+        +e.value= profileUser.realName
 
+  if profileUser.country
     +b.profile-field
       +e.lcell
-        +e.name Активность
+        +e.name Страна
       +e.rcell
-        +e.value Последняя активность #{moment(profileUser.lastActivity || profileUser.created).format('DD.MM.YY в LT')}
+        +e.value= profileUser.country
+
+  if profileUser.town
+    +b.profile-field
+      +e.lcell
+        +e.name Город
+      +e.rcell
+        +e.value= profileUser.town
+
+  if profileUser.publicEmail
+    +b.profile-field
+      +e.lcell
+        +e.name E-Mail
+      +e.rcell
+        +e.value= profileUser.publicEmail
+
+
+  if profileUser.interests
+    +b.profile-field
+      +e.lcell
+        +e.name Интересы
+      +e.rcell
+        +e.value= profileUser.interests
+
+  if profileUser.aboutMe
+    +b.profile-field
+      +e.lcell
+        +e.name О себе
+      +e.rcell
+        +e.value!= renderParagraphsAndLinks(profileUser.aboutMe)
+
+  if profileUser.birthday
+    +b.profile-field
+      +e.lcell
+        +e.name Дата рождения
+      +e.rcell
+        +e.value= profileUser.birthday
+
+
+  if profileUser.teachesCourses
+    +b.profile-field
+      +e.lcell
+        +e.name Ведёт курсы
+      +e.rcell
+        +e.value
+          each course, index in profileUser.teachesCourses
+            a(href=course.getUrl())= course.title
+            if index < profileUser.teachesCourses.length - 1
+              = ', '
+
+  +b.profile-field
+    +e.lcell
+      +e.name Зарегистрирован
+    +e.rcell
+      +e.value= moment(profileUser.created).format('DD.MM.YYYY в LT')
+
+  +b.profile-field
+    +e.lcell
+      +e.name Активность
+    +e.rcell
+      +e.value Последняя активность #{moment(profileUser.lastActivity || profileUser.created).format('DD.MM.YYYY в LT')}
+
+
+block profileFeedback
+
+  if profileUser.teachesCourses
+
+    +e.feedbacks
+      +b('section').course-feedbacks.teacher-feedback._loading
+        +e.head
+          +e('h2').title Отзывы учеников
+
+        +e.feedbacks-list(data-feedback-container)
+
+        +e.loader
+          +b.page-loader
+              +b('span').spinner._active._small
+                  +e('span').dot._1
+                  +e('span').dot._2
+                  +e('span').dot._3
+
+    script window.FEEDBACK_LIST_INIT = { elem: document.querySelector('.course-feedbacks'), filter: {teacherId: "#{profileUser._id}" } };
+
 

@@ -31,10 +31,20 @@ block content
                     +e('span').status-i(style="width: 1px")
 
         +b.pie
-            // +e('img').image(src="")
+            +e('svg').image(height="180" width="180")
+                circle(cx=90 cy=90 r=90 fill="#469269")
+                path(fill="#010A05" id="statsPercentagePath" fill-opacity="0.22")
             +e.text
                 +e('strong').percents 78%
                 +e('span').advice Пользователей рекомендуют эти курсы
+
+    +b.feedback-policy
+        +e.link Политика отзывов javascript.ru
+            +e.popup
+                +e('ul').list
+                    li Показываются все отзывы, опубликованные авторами. Фильтрацию по оценке вы можете сделать сами.
+                    li Отзывы не модерируются. Исключение может быть сделано только при нарушении условий пользования сайтом и курсами.
+                    li Все люди&nbsp;&mdash; реальные участники.
 
 
     +b('section').course-feedbacks
@@ -151,7 +161,7 @@ block content
                     &nbsp;
                     +e('button').add-comment
 
-                    +e.teacher-comment
+                    +b.course-feedback-comment-form.course-feedback__teacher-comment
                         +b('textarea').textarea-input
                         +e.ok-cancel
                           +b('button')(type="submit").button._action.__item-save

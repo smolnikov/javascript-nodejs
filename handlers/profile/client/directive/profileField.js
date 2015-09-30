@@ -1,5 +1,6 @@
 var notification = require('client/notification');
 var angular = require('angular');
+var escapeHtmlText = require('textUtil/escapeHtmlText');
 
 
 angular.module('profile')
@@ -18,14 +19,17 @@ angular.module('profile')
 
         if (!scope.formatValue) {
           scope.formatValue = function(value) {
-            return value;
+            return value === '' || value === null || value === undefined ? value : escapeHtmlText(value);
           };
         }
 
 
         scope.loadingTracker = promiseTracker();
 
-        scope.edit = function() {
+        scope.edit = function($event) {
+          // click on a link inside
+          if ($event.target.closest('a')) return;
+
           if (this.editing) return;
           this.editing = true;
           this.editingValue = this.value;
@@ -53,7 +57,7 @@ angular.module('profile')
           }).then((response) => {
 
             if (this.name == 'displayName') {
-              new notification.Success("Изменение имени везде произойдёт после перезагрузки страницы.", 'slow');
+              new notification.Success("Ваше имя пользователя изменено.", 'slow');
             } else if (this.name == 'email') {
               new notification.Warning("Требуется подтвердить смену email, проверьте почту.", 'slow');
             } else if (this.name == 'profileName') {

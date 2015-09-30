@@ -13,6 +13,9 @@ router.get('/register-participants/:groupBySlug', mustBeAdmin, require('./contro
 
 
 router.get('/', require('./controller/frontpage').get);
+
+router.get('/feedback-fetch', require('./controller/courseFeedbackFetch').get);
+
 router.get('/:course', require('./controller/course').get);
 
 // same controller for new signups & existing orders
@@ -29,7 +32,7 @@ router.get('/download/:groupBySlug/:filename', mustBeParticipantOrTeacher, requi
 
 router.all('/groups/:groupBySlug/feedback', mustBeParticipant, require('./controller/groupFeedbackEdit').all);
 
-router.get('/:course/reviews', require('./controller/courseReviews').get);
+router.get('/:course/feedback', require('./controller/courseFeedback').get);
 
 router.patch('/feedback/comment', mustBeAuthenticated, require('./controller/groupFeedbackComment').patch);
 router.get('/feedback/:feedbackNumber', require('./controller/groupFeedbackShow').get);

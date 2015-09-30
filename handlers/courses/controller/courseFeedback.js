@@ -19,24 +19,22 @@ exports.get = function*() {
     this.throw(404);
   }
 
-  let type = this.accepts('json', 'html');
+  this.locals.title = "Отзыв о курсе\n" + this.locals.course.title;
 
-  if (type == 'html') {
+  // star => count
+  let feedbackStats = yield* CacheEntry.getOrGenerate({
+    key:  'courses:feedback:' + this.params.slug,
+    tags: ['courses:feedback']
+  }, getFeedbackStats.bind(this, this.locals.course));
 
-    this.locals.title = "Отзыв о курсе\n" + this.locals.course.title;
+  let teachers = yield User.find({
+    teachesCourses: {$exists: true, $not: {$size: 0}}
+  });
 
-    // star => count
-    let feedbackStats = yield* CacheEntry.getOrGenerate({
-      key:  'courses:feedback:' + this.params.slug,
-      tags: ['courses:feedback']
-    }, getFeedbackStats.bind(this, this.locals.course));
-
-    this.body = this.render('feedback/list', {
-      stats: feedbackStats
-    });
-
-  }
-
+  this.body = this.render('feedback/list', {
+    stats: feedbackStats,
+    teachers
+  });
 
 };
 
@@ -69,7 +67,7 @@ function* getFeedbackStats(course) {
 
   let totalFeedbacks = stats.reduce(function(prev, next) { return prev + next.count; }, 0);
 
-  console.log(totalFeedbacks);
+  //console.log(totalFeedbacks);
   // default stats (if no stars for a star)
   let starStatsPopulated = {};
   for(let i=1; i<=5; i++) starStatsPopulated[i] = {

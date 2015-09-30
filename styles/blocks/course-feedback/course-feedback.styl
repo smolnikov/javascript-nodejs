@@ -117,7 +117,7 @@
     &_result
         position relative
 
-        padding 20px 30px 40px 120px
+        padding 20px 30px 60px 120px
 
     &__user
         position relative
@@ -163,6 +163,12 @@
     &__date
         float right
         color light_gray_color
+
+    a&__date
+        text-decoration none
+
+    a&__date:hover
+        text-decoration underline
 
     &__homepage
         display block
@@ -213,13 +219,14 @@
         margin 7px 10px 0 10px
 
     &_external
+        padding-bottom 40px
         border-color #F5F2F0
 
     &__teacher-comment
         position relative
 
         padding 10px 15px
-        margin-top 30px
+        margin-top 15px
 
         color color
         border-radius 3px
@@ -228,7 +235,7 @@
         &:before
             position absolute
             top -6px
-            left 30%
+            left 30px
             z-index -1
 
             width 20px
@@ -239,6 +246,9 @@
             transform rotate(45deg)
 
             content: ''
+
+    .main &__teacher-comment p
+        margin 5px 0 0 0
 
     &__add-comment
         @extend $button-reset
