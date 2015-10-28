@@ -3,11 +3,11 @@
 
 ## 0. Операционная система
 
-Сайт работает под MacOS, Unix (протестировано на Ubuntu, Debian), но не Windows. Сам код сайта написан более-менее универсально, но под Windows криво работают некоторые сторонние модули.
+Сайт работает под MacOS, Unix (протестировано на Ubuntu, Debian), но не Windows. Сам код сайта более-менее универсален, но под Windows криво работают некоторые сторонние модули.
 
-## 1. Поставьте IO.JS 0.12
+## 1. Поставьте Node.JS
 
-Нужна именно последняя версия [IO.JS](https://iojs.org/en/index.html).
+Нужна именно последняя версия [Node.JS](https://nodejs.org).
 
 ## 2. Поставьте и запустите MongoDB.
 
@@ -25,7 +25,7 @@ sudo port load mondogb
 
 Клонируйте только ветку `master`:
 ```
-git clone -b master --single-branch https://github.com/iliakan/javascript-nodejs
+git clone -b ru --single-branch https://github.com/iliakan/javascript-nodejs
 ```
 
 ## 4. Глобальные модули
@@ -42,7 +42,7 @@ npm install -g mocha bunyan gulp nodemon
 
 ```
 sudo port install ImageMagick GraphicsMagick 
-sudo port install nginx +debug+gzip_static+realip
+sudo port install nginx +debug+gzip_static+realip+geoip
 
 sudo port load nginx
 ```
@@ -103,12 +103,12 @@ gulp tutorial:import --root /js/javascript-tutorial
 
 Запуск сайта в режиме разработки:
 ```
-./dev
+./ru
 ```
 
 Это поднимет сразу и сайт и механизмы автосборки стилей-скриптов и livereload.
 
-Обратите внимание: ходить на сайт нужно через Nginx (обычно порт 80), не напрямую в IO.JS (не будет статики).
+Обратите внимание: ходить на сайт нужно через Nginx (обычно порт 80), не напрямую в Node.JS (не будет статики).
 
 Если в `/etc/hosts` есть строка `127.0.0.1 javascript.in`, то адрес будет `http://javascript.in/`.
 

@@ -11,6 +11,7 @@ exports.Course = [
     slug:             "js",
     videoKeyTag:      "js",
     title:            "Курс JavaScript/DOM/интерфейсы",
+    titleShort:       "JavaScript/DOM/интерфейсы",
     shortDescription: `
     <p>"Правильный" курс по профессиональному JavaScript, цель которого – научить думать на JavaScript, писать просто, быстро и красиво.</p>
     <p>Стоимость обучения 21000 руб, время обучения: 2 месяца.</p>`,
@@ -22,8 +23,9 @@ exports.Course = [
     slug:             "nodejs",
     videoKeyTag:      "js",
     title:            "Курс по Node.JS",
+    titleShort:       "Node.JS",
     shortDescription: `
-    <p>Профессиональная разработка на платформе Node.JS/IO.JS (серверный JavaScript), с использованием современных фреймворков и технологий.</p>
+    <p>Профессиональная разработка на платформе Node.JS (серверный JavaScript), с использованием современных фреймворков и технологий.</p>
     <p>Стоимость обучения 13500 руб, время обучения: 1 месяц.</p>`,
     isListed:         true,
     weight:           2
@@ -46,7 +48,8 @@ exports.CourseGroup = [
     webinarId:         '123',
     isListed:          true,
     isOpenForSignup:   false,
-    title:             "Курс JavaScript/DOM/интерфейсы (01.01)"
+    title:             "Курс JavaScript/DOM/интерфейсы (01.01)",
+    teacher:          [oid('user-iliakan')]
   },
   {
     course:            oid('course-nodejs'),
@@ -59,7 +62,8 @@ exports.CourseGroup = [
     participantsLimit: 30,
     isListed:          true,
     isOpenForSignup:   true,
-    title:             "Курс по Node.JS (22.07)"
+    title:             "Курс по Node.JS (22.07)",
+    teacher:          [oid('user-iliakan')]
   },
   {
     course:            oid('course-nodejs'),
@@ -72,7 +76,8 @@ exports.CourseGroup = [
     participantsLimit: 30,
     isListed:          true,
     isOpenForSignup:   false,
-    title:             "Курс по Node.JS"
+    title:             "Курс по Node.JS",
+    teacher:          [oid('user-iliakan')]
   }
 ];
 
