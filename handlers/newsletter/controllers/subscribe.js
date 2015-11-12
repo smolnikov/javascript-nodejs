@@ -4,7 +4,6 @@ const path = require('path');
 const Newsletter = require('../models/newsletter');
 const Subscription = require('../models/subscription');
 const SubscriptionAction = require('../models/subscriptionAction');
-const sendMail = require('mailer').send;
 const config = require('config');
 const _ = require('lodash');
 const notify = require('../lib/notify');
@@ -33,7 +32,7 @@ exports.post = function*() {
   if (this.request.body.accessKey) {
     subscription = yield Subscription.findOne({
       accessKey: this.request.body.accessKey
-    }).exec();
+    });
     if (!subscription) {
       this.throw(404, "Нет такой подписки.");
     }
@@ -43,7 +42,7 @@ exports.post = function*() {
     }
     subscription = yield Subscription.findOne({
       email: this.request.body.email
-    }).exec();
+    });
   }
 
   var email = subscription ? subscription.email : this.request.body.email;
