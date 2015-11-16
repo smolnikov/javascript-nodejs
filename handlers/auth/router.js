@@ -22,8 +22,12 @@ var router = module.exports = new Router();
 router.post('/login/local', function*(next) {
   var ctx = this;
 
-  // only callback-form of authenticate allows to assign ctx.body=info if 401
-  yield passport.authenticate('local', function*(err, user, info) {
+
+  // @see node_modules/koa-passport/lib/framework/koa.js for passport.authenticate
+  // it returns the middleware to delegate
+  var middleware = passport.authenticate('local', function*(err, user, info) {
+    // only callback-form of authenticate allows to assign ctx.body=info if 401
+
     if (err) throw err;
     if (user === false) {
       ctx.status = 401;
@@ -33,7 +37,9 @@ router.post('/login/local', function*(next) {
       yield ctx.rememberMe();
       ctx.body = {user: user.getInfoFields() };
     }
-  }).call(this, next);
+  });
+
+  yield* middleware.call(this, next);
 
 });
 
