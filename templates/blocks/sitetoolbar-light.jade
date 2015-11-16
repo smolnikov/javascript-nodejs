@@ -55,4 +55,9 @@
           include ../blocks/social-icons
 
   if bookChildNumber && bookLeafCount
-    +b('progress').tutorial-progress(data-sticky, value=bookChildNumber, max= bookLeafCount, data-tooltip=("Урок " + bookChildNumber + " из " + bookLeafCount))
+    +b('progress').tutorial-progress(
+      data-sticky,
+      value=bookChildNumber,
+      max=bookLeafCount,
+      data-tooltip=(t("Lesson __bookChildNumber__ of __bookLeafCount__", {bookChildNumber, bookLeafCount}))
+    )

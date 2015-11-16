@@ -26,6 +26,7 @@ module.exports = function* formatCourseOrder(order) {
 
   var groupParticipantsByUser = _.indexBy(groupParticipants, 'user');
 
+
   var orderToShow = {
     created:      order.created,
     title:        group.title,
@@ -37,6 +38,8 @@ module.exports = function* formatCourseOrder(order) {
     contactPhone: order.data.contactPhone,
     courseUrl:    group.course.getUrl(),
     participants: order.data.emails.map(function(email) {
+      //console.log("usersByEmail[email]", email, usersByEmail[email]);
+
       return {
         email:    email,
         inGroup: Boolean(usersByEmail[email] && groupParticipantsByUser[usersByEmail[email]._id])

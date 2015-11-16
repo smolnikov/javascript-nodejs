@@ -2,11 +2,15 @@ var NO_WRAP_TAGS_REG = require('../consts').NO_WRAP_TAGS_REG;
 var ATTRS_REG = require('../consts').ATTRS_REG;
 var VERBATIM_TAGS = require('../consts').VERBATIM_TAGS;
 
+var LQ = process.env.NODE_LANG == 'ru' ? '«' : '“';
+var RQ = process.env.NODE_LANG == 'ru' ? '»' : '”';
+
+
 // В отличие от остальных методов, этот работает не "точечно", а над всем текстом,
 // Например "Мой `код` :)"
 function replaceQuotesWithLaquo(text) {
   //console.log(1, text);
-  text = text.replace( /(^|[\s><(])\"([<~0-9ёa-zа-я\-:\/])/gim, "$1«$2");
+  text = text.replace( /(^|[\s><(])\"([<~0-9ёa-zа-я\-:\/])/gim, "$1" + LQ + "$2");
 
 
   //console.log(2, text);
@@ -14,7 +18,7 @@ function replaceQuotesWithLaquo(text) {
 
   while (text != _text) {
     _text = text;
-    text = text.replace(/(«([^"]*)[>ёa-zа-я0-9\.\-:\/\?\!])\"/gim, '$1»');
+    text = text.replace(new RegExp('(' + LQ + '([^"]*)[>ёa-zа-я0-9\\.\\-:\\/\\?\\!])\\"', 'gim'), '$1' + RQ);
     //console.log(3, text);
   }
 
