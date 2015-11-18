@@ -15,7 +15,7 @@
 [warn header="Babel 5"]
 В первых частях скринкаста используется модуль `babel-loader` версии 5, который ставится через `"npm i babel-loader@5"`.
 
-Для шестой версии Babel нужно ставить `"npm i babel-loader babel-core babel-preset-es2015"` и использовать лоадер `"babel?presets[]=2015"`.
+Для шестой версии Babel нужно ставить `"npm i babel-loader babel-core babel-preset-es2015"` и использовать лоадер `"babel?presets[]=es2015"`.
  
 Впрочем, в Babel 6 есть много "шероховатостей", не факт что обновление на него сейчас на него будет оправданным.
 [/warn]
