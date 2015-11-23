@@ -1,6 +1,6 @@
 const Transaction = require('../../models/transaction');
 const Order = require('../../models/order');
-const request = require('koa-request');
+const request = require('co-request');
 const config = require('config');
 const qs = require('querystring');
 

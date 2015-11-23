@@ -1,7 +1,7 @@
 const config = require('config');
 const Order = require('../../models/order');
 const Transaction = require('../../models/transaction');
-const request = require('koa-request');
+const request = require('co-request');
 const log = require('log')();
 
 var updatePendingOnlineTransactionStatus = require('../lib/updatePendingOnlineTransactionStatus');

@@ -7,7 +7,7 @@
 var config = require('config');
 var readLine = require('lib/readLine');
 var log = require('log')();
-var request = require('koa-request');
+var request = require('co-request');
 
 /* jshint -W106 */
 function* login() {

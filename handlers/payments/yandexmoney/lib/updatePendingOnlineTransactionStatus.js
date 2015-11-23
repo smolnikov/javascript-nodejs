@@ -1,5 +1,5 @@
 
-const request = require('koa-request');
+const request = require('co-request');
 const Transaction = require('../../models/transaction');
 const Order = require('../../models/order');
 const assert = require('assert');

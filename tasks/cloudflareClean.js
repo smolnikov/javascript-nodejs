@@ -1,5 +1,5 @@
 const gulp = require('gulp');
-const request = require('koa-request');
+const request = require('co-request');
 const config = require('config');
 const co = require('co');
 const args = require('yargs')
