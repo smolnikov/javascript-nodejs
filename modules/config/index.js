@@ -8,6 +8,13 @@ env.NODE_ENV = env.NODE_ENV || 'development';
 //if (!env.SITE_HOST) throw new Error("env.SITE_HOST is not set");
 //if (!env.STATIC_HOST) throw new Error("env.STATIC_HOST is not set");
 
+require("babel-core/register")({
+  ignore: function(filename) {
+    // console.log(filename);
+    return filename.match(/\/node_modules\//);
+  }
+});
+
 var secret = require('./secret');
 
 var lang = env.NODE_LANG || 'ru';

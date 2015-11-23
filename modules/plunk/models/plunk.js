@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var assert = require('assert');
-var request = require('koa-request');
+var request = require('co-request');
 var config = require('config');
 var Schema = mongoose.Schema;
 var _ = require('lodash');

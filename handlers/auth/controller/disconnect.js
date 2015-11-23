@@ -1,7 +1,4 @@
-var User = require('users').User;
-var jade = require('lib/serverJade');
 var path = require('path');
-var config = require('config');
 
 // Remove provider profile from the user
 exports.post = function* (next) {

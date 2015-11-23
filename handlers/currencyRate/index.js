@@ -3,37 +3,20 @@
 // - Load rates from DB on boot
 // - provide /currency-rate/update url to update money rates
 
-var config = require('config');
-var CurrencyRate = require('./models/currencyRate');
-
 var currencyRate;
 
-var request = require('koa-request');
-var fetchLatest = require('./lib/fetchLatest');
+var request = require('co-request');
 
 // all supported currencies
 // http://openexchangerates.org/api/currencies.json?app_id=APP_ID
 var currencies = require('./currencies');
 
-var money = require('money');
+var update = require('./lib/update');
 
 
 exports.boot = function*() {
-  // load from db into memory
-  currencyRate = yield CurrencyRate.findOne().sort({timestamp: -1}).limit(1).exec();
+  yield* update();
 
-  if (!currencyRate) {
-    currencyRate = yield* fetchLatest();
-  }
-
-  if (!currencyRate) {
-    throw new Error("Unable to get latest currency rate");
-  }
-
-  money.rates = currencyRate.rates;
-  money.base = currencyRate.base;
-
-  // updated asynchronously
 };
 
 

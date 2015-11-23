@@ -3,7 +3,7 @@ const paypalConfig = config.payments.modules.paypal;
 const Order = require('../../models/order');
 const Transaction = require('../../models/transaction');
 const TransactionLog = require('../../models/transactionLog');
-const request = require('koa-request');
+const request = require('co-request');
 
 // docs:
 //

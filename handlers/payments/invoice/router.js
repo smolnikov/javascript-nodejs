@@ -7,4 +7,3 @@ var agreement = require('./controller/agreement');
 
 router.get('/:transactionNumber/invoice.docx', invoice.get);
 router.get('/:transactionNumber/agreement.docx', agreement.get);
-

@@ -2,7 +2,7 @@ var User = require('users').User;
 const FacebookStrategy = require('passport-facebook').Strategy;
 const authenticateByProfile = require('../lib/authenticateByProfile');
 const config = require('config');
-const request = require('koa-request');
+const request = require('co-request');
 const co = require('co');
 
 /*
