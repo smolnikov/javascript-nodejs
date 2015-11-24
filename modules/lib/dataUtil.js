@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var log = require('log')();
 var co = require('co');
 var thunk = require('thunkify');
-
+var assert = require('assert');
 var db;
 
 function *createEmptyDb() {
@@ -96,6 +96,7 @@ function *loadModels(data, options) {
 
   for(var modelName in modelsData) {
     var Model = mongoose.models[modelName];
+    assert(Model);
     if (options.reset) {
       yield Model.destroy({});
     }
