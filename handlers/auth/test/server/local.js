@@ -1,7 +1,7 @@
 /* globals describe, it, before */
 
 const db = require('lib/dataUtil');
-const mongoose = require('mongoose');
+const mongoose = require('lib/mongoose');
 const path = require('path');
 const request = require('supertest');
 const fixtures = require(path.join(__dirname, '../fixtures/db'));
