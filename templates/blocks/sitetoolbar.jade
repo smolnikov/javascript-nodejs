@@ -47,12 +47,9 @@ if lang=='ru'
             +e('li')(class=["section", section.slug && siteToolbarCurrentSection == section.slug && ' _current'])
               +e('a').link(href=section.url ? section.url : ('/' + section.slug))= section.title
 
-      if siteToolbarCurrentSection == 'tutorial'
+      if siteToolbarCurrentSection == 'tutorial' || true
         +e.book-wrap
           +b("a").buy-book-button(href="/ebook") Купить EPUB/PDF
-      else
-        +e.book-wrap
-          +b("a").buy-book-button(href="/courses") Набор на курсы JS
 
       if user
         include ./user
