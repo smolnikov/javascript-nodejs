@@ -2,8 +2,9 @@ var NO_WRAP_TAGS_REG = require('../consts').NO_WRAP_TAGS_REG;
 var ATTRS_REG = require('../consts').ATTRS_REG;
 var VERBATIM_TAGS = require('../consts').VERBATIM_TAGS;
 
-var LQ = process.env.NODE_LANG == 'ru' ? '«' : '“';
-var RQ = process.env.NODE_LANG == 'ru' ? '»' : '”';
+var config = require('config');
+var LQ = config.lang == 'ru' ? '«' : '“';
+var RQ = config.lang == 'ru' ? '»' : '”';
 
 
 // В отличие от остальных методов, этот работает не "точечно", а над всем текстом,
