@@ -8,8 +8,7 @@ module.exports = function*(next) {
     this.throw(401);
   }
 
-  if (this.user._id.equals(group.teacher)) {
-    this.teacher = this.user;
+  if (this.user._id.equals(group.teacher) || this.isAdmin) {
     yield* next;
   } else {
     this.throw(403, "Вы не являетесь преподавателем этой группы.");

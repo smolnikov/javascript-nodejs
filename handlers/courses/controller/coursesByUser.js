@@ -90,6 +90,14 @@ exports.get = function*(next) {
       });
     }
 
+
+    if (this.isAdmin || groups[i].teacher.equals(this.user.id)) {
+      groupInfo.links.push({
+        url:   `/courses/groups/${group.slug}/participants-info`,
+        title: 'Анкеты участников'
+      });
+    }
+
     groupInfo.status = (groupInfo.dateStart > new Date()) ? 'accepted' :
       (groupInfo.dateEnd > new Date()) ? 'started' : 'ended';
 

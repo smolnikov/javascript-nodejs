@@ -9,6 +9,17 @@ var url = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
 // [{"ccy":"RUR","base_ccy":"UAH","buy":"0.37500","sale":"0.39000"},{"ccy":"EUR","base_ccy":"UAH","buy":"26.00000","sale":"27.00000"},{"ccy":"USD","base_ccy":"UAH","buy":"24.20000","sale":"25.20000"}]
 module.exports = class {
   *update() {
+
+    var rate = yield PrivatBankCurrencyRate.findOne({
+      created: {
+        $gt: new Date(new Date() - 86400*1000/2)
+      }
+    }).sort({created: -1});
+
+    if (rate) {
+      return rate; // don't update too often in dev mode
+    }
+
     var result;
 
     try {

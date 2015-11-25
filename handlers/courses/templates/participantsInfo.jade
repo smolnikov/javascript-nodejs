@@ -1,0 +1,53 @@
+extends /layouts/main
+
+block append variables
+  - var layout_header_class = "main__header_center"
+  - var content_class = '_center'
+  - var sitetoolbar = true
+  - var layout_main_class = "main_width-limit"
+  - var siteToolbarCurrentSection = "courses";
+
+block content
+
+  +b.participants-profiles
+    +e('ol').profiles
+      each participant in participants
+        +e('li').profile
+          +b.questionnaire
+            +e.userpic
+              +e('img').userpic-img(src=participant.photo || participant.user.getPhotoUrl(64,64))
+            +e.content
+              +e('h3').title
+                a(href=participant.user.getProfileUrl()) #{participant.firstName} #{participant.surname} (#{participant.user.displayName})
+              +e('ul').list
+                if participant.country
+                  +e('li').qa
+                    +e('h4').question._inline Страна
+                    +e('p').answer= countries[participant.country].na
+
+                if participant.city
+                  +e('li').qa
+                    +e('h4').question._inline Город
+                    +e('p').answer= participant.city
+
+                if participant.aboutLink
+                  +e('li').qa
+                    +e('h4').question._inline Ссылка на профиль
+                    +e('p').answer
+                      a(href=participant.aboutLink)= participant.aboutLink
+
+                if participant.occupation
+                  +e('li').qa
+                    +e('h4').question._inline Область работы
+                    +e('p').answer= participant.occupation
+
+                if participant.purpose
+                  +e('li').qa
+                    +e('h4').question._block С какой целью записались на курс?
+                    +e('p').answer= participant.purpose
+
+                if participant.wishes
+                  +e('li').qa
+                    +e('h4').question._block Ваши пожелания по курсу
+                    +e('p').answer= participant.wishes
+
