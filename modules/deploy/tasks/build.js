@@ -1,9 +1,7 @@
 var co = require('co');
 var readHostFromSSHConfig = require('../lib/readHostFromSSHConfig');
 var sshConnect = require('../lib/sshConnect');
-var sshExec = require('../lib/sshExec');
 var config = require('config');
-var gutil = require('gulp-util');
 
 /**
  * Update prod build dir from master, rebuild and commit to prod
@@ -57,7 +55,7 @@ module.exports = function() {
           yield* client.runInBuild(`npm test`);
         }
 
-        yield* client.runInBuild('git push origin production');
+        yield* client.runInBuild('git push origin ' + config.deploy.productionBranch);
       } finally {
         client.end();
       }

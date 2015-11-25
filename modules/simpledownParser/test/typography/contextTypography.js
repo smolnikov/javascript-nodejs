@@ -1,4 +1,9 @@
+'use strict';
 var contextTypography = require('../../typography/contextTypography');
+var config = require('config');
+
+let LQ = config.lang == 'ru' ? '«' : '“';
+let RQ = config.lang == 'ru' ? '»' : '”';
 
 describe("contextTypography", function() {
 
@@ -46,10 +51,12 @@ describe("contextTypography", function() {
   });
 
   it("converts quotes", function() {
-    contextTypography('"my text"').should.be.eql('<p>«my text»</p>');
-    contextTypography('"мой текст"').should.be.eql('<p>«мой текст»</p>');
+    contextTypography('"my text"').should.be.eql(config.lang == 'ru' ? '<p>«my text»</p>' : '<p>“my text”</p>');
+    contextTypography('"мой текст"').should.be.eql(config.lang == 'ru' ? '<p>«мой текст»</p>' : '<p>“мой текст”</p>');
 
-    contextTypography('"<span>1</span> и <span>2</span>".').should.be.eql('<p>«<span>1</span> и <span>2</span>».</p>');
+    contextTypography('"<span>1</span> и <span>2</span>".').should.be.eql(
+      `<p>${LQ}<span>1</span> и <span>2</span>${RQ}.</p>`
+    );
   });
 
   it("wraps text in <p>", function() {
@@ -58,7 +65,7 @@ describe("contextTypography", function() {
 
   it("converts quotes in tags", function() {
     var text = '<h3 class="a">"my"</h3>';
-    contextTypography(text).should.be.eql('<h3 class="a">«my»</h3>');
+    contextTypography(text).should.be.eql(`<h3 class="a">${config.lang == 'ru' ? '«my»' : '“my”'}</h3>`);
   });
 
 
