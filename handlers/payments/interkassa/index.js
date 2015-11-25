@@ -9,7 +9,7 @@ exports.renderForm = require('./renderForm');
 exports.createTransaction = function*(order, requestBody) {
   var currency = requestBody.interkassaCurrency;
 
-  if (!~['UAH', 'RUB', 'EUR', 'USD'].indexOf(currency)) {
+  if (!~['UAH', 'RUB'].indexOf(currency)) {
     throw(new Error("Unsupported currency:" + currency));
   }
 
@@ -35,5 +35,5 @@ exports.info = {
   title:    "Интеркасса",
   name:     path.basename(__dirname),
   hasIcon:  false,
-  subtitle: "разные способы оплаты"
+  subtitle: "резервный способ оплаты"
 };
