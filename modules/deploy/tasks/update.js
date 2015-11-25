@@ -33,7 +33,7 @@ module.exports = function() {
         yield* client.runInTarget(`/usr/local/bin/pm2 startOrGracefulReload ecosystem.json --env ${args.host}`);
         yield* client.runInTarget(`gulp cache:clean`);
         yield* client.runInTarget(`gulp cloudflare:clean | bunyan`);
-        if (args.nginx) {
+        if (args.withNginx) {
           yield* client.runInTarget(`gulp config:nginx --prefix /etc/nginx --env production --root /js/javascript-nodejs --sslEnabled`);
           yield* client.runInTarget(`/etc/init.d/nginx reload`);
         }
