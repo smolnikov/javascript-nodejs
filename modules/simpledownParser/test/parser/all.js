@@ -3,7 +3,7 @@ var HtmlTransformer = require('../../transformer/htmlTransformer');
 var path = require('path');
 var should = require('should');
 var util = require('util');
-
+var config = require('config');
 
 describe("BodyParser", function() {
 
@@ -32,7 +32,7 @@ describe("BodyParser", function() {
 
     it("formats [demo] tag correctly", function() {
       var html = format("[demo]");
-      html.should.be.eql('<button onclick="runDemo(this)">Запустить демо</button>');
+      html.should.be.eql('<button onclick="runDemo(this)">' + (config.lang == 'ru' ? 'Запустить демо' : 'Run the demo') + '</button>');
     });
 
     it("formats [text](http://site.com)", function() {
@@ -65,7 +65,7 @@ describe("BodyParser", function() {
       it("Typography by default enabled in [pre] block", function() {
         format("[pre]... :)[/pre]", true).should.be.eql('<p>… :)</p>');
 
-        format('[pre]"Test"[/pre]', true).should.be.eql('<p>«Test»</p>');
+        format('[pre]"Test"[/pre]', true).should.be.eql(config.lang == 'ru' ? '<p>«Test»</p>' : '<p>“Test”</p>');
       });
 
       it("Typography is disabled in [pre no-typography] block", function() {
@@ -211,7 +211,7 @@ describe("BodyParser", function() {
       it("smart without title", function() {
         var result = (format("[smart]text[/smart]")).replace(/\n/g, '');
         result.should.be.eql(
-          "<div class=\"important important_smart\"><div class=\"important__header\"><span class=\"important__type\">На заметку:</span></div><div class=\"important__content\">text</div></div>"
+          "<div class=\"important important_smart\"><div class=\"important__header\"><span class=\"important__type\">"+ (config.lang == 'ru' ? 'На заметку:' : 'Please note:') + "</span></div><div class=\"important__content\">text</div></div>"
         );
       });
 
