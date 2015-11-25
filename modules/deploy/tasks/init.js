@@ -30,7 +30,7 @@ module.exports = function() {
         yield* client.run(`git clone ${config.deploy.repo} ${config.deploy.buildPath}`);
         // now master & production branches are created,
         // using production for the build
-        yield* client.runInBuild(`git checkout production`);
+        yield* client.runInBuild(`git checkout ${config.deploy.productionBranch}`);
         //yield* client.runInBuild(`npm install`);
 
         yield* client.run(`rm -rf ${config.deploy.targetPath}`);

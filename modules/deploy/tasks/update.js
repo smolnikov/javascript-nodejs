@@ -24,8 +24,8 @@ module.exports = function() {
 
       try {
         yield* client.runInTarget(`git reset --hard`);
-        yield* client.runInTarget(`git fetch origin production`);
-        yield* client.runInTarget(`git merge origin/production --no-edit`);
+        yield* client.runInTarget(`git fetch origin ${config.deploy.productionBranch}`);
+        yield* client.runInTarget(`git merge origin/${config.deploy.productionBranch} --no-edit`);
 
         // if there any migrations, this will stop the server and apply them
         yield* client.runInTarget(`gulp deploy:migrate`);

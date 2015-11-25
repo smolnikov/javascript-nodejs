@@ -134,11 +134,12 @@ module.exports = {
   },
 
   deploy: {
-    user:       'root',
-    privateKey: fs.existsSync(path.join(secret.dir, 'js_rsa')) ? fs.readFileSync(path.join(secret.dir, 'js_rsa')) : '',
-    buildPath:  "/js/build",
-    targetPath: "/js/javascript-nodejs",
-    repo:       "git@github.com:iliakan/javascript-nodejs.git"
+    user:             'root',
+    privateKey:       fs.existsSync(path.join(secret.dir, 'js_rsa')) ? fs.readFileSync(path.join(secret.dir, 'js_rsa')) : '',
+    buildPath:        "/js/build",
+    targetPath:       "/js/javascript-nodejs",
+    productionBranch: "production-" + lang,
+    repo:             "git@github.com:iliakan/javascript-nodejs.git"
   },
 
   sauceLabs: {
@@ -147,20 +148,20 @@ module.exports = {
     address:   'http://ondemand.saucelabs.com:80/wd/hub'
   },
 
-  renderedCacheEnabled: env.NODE_ENV == 'production',
-  projectRoot:          process.cwd(),
+  renderedCacheEnabled:  env.NODE_ENV == 'production',
+  projectRoot:           process.cwd(),
   // public files, served by nginx
-  publicRoot:           path.join(process.cwd(), 'public'),
+  publicRoot:            path.join(process.cwd(), 'public'),
   // private files, for expiring links, not directly accessible
-  downloadRoot:         path.join(process.cwd(), 'download'),
-  courseRoot:           path.join(process.cwd(), 'course'),
-  tmpRoot:              path.join(process.cwd(), 'tmp'),
-  localesRoot:          path.join(process.cwd(), 'locales'),
+  downloadRoot:          path.join(process.cwd(), 'download'),
+  courseRoot:            path.join(process.cwd(), 'course'),
+  tmpRoot:               path.join(process.cwd(), 'tmp'),
+  localesRoot:           path.join(process.cwd(), 'locales'),
   // extra handlers from outside of the main repo
-  extraHandlersRoot:    path.join(process.cwd(), 'extra/handlers'),
+  extraHandlersRoot:     path.join(process.cwd(), 'extra/handlers'),
   // js/css build versions
-  manifestRoot:         path.join(process.cwd(), 'manifest'),
-  migrationsRoot:       path.join(process.cwd(), 'migrations'),
+  manifestRoot:          path.join(process.cwd(), 'manifest'),
+  migrationsRoot:        path.join(process.cwd(), 'migrations'),
   tutorialGithubBaseUrl: 'https://github.com/iliakan/javascript-tutorial/blob/' + lang
 
 };
