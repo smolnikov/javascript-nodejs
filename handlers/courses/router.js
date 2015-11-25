@@ -3,6 +3,7 @@ var mustBeAuthenticated = require('auth').mustBeAuthenticated;
 var mustBeParticipantOrTeacher = require('./lib/mustBeParticipantOrTeacher');
 var mustBeParticipant = require('./lib/mustBeParticipant');
 var mustBeTeacher = require('./lib/mustBeTeacher');
+var mustBeTeacherOrAdmin = require('./lib/mustBeTeacherOrAdmin');
 var mustBeAdmin = require('auth').mustBeAdmin;
 var router = module.exports = new Router();
 
@@ -24,6 +25,7 @@ router.get('/orders/:orderNumber(\\d+)', require('./controller/signup').get);
 
 router.get('/groups/:groupBySlug/info', mustBeParticipantOrTeacher, require('./controller/groupInfo').get);
 router.get('/groups/:groupBySlug/materials', mustBeParticipantOrTeacher, require('./controller/groupMaterials').get);
+router.get('/groups/:groupBySlug/participants-info', mustBeTeacherOrAdmin, require('./controller/participantsInfo').get);
 router.post('/groups/:groupBySlug/materials', mustBeTeacher, require('./controller/groupMaterials').post);
 
 // not groups/:groupBySlug/* url,

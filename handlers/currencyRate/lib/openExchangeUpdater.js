@@ -11,6 +11,18 @@ module.exports = class {
   *update() {
     var result;
 
+
+    var rate = yield OpenExchangeCurrencyRate.findOne({
+      created: {
+        $gt: new Date(new Date() - 86400*1000/2)
+      }
+    }).sort({created: -1});
+
+    if (rate) {
+      return rate; // don't update too often in dev mode
+    }
+
+
     //console.log("OEX request");
     try {
       result = yield request({
