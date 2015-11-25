@@ -41,7 +41,7 @@ class MigrationManager {
     var migrationFile, migrationDate;
 
     if (direction > 0) {
-      for (var i = 0; i < migrationFiles.length; i++) {
+      for (let i = 0; i < migrationFiles.length; i++) {
         migrationFile = migrationFiles[i];
         migrationDate = parseInt(path.basename(migrationFile));
         if (migrationDate > lastMigrationDate) {
@@ -53,9 +53,9 @@ class MigrationManager {
       }
 
     } else {
-      for (var i = migrationFiles.length - 1; i >= 0; i--) {
-        var migrationFile = migrationFiles[i];
-        var migrationDate = parseInt(path.basename(migrationFile));
+      for (let i = migrationFiles.length - 1; i >= 0; i--) {
+        migrationFile = migrationFiles[i];
+        migrationDate = parseInt(path.basename(migrationFile));
         if (migrationDate == lastMigrationDate) {
           return {
             date: migrationDate,
