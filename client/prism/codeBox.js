@@ -165,10 +165,23 @@ function CodeBox(elem) {
 
   }
 
+  // Evaluates a script in a global context
+  function globalEval( code ) {
+    var script = document.createElement( "script" );
+    script.text = code;
+    document.head.appendChild( script ).parentNode.removeChild( script );
+  }
+
   function runJS() {
 
-    console.log(code);
+    //console.log(code);
     if (isTrusted) {
+
+      if (elem.hasAttribute('data-autorun')) {
+        // make sure functions from "autorun" go to global scope
+        globalEval(code);
+        return;
+      }
 
       try {
         /* jshint -W061 */
