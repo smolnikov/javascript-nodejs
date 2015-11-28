@@ -30,8 +30,7 @@ module.exports = function() {
 
     return co(function* () {
       var group = yield CourseGroup
-        .findOne({slug: args.group})
-        .exec();
+        .findOne({slug: args.group});
 
       if (!group) {
         throw new Error("No group:" + args.group);
@@ -40,13 +39,14 @@ module.exports = function() {
       var participants = yield CourseParticipant.find({
         isActive: true,
         group:    group._id
-      }).populate('user').exec();
+      }).populate('user');
 
       var recipients = participants
         .map(function(participant) {
           return {email: participant.user.email, name: participant.fullName};
         });
 
+      log.debug(recipients);
 
       var teacher = yield User.findById(group.teacher);
       recipients.push({
@@ -57,7 +57,9 @@ module.exports = function() {
       // filter out already received
       var recipientsByEmail = _.indexBy(recipients, 'email');
 
-      var label = path.basename(args.templatePath);
+      var label = group.slug + '/' + path.basename(args.templatePath);
+
+      log.debug("Filter by label", label);
 
       let letters = yield mailer.Letter.find({label: label}).exec();
       for (let i = 0; i < letters.length; i++) {
