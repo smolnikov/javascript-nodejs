@@ -1,24 +1,21 @@
 var Order = require('payments').Order;
-var Discount = require('payments').Discount;
 
 // middleware
 // create order from template,
 // use the incoming data if needed
 module.exports = function* (orderTemplate, user, requestBody) {
 
-  var amount = orderTemplate.amount;
-  if (requestBody.discountCode) {
-    var discount = yield* Discount.findByCodeAndModule(requestBody.discountCode, 'ebook');
-    if (discount) amount = discount.adjustAmount(amount);
+  var currency = requestBody.currency;
+  if (!~['USD', 'RUB', 'EUR', 'UAH'].indexOf(currency)) {
+    throw(new Error("Unsupported currency:" + currency));
   }
 
   var order = new Order({
     title:       orderTemplate.title,
     description: orderTemplate.description,
-    currency:    'RUB',
-    amount:      amount,
-    module:      orderTemplate.module,
-    data:        orderTemplate.data
+    amount:      +requestBody.amount,
+    currency:    currency,
+    module:      orderTemplate.module
   });
 
   if (user) {

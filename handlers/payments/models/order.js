@@ -3,15 +3,23 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var autoIncrement = require('mongoose-auto-increment');
-var OrderTemplate = require('./orderTemplate');
 var Transaction = require('./transaction');
 var _ = require('lodash');
+var money = require('money');
 
 var schema = new Schema({
-  amount:      {
+  amount: {
     type:     Number,
     required: true
   },
+
+  currency: {
+    // sometimes needed, e.g. donate allows multiple currencies
+    type:    String,
+    default: 'RUB',
+    enum:    ['USD', 'EUR', 'RUB', 'UAH']
+  },
+
   module:      { // module so that transaction handler knows where to go back e.g. 'ebook'
     type:     String,
     required: true
@@ -31,13 +39,13 @@ var schema = new Schema({
 
   // order can be bound to either an email or a user
   email: {
-    type: String,
+    type:  String,
     index: true
   },
 
-  user:  {
-    type: Schema.Types.ObjectId,
-    ref:  'User',
+  user: {
+    type:  Schema.Types.ObjectId,
+    ref:   'User',
     index: true
   },
 
@@ -77,6 +85,11 @@ schema.methods.cancelPendingTransactions = function*(statusMessage) {
     statusMessage: statusMessage
   });
 
+};
+
+schema.methods.convertAmount = function(currencyCode) {
+  return (this.currency == currencyCode) ? this.amount :
+    Math.ceil(money.convert(this.amount, {from: this.currency, to: currencyCode}));
 };
 
 schema.methods.onPaid = function*(transaction) {

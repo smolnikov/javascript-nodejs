@@ -67,6 +67,7 @@ module.exports = function*(orderTemplate, user, requestBody) {
     title:  group.title,
     amount: orderData.count * price,
     module: orderTemplate.module,
+    currency: 'RUB',
     data:   orderData,
     email:  user.email,
     user:   user._id
