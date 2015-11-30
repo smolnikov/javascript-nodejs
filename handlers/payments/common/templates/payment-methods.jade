@@ -2,7 +2,7 @@
   +e('ul').methods
 
     each paymentMethod in paymentMethods
-      +e('li').method(data-payment-method=paymentMethod.name)
+      +e('li').method
         +e('input').method-radio(type="radio" name="paymentMethod" value=paymentMethod.name id=paymentMethod.name)
         +e('label')(class=["method-label", "_" + paymentMethod.name] for=paymentMethod.name)
           +e('header').header
