@@ -18,12 +18,9 @@ exports.createTransaction = function*(order, requestBody) {
     throw(new Error("Unsupported currency:" + currency));
   }
 
-  var amount = (order.currency == config.payments.currency) ?
-    order.amount : Math.round(money.convert(order.amount, {from: config.payments.currency, to: currency}));
-
   var transaction = new Transaction({
     order:         order._id,
-    amount:        amount,
+    amount:        order.convertAmount(currency),
     status:        Transaction.STATUS_PENDING,
     currency:      currency,
     paymentMethod: path.basename(__dirname)
@@ -36,7 +33,7 @@ exports.createTransaction = function*(order, requestBody) {
 };
 
 exports.info = {
-  title:           'PayPal',
-  name:            path.basename(__dirname),
-  hasIcon:         true
+  title:   'PayPal',
+  name:    path.basename(__dirname),
+  hasIcon: true
 };

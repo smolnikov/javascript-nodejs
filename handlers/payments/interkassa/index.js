@@ -7,19 +7,16 @@ exports.renderForm = require('./renderForm');
 
 // TX gets this status when created
 exports.createTransaction = function*(order, requestBody) {
+
   var currency = requestBody.interkassaCurrency;
 
   if (!~['UAH', 'RUB'].indexOf(currency)) {
     throw(new Error("Unsupported currency:" + currency));
   }
 
-  var amount = (order.currency == config.payments.currency) ?
-    order.amount : Math.round(money.convert(order.amount, {from: config.payments.currency, to: currency}));
-
-
   var transaction = new Transaction({
     order:         order._id,
-    amount:        amount,
+    amount:        order.convertAmount(currency),
     status:        Transaction.STATUS_PENDING,
     currency:      currency,
     paymentMethod: path.basename(__dirname)
@@ -35,5 +32,5 @@ exports.info = {
   title:    "Интеркасса",
   name:     path.basename(__dirname),
   hasIcon:  false,
-  subtitle: "резервный способ оплаты"
+  subtitle: "дополнительные методы оплаты"
 };

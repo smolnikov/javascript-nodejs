@@ -31,8 +31,10 @@ var schema = new Schema({
   currency: {
     // sometimes needed, e.g. paypal allows many currencies
     type:   String,
+    default: 'RUB',
     enum: ['USD', 'EUR', 'RUB', 'UAH']
   },
+
   // payment method may initiate the payment
   // and provide the token value to track it
   // other details are also possible

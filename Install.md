@@ -5,13 +5,16 @@
 
 Сайт работает под MacOS, Unix (протестировано на Ubuntu, Debian), но не Windows. Сам код сайта более-менее универсален, но под Windows криво работают некоторые сторонние модули.
 
-## 1. Поставьте Node.JS
+## 1. Директория
 
-Нужна именно последняя версия [Node.JS](https://nodejs.org).
+Чтобы было проще – создайте в корне директорию `/js`, и в ней работайте. 
+Если философия не позволяет – можно другую директорию по править пути, но с `/js` не надо править пути в командах.
 
-## 2. Поставьте и запустите MongoDB.
+## 2. Поставьте и запустите Node.JS и MongoDB
 
-Если у вас Mac, то проще всего сделать это через [MacPorts](http://www.macports.org/install.php) или [Homebrew](http://brew.sh), чтобы было проще ставить дополнительные пакеты.
+Node.JS – последняя версия с [https://nodejs.org](https://nodejs.org).
+
+Mongo – можно 2.6+. Линукс-пакет или, если у вас Mac, то проще всего сделать это через [MacPorts](http://www.macports.org/install.php) или [Homebrew](http://brew.sh), чтобы было проще ставить дополнительные пакеты.
 
 Если через MacPorts, то:
 ```
@@ -23,22 +26,26 @@ sudo port load mondogb
 
 Предположу, что Git у вас уже стоит и вы умеете им пользоваться. 
 
-Клонируйте только ветку `master`:
+Клонируйте только ветку `master` движка:
 ```
-git clone -b ru --single-branch https://github.com/iliakan/javascript-nodejs
+cd /js
+git clone -b master --single-branch https://github.com/iliakan/javascript-nodejs 
 ```
+
 
 ## 4. Глобальные модули
 
 Поставьте глобальные модули:
 
 ```
-npm install -g mocha bunyan gulp nodemon  
+npm install -g mocha bunyan gulp nodemon   
 ```
 
 ## 5. Системные пакеты
 
-Для работы нужны Nginx, GraphicsMagick, ImageMagick (обычно используется GM, он лучше, но иногда IM).
+Для работы также нужны Nginx, GraphicsMagick и ImageMagick (обычно используется GM, он лучше, но иногда IM).
+
+Под Macports команды такие:
 
 ```
 sudo port install ImageMagick GraphicsMagick 
@@ -49,9 +56,9 @@ sudo port load nginx
 
 ## 6. Конфигурация Nginx
 
-Если в системе ранее не стоял nginx, то ставим настройки для сайта:
+Если в системе ранее не стоял nginx.
 
-Например:
+Cтавим настройки для сайта запуском:
 ```
 gulp config:nginx --prefix /opt/local/etc/nginx --root /js/javascript-nodejs --env development --clear 
 ```
@@ -61,8 +68,15 @@ gulp config:nginx --prefix /opt/local/etc/nginx --root /js/javascript-nodejs --e
 
 Опция `--clear` полностью удалит старые конфиги nginx.
 
-Если уже есть nginx, то можно без `--clear`. Тогда команда только скопирует файлы из директории nginx (с минимальной шаблонизацией) в указанную директорию.
-Основные конфиги будут перезаписаны, но в `sites-enabled` останутся и будут подключены и другие сайты. 
+Если уже есть nginx, то можно без `--clear`. 
+
+```
+gulp config:nginx --prefix /opt/local/etc/nginx --root /js/javascript-nodejs --env development  
+```
+
+Такая команда скопирует файлы из директории nginx в указанную директорию `--prefix`. При копировании используется небольшая шаблонизация конфигов, т.е. это не просто `cp`.
+
+Основные конфиги будут при этом перезаписаны, но в `sites-enabled` останутся и будут подключены и другие сайты. 
  
 Также рекомендуется в `/etc/hosts` добавить строку:
 ```
@@ -87,9 +101,11 @@ npm install
 gulp db:load --from fixture/init 
 ```
 
-Учебник находится в отдельном репозитарии:
+
+Клонируйте ветку учебника, например `ru`:
 ```
-git clone -b master --single-branch https://github.com/iliakan/javascript-tutorial
+cd /js
+git clone -b ru --single-branch https://github.com/iliakan/javascript-tutorial
 ```
 
 После клонирования импортируйте учебник командой:

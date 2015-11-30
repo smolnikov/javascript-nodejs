@@ -1,0 +1,52 @@
+extends /layouts/main
+
+block append variables
+  - var layout_header_class = "main__header_center"
+
+block append ga
+  script.
+    ga('require', 'ec')
+    ga('set', '&cu', 'RUB');
+
+    ga('ec:addProduct', {
+      id: 'donate'
+    });
+    ga('ec:setAction', 'click');
+
+block append head
+  != js("donate", {defer: true})
+
+block content
+
+  script var status = "#{status}";
+
+  +b("form").complex-form(data-order-form)
+    +e.step._current
+      +e('h2').alternate-title Сумма
+
+      p= orderTemplate.description
+
+      +b.text-input
+        +e('input').control(name="amount", required, type="number")
+      select(name="currency" data-order-currency)
+       option(value="RUB") RUB
+       option(value="USD") USD
+       option(value="EUR") EUR
+
+      if (!user)
+        +e('h2').alternate-title Укажите свой email
+        +b.text-input.__email
+          +e('input').control(placeholder="my@email.com", name="email", required, type="email")
+        +e.email-note Для истории
+
+      +e('h2').alternate-title Выберите метод
+      +e.body
+        +b.extract._small.__extract
+          include ../../payments/common/templates/payment-methods
+
+      +e.submit-line
+        +b('button')(type="submit").button._action
+          +e('span').text Продолжить
+
+  +b('ul').grayed-list
+    +e('li').item Подтверждение

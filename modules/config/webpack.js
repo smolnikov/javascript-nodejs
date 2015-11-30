@@ -66,6 +66,7 @@ var webpackConfig = {
     search:                    'search/client',
     quiz:                      'quiz/client',
     ebook:                     'ebook/client',
+    donate:                    'donate/client',
     coursesCourse:             'courses/client/course',
     coursesSignup:             'courses/client/signup',
     coursesParticipantDetails: 'courses/client/participantDetails',
