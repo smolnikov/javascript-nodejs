@@ -16,9 +16,9 @@ exports.up = function*() {
   var course = yield Course.create({
     "slug":             "angular",
     "videoKeyTag":      "js",
-    "title":            "Курс по Angular.JS",
-    "titleShort":       "Angular.JS",
-    "shortDescription": "<p>Профессиональная разработка на Angular.JS.</p> <p>Стоимость обучения 9500 руб, время обучения: месяц.</p>",
+    "title":            "Курс по AngularJS",
+    "titleShort":       "AngularJS",
+    "shortDescription": "<p>Профессиональная разработка на AngularJS.</p> <p>Стоимость обучения 9500 руб, время обучения: месяц.</p>",
     "isListed":         true,
     "weight":           3,
     "created":          new Date()
@@ -44,7 +44,7 @@ exports.up = function*() {
     "price" : 9500,
     "participantsLimit" : 20,
     "webinarId" : "103411835",
-    "title" : "Курс Angular.JS (02.11)",
+    "title" : "Курс AngularJS (02.11)",
     "created" : new Date(),
     "isOpenForSignup" : true,
     "isListed" : true,

@@ -1,5 +1,5 @@
 
-+b(class=["course-feedback", "_result", isList ? '_external': ''] data-coursefeedback-number=courseFeedback.number)
++b(class=["course-feedback", "_result", isList ? '_external': '', !courseFeedback.isPublic ? '_not-public' : ''] data-coursefeedback-number=courseFeedback.number)
   +e.user
     +e.userpic
       +e('img').userpic-img(src=thumb(courseFeedback.photo, 86, 86))

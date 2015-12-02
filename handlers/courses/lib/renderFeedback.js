@@ -64,6 +64,7 @@ function* renderFeedback(courseFeedback, user) {
     },
     content:           renderSimpledown(courseFeedback.content, {trusted: false}),
     isTeacher:         isTeacher,
+    isPublic:          courseFeedback.isPublic,
     number:            courseFeedback.number,
     teacherComment:    courseFeedback.teacherComment ? renderSimpledown(courseFeedback.teacherComment, {trusted: false}) : '',
     teacherCommentRaw: isTeacher ? (courseFeedback.teacherComment || '') : '',

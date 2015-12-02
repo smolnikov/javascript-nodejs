@@ -1,17 +1,14 @@
 include /bem
 
-div(ng-if="me.teachesCourses && me.teachesCourses.length")
++b('section').course-feedbacks.teacher-feedback._loading
+  +e.head
+    +e('h2').title Отзывы учеников
 
-  +e.feedbacks
-    +b('section').course-feedbacks.teacher-feedback._loading
-      +e.head
-        +e('h2').title Отзывы учеников
+  +e.feedbacks-list(data-feedback-container)
 
-      +e.feedbacks-list(data-feedback-container)
-
-      +e.loader
-        +b.page-loader
-          +b('span').spinner._active._small
-            +e('span').dot._1
-            +e('span').dot._2
-            +e('span').dot._3
+  +e.loader
+    +b.page-loader
+      +b('span').spinner._active._small
+        +e('span').dot._1
+        +e('span').dot._2
+        +e('span').dot._3
