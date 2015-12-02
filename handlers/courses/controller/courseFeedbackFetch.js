@@ -12,14 +12,22 @@ exports.get = function*() {
   var skip = +this.query.skip || 0;
   var limit = 10;
 
-  var filter = { };
-  filter.$or = [{
-      isPublic: true
-  }];
-  if (this.user) {
+  var filter = {
+    $or: []
+  };
+
+  // for non-admin user filter isPublic
+  if (!this.isAdmin) {
     filter.$or.push({
-      teacherCache: this.user._id
+      isPublic: true
     });
+
+    // or his groups
+    if (this.user) {
+      filter.$or.push({
+        teacherCache: this.user._id
+      });
+    }
   }
 
   if (this.query.course) {
