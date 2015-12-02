@@ -15,6 +15,7 @@ require('./directive/profilePassword');
 require('./directive/profileAuthProviders');
 require('./directive/dateValidator');
 require('./directive/dateRangeValidator');
+require('./directive/courseFeedbackList');
 
 require('./factory/me');
 
@@ -32,6 +33,7 @@ require('./controller/orders');
 require('./controller/courseGroups');
 
 require('./controller/aboutme');
+require('./controller/courseFeedbackList');
 
 require('./controller/subscriptions');
 

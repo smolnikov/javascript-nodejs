@@ -13,8 +13,8 @@ angular.module('profile').config(($locationProvider, $stateProvider, $urlRouterP
 
   $stateProvider
     .state('root', {
-      abstract: true,
-      resolve:  {
+      abstract:    true,
+      resolve:     {
         me: (Me) => Me.get()
       },
       templateUrl: "/profile/templates/partials/root",
@@ -26,12 +26,13 @@ angular.module('profile').config(($locationProvider, $stateProvider, $urlRouterP
       url:   "/",
       title: 'Публичный профиль',
       views: {
-        main: {
+        main:   {
           templateUrl: "/profile/templates/partials/aboutme",
           controller:  'ProfileAboutMeCtrl'
         },
         bottom: {
-          template: ''
+          template: `<course-feedback-list ng-if="me.teachesCourses && me.teachesCourses.length"/>`,
+          controller:  'ProfileCourseFeedbackList'
         }
       }
     },
