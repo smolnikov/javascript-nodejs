@@ -12,15 +12,13 @@ exports.get = function*() {
   var skip = +this.query.skip || 0;
   var limit = 10;
 
-  var filter = {
-    $or: []
-  };
+  var filter = {};
 
   // for non-admin user filter isPublic
   if (!this.isAdmin) {
-    filter.$or.push({
+    filter.$or = [{
       isPublic: true
-    });
+    }];
 
     // or his groups
     if (this.user) {
