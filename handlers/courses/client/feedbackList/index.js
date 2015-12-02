@@ -2,8 +2,9 @@ var xhr = require('client/xhr');
 var FeedbackLoader = require('../lib/feedbackLoader');
 var pluralize = require('textUtil/pluralize');
 
-function init() {
-  let loader = new FeedbackLoader(window.FEEDBACK_LIST_INIT);
+function init(options) {
+
+  let loader = new FeedbackLoader(options || window.FEEDBACK_LIST_INIT);
 
   let countElem = document.querySelector('[data-feedback-count]');
 
@@ -48,4 +49,8 @@ function init() {
 
 }
 
-init();
+module.exports = init;
+
+if (window.FEEDBACK_LIST_INIT) {
+  init();
+}

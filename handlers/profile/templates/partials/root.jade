@@ -10,4 +10,6 @@ include /bem
         +e.tab-content
           +e('a').tab-link(ui-sref="{{tab.name}}") {{tab.title}}
 
-    ui-view Loading...
+    ui-view(name="main")= t('Loading...')
+
+  ui-view(name="bottom")

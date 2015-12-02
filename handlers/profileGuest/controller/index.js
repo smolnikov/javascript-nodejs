@@ -1,6 +1,4 @@
-var config = require('config');
 var User = require('users').User;
-var mongoose = require('mongoose');
 var QuizResult = require('quiz').QuizResult;
 
 // skips the request if it's the owner
