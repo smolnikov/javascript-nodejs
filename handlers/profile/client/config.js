@@ -13,8 +13,8 @@ angular.module('profile').config(($locationProvider, $stateProvider, $urlRouterP
 
   $stateProvider
     .state('root', {
-      abstract:    true,
-      resolve:     {
+      abstract: true,
+      resolve:  {
         me: (Me) => Me.get()
       },
       templateUrl: "/profile/templates/partials/root",
@@ -22,51 +22,78 @@ angular.module('profile').config(($locationProvider, $stateProvider, $urlRouterP
     });
 
   var states = {
-    'root.aboutme': {
-      url:         "/",
-      title:       'Публичный профиль',
-      templateUrl: "/profile/templates/partials/aboutme",
-      controller:  'ProfileAboutMeCtrl'
+    'root.aboutme':       {
+      url:   "/",
+      title: 'Публичный профиль',
+      views: {
+        main: {
+          templateUrl: "/profile/templates/partials/aboutme",
+          controller:  'ProfileAboutMeCtrl'
+        },
+        bottom: {
+          template: ''
+        }
+      }
     },
-    'root.account': {
-      url:         '/account',
-      title:       'Аккаунт',
-      templateUrl: "/profile/templates/partials/account",
-      controller:  'ProfileAccountCtrl'
+    'root.account':       {
+      url:   '/account',
+      title: 'Аккаунт',
+      views: {
+        main: {
+          templateUrl: "/profile/templates/partials/account",
+          controller:  'ProfileAccountCtrl'
+        }
+      }
     },
-    'root.quiz':    {
-      url:         '/quiz',
-      title:       'Тесты',
-      templateUrl: "/profile/templates/partials/quiz",
-      controller:  'ProfileQuizResultsCtrl',
-      resolve:     {
+    'root.quiz':          {
+      url:     '/quiz',
+      title:   'Тесты',
+      views:   {
+        main: {
+          templateUrl: "/profile/templates/partials/quiz",
+          controller:  'ProfileQuizResultsCtrl'
+        }
+      },
+      resolve: {
         quizResults: /*@ngInject*/ (QuizResults) => QuizResults.query()
       }
     },
-    'root.subscriptions':  {
-      url:         '/subscriptions',
-      title:       'Уведомления',
-      templateUrl: "/profile/templates/partials/subscriptions",
-      controller:  'ProfileSubscriptionsCtrl',
-      resolve:     {
+    'root.subscriptions': {
+      url:     '/subscriptions',
+      title:   'Уведомления',
+      views:   {
+        main: {
+          templateUrl: "/profile/templates/partials/subscriptions",
+          controller:  'ProfileSubscriptionsCtrl'
+        }
+      },
+      resolve: {
         newsletters: /*@ngInject*/ (Newsletters) => Newsletters.query()
       }
     },
-    'root.orders':  {
-      url:         '/orders',
-      title:       'Заказы',
-      templateUrl: "/profile/templates/partials/orders",
-      controller:  'ProfileOrdersCtrl',
-      resolve:     {
+    'root.orders':        {
+      url:     '/orders',
+      title:   'Заказы',
+      views:   {
+        main: {
+          templateUrl: "/profile/templates/partials/orders",
+          controller:  'ProfileOrdersCtrl'
+        }
+      },
+      resolve: {
         orders: /*@ngInject*/ (Orders) => Orders.query()
       }
     },
-    'root.courses':  {
-      url:         '/courses',
-      title:       'Курсы',
-      templateUrl: "/profile/templates/partials/courseGroups",
-      controller:  'ProfileCourseGroupsCtrl',
-      resolve:     {
+    'root.courses':       {
+      url:     '/courses',
+      title:   'Курсы',
+      views:   {
+        main: {
+          templateUrl: "/profile/templates/partials/courseGroups",
+          controller:  'ProfileCourseGroupsCtrl'
+        }
+      },
+      resolve: {
         courseGroups: /*@ngInject*/ (CourseGroups) => CourseGroups.query()
       }
     }

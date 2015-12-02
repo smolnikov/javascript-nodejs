@@ -11,7 +11,7 @@ var ImgurImage = require('imgur').ImgurImage;
 
 exports.get = function*(next) {
 
-  var fields = 'created displayName realName birthday email gender country town interests aboutMe profileName publicEmail'.split(' ');
+  var fields = 'id created displayName realName birthday email gender country town interests aboutMe profileName publicEmail'.split(' ');
 
   this.body = {
     teachesCourses: this.params.user.teachesCourses.map(String)
