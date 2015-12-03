@@ -118,7 +118,7 @@ exports.get = function*(next) {
         $lt:  new Date(+new Date() - 14*86400*1e3)
       }
     }
-  });
+  }).sort({dateStart: -1});
 
   for (let i = 0; i < groupsWhereTeacher.length; i++) {
     let group = groupsWhereTeacher[i];
