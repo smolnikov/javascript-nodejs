@@ -1,12 +1,9 @@
 "use strict";
 
-const CourseGroup = require('../models/courseGroup');
 const CourseParticipant = require('../models/courseParticipant');
-const CourseInvite = require('../models/courseInvite');
 const _ = require('lodash');
 const sendOrderInvites = require('./sendOrderInvites');
 const Order = require('payments').Order;
-const User = require('users').User;
 
 // called by payments/common/order
 module.exports = function*() {
@@ -14,7 +11,7 @@ module.exports = function*() {
   //var group = yield CourseGroup.findById(this.order.data.group).exec();
   var participants = yield CourseParticipant.find({
     group: this.order.data.group
-  }).populate('user').exec();
+  }).populate('user');
 
   var participantsByEmail = _.indexBy(participants, function(participant) {
     return participant.user.email;
@@ -63,6 +60,21 @@ module.exports = function*() {
   }
 
   this.order.markModified('data');
+
+  if (this.isAdmin) {
+    if ("amount" in this.request.body) {
+      this.order.amount = this.request.body.amount;
+    }
+
+    if ("currency" in this.request.body) {
+      this.order.currency = this.request.body.currency;
+    }
+
+    if ("status" in this.request.body) {
+      this.order.status = this.request.body.status;
+    }
+  }
+
   yield this.order.persist();
 
 

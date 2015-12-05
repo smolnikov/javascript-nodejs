@@ -87,18 +87,14 @@ function* grantXmppChatMemberships(group, participants, teacher) {
   // grant all in parallel
   yield jobs;
 
-  // TODO: test me teacher access!!
-  // profileName or fullName here?
-
   log.debug("adding user");
 
   yield client.grantMember(roomJid, teacher.profileName + '@' + config.xmpp.server, teacher.displayName, 'owner');
-//  yield client.grantModerator(roomJid, teacher.displayName);
 
   client.disconnect();
 }
 
-// when user updates his details, regrant his groups, just in case he changed his name
+// when user updates his details, regrant his groups IF changed profileName
 User.schema.pre('save', function(next) {
   var user = this;
   co(function*() {

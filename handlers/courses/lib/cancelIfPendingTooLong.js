@@ -27,15 +27,15 @@ module.exports = function*(order) {
 
   if (orderSuccessSameGroupAndUser) {
     // 2 days if has success order to same group
-    if (order.created > Date.now() - 2 * 86400 * 1e3) {
-      //console.log(order.created, Date.now() - 2 * 24 * 86400 * 1e3, +order.created);
-      gutil.log(`...created ${order.created} less than 2 days, return`);
+    if (order.modified > Date.now() - 2 * 86400 * 1e3) {
+      //console.log(order.modified, Date.now() - 2 * 24 * 86400 * 1e3, +order.modified);
+      gutil.log(`...modified ${order.modified} less than 2 days, return`);
       return;
     }
   } else {
     // 7 days wait otherwise
-    if (order.created > Date.now() - 7 * 86400 * 1e3) {
-      gutil.log(`...created ${order.created} less than 7 days, return`);
+    if (order.modified > Date.now() - 7 * 86400 * 1e3) {
+      gutil.log(`...modified ${order.modified} less than 7 days, return`);
       return;
     }
   }

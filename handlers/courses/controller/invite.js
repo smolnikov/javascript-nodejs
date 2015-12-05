@@ -153,6 +153,8 @@ function* askParticipantDetails(invite) {
     participantData.user = this.user._id;
     participantData.group = invite.group._id;
 
+    participantData.invite = invite;
+
     if (participantData.photoId) {
       var photo = yield ImgurImage.findOne({imgurId: this.request.body.photoId}).exec();
       if (photo) { // no photo if stale form (?) or just bad post

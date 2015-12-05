@@ -1,0 +1,73 @@
+extends /layouts/main
+
+block append variables
+
+  - var layout_header_class = "main__header_center"
+  - var title = 'Заказ ' + order.number;
+  - var sitetoolbar = true
+  - var siteToolbarCurrentSection = "courses";
+
+block content
+
+  p= order.title
+
+  form(method="POST" action="")
+    input(type="hidden", name="_csrf", value=csrf())
+    div
+      label
+       | Стоимость:
+       = ' '
+       input(name="amount" required value=order.amount)
+       = ' ' + order.currency
+    div
+      | Статус: <b>#{order.status}</b>
+
+
+    h2 Транзакции
+    table
+      tr
+        th modified
+        th created
+        th paymentMethod
+        th amount
+        th currency
+        th status
+        th statusMessage
+      each transaction in transactions
+        tr
+          td= moment(transaction.modified).format('DD.MM.YYYY HH:mm:ss')
+          td= moment(transaction.created).format('DD.MM.YYYY HH:mm:ss')
+          td= transaction.paymentMethod
+          td= transaction.amount
+          td= transaction.currency
+          td= transaction.status
+          td= transaction.statusMessage
+        if transaction.paymentMethod == 'invoice' && transaction.paymentDetails.agreementRequired
+          tr
+            td(colspan=7) Скачать <a href="/payments/invoice/#{transaction.number}/invoice.docx">счёт</a> и <a href="/payments/invoice/#{transaction.number}/agreement.docx">договор с актом</a>.
+
+    p Действия
+    ul
+      li
+        +b('button').button._action(name="action" value="save" type="submit")
+          +e('span').text Сохранить
+
+      if order.status == 'cancel'
+        li
+          +b('button').button._action(name="action" value="pending" type="submit")
+            +e('span').text Вернуть в Pending
+        li
+          +b('button').button._action(name="action" value="paid" type="submit")
+            +e('span').text Оплачен
+
+      if order.status == 'pending'
+        li
+          +b('button').button._action(name="action" value="paid" type="submit")
+            +e('span').text Оплачен
+
+      if order.status == 'success'
+        li
+          +b('button').button._action(name="action" value="cancel" type="submit")
+            +e('span').text Отменить и отчислить участников
+
+
