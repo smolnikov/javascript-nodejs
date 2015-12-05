@@ -23,6 +23,9 @@ router.get('/:course', require('./controller/course').get);
 router.get('/groups/:groupBySlug/signup', require('./controller/signup').get);
 router.get('/orders/:orderNumber(\\d+)', require('./controller/signup').get);
 
+router.get('/admin/orders/:orderNumber(\\d+)', mustBeAdmin, require('./controller/order').get);
+router.post('/admin/orders/:orderNumber(\\d+)', mustBeAdmin, require('./controller/order').post);
+
 router.get('/groups/:groupBySlug/info', mustBeParticipantOrTeacher, require('./controller/groupInfo').get);
 router.get('/groups/:groupBySlug/materials', mustBeParticipantOrTeacher, require('./controller/groupMaterials').get);
 router.get('/groups/:groupBySlug/participants-info', mustBeTeacherOrAdmin, require('./controller/participantsInfo').get);

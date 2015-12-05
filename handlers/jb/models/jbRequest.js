@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const countries = require('countries');
 
 const schema = new Schema({
   product: {
@@ -10,6 +11,13 @@ const schema = new Schema({
     },
     required: 'Укажите продукт'
   },
+
+  country:    {
+    type: String,
+    enum: Object.keys(countries.all),
+    required: "Страна не указана."
+  },
+
   email: {
     type: String,
     required: 'Укажите email'

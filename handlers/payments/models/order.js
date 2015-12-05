@@ -24,13 +24,16 @@ var schema = new Schema({
     type:     String,
     required: true
   },
+
   title:       {
     type:     String,
     required: true
   },
+
   description: {
     type: String
   },
+
   status:      {
     type:    String,
     enum:    ['success', 'cancel', 'pending', 'paid'],
@@ -58,6 +61,7 @@ var schema = new Schema({
     type:    Date,
     default: Date.now
   },
+
   modified: {
     type: Date
   }

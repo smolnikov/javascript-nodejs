@@ -39,6 +39,12 @@ block content
           +e("input").control(type="email", name="email", id="email", required, value=form && form.email, placeholder="my@mail.com")
 
       +e.line
+        +e('label').label(for="country") Страна:
+        +b('select').input-select._small(name="country" id="country")
+          each country in countries
+            option(value=country.co selected=(country.co == form.country))= country.na
+
+      +e.line
         +e("label").label(for="product") Редактор:
         +b('select').input-select._small(name="product" id="product")
           each title, value in products
@@ -49,11 +55,14 @@ block content
           +e("span").text Отправить
 
   script.
+
     document.forms.jb.onsubmit = function() {
-      return confirm('Проверьте запрос на лицензию:' +
-      '\nРедактор: ' + this.elements.product.value +
-      '\nEmail:    ' + this.elements.email.value +
-      '\nИмя:      ' + this.elements.name.value +
+      var elems = this.elements;
+      return confirm('Ваш запрос на лицензию:' +
+      '\nРедактор: ' + elems.product.value +
+      '\nEmail:    ' + elems.email.value +
+      '\nИмя:      ' + elems.name.value +
+      '\nСтрана:   ' + [].slice.call(elems.country.options).filter(function(o) { return o.value == elems.country.value }, this)[0].innerHTML +
       '\nВсё верно, отправлять?');
     };
 

@@ -26,6 +26,17 @@ var schema = new Schema({
     default: true
   },
 
+  // for history how this participant was created
+  invite: {
+    type: Schema.Types.ObjectId,
+    ref:  'CourseInvite'
+    // should be required, but added after participants w/o it existed already
+  },
+
+  notes: {
+    type: String
+  },
+
   firstName:  {
     type:      String,
     validate:  [
