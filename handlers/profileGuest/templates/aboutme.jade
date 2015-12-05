@@ -4,6 +4,13 @@ block append head
   !=js("profileGuestAboutMe", {defer: true})
 
 block profileContent
+  if user.isAdmin
+    +b.profile-field
+      +e.lcell
+        +e.name Email
+      +e.rcell
+        +e.value= profileUser.email
+
   if profileUser.realName
     +b.profile-field
       +e.lcell
@@ -55,7 +62,7 @@ block profileContent
         +e.value= profileUser.birthday
 
 
-  if profileUser.teachesCourses
+  if profileUser.teachesCourses && profileUser.teachesCourses.length
     +b.profile-field
       +e.lcell
         +e.name Ведёт курсы
