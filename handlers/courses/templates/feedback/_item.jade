@@ -14,7 +14,7 @@
           | ,&nbsp;
           = courseFeedback.city
 
-    +e('a')(href=courseFeedback.link).date= moment(courseFeedback.created).format('D MMM YYYY')
+    +e('a')(href=courseFeedback.link).date #{moment(courseFeedback.created).format('D MMM YYYY')} #
 
     if courseFeedback.aboutLink
       +e('span').homepage
@@ -35,19 +35,19 @@
     +e('a').course-link(href=courseFeedback.course.link)= courseFeedback.course.titleShort
     = '"'
 
-  +e.info
+  +e.teacher
     | Преподаватель:
     =  ' '
     +e('a').teacher-link(href=courseFeedback.teacher.link)
       = courseFeedback.teacher.name
-    if courseFeedback.teacherFeedbackEnabled
+    if courseFeedback.isTeacherOrAdmin
       = ' '
       +e('button').add-comment(data-action-coursefeedback-comment-add style="display:#{courseFeedback.teacherComment ? 'none' : ''}")
 
     if courseFeedback.teacherComment
       +e.teacher-comment
         +e!= courseFeedback.teacherComment
-        if courseFeedback.teacherFeedbackEnabled
+        if courseFeedback.isTeacherOrAdmin
           script(type="text/comment" data-coursefeedback-comment-raw)= courseFeedback.teacherCommentRaw
           +e('a').edit(href='#' data-action-coursefeedback-comment-edit) редактировать
 

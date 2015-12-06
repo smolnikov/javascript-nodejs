@@ -49,7 +49,7 @@ function* getOrderInfo(order) {
       status:      "success",
       statusText:  "Оплата получена",
       transaction: transaction,
-      descriptionProfile: transaction.paymentMethod == 'invoice' && transaction.paymentDetails.agreementRequired ?
+      descriptionProfile: transaction && transaction.paymentMethod == 'invoice' && transaction.paymentDetails.agreementRequired ?
         `Вы можете повторно скачать <a href="/payments/invoice/${transaction.number}/invoice.docx">счёт</a>
         и <a href="/payments/invoice/${transaction.number}/agreement.docx">договор с актом</a>.` :
         ''

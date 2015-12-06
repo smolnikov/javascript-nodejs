@@ -12,6 +12,8 @@ block append variables
 
 block append head
   !=js("coursesFeedbackList", {defer: true})
+  if user.isAdmin || user.teachesCourses.length
+    !=js("coursesFeedbackShow", {defer: true})
 
 
 block content
@@ -64,7 +66,7 @@ block content
 
       +e.text
         +e('strong').percents #{Math.round(stats.recommendFraction * 100)}%
-        +e('span').advice Оставивших отзыв рекомендуют эти курсы
+        +e('span').advice Оставивших отзыв рекомендуют этот курс
 
   +b.feedback-policy
     +e.link Политика отзывов javascript.ru
