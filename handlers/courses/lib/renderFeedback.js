@@ -38,7 +38,7 @@ function* renderFeedback(courseFeedback, user) {
     }
   }
 
-  var isTeacher = user && (user.isAdmin || user._id.equals(courseFeedback.group.teacher._id));
+  var isTeacherOrAdmin = user && (user.isAdmin || user._id.equals(courseFeedback.group.teacher._id));
 
   var rendered = {
     photo:             courseFeedback.photo || courseFeedback.participant.user.getPhotoUrl(),
@@ -63,12 +63,12 @@ function* renderFeedback(courseFeedback, user) {
       name: courseFeedback.group.teacher.displayName
     },
     content:           renderSimpledown(courseFeedback.content, {trusted: false}),
-    isTeacher:         isTeacher,
+    isTeacherOrAdmin:         isTeacherOrAdmin,
     isPublic:          courseFeedback.isPublic,
     number:            courseFeedback.number,
     teacherComment:    courseFeedback.teacherComment ? renderSimpledown(courseFeedback.teacherComment, {trusted: false}) : '',
-    teacherCommentRaw: isTeacher ? (courseFeedback.teacherComment || '') : '',
-    editLink:          authorOrAdmin ? `/courses/groups/${courseFeedback.group.slug}/feedback` : null,
+    teacherCommentRaw: isTeacherOrAdmin ? (courseFeedback.teacherComment || '') : '',
+    editLink:          authorOrAdmin ? `/courses/feedback/edit/${courseFeedback.number}` : null,
     link:              `/courses/feedback/${courseFeedback.number}`
   };
 

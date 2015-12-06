@@ -8,6 +8,8 @@ block append variables
 block append head
   base(href=user.getProfileUrl() + '/')
   !=css("quiz")
+  if user.isAdmin || user.teachesCourses.length
+    !=js("coursesFeedbackShow", {defer: true})
 
 block content
 

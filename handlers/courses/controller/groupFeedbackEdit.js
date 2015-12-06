@@ -1,44 +1,104 @@
+'use strict';
+
 const countries = require('countries');
 const ImgurImage = require('imgur').ImgurImage;
+const User = require('users').User;
 const CourseFeedback = require('../models/courseFeedback');
+const CourseGroup = require('../models/courseGroup');
 const CourseParticipant = require('../models/courseParticipant');
 const _ = require('lodash');
+const assert = require('assert');
 
 exports.all = function*() {
 
-  var group = this.locals.group = this.groupBySlug;
+  let group, teacher, participant, courseFeedback;
+
+  if (!this.user) {
+    this.throw(403);
+  }
+
+  if (this.groupBySlug) {
+    group = this.groupBySlug;
+
+    participant = yield CourseParticipant.findOne({
+      isActive: true,
+      group: group._id,
+      user: this.user._id
+    });
+
+    if (!participant) {
+      this.throw(403, "Оставлять отзыв могут только участники группы");
+    }
+
+    courseFeedback = yield CourseFeedback.findOne({
+      participant: participant._id
+    });
+
+    if (courseFeedback) {
+      // if feedback exists already, there is another page to edit it
+      this.redirect('/courses/feedback/edit/' + courseFeedback.number);
+      return;
+    }
+
+    teacher = yield User.findById(group.teacher);
+    courseFeedback = new CourseFeedback({
+      group: group._id,
+      participant:  participant._id,
+      recommend:    true,
+      isPublic:     true,
+      country:      participant.country,
+      photo:        participant.photo,
+      aboutLink:    participant.aboutLink,
+      city:         participant.city,
+      occupation:   participant.occupation,
+      userCache:    this.user._id,
+      teacherCache: teacher.id
+    });
+
+
+  } else if (this.params.feedbackNumber) {
+
+    courseFeedback = yield CourseFeedback.findOne({
+      number: this.params.feedbackNumber
+    });
+
+    if (!courseFeedback) {
+      this.throw(404);
+    }
+
+    participant = yield CourseParticipant.findById(courseFeedback.participant);
+
+    group = yield CourseGroup.findById(courseFeedback.group);
+    teacher = yield User.findById(group.teacher);
+
+    if (!this.user._id.equals(participant._id) &&
+      !this.user._id.equals(teacher._id) &&
+      !this.isAdmin
+    ) {
+      this.throw(403, 'Не хватает прав');
+    }
+
+
+  }
 
   this.locals.title = "Отзыв\n" + group.title;
 
-  this.locals.participant = this.participant;
+  assert(participant);
+  assert(teacher);
+  assert(courseFeedback);
+  assert(group);
 
+  this.locals.participant = participant;
+  this.locals.group = group;
+  this.locals.teacher = teacher;
+  this.locals.courseFeedback = courseFeedback;
   this.locals.countries = countries.all;
 
-  var courseFeedback = yield CourseFeedback.findOne({
-    participant: this.participant._id
-  }).exec();
-
-  if (!courseFeedback) {
-    courseFeedback = new CourseFeedback({
-      recommend:    true,
-      isPublic:     true,
-      country:      this.participant.country,
-      photo:        this.participant.photo,
-      aboutLink:    this.participant.aboutLink,
-      city:         this.participant.city,
-      occupation:   this.participant.occupation,
-      userCache:    this.user.id,
-      teacherCache: group.teacher
-    });
-  }
-
   if (this.method == 'POST') {
-    var feedbackData = _.pick(this.request.body,
+    let feedbackData = _.pick(this.request.body,
       'stars content country city isPublic recommend aboutLink occupation'.split(' ')
     );
 
-    feedbackData.participant = this.participant._id;
-    feedbackData.group = group._id;
     feedbackData.recommend = Boolean(+feedbackData.recommend);
     feedbackData.isPublic = Boolean(+feedbackData.isPublic);
 
@@ -63,7 +123,7 @@ exports.all = function*() {
 
       this.body = this.render('feedback/edit', {
         errors: errors,
-        form:   courseFeedback
+        courseFeedback:   courseFeedback
       });
 
       return;
@@ -87,8 +147,6 @@ exports.all = function*() {
 
 
   } else if (this.method == 'GET') {
-
-    this.locals.form = courseFeedback;
 
     this.body = this.render('feedback/edit');
   }

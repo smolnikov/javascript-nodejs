@@ -14,7 +14,6 @@ class FeedbackManager {
     this.delegate("[data-action-coursefeedback-comment-add]", "click", (event) => {
       event.preventDefault();
       this.getItem(event.target).addComment();
-
     });
 
     this.delegate("[data-action-coursefeedback-comment-edit]", "click", (event) => {
@@ -71,7 +70,7 @@ class FeedbackItem {
       this.teacherComment = "";
       teacherCommentElem = document.createElement('div');
       teacherCommentElem.className = 'course-feedback__teacher-comment';
-      this.elem.querySelector('.course-feedback__info').appendChild(teacherCommentElem);
+      this.elem.querySelector('.course-feedback__teacher').appendChild(teacherCommentElem);
     }
 
     teacherCommentElem.innerHTML = clientRender(commentForm, {

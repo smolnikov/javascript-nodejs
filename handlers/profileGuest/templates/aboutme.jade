@@ -2,6 +2,9 @@ extends root
 
 block append head
   !=js("profileGuestAboutMe", {defer: true})
+  if user.isAdmin || user.teachesCourses.length
+    !=js("coursesFeedbackShow", {defer: true})
+
 
 block profileContent
   if user.isAdmin

@@ -109,7 +109,7 @@ function* getFeedbackStats(course) {
   if (!recommendStats[false]) recommendStats[false] = [{count: 0}];
 
   // 76% recommend
-  let recommendFraction = recommendStats[true][0].count / (recommendStats[true][0].count + recommendStats[false][0].count);
+  let recommendFraction = recommendStats[true][0].count / (recommendStats[true][0].count + recommendStats[false][0].count) || 0;
 
   return {
     stars: starStatsPopulated,
