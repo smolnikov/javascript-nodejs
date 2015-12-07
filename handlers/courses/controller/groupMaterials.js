@@ -112,23 +112,26 @@ exports.post = function*() {
 
   yield group.persist();
 
-  var recipients = participants
-    .map(function(participant) {
-      return {email: participant.user.email, name: participant.fullName};
+  if (this.request.body.notify) {
+    var recipients = participants
+      .map(function(participant) {
+        return {email: participant.user.email, name: participant.fullName};
+      });
+
+    yield sendMail({
+      templatePath: path.join(__dirname, '../templates/email/materials'),
+      subject:      "Добавлены материалы курса",
+      to:           recipients, // recipients
+      comment:      material.comment,
+      link:         config.server.siteHost + `/courses/groups/${group.slug}/materials`,
+      fileLink:     config.server.siteHost + `/courses/download/${group.slug}/${material.filename}`,
+      fileTitle:    material.title
     });
 
-  yield sendMail({
-    templatePath: path.join(__dirname, '../templates/email/materials'),
-    subject:      "Добавлены материалы курса",
-    to:           recipients, // recipients
-    comment:      material.comment,
-    link:         config.server.siteHost + `/courses/groups/${group.slug}/materials`,
-    fileLink:     config.server.siteHost + `/courses/download/${group.slug}/${material.filename}`,
-    fileTitle:    material.title
-  });
-
-  this.addFlashMessage('success', 'Материал добавлен, уведомления разосланы.');
-
+    this.addFlashMessage('success', 'Материал добавлен, уведомления разосланы.');
+  } else {
+    this.addFlashMessage('success', 'Материал добавлен, уведомления НЕ рассылались.');
+  }
   this.redirect(this.originalUrl);
 };
 

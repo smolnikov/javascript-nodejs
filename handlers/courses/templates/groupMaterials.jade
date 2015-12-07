@@ -30,6 +30,10 @@ block content
         +b('span').text-input.__input
           +e('input').control(name="comment" placeholder='Комментарий (опционально)')
       +e.line
+        +e('label').name
+          +e('input').input(type="checkbox" name="notify" checked value="1")
+          | Рассылать уведомления
+      +e.line
         +b('button').button._action.__submit(type="submit")
           +e('span').text Добавить
 
