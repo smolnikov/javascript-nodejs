@@ -12,7 +12,7 @@ block append variables
 
 block append head
   !=js("coursesFeedbackList", {defer: true})
-  if user.isAdmin || user.teachesCourses.length
+  if user && (user.isAdmin || user.teachesCourses.length)
     !=js("coursesFeedbackShow", {defer: true})
 
 
