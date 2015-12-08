@@ -162,6 +162,7 @@
     "i18n-webpack-plugin": "*",
     "imagemin-pngquant": "*",
     "js-beautify": "*",
+    "jshint": "*",
     "lazypipe": "*",
     "mocha": "*",
     "mysql": "*",

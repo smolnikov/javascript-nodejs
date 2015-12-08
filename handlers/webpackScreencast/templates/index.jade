@@ -47,7 +47,14 @@ block content
 
     +b.share-icons
       +e('span').title= t('Share')
+        |:
       include /blocks/social-icons
+
+    +b.donate-links
+      +e('span').title= t('Donate')
+        |:
+      +e("a").link(href="#")
+        
 
 
     +e("p").foot Ниже вы можете ознакомиться более детально с содержанием скринкаста
@@ -58,5 +65,10 @@ block content
 
     include /blocks/subscriptionsForm
 
-    include /blocks/comments
+    include:simpledown donates.md
 
+    include /blocks/donates
+
+    include /blocks/comments
+    
+    
