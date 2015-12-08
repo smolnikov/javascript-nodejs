@@ -15,6 +15,7 @@ var schema = new Schema({
 
   currency: {
     // sometimes needed, e.g. donate allows multiple currencies
+    // courses can be sold in USD directly by the teacher
     type:    String,
     default: 'RUB',
     enum:    ['USD', 'EUR', 'RUB', 'UAH']

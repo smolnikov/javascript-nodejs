@@ -92,6 +92,8 @@ schema.statics.STATUS_SUCCESS = 'success';
 
 schema.statics.STATUS_FAIL = 'fail';
 
+schema.statics.STATUS_REFUND = 'refund';
+
 // autolog all changes
 schema.pre('save', function logChanges(next) {
 
