@@ -9,6 +9,7 @@
     "Search": "Искать",
     "Comments": "Комментарии",
     "Share": "Поделиться",
+    "Donate": "Поддержать",
     "read before commenting…": "перед тем как писать…",
     "You're welcome to post additions, questions to the articles and answers to them.": "Приветствуются комментарии, содержащие дополнения и вопросы по статье, и ответы на них.",
     "To insert a few words of code, use the <code>&lt;code&gt;</code> tag, for several lines – use <code>&lt;pre&gt;</code>, for more than 10 lines – use a sandbox (<a href='http://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com'>JSBin</a>, <a href='http://codepen.io'>codepen</a>…)":  "Для одной строки кода используйте тег <code>&lt;code&gt;</code>, для нескольких строк кода&nbsp;&mdash; тег <code>&lt;pre&gt;</code>, если больше 10 строк&nbsp;&mdash; ссылку на песочницу (<a href='http://plnkr.co/edit/?p=preview'>plnkr</a>, <a href='http://jsbin.com'>JSBin</a>, <a href='http://codepen.io'>codepen</a>…)",
